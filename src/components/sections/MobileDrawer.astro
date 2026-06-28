@@ -1,21 +1,10 @@
 ---
 import { resolveLocation, resolvePhone } from '../../lib/locations';
-import { telHref, site } from '../../config/site';
+import { telHref, site, nav as navTabs } from '../../config/site';
 
 const { location = 'main' } = Astro.props;
 const loc = resolveLocation(location);
 const phone = resolvePhone(loc);
-
-const navTabs = [
-  { label: 'Home',          href: '/' },
-  { label: 'About',         href: '/about/' },
-  { label: 'Services ▾',   href: '/services/' },
-  { label: 'Price List',    href: '/price-list/' },
-  { label: 'Service Areas', href: '/service-areas/' },
-  { label: 'Testimonials',  href: '/testimonials/' },
-  { label: 'Blog',          href: '/blog/' },
-  { label: 'Contact',       href: '/contact-us/' },
-];
 ---
 <!-- Mobile Drawer: hidden unless [data-open] is present (toggled by drawer.ts) -->
 <div
@@ -64,7 +53,7 @@ const navTabs = [
         Call {phone}
       </a>
       <a
-        href="#book"
+        href="/schedule-an-appointment/"
         data-drawer-close
         class="bg-black text-white text-[15px] font-bold text-center py-[14px] rounded-[100px]"
       >

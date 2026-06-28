@@ -1,22 +1,11 @@
 ---
 import { resolveLocation, resolvePhone } from '../../lib/locations';
-import { telHref, site } from '../../config/site';
+import { telHref, site, nav as navTabs } from '../../config/site';
 import MobileDrawer from './MobileDrawer.astro';
 
 const { location = 'main' } = Astro.props;
 const loc = resolveLocation(location);
 const phone = resolvePhone(loc);
-
-const navTabs = [
-  { label: 'Home',          href: '/' },
-  { label: 'About',         href: '/about/' },
-  { label: 'Services ▾',   href: '/services/' },
-  { label: 'Price List',    href: '/price-list/' },
-  { label: 'Service Areas', href: '/service-areas/' },
-  { label: 'Testimonials',  href: '/testimonials/' },
-  { label: 'Blog',          href: '/blog/' },
-  { label: 'Contact',       href: '/contact-us/' },
-];
 
 const headerSocials = site.socials.slice(0, 3);
 ---
@@ -30,11 +19,11 @@ const headerSocials = site.socials.slice(0, 3);
 
     <!-- Desktop nav tabs (hidden ≤880px) -->
     <div class="hidden min-[881px]:flex items-center gap-1 flex-1 justify-center">
-      {navTabs.map((tab, i) => (
+      {navTabs.map((tab) => (
         <a
           href={tab.href}
           class={`text-sm font-semibold px-3 py-2 rounded-md tracking-[-0.14px] transition-colors ${
-            i === 0
+            tab.active
               ? 'text-primary'
               : 'text-ink hover:text-primary'
           }`}
@@ -58,7 +47,7 @@ const headerSocials = site.socials.slice(0, 3);
           </a>
         ))}
       </div>
-      <a href="#book" class="bg-black text-white text-[14px] font-bold tracking-[-0.14px] px-[22px] py-[11px] rounded-[100px]">
+      <a href="/schedule-an-appointment/" class="bg-black text-white text-[14px] font-bold tracking-[-0.14px] px-[22px] py-[11px] rounded-[100px]">
         Book Now
       </a>
       <a href={telHref(phone)} class="bg-primary text-white text-[14px] font-bold tracking-[-0.14px] px-[22px] py-[11px] rounded-[100px]">

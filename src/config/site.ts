@@ -26,3 +26,14 @@ export const site = {
     { name: 'LinkedIn', icon: '/img/social/linkedin.svg', href: '#' },
   ],
 } as const;
+
+export const nav = [
+  { label: 'Home',          href: '/',              active: true },
+  { label: 'About',         href: '/about/' },
+  { label: 'Services ▾',   href: '/services/' },
+  { label: 'Price List',    href: '/price-list/' },
+  { label: 'Service Areas', href: '/service-areas/' },
+  { label: 'Testimonials',  href: '/testimonials/' },
+  { label: 'Blog',          href: '/blog/' },
+  { label: 'Contact',       href: '/contact-us/' },
+] as const;
