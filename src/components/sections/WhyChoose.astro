@@ -1,0 +1,59 @@
+---
+import Section from '../primitives/Section.astro';
+import Container from '../primitives/Container.astro';
+import Button from '../primitives/Button.astro';
+
+const reassurance = [
+  '15+ years of experience — done right the first time.',
+  'Local, family-operated, and customer-obsessed.',
+  'Free security assessment on every visit.',
+  'Transparent pricing — no hidden fees, no surprise charges.',
+];
+---
+
+<Section>
+  <Container>
+    <div class="grid gap-12 items-center" style="grid-template-columns:repeat(auto-fit,minmax(360px,1fr));padding:64px 0;">
+
+      <!-- Left: copy -->
+      <div>
+        <h2 class="m-0 mb-[18px] font-medium leading-[1.2] tracking-[-0.8px] text-ink"
+            style="font-size:clamp(28px,3.6vw,36px);">
+          Why Choose Be Secure Locksmith?
+        </h2>
+        <p class="m-0 mb-7 text-base leading-[1.5] tracking-[-0.16px] text-secondary" style="max-width:520px;">
+          A local, family-operated team that treats your security like our own — fast, transparent, and done right the first time.
+        </p>
+
+        <!-- Reassurance bullets -->
+        <div class="flex flex-col gap-4 mb-[30px]">
+          {reassurance.map((r) => (
+            <div class="flex items-start gap-3">
+              <span class="flex-shrink-0 w-6 h-6 rounded-full bg-success-bg flex items-center justify-center mt-[1px]">
+                <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="#31a24c" stroke-width="3.2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+                  <polyline points="20 6 9 17 4 12"/>
+                </svg>
+              </span>
+              <span class="text-base leading-[1.5] tracking-[-0.16px] text-body">{r}</span>
+            </div>
+          ))}
+        </div>
+
+        <Button href="/schedule-an-appointment/" variant="dark">Book Now</Button>
+      </div>
+
+      <!-- Right: YouTube embed -->
+      <div class="rounded-[32px] overflow-hidden bg-black" style="box-shadow:0 1px 0 #dee3e9;aspect-ratio:16/9;">
+        <iframe
+          src="https://www.youtube.com/embed/HIdYUZ33DO0"
+          title="Why Choose Be Secure Locksmith"
+          loading="lazy"
+          allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
+          allowfullscreen
+          class="w-full h-full border-0 block"
+        ></iframe>
+      </div>
+
+    </div>
+  </Container>
+</Section>

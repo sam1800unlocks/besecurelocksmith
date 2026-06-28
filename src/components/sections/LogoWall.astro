@@ -1,0 +1,44 @@
+---
+import Section from '../primitives/Section.astro';
+import Container from '../primitives/Container.astro';
+
+const clientLogos = [
+  'All-Weather-Contractors-Logo-blue.png',
+  'sap-patio-door-logo.webp',
+  'clear-vision-logo-1-e1735943103268.jpg',
+  'ecs-for-kids-logo-tall.svg',
+  'AddilanGroup_Logo.webp',
+  'davaco-logo-blue.jpg',
+  'frontdoor-logo.png',
+  'KFM-logo.webp',
+  'agero-logo.png',
+  'dynamic-property-management-logo.png',
+  'avid-exchange-logo.webp',
+  'amstel-manufacturing-logo.png',
+  'darden-properties-logo.png',
+  'umbrava-logo.webp',
+  'dual-coas-tholding-logo.png',
+];
+---
+
+<Section>
+  <Container>
+    <div class="py-10">
+      <h3 class="m-0 mb-7 text-2xl font-medium tracking-[-0.4px] text-ink text-center">
+        Our Gainesville Property Management Clients
+      </h3>
+      <div class="grid gap-4" style="grid-template-columns:repeat(auto-fill,minmax(150px,1fr));">
+        {clientLogos.map(file => (
+          <div class="bg-surface rounded-[16px] h-[92px] flex items-center justify-center p-[18px]">
+            <img
+              src={`/img/clients/${file}`}
+              alt="Property management client"
+              loading="lazy"
+              class="max-w-full max-h-[46px] object-contain grayscale opacity-[0.62] transition-opacity hover:opacity-100 hover:grayscale-0"
+            />
+          </div>
+        ))}
+      </div>
+    </div>
+  </Container>
+</Section>

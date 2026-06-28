@@ -1,0 +1,28 @@
+---
+import '../styles/tokens.css';
+import { resolveLocation, resolvePhone } from '../lib/locations';
+import { site } from '../config/site';
+const { title, description = '', location = 'main' } = Astro.props;
+const loc = resolveLocation(location);
+const phone = resolvePhone(loc);
+const jsonLd = {
+  '@context': 'https://schema.org', '@type': 'LocalBusiness',
+  name: site.name, telephone: phone,
+  address: { '@type': 'PostalAddress', streetAddress: loc.nap.street, addressLocality: loc.nap.city, addressRegion: loc.nap.state, postalCode: loc.nap.zip },
+  aggregateRating: { '@type': 'AggregateRating', ratingValue: site.ratingValue, reviewCount: site.ratingCount },
+};
+---
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>{title}</title>
+  {description && <meta name="description" content={description} />}
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Figtree:ital,wght@0,300;0,400;0,500;0,600;0,700;0,800&family=Inter:wght@400;500;700&display=swap" rel="stylesheet" />
+  <script type="application/ld+json" set:html={JSON.stringify(jsonLd)} />
+</head>
+<body><slot /></body>
+</html>

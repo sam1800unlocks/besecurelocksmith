@@ -1,0 +1,33 @@
+---
+import Section from '../primitives/Section.astro';
+import Container from '../primitives/Container.astro';
+
+const businesses = [
+  'Home Depot',
+  'Lowe’s',
+  'McDonald’s',
+  'Outback Steakhouse',
+  'Publix',
+  'Walmart',
+  'Rural King',
+  'Crunch Fitness',
+  'Carrabba’s',
+];
+---
+
+<Section class="bg-surface">
+  <Container>
+    <div class="py-12">
+      <h3 class="m-0 mb-7 text-2xl font-medium tracking-[-0.4px] text-ink text-center">
+        Businesses We’ve Had the Pleasure of Working With
+      </h3>
+      <div class="flex flex-wrap items-center justify-center gap-3">
+        {businesses.map(b => (
+          <span class="bg-white border border-border rounded-pill px-[22px] py-[11px] text-[15px] font-bold tracking-[-0.2px] text-muted">
+            {b}
+          </span>
+        ))}
+      </div>
+    </div>
+  </Container>
+</Section>

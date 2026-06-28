@@ -1,0 +1,64 @@
+---
+import { resolveLocation, resolvePhone } from '../../lib/locations';
+import { telHref, site, nav as navTabs } from '../../config/site';
+
+const { location = 'main' } = Astro.props;
+const loc = resolveLocation(location);
+const phone = resolvePhone(loc);
+---
+<!-- Mobile Drawer: hidden unless [data-open] is present (toggled by drawer.ts) -->
+<div
+  data-drawer
+  class="fixed inset-0 z-[100] bg-[rgba(10,19,23,0.5)] [display:none] [&[data-open]]:flex"
+>
+  <!-- Overlay click area -->
+  <div data-drawer-close class="absolute inset-0"></div>
+
+  <!-- Panel -->
+  <div class="absolute top-0 right-0 bottom-0 w-[min(380px,86vw)] bg-white flex flex-col p-5 overflow-y-auto">
+    <!-- Header -->
+    <div class="flex items-center justify-between mb-6">
+      <img src={site.logo} alt={site.name} class="h-[34px]" />
+      <button
+        data-drawer-close
+        aria-label="Close"
+        class="w-10 h-10 rounded-full border border-border bg-white flex items-center justify-center cursor-pointer"
+      >
+        <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="#0a1317" stroke-width="2" stroke-linecap="round">
+          <line x1="18" y1="6" x2="6" y2="18"/>
+          <line x1="6" y1="6" x2="18" y2="18"/>
+        </svg>
+      </button>
+    </div>
+
+    <!-- Nav links -->
+    <div class="flex flex-col gap-[6px]">
+      {navTabs.map((tab) => (
+        <a
+          href={tab.href}
+          data-drawer-close
+          class="text-ink text-[15px] font-semibold px-4 py-3 rounded-lg hover:bg-surface"
+        >
+          {tab.label}
+        </a>
+      ))}
+    </div>
+
+    <!-- CTA buttons -->
+    <div class="flex flex-col gap-[10px] mt-6">
+      <a
+        href={telHref(phone)}
+        class="bg-primary text-white text-[15px] font-bold text-center py-[14px] rounded-[100px]"
+      >
+        Call {phone}
+      </a>
+      <a
+        href="/schedule-an-appointment/"
+        data-drawer-close
+        class="bg-black text-white text-[15px] font-bold text-center py-[14px] rounded-[100px]"
+      >
+        Book Now
+      </a>
+    </div>
+  </div>
+</div>

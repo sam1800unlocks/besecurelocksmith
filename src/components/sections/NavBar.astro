@@ -1,0 +1,88 @@
+---
+import { resolveLocation, resolvePhone } from '../../lib/locations';
+import { telHref, site, nav as navTabs } from '../../config/site';
+import MobileDrawer from './MobileDrawer.astro';
+
+const { location = 'main' } = Astro.props;
+const loc = resolveLocation(location);
+const phone = resolvePhone(loc);
+
+const headerSocials = site.socials.slice(0, 3);
+---
+<header class="sticky top-0 z-50 w-full bg-white border-b border-border">
+  <nav class="max-w-[1360px] mx-auto h-16 px-6 flex items-center justify-between gap-4">
+
+    <!-- Logo -->
+    <a href="/" class="flex items-center flex-shrink-0">
+      <img src={site.logo} alt={site.name} class="h-[38px] w-auto block" />
+    </a>
+
+    <!-- Desktop nav tabs (hidden ≤880px) -->
+    <div class="hidden min-[881px]:flex items-center gap-1 flex-1 justify-center">
+      {navTabs.map((tab) => (
+        <a
+          href={tab.href}
+          class={`text-sm font-semibold px-3 py-2 rounded-md tracking-[-0.14px] transition-colors ${
+            tab.active
+              ? 'text-primary'
+              : 'text-ink hover:text-primary'
+          }`}
+        >
+          {tab.label}
+        </a>
+      ))}
+    </div>
+
+    <!-- Desktop action buttons (hidden ≤880px) -->
+    <div class="hidden min-[881px]:flex items-center gap-[10px] flex-shrink-0">
+      <!-- Social icons -->
+      <div class="flex items-center gap-[6px] mr-1">
+        {headerSocials.map((s) => (
+          <a
+            href={s.href}
+            aria-label={s.name}
+            class="w-8 h-8 rounded-full border border-border flex items-center justify-center bg-white"
+          >
+            <img src={s.icon} alt={s.name} class="w-[15px] h-[15px] object-contain" />
+          </a>
+        ))}
+      </div>
+      <a href="/schedule-an-appointment/" class="bg-black text-white text-[14px] font-bold tracking-[-0.14px] px-[22px] py-[11px] rounded-[100px]">
+        Book Now
+      </a>
+      <a href={telHref(phone)} class="bg-primary text-white text-[14px] font-bold tracking-[-0.14px] px-[22px] py-[11px] rounded-[100px]">
+        Call {phone}
+      </a>
+    </div>
+
+    <!-- Mobile controls (shown ≤880px) -->
+    <div class="flex min-[881px]:hidden items-center gap-[10px] flex-shrink-0">
+      <a
+        href={telHref(phone)}
+        aria-label="Call"
+        class="w-11 h-11 rounded-full bg-primary flex items-center justify-center"
+      >
+        <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="#fff" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+          <path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07 19.5 19.5 0 0 1-6-6 19.79 19.79 0 0 1-3.07-8.67A2 2 0 0 1 4.11 2h3a2 2 0 0 1 2 1.72c.13.96.36 1.9.7 2.81a2 2 0 0 1-.45 2.11L8.09 9.91a16 16 0 0 0 6 6l1.27-1.27a2 2 0 0 1 2.11-.45c.91.34 1.85.57 2.81.7A2 2 0 0 1 22 16.92z"/>
+        </svg>
+      </a>
+      <button
+        data-drawer-toggle
+        aria-label="Menu"
+        aria-expanded="false"
+        class="w-11 h-11 rounded-full border border-border bg-white flex items-center justify-center cursor-pointer"
+      >
+        <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="#0a1317" stroke-width="2" stroke-linecap="round">
+          <line x1="3" y1="6" x2="21" y2="6"/>
+          <line x1="3" y1="12" x2="21" y2="12"/>
+          <line x1="3" y1="18" x2="21" y2="18"/>
+        </svg>
+      </button>
+    </div>
+
+  </nav>
+</header>
+
+<MobileDrawer location={location} />
+
+<script>import '../scripts/drawer.ts';</script>

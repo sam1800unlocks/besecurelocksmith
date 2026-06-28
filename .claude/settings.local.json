@@ -2,7 +2,12 @@
   "permissions": {
     "allow": [
       "Bash(unzip -l \"Be Secure Locksmith Homepage.zip\")",
-      "WebFetch(domain:besecurelocksmith.com)"
+      "WebFetch(domain:besecurelocksmith.com)",
+      "Bash(ls -la \"/Users/Sam/.claude/plugins/cache/claude-plugins-official/superpowers/6.0.3/skills/subagent-driven-development/scripts/\")",
+      "Bash(cat \"$\\(git rev-parse --show-toplevel\\)/.superpowers/sdd/progress.md\")",
+      "Bash(npm init *)",
+      "Bash(npm approve-scripts *)",
+      "Bash(npm test *)"
     ]
   },
   "enabledPlugins": {}

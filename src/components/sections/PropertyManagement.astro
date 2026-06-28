@@ -1,0 +1,57 @@
+---
+import Section from '../primitives/Section.astro';
+import Container from '../primitives/Container.astro';
+import Button from '../primitives/Button.astro';
+
+const pmFeatures = [
+  { label: 'Master Key Systems', icon: '/img/pm/key-chain-icon.png' },
+  { label: 'Lock Rekeying',       icon: '/img/pm/padlock-icon.png' },
+  { label: 'High-Security Locks', icon: '/img/pm/smart-lock-icon.png' },
+  { label: 'Lock Repair',         icon: '/img/pm/padlock-icon.png' },
+];
+---
+
+<Section class="py-6 pb-12">
+  <Container>
+    <div class="bg-ink rounded-[32px] text-white" style="padding:clamp(36px,5vw,64px);">
+
+      <!-- Copy block -->
+      <div class="max-w-[640px] mb-10">
+        <h2 class="m-0 mb-[18px] font-medium leading-[1.2] tracking-[-0.8px]"
+            style="font-size:clamp(26px,3.4vw,36px);">
+          Commercial Property Management Solutions Across Gainesville &amp; Ocala.
+        </h2>
+        <p class="m-0 mb-[14px] text-base leading-[1.5] tracking-[-0.16px] text-white/[.72]">
+          From single offices to multi-unit portfolios, we keep your buildings secure with master key systems, rekeying, and high-security hardware — coordinated around your tenants and your schedule.
+        </p>
+        <p class="m-0 text-base leading-[1.5] tracking-[-0.16px] text-white/[.72]">
+          One trusted local partner for every door, with transparent pricing and dependable response times across Alachua and Marion County.
+        </p>
+      </div>
+
+      <!-- Feature cards -->
+      <div class="grid gap-5 mb-9" style="grid-template-columns:repeat(auto-fit,minmax(200px,1fr));">
+        {pmFeatures.map((f) => (
+          <div class="rounded-[16px] p-6 flex flex-col gap-[14px]"
+               style="background:rgba(255,255,255,.06);border:1px solid rgba(255,255,255,.12);">
+            <img
+              src={f.icon}
+              alt=""
+              width="40"
+              height="40"
+              class="object-contain"
+              style="width:40px;height:40px;filter:brightness(0) invert(1);"
+            />
+            <span class="text-[18px] font-bold leading-[1.3] tracking-[-0.2px]">{f.label}</span>
+          </div>
+        ))}
+      </div>
+
+      <!-- CTA -->
+      <Button href="/services/property-management/" variant="dark" class="border border-white/25">
+        Learn More
+      </Button>
+
+    </div>
+  </Container>
+</Section>
