@@ -1,0 +1,4 @@
+---
+const { count = 5 } = Astro.props;
+---
+<span class="text-amber text-base tracking-[1px]" aria-label={`${count} out of 5 stars`}>{'★'.repeat(count)}</span>
