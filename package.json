@@ -1,0 +1,31 @@
+{
+  "name": "be-secure",
+  "version": "1.0.0",
+  "description": "",
+  "type": "module",
+  "scripts": {
+    "dev": "astro dev",
+    "build": "astro build",
+    "preview": "astro preview",
+    "test": "vitest run",
+    "test:watch": "vitest"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "dependencies": {
+    "astro": "^4.16.19"
+  },
+  "allowScripts": {
+    "esbuild@0.21.5": true,
+    "sharp@0.33.5": true,
+    "fsevents@2.3.3": true
+  },
+  "devDependencies": {
+    "@tailwindcss/vite": "^4.3.1",
+    "@vitest/coverage-v8": "^4.1.9",
+    "tailwindcss": "^4.3.1",
+    "typescript": "^5.9.3",
+    "vitest": "^4.1.9"
+  }
+}
