@@ -6,7 +6,7 @@ RULE: Every URL below MUST be rebuilt at its EXACT path (trailing slash preserve
 Total: 117 URLs (40 pages + 77 posts).
 
 ## Standalone pages
-- [ ] https://besecurelocksmith.com/
+- [x] https://besecurelocksmith.com/
 - [ ] https://besecurelocksmith.com/about/
 - [ ] https://besecurelocksmith.com/contact-us/
 - [ ] https://besecurelocksmith.com/employment/
