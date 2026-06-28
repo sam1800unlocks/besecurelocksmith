@@ -1,0 +1,13 @@
+---
+import { resolveLocation, resolvePhone } from '../../lib/locations';
+import { telHref } from '../../config/site';
+
+const { location = 'main' } = Astro.props;
+const loc = resolveLocation(location);
+const phone = resolvePhone(loc);
+---
+<div class="w-full bg-ink text-white py-[11px] px-6 text-center">
+  <p class="m-0 text-[14px] font-bold leading-[1.43] tracking-[-0.14px] whitespace-nowrap overflow-hidden text-ellipsis">
+    Licensed &amp; insured mobile locksmith&nbsp;&nbsp;•&nbsp;&nbsp;Fast response across Gainesville &amp; Ocala&nbsp;&nbsp;•&nbsp;&nbsp;<a href={telHref(phone)} class="text-link-dark underline underline-offset-2">Call {phone}</a>
+  </p>
+</div>
