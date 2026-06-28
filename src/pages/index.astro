@@ -1,5 +1,38 @@
 ---
-import '../styles/tokens.css';
+import BaseLayout from '../layouts/BaseLayout.astro';
+import PromoBar from '../components/sections/PromoBar.astro';
+import NavBar from '../components/sections/NavBar.astro';
+import Hero from '../components/sections/Hero.astro';
+import AsSeenIn from '../components/sections/AsSeenIn.astro';
+import WhyChoose from '../components/sections/WhyChoose.astro';
+import ServicesGrid from '../components/sections/ServicesGrid.astro';
+import PropertyManagement from '../components/sections/PropertyManagement.astro';
+import LogoWall from '../components/sections/LogoWall.astro';
+import ConversionBand from '../components/sections/ConversionBand.astro';
+import Reviews from '../components/sections/Reviews.astro';
+import Credentials from '../components/sections/Credentials.astro';
+import BusinessesWorkedWith from '../components/sections/BusinessesWorkedWith.astro';
+import Faq from '../components/sections/Faq.astro';
+import ServiceAreas from '../components/sections/ServiceAreas.astro';
+import Footer from '../components/sections/Footer.astro';
+import StickyCallBar from '../components/sections/StickyCallBar.astro';
+const location = 'main';
 ---
-<html lang="en"><head><meta charset="utf-8" /><title>Be Secure</title></head>
-<body><h1>Be Secure Locksmith</h1></body></html>
+<BaseLayout title="Top Local Locksmith in Gainesville & Ocala, FL | Be Secure Locksmith" description="Licensed & insured mobile locksmith serving Gainesville, Ocala & surrounding areas since 2012." location={location}>
+  <PromoBar location={location} />
+  <NavBar location={location} />
+  <Hero location={location} />
+  <AsSeenIn />
+  <WhyChoose />
+  <ServicesGrid />
+  <PropertyManagement />
+  <LogoWall />
+  <ConversionBand location={location} />
+  <Reviews />
+  <Credentials />
+  <BusinessesWorkedWith />
+  <Faq />
+  <ServiceAreas location={location} />
+  <Footer location={location} />
+  <StickyCallBar location={location} />
+</BaseLayout>
