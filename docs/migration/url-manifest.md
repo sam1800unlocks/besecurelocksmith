@@ -129,3 +129,41 @@ Total: 117 URLs (40 pages + 77 posts).
 - [ ] https://besecurelocksmith.com/blog/who-to-call-when-your-keys-are-locked-in-your-car/
 - [ ] https://besecurelocksmith.com/blog/why-ocala-fl-businesses-are-switching-to-ic-core-lock-systems/
 - [ ] https://besecurelocksmith.com/blog/window-lock-options-for-added-security-types-and-installation/
+
+## Image migration (Task 7, 2026-06-28)
+
+All 30 images successfully downloaded from CDN. Zero failures.
+
+| Destination | Source URL |
+|---|---|
+| public/img/besecure-logo-100h.png | https://d86750b4.delivery.rocketcdn.me/wp-content/uploads/2024/12/besecure-logo-100h.png |
+| public/img/smart-lock-installation-Be-Secure-Locksmith-1024x768.jpeg | https://d86750b4.delivery.rocketcdn.me/wp-content/uploads/2026/04/smart-lock-installation-Be-Secure-Locksmith-1024x768.jpeg |
+| public/img/social/google-g-icon.svg | https://d86750b4.delivery.rocketcdn.me/wp-content/uploads/2025/12/google-g-icon.svg |
+| public/img/social/FB-512.svg | https://d86750b4.delivery.rocketcdn.me/wp-content/uploads/2025/01/FB-512.svg |
+| public/img/social/YouTube-icon.svg | https://d86750b4.delivery.rocketcdn.me/wp-content/uploads/2025/01/YouTube-icon.svg |
+| public/img/social/IG-round-2.svg | https://d86750b4.delivery.rocketcdn.me/wp-content/uploads/2025/12/IG-round-2.svg |
+| public/img/social/yelp-svgrepo-com.svg | https://d86750b4.delivery.rocketcdn.me/wp-content/uploads/2025/01/yelp-svgrepo-com.svg |
+| public/img/social/linkedin.svg | https://d86750b4.delivery.rocketcdn.me/wp-content/uploads/2025/01/linkedin.svg |
+| public/img/pm/key-chain-icon.png | https://d86750b4.delivery.rocketcdn.me/wp-content/uploads/2026/05/key-chain-icon.png |
+| public/img/pm/padlock-icon.png | https://d86750b4.delivery.rocketcdn.me/wp-content/uploads/2026/05/padlock-icon.png |
+| public/img/pm/smart-lock-icon.png | https://d86750b4.delivery.rocketcdn.me/wp-content/uploads/2026/05/smart-lock-icon.png |
+| public/img/clients/All-Weather-Contractors-Logo-blue.png | https://d86750b4.delivery.rocketcdn.me/wp-content/uploads/2025/01/All-Weather-Contractors-Logo-blue.png |
+| public/img/clients/sap-patio-door-logo.webp | https://d86750b4.delivery.rocketcdn.me/wp-content/uploads/2025/01/sap-patio-door-logo.webp |
+| public/img/clients/clear-vision-logo-1-e1735943103268.jpg | https://d86750b4.delivery.rocketcdn.me/wp-content/uploads/2025/01/clear-vision-logo-1-e1735943103268.jpg |
+| public/img/clients/ecs-for-kids-logo-tall.svg | https://d86750b4.delivery.rocketcdn.me/wp-content/uploads/2025/01/ecs-for-kids-logo-tall.svg |
+| public/img/clients/AddilanGroup_Logo.webp | https://d86750b4.delivery.rocketcdn.me/wp-content/uploads/2025/01/AddilanGroup_Logo.webp |
+| public/img/clients/davaco-logo-blue.jpg | https://d86750b4.delivery.rocketcdn.me/wp-content/uploads/2025/01/davaco-logo-blue.jpg |
+| public/img/clients/frontdoor-logo.png | https://d86750b4.delivery.rocketcdn.me/wp-content/uploads/2025/01/frontdoor-logo.png |
+| public/img/clients/KFM-logo.webp | https://d86750b4.delivery.rocketcdn.me/wp-content/uploads/2025/01/KFM-logo.webp |
+| public/img/clients/agero-logo.png | https://d86750b4.delivery.rocketcdn.me/wp-content/uploads/2025/01/agero-logo.png |
+| public/img/clients/dynamic-property-management-logo.png | https://d86750b4.delivery.rocketcdn.me/wp-content/uploads/2025/01/dynamic-property-management-logo.png |
+| public/img/clients/avid-exchange-logo.webp | https://d86750b4.delivery.rocketcdn.me/wp-content/uploads/2025/01/avid-exchange-logo.webp |
+| public/img/clients/amstel-manufacturing-logo.png | https://d86750b4.delivery.rocketcdn.me/wp-content/uploads/2025/01/amstel-manufacturing-logo.png |
+| public/img/clients/darden-properties-logo.png | https://d86750b4.delivery.rocketcdn.me/wp-content/uploads/2025/01/darden-properties-logo.png |
+| public/img/clients/umbrava-logo.webp | https://d86750b4.delivery.rocketcdn.me/wp-content/uploads/2025/01/umbrava-logo.webp |
+| public/img/clients/dual-coas-tholding-logo.png | https://d86750b4.delivery.rocketcdn.me/wp-content/uploads/2025/01/dual-coas-tholding-logo.png |
+| public/img/press/markets-insider.png | https://pressranger.s3.us-west-1.amazonaws.com/2568852/NYLtGCeSk2eUFDxzqf55PW9MYbJhB8hGOe8BOgLw.png |
+| public/img/press/associated-press.png | https://pressranger.s3.us-west-1.amazonaws.com/2569639/Zkf9zg616LrwoANxty7C0Bip4GBnL9nPC8ZCRktk.png |
+| public/img/press/benzinga.png | https://pressranger.s3.us-west-1.amazonaws.com/2569642/iXe71yZoeKdrgrbh8kfnh5uEUqNqHxnuuMbbTgc2.png |
+| public/img/press/apple-news.png | https://pressranger.s3.us-west-1.amazonaws.com/2569640/ax1uqW5DRsICCULfTu3lvwXwOzQjKzJ8WVMhZ3GZ.png |
+| public/img/google-g-icon.svg | (copy of social/google-g-icon.svg for standalone reviews usage) |
