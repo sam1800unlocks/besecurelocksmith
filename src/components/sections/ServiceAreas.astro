@@ -1,0 +1,72 @@
+---
+import { resolveLocation, resolvePhone } from '../../lib/locations';
+import { telHref, site } from '../../config/site';
+import Section from '../primitives/Section.astro';
+import Container from '../primitives/Container.astro';
+import Button from '../primitives/Button.astro';
+
+const { location = 'main' } = Astro.props;
+const loc = resolveLocation(location);
+const phone = resolvePhone(loc);
+
+const cities = [
+  'Alachua', 'Archer', 'Belleview', 'Brooker', 'Dunnellon', 'Gainesville',
+  'Hampton', 'Hawthorne', 'High Springs', 'Lake City', 'Newberry', 'Ocala',
+  'Silver Spring Shores', 'Silver Springs', 'Summerfield', 'The Villages',
+  'Waldo', 'Wildwood', 'Williston',
+];
+---
+
+<Section class="py-6 pb-16">
+  <Container>
+
+    <h3 class="m-0 mb-5 font-medium leading-[1.3] tracking-[-0.4px] text-ink max-w-[760px]"
+        style="font-size:24px;">
+      We provide car, home &amp; business locksmith services to these and other areas near Gainesville, FL:
+    </h3>
+
+    <!-- City pills -->
+    <div class="flex flex-wrap gap-[10px] mb-9">
+      {cities.map((city) => (
+        <span class="border-2 border-[rgba(10,19,23,.12)] rounded-[100px] px-[18px] py-[9px] text-sm font-semibold text-ink">
+          {city}
+        </span>
+      ))}
+    </div>
+
+    <!-- Map + Card grid -->
+    <div class="grid gap-6 items-stretch" style="grid-template-columns:repeat(auto-fit,minmax(320px,1fr));">
+
+      <!-- Map -->
+      <div class="rounded-[32px] overflow-hidden border border-border" style="min-height:320px;">
+        <iframe
+          title="Be Secure Locksmith location"
+          loading="lazy"
+          class="w-full border-0 block"
+          style="height:100%;min-height:320px;"
+          src="https://maps.google.com/maps?q=901%20NW%208th%20Ave%20C17%20Gainesville%20FL%2032601&t=&z=13&ie=UTF8&iwloc=&output=embed"
+        ></iframe>
+      </div>
+
+      <!-- Mobile to your door card -->
+      <div class="bg-[#f1f4f7] rounded-[32px] flex flex-col justify-center"
+           style="padding:clamp(28px,4vw,40px);">
+        <h4 class="m-0 mb-3 font-medium tracking-[-0.4px] text-ink" style="font-size:24px;">
+          Mobile to your door
+        </h4>
+        <p class="m-0 mb-2 text-base leading-[1.5] text-body">
+          {loc.nap.street}<br />
+          {loc.nap.city}, {loc.nap.state} {loc.nap.zip}
+        </p>
+        <p class="m-0 mb-6 text-sm text-muted">
+          {site.hours}
+        </p>
+        <Button href={telHref(phone)} variant="primary" class="self-start">
+          Call {phone}
+        </Button>
+      </div>
+
+    </div>
+
+  </Container>
+</Section>

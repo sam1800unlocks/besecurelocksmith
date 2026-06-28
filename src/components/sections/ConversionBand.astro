@@ -1,0 +1,42 @@
+---
+import { resolveLocation, resolvePhone } from '../../lib/locations';
+import { telHref, smsHref, site } from '../../config/site';
+import Section from '../primitives/Section.astro';
+import Container from '../primitives/Container.astro';
+import Button from '../primitives/Button.astro';
+
+const { location = 'main' } = Astro.props;
+const loc = resolveLocation(location);
+const phone = resolvePhone(loc);
+---
+
+<Section class="bg-[#f1f4f7]">
+  <Container>
+    <div class="flex flex-col items-center text-center py-16">
+
+      <h2 class="m-0 mb-7 font-medium leading-[1.17] tracking-[-1px] text-ink max-w-[760px]"
+          style="font-size:clamp(26px,3.8vw,48px);">
+        Contact us today for a free quote or to book a mobile service appointment.
+      </h2>
+
+      <div class="flex flex-wrap gap-3 justify-center mb-[22px]">
+        <Button href={telHref(phone)} variant="primary">
+          Call Us {phone}
+        </Button>
+        <Button href={smsHref(site.smsPhone)} variant="dark">
+          Text Us {site.smsPhone}
+        </Button>
+        <Button href="#book" variant="primary">
+          Book Now
+        </Button>
+      </div>
+
+      <!-- Hours pill -->
+      <div class="inline-flex items-center gap-2 bg-white border border-border rounded-[100px] px-[18px] py-[9px] text-sm text-muted font-medium">
+        <span class="w-2 h-2 rounded-full bg-success-2 inline-block" aria-hidden="true"></span>
+        {site.hours}
+      </div>
+
+    </div>
+  </Container>
+</Section>
