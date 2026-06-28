@@ -1,0 +1,30 @@
+---
+import Section from '../primitives/Section.astro';
+import Container from '../primitives/Container.astro';
+
+const pressLogos = [
+  { name: 'Markets Insider', file: 'markets-insider.png' },
+  { name: 'Associated Press', file: 'associated-press.png' },
+  { name: 'Benzinga',         file: 'benzinga.png' },
+  { name: 'Apple News',       file: 'apple-news.png' },
+];
+---
+
+<Section class="border-t border-border border-b bg-white">
+  <Container>
+    <div class="py-8 flex flex-col items-center gap-[18px]">
+      <p class="m-0 text-[12px] font-semibold tracking-[1px] uppercase text-muted-2">As featured in</p>
+      <div class="flex flex-wrap items-center justify-center gap-[clamp(28px,6vw,72px)]">
+        {pressLogos.map(logo => (
+          <img
+            src={`/img/press/${logo.file}`}
+            alt={logo.name}
+            height="26"
+            class="h-[26px] w-auto object-contain grayscale opacity-55"
+            loading="lazy"
+          />
+        ))}
+      </div>
+    </div>
+  </Container>
+</Section>
