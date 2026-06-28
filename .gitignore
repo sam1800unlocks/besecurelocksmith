@@ -5,3 +5,8 @@ dist/
 *.log
 .env
 .env.*
+
+# SDD scratch workspace and Playwright artifacts
+.superpowers/
+test-results/
+playwright-report/
