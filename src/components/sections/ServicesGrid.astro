@@ -1,0 +1,71 @@
+---
+import { getCollection } from 'astro:content';
+import Section from '../primitives/Section.astro';
+import Container from '../primitives/Container.astro';
+import Card from '../primitives/Card.astro';
+import Button from '../primitives/Button.astro';
+
+interface ServiceItem {
+  title: string;
+  desc: string;
+  order: number;
+  photo?: string;
+}
+
+interface Props {
+  services?: ServiceItem[];
+}
+
+const { services } = Astro.props;
+const items = services ?? (await getCollection('services')).map(e => e.data);
+const sorted = [...items].sort((a, b) => a.order - b.order);
+---
+
+<Section id="services" class="pt-12 pb-16">
+  <Container>
+    <div class="max-w-[760px] mb-10">
+      <h2
+        class="m-0 mb-[14px] font-medium leading-[1.28] tracking-[-0.8px] text-ink"
+        style="font-size:clamp(28px,3.6vw,36px);"
+      >
+        Trusted Locksmith Services in Gainesville &amp; Ocala, FL
+      </h2>
+      <p class="m-0 text-base leading-[1.5] tracking-[-0.16px] text-muted">
+        Serving Gainesville, Ocala, The Villages, High Springs, Alachua and more since 2012 — residential, commercial, and automotive.
+      </p>
+    </div>
+
+    <div class="grid gap-6" style="grid-template-columns:repeat(auto-fill,minmax(300px,1fr));">
+      {sorted.map((svc) => {
+        const slug = svc.title.toLowerCase().replace(/[^a-z0-9]+/g, '-').replace(/-$/, '');
+        return (
+          <Card class="!rounded-[32px] overflow-hidden flex flex-col">
+            <div class="h-[200px] bg-surface relative overflow-hidden">
+              {svc.photo ? (
+                <img
+                  src={svc.photo}
+                  alt={svc.title}
+                  loading="lazy"
+                  class="w-full h-full object-cover block"
+                />
+              ) : (
+                <div
+                  class="absolute inset-0 flex items-center justify-content"
+                  style="background:repeating-linear-gradient(135deg,#f1f4f7,#f1f4f7 11px,#e7ebf0 11px,#e7ebf0 22px);"
+                >
+                  <span class="font-mono text-[11px] text-muted rounded-[100px] px-[10px] py-[4px]"
+                    style="background:rgba(255,255,255,0.85);">{slug}</span>
+                </div>
+              )}
+            </div>
+            <div class="p-6 flex flex-col flex-1">
+              <h3 class="m-0 mb-2 text-[22px] font-medium leading-[1.25] tracking-[-0.4px] text-ink">{svc.title}</h3>
+              <p class="m-0 mb-5 text-[14px] leading-[1.5] tracking-[-0.14px] text-muted flex-1">{svc.desc}</p>
+              <Button href="/services/" variant="dark" class="self-start">Learn more</Button>
+            </div>
+          </Card>
+        );
+      })}
+    </div>
+  </Container>
+</Section>
