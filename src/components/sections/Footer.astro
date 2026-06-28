@@ -27,14 +27,14 @@ const phone = resolvePhone(loc);
         <p class="m-0 mb-[14px] text-[14px] leading-[1.5] text-[#5d6c7b]">
           Family-operated and serving Gainesville, Ocala and the surrounding communities since 2012 — fast, honest, fully licensed mobile locksmith service.
         </p>
-        <p class="m-0 text-[13px] text-[#8595a4]">
+        <p class="m-0 text-[13px] text-[#5d6c7b]">
           License #{site.license} · Liability Insurance #{site.insurance}
         </p>
       </div>
 
       <!-- Contact column -->
       <div>
-        <h5 class="m-0 mb-4 text-[13px] font-bold tracking-[0.6px] uppercase text-[#8595a4]">Contact</h5>
+        <h5 class="m-0 mb-4 text-[13px] font-bold tracking-[0.6px] uppercase text-[#5d6c7b]">Contact</h5>
         <div class="flex flex-col gap-[10px] text-[14px] text-[#5d6c7b] leading-[1.5]">
           <span>
             {loc.nap.street},<br />{loc.nap.city}, {loc.nap.state} {loc.nap.zip}
@@ -63,7 +63,7 @@ const phone = resolvePhone(loc);
 
       <!-- Services column -->
       <div>
-        <h5 class="m-0 mb-4 text-[13px] font-bold tracking-[0.6px] uppercase text-[#8595a4]">Services</h5>
+        <h5 class="m-0 mb-4 text-[13px] font-bold tracking-[0.6px] uppercase text-[#5d6c7b]">Services</h5>
         <div style="display:grid;grid-template-columns:1fr 1fr;gap:8px 18px;">
           {site.footerServices.map((s) => (
             <a href="/services/" class="text-[14px] text-[#5d6c7b] leading-[1.5]">
@@ -75,7 +75,7 @@ const phone = resolvePhone(loc);
 
       <!-- Payments column -->
       <div>
-        <h5 class="m-0 mb-4 text-[13px] font-bold tracking-[0.6px] uppercase text-[#8595a4]">Payments</h5>
+        <h5 class="m-0 mb-4 text-[13px] font-bold tracking-[0.6px] uppercase text-[#5d6c7b]">Payments</h5>
         <div class="flex flex-wrap gap-2 mb-5">
           {site.payments.map((p) => (
             <span class="border border-[#dee3e9] rounded-[100px] px-[14px] py-[7px] text-[13px] font-semibold text-[#5d6c7b]">
@@ -97,13 +97,13 @@ const phone = resolvePhone(loc);
   <div class="border-t border-[#dee3e9]">
     <Container>
       <div class="py-5 flex flex-wrap gap-x-[14px] gap-y-[6px] items-center justify-center text-center">
-        <span class="text-[12px] text-[#8595a4]">© Be Secure Locksmith</span>
+        <span class="text-[12px] text-[#5d6c7b]">© Be Secure Locksmith</span>
         <span class="text-[12px] text-[#ced0d4]">·</span>
-        <a href="/privacy-policy/" class="text-[12px] text-[#8595a4]">Privacy Policy</a>
+        <a href="/privacy-policy/" class="text-[12px] text-[#5d6c7b]">Privacy Policy</a>
         <span class="text-[12px] text-[#ced0d4]">·</span>
-        <span class="text-[12px] text-[#8595a4]">{site.agencyCredit}</span>
+        <span class="text-[12px] text-[#5d6c7b]">{site.agencyCredit}</span>
         <span class="text-[12px] text-[#ced0d4]">·</span>
-        <span class="text-[12px] text-[#8595a4]">Verified 1-800-Unlocks Member</span>
+        <span class="text-[12px] text-[#5d6c7b]">Verified 1-800-Unlocks Member</span>
       </div>
     </Container>
   </div>

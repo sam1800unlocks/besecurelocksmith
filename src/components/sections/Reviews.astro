@@ -77,7 +77,7 @@ const ratingCount = Number(site.ratingCount).toLocaleString('en-US');
     <!-- Review track
          No-JS fallback: viewport is overflow-x:auto so it's scrollable.
          With JS (reviews.ts): buttons call scrollBy on the viewport.         -->
-    <div class="overflow-x-auto" data-reviews-viewport>
+    <div class="overflow-x-auto" data-reviews-viewport tabindex="0" role="region" aria-label="Customer reviews">
       <div class="flex gap-4 pb-1" data-reviews-track>
         {sorted.map((rv) => (
           <Card class="flex-none w-[360px] max-w-[84vw] p-7 flex flex-col gap-[14px]">
