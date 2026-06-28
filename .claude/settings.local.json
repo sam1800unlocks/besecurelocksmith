@@ -1,0 +1,9 @@
+{
+  "permissions": {
+    "allow": [
+      "Bash(unzip -l \"Be Secure Locksmith Homepage.zip\")",
+      "WebFetch(domain:besecurelocksmith.com)"
+    ]
+  },
+  "enabledPlugins": {}
+}
