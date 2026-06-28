@@ -10,15 +10,16 @@
  * Run `npm run build` before executing this test suite.
  */
 import { test, expect } from 'vitest';
-import { readFileSync } from 'node:fs';
+import { existsSync, readFileSync } from 'node:fs';
 import { resolve } from 'node:path';
 
-const distHtml = readFileSync(
-  resolve(__dirname, '../dist/index.html'),
-  'utf-8',
-);
+const distPath = resolve(__dirname, '../dist/index.html');
 
 test('homepage composes all sections and never leaks a non-resolved number', () => {
+  if (!existsSync(distPath)) {
+    throw new Error('dist/index.html missing — run `npm run build` before this test');
+  }
+  const distHtml = readFileSync(distPath, 'utf-8');
   for (const marker of [
     'Top Local Locksmith in Gainesville',
     'As featured in',
