@@ -6,8 +6,13 @@ const { location = 'main' } = Astro.props;
 const loc = resolveLocation(location);
 const phone = resolvePhone(loc);
 ---
-<div class="w-full bg-ink text-white py-[11px] px-6 text-center">
-  <p class="m-0 text-[14px] font-bold leading-[1.43] tracking-[-0.14px] whitespace-nowrap overflow-hidden text-ellipsis">
+<div class="w-full bg-ink text-white py-[9px] min-[881px]:py-[11px] px-4 min-[881px]:px-6 text-center">
+  <!-- Desktop: full single line -->
+  <p class="hidden min-[881px]:block m-0 text-[14px] font-bold leading-[1.43] tracking-[-0.14px] whitespace-nowrap overflow-hidden text-ellipsis">
     Licensed &amp; insured mobile locksmith&nbsp;&nbsp;•&nbsp;&nbsp;Fast response across Gainesville &amp; Ocala&nbsp;&nbsp;•&nbsp;&nbsp;<a href={telHref(phone)} class="text-link-dark underline underline-offset-2">Call {phone}</a>
+  </p>
+  <!-- Mobile: compact, wraps instead of truncating -->
+  <p class="min-[881px]:hidden m-0 text-[13px] font-semibold leading-[1.35] tracking-[-0.1px]">
+    Licensed &amp; insured&nbsp;•&nbsp;Fast local response&nbsp;•&nbsp;<a href={telHref(phone)} class="text-link-dark underline underline-offset-2 whitespace-nowrap">Call {phone}</a>
   </p>
 </div>

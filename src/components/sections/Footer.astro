@@ -1,11 +1,7 @@
 ---
-import { resolveLocation, resolvePhone } from '../../lib/locations';
 import { telHref, smsHref, site, serviceAreas } from '../../config/site';
+import { offices } from '../../config/offices';
 import Container from '../primitives/Container.astro';
-
-const { location = 'main' } = Astro.props;
-const loc = resolveLocation(location);
-const phone = resolvePhone(loc);
 ---
 
 <footer class="border-t border-border bg-white">
@@ -63,17 +59,18 @@ const phone = resolvePhone(loc);
       <!-- Contact column -->
       <div>
         <h5 class="m-0 mb-4 text-[13px] font-bold tracking-[0.6px] uppercase text-primary">Contact</h5>
-        <div class="flex flex-col gap-[10px] text-[14px] text-muted leading-[1.5]">
-          <span>
-            {loc.nap.street},<br />{loc.nap.city}, {loc.nap.state} {loc.nap.zip}
-          </span>
-          <a href={telHref(phone)} class="text-ink font-semibold">
-            Call {phone}
-          </a>
-          <a href={smsHref(site.smsPhone)} class="text-ink font-semibold">
-            Text {site.smsPhone}
-          </a>
-          <span>{loc.hours}</span>
+        <div class="flex flex-col gap-4 text-[14px] text-muted leading-[1.5]">
+          {Object.values(offices).map((o) => (
+            <div class="flex flex-col gap-[3px]">
+              <span class="font-semibold text-ink">{o.label}</span>
+              <span>{o.street}<br />{o.cityStateZip}</span>
+              <a href={telHref(o.phone)} class="text-ink font-semibold">{o.phone}</a>
+            </div>
+          ))}
+          <div class="flex flex-col gap-[3px]">
+            <a href={smsHref(site.smsPhone)} class="text-ink font-semibold">Text {site.smsPhone}</a>
+            <span>{site.hours}</span>
+          </div>
         </div>
       </div>
 
