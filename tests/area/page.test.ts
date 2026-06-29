@@ -15,4 +15,7 @@ test('Alachua service-area page builds with correct content + SEO', () => {
   expect(html).toContain('"@type":"BreadcrumbList"');
   expect(html).toContain('"@type":"LocalBusiness"');
   expect(html).toContain('online-booking.workiz.com');                // Book Now
+  expect(html).not.toContain('Locksmith Coverage in Alachua, FL');   // lean: no AreaMap
+  expect(html).not.toContain('Bradford County');                      // lean: no AreaStats
+  expect((html.match(/"@type":"LocalBusiness"/g) || []).length).toBe(1); // deduped
 });
