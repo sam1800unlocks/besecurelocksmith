@@ -10,5 +10,7 @@ test('frames the city service area with map + business NAP', async () => {
   expect(html).toContain('Hampton%2C%20FL');                 // map query encodes "Hampton, FL"
   expect(html).toContain('901 NW 8th Ave');                  // serving office Address (NAP)
   expect(html).toContain('href="tel:+13527065295"');         // office Phone (NAP)
-  expect(html).toContain('kgmid=/g/1ptx2pkfg');              // office GBP link
+  expect(html).toContain('https://www.google.com/maps/search/?api=1'); // overlay links to the area on Google Maps
+  expect(html).toContain('query=Hampton%2C%20FL');            // …for "Hampton, FL", not the office GBP
+  expect(html).not.toContain('kgmid=');                       // no longer the office GBP link
 });
