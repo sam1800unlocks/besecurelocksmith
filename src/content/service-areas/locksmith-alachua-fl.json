@@ -11,11 +11,24 @@
   ],
   "location": "main",
   "order": 1,
-  "variant": "lean",
   "county": "Alachua County",
   "zips": [
     "32615",
     "32616"
   ],
-  "office": "gainesville"
+  "office": "gainesville",
+  "relatedBlogs": [
+    {
+      "title": "How Do I Choose a Good Locksmith Company?",
+      "url": "https://besecurelocksmith.com/blog/how-do-i-choose-a-good-locksmith-company/"
+    },
+    {
+      "title": "Lock Rekey vs. Lock Replacement: A Cost & Security Breakdown",
+      "url": "https://besecurelocksmith.com/blog/lock-rekey-vs-lock-replacement-in-high-springs-fl-a-cost-and-security-breakdown-for-florida-properties/"
+    },
+    {
+      "title": "Smart Lock Installation Mistakes Homeowners Make",
+      "url": "https://besecurelocksmith.com/blog/smart-lock-installation-in-gainesville-fl-mistakes-homeowners-make-and-how-to-avoid-a-lockout/"
+    }
+  ]
 }
