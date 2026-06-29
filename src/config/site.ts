@@ -15,6 +15,7 @@ export const site = {
   agencyCredit: 'Powered by The Locksmith Agency',
   defaultPhone: '352-706-5295',
   smsPhone: '352-389-5305',
+  bookingUrl: 'https://online-booking.workiz.com/?ac=744610670459142e62f3f47913956e45311c10147d3f5224d2489d7eab57c2a7',
   footerServices: ['Residential','Commercial','Automotive','Key Duplication','Car Key Replacement','Ignition Repair','Lock Rekeying','Smart Locks','Master Key Systems'],
   payments: ['Cash','Credit Cards','Mobile Pay'],
   socials: [

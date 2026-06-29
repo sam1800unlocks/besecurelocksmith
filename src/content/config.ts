@@ -33,4 +33,18 @@ const faqs = defineCollection({
   }),
 });
 
-export const collections = { services, reviews, faqs };
+const serviceAreas = defineCollection({
+  type: 'data',
+  schema: z.object({
+    slug: z.string(),
+    city: z.string(),
+    title: z.string(),
+    description: z.string(),
+    heroSubhead: z.string(),
+    intro: z.array(z.string()),
+    location: z.string().default('main'),
+    order: z.number(),
+  }),
+});
+
+export const collections = { services, reviews, faqs, 'service-areas': serviceAreas };
