@@ -11,4 +11,5 @@ test('renders the city heading and HTML intro blocks incl. inline links', async 
   expect(html).toContain('Your Local, Mobile Locksmith in Hampton, FL');
   expect(html).toContain('href="/services/lock-rekeying/"');   // real anchor, not escaped
   expect(html).toContain('<li>Lockouts</li>');
+  expect(html).toContain('max-w-[1180px]');                    // body matches service-page width
 });

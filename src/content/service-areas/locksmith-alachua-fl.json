@@ -6,16 +6,29 @@
   "heroSubhead": "Fast, licensed mobile locksmith service for homes, cars, and businesses across Alachua, FL.",
   "intro": [
     "<p>For reliable, efficient locksmith services in Alachua, FL, contact Be Secure Locksmith. Our locksmiths are the highest rated in Alachua County, offering the fastest response time in the region. Whether you need locksmith services for your home, car, or business, our Alachua locksmiths are here to help.</p>",
-    "<p>At Be Secure Locksmith, we offer emergency locksmith service, so there’s no need to fret if you’re locked out of your car. Our Alachua locksmiths never use outdated technology such as slim jims to open locked vehicles, as these tools can damage the window insulation or side airbag, causing it to fail to deploy in an accident.</p>",
+    "<p>At Be Secure Locksmith, we offer <a href=\"/services/emergency-lockouts/\">emergency locksmith service</a>, so there’s no need to fret if you’re locked out of your car. Our Alachua locksmiths never use outdated technology such as slim jims to open locked vehicles, as these tools can damage the window insulation or side airbag, causing it to fail to deploy in an accident.</p>",
     "<p>Our customers’ safety is our top priority, which is why all work performed by our technicians is guaranteed. Our goal is to provide unmatched locksmith services to customers throughout Alachua. To schedule commercial, residential, or automotive locksmith services in Alachua, contact Be Secure Locksmith today.</p>"
   ],
   "location": "main",
   "order": 1,
-  "variant": "lean",
   "county": "Alachua County",
   "zips": [
     "32615",
     "32616"
   ],
-  "office": "gainesville"
+  "office": "gainesville",
+  "relatedBlogs": [
+    {
+      "title": "How Do I Choose a Good Locksmith Company?",
+      "url": "https://besecurelocksmith.com/blog/how-do-i-choose-a-good-locksmith-company/"
+    },
+    {
+      "title": "Lock Rekey vs. Lock Replacement: A Cost & Security Breakdown",
+      "url": "https://besecurelocksmith.com/blog/lock-rekey-vs-lock-replacement-in-high-springs-fl-a-cost-and-security-breakdown-for-florida-properties/"
+    },
+    {
+      "title": "Smart Lock Installation Mistakes Homeowners Make",
+      "url": "https://besecurelocksmith.com/blog/smart-lock-installation-in-gainesville-fl-mistakes-homeowners-make-and-how-to-avoid-a-lockout/"
+    }
+  ]
 }

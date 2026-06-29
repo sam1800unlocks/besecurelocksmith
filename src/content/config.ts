@@ -44,12 +44,11 @@ const serviceAreas = defineCollection({
     intro: z.array(z.string()),
     location: z.string().default('main'),
     order: z.number(),
-    variant: z.enum(['lean', 'rich']).default('lean'),
     county: z.string().optional(),
     zips: z.array(z.string()).default([]),
     office: z.enum(['gainesville', 'ocala']).default('gainesville'),
     responseTime: z.string().default('~30 min'),
-    neighborhoods: z.array(z.string()).default([]),
+    relatedBlogs: z.array(z.object({ title: z.string(), url: z.string() })).default([]),
   }),
 });
 

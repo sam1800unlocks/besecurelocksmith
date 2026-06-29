@@ -6,11 +6,9 @@ import NavBar from '../../../components/sections/NavBar.astro';
 import AreaHero from '../../../components/sections/AreaHero.astro';
 import TrustStrip from '../../../components/sections/TrustStrip.astro';
 import LocalIntro from '../../../components/sections/LocalIntro.astro';
-import AreaStats from '../../../components/sections/AreaStats.astro';
 import ServicesGrid from '../../../components/sections/ServicesGrid.astro';
+import RelatedBlogs from '../../../components/sections/RelatedBlogs.astro';
 import AreaMap from '../../../components/sections/AreaMap.astro';
-import AreaNearby from '../../../components/sections/AreaNearby.astro';
-import Reviews from '../../../components/sections/Reviews.astro';
 import Faq from '../../../components/sections/Faq.astro';
 import CtaCard from '../../../components/sections/CtaCard.astro';
 import Footer from '../../../components/sections/Footer.astro';
@@ -23,16 +21,14 @@ import { buildAreaFaqs } from '../../../lib/area-faqs';
 
 export async function getStaticPaths() {
   const areas = await getCollection('service-areas');
-  return areas.map((a) => ({ params: { slug: a.data.slug }, props: { area: a.data, all: areas.map((x) => x.data) } }));
+  return areas.map((a) => ({ params: { slug: a.data.slug }, props: { area: a.data } }));
 }
 
-const { area, all } = Astro.props;
+const { area } = Astro.props;
 const loc = resolveLocation(area.location);
 const phone = resolvePhone(loc);
-const isRich = area.variant === 'rich';
 const office = offices[area.office ?? 'gainesville'];
-const nearby = all.filter((a) => a.slug !== area.slug).slice(0, 8).map((a) => ({ city: a.city, slug: a.slug }));
-const areaFaqs = isRich ? buildAreaFaqs(area, office.label) : [];
+const areaFaqs = buildAreaFaqs(area, office.label);
 const pageUrl = `https://besecurelocksmith.com/service-areas/${area.slug}/`;
 const ctaBody = `Locked out or need new locks in ${area.city}? Be Secure Locksmith is your trusted local, mobile locksmith. <a href="/contact-us/">Contact us today</a> or call now — fast, licensed, and insured service.`;
 
@@ -63,12 +59,10 @@ const breadcrumbJsonLd = {
     <AreaHero city={area.city} heroSubhead={area.heroSubhead} location={area.location} />
     <TrustStrip />
     <LocalIntro city={area.city} intro={area.intro} />
-    {isRich && <AreaStats area={area} />}
     <ServicesGrid />
-    {isRich && <AreaMap area={area} />}
-    {isRich && <AreaNearby area={area} nearby={nearby} />}
-    {isRich && <Reviews />}
-    {isRich && <Faq faqs={areaFaqs} />}
+    <RelatedBlogs posts={area.relatedBlogs} city={area.city} />
+    <AreaMap area={area} />
+    <Faq faqs={areaFaqs} />
     <section>
       <Container>
         <div class="max-w-[1180px] mx-auto pb-16 md:pb-20">

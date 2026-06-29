@@ -8,4 +8,10 @@ test('Alachua service-area entry has the required fields', () => {
   expect(d.title).toBe('Locksmith Alachua, FL - Home, Car & Business Lockouts');
   expect(d.location).toBe('main');
   expect(Array.isArray(d.intro) && d.intro.length).toBeGreaterThan(0);
+  expect(d.variant).toBeUndefined();                    // single template
+  expect(Array.isArray(d.relatedBlogs)).toBe(true);
+  expect(d.relatedBlogs.length).toBeGreaterThan(0);
+  expect(d.relatedBlogs[0].url).toContain('/blog/');
+  expect(d.intro.join('')).toContain('href="/services/');     // inline service link preserved, relativized
+  expect(d.intro.join('')).not.toContain('besecurelocksmith.com'); // relativized
 });
