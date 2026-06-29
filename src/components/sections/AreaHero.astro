@@ -1,0 +1,35 @@
+---
+import Container from '../primitives/Container.astro';
+import Button from '../primitives/Button.astro';
+import { resolveLocation, resolvePhone } from '../../lib/locations';
+import { telHref, site } from '../../config/site';
+const { city, heroSubhead, location = 'main' } = Astro.props;
+const phone = resolvePhone(resolveLocation(location));
+const pinSvg = '<svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="#7fb4ff" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0 1 18 0z"/><circle cx="12" cy="10" r="3"/></svg>';
+---
+<section class="relative overflow-hidden text-white" style="background:linear-gradient(160deg,#0e4a8f 0%,#0b2f5e 42%,#0a1830 100%);">
+  <div class="absolute inset-0 opacity-[0.09]" style="background-image:radial-gradient(circle at 1px 1px,#ffffff 1px,transparent 0);background-size:22px 22px;"></div>
+  <div class="absolute -top-28 -right-20 w-[540px] h-[540px] rounded-full pointer-events-none" style="background:radial-gradient(circle,rgba(56,150,255,0.55),transparent 70%);"></div>
+  <Container>
+    <div class="relative max-w-[1180px] mx-auto py-14 md:py-20">
+      <nav aria-label="Breadcrumb" class="mb-5 flex flex-wrap items-center gap-2 text-[13px] text-white/70">
+        <a href="/" class="hover:text-white">Home</a>
+        <span aria-hidden="true">/</span>
+        <a href="/service-areas/" class="hover:text-white">Service Areas</a>
+        <span aria-hidden="true">/</span>
+        <span class="text-white">{city}</span>
+      </nav>
+      <span class="inline-flex items-center gap-1.5 rounded-pill bg-white/10 px-3 py-1.5 text-[12px] font-semibold uppercase tracking-[1px] text-link-dark mb-5">
+        <span set:html={pinSvg}></span>Service Area
+      </span>
+      <h1 class="m-0 mb-4 font-medium text-white max-w-[760px]" style="font-size:clamp(32px,5.2vw,56px);line-height:1.08;letter-spacing:-1.2px;">
+        Locksmith in {city}, FL
+      </h1>
+      <p class="m-0 mb-7 text-[18px] leading-[1.4] text-white/80 max-w-[640px]">{heroSubhead}</p>
+      <div class="flex flex-wrap gap-3">
+        <Button href={telHref(phone)} variant="primary">Call {phone}</Button>
+        <a href={site.bookingUrl} target="_blank" rel="noopener noreferrer" class="inline-flex items-center gap-2 text-[15px] font-bold px-[30px] py-[15px] rounded-[100px] border border-white/40 text-white transition-colors hover:bg-white/10">Book Now</a>
+      </div>
+    </div>
+  </Container>
+</section>
