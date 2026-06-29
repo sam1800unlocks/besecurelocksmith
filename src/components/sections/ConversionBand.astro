@@ -21,7 +21,7 @@ const phone = resolvePhone(loc);
 
       <div class="flex flex-wrap gap-3 justify-center mb-[22px]">
         <Button href={telHref(phone)} variant="primary">
-          Call Us {phone}
+          {phone}
         </Button>
         <Button href={smsHref(site.smsPhone)} variant="dark">
           Text Us {site.smsPhone}

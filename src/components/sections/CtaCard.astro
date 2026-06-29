@@ -10,7 +10,7 @@ const phone = resolvePhone(resolveLocation(location));
   <h3 class="m-0 mb-3 text-ink font-bold text-[24px] leading-[1.25] tracking-[-0.3px]">{heading}</h3>
   <p class="m-0 mb-6 text-[16px] leading-[1.6] text-secondary max-w-[680px]" set:html={body}></p>
   <div class="flex flex-wrap gap-3">
-    <Button href={telHref(phone)} variant="primary">Call {phone}</Button>
+    <Button href={telHref(phone)} variant="primary">{phone}</Button>
     <Button href={site.bookingUrl} variant="dark" target="_blank" rel="noopener noreferrer">Book Now</Button>
   </div>
 </div>
