@@ -10,5 +10,12 @@
     "Our customers’ safety is our top priority, which is why all work performed by our technicians is guaranteed. Our goal is to provide unmatched locksmith services to customers throughout Alachua. To schedule commercial, residential, or automotive locksmith services in Alachua, contact Be Secure Locksmith today."
   ],
   "location": "main",
-  "order": 1
+  "order": 1,
+  "variant": "lean",
+  "county": "Alachua County",
+  "zips": [
+    "32615",
+    "32616"
+  ],
+  "office": "gainesville"
 }
