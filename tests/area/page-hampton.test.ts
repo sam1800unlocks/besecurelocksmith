@@ -11,7 +11,7 @@ test('Hampton renders the rich layout with live links + hyperlocal sections', ()
   expect(html).toContain('href="/services/emergency-lockouts/"');      // live inline link, relativized
   expect(html).not.toMatch(/href="https:\/\/besecurelocksmith\.com\/services\//); // no absolute service links
   expect(html).toContain('Bradford County');                          // AreaStats
-  expect(html).toContain('Locksmith Coverage in Hampton, FL');        // AreaMap
+  expect(html).toContain('Our Hampton Service Area');                 // AreaMap
   expect(html).toContain('Nearby areas we serve');                    // AreaNearby (Alachua exists → non-empty)
   expect(html).toContain('"@type":"FAQPage"');                        // Area FAQ
   expect((html.match(/"@type":"LocalBusiness"/g) || []).length).toBe(1); // deduped
