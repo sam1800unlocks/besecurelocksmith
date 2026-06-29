@@ -1,6 +1,7 @@
 ---
 import Section from '../primitives/Section.astro';
 import Container from '../primitives/Container.astro';
+import { telHref, site } from '../../config/site';
 const siteKey = import.meta.env.PUBLIC_TURNSTILE_SITE_KEY ?? '1x00000000000000000000AA'; // CF "always passes" test key
 ---
 <Section id="contact" class="bg-surface">
@@ -8,7 +9,7 @@ const siteKey = import.meta.env.PUBLIC_TURNSTILE_SITE_KEY ?? '1x0000000000000000
     <div class="max-w-[760px] mx-auto py-14 md:py-20">
       <h2 class="m-0 text-ink font-medium tracking-[-0.6px]" style="font-size:clamp(26px,3.4vw,34px);line-height:1.2;">Contact Be Secure Locksmith</h2>
       <div class="mt-3 mb-6 h-1 w-12 rounded-full bg-primary"></div>
-      <p class="m-0 mb-8 text-[16px] leading-[1.6] text-secondary">Send us a message and we'll get right back to you. For immediate help, call <a href="tel:3527065295" class="text-primary font-semibold">352-706-5295</a>.</p>
+      <p class="m-0 mb-8 text-[16px] leading-[1.6] text-secondary">Send us a message and we'll get right back to you. For immediate help, call <a href={telHref(site.defaultPhone)} class="text-primary font-semibold">{site.defaultPhone}</a>.</p>
 
       <form action="/api/contact" method="POST" data-contact-form class="grid grid-cols-1 sm:grid-cols-2 gap-4">
         <label class="flex flex-col gap-1.5">

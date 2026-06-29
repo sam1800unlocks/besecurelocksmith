@@ -1,5 +1,11 @@
-export const telHref = (phone: string) => 'tel:' + phone.replace(/\D/g, '');
-export const smsHref = (phone: string) => 'sms:' + phone.replace(/\D/g, '');
+// Normalize a US phone number to E.164 with country code, e.g. "352-706-5295" -> "+13527065295".
+export const e164 = (phone: string) => {
+  const digits = phone.replace(/\D/g, '');
+  const withCc = digits.length === 10 ? '1' + digits : digits.replace(/^\+/, '');
+  return '+' + withCc;
+};
+export const telHref = (phone: string) => 'tel:' + e164(phone);
+export const smsHref = (phone: string) => 'sms:' + e164(phone);
 
 export const site = {
   name: 'Be Secure Locksmith',

@@ -6,8 +6,8 @@ import ServiceAreas from '../src/components/sections/ServiceAreas.astro';
 test('ConversionBand has call and text actions with the right numbers', async () => {
   const c = await AstroContainer.create();
   const html = await c.renderToString(Conversion, { props: { location: 'main' } });
-  expect(html).toContain('href="tel:3527065295"');
-  expect(html).toContain('href="sms:3523895305"');
+  expect(html).toContain('href="tel:+13527065295"');
+  expect(html).toContain('href="sms:+13523895305"');
 });
 
 test('ServiceAreas shows both office locations', async () => {

@@ -11,7 +11,7 @@ test('Alachua service-area page builds with correct content + SEO', () => {
   expect(html).toContain('Locksmith in Alachua, FL');                 // cleaned H1
   expect(html).toContain('Your Local, Mobile Locksmith in Alachua, FL');
   expect(html).not.toContain('Alucha');                                // typo fixed
-  expect(html).toContain('href="tel:3527065295"');                    // resolved phone
+  expect(html).toContain('href="tel:+13527065295"');                    // resolved phone
   expect(html).toContain('"@type":"BreadcrumbList"');
   expect(html).toContain('"@type":"LocalBusiness"');
   expect(html).toContain('online-booking.workiz.com');                // Book Now
