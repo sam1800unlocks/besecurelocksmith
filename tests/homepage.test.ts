@@ -31,6 +31,8 @@ test('homepage composes all sections and never leaks a non-resolved number', () 
     'Be Secure Locksmith FAQs',
     'Ocala, FL 34471',
     'Powered by The Locksmith Agency',
+    'action="/api/contact"',
+    'Contact Be Secure Locksmith',
   ]) {
     expect(distHtml, `missing marker: "${marker}"`).toContain(marker);
   }
