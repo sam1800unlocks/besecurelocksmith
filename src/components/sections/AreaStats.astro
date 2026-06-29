@@ -1,0 +1,26 @@
+---
+import Container from '../primitives/Container.astro';
+import { site } from '../../config/site';
+const { area } = Astro.props;
+const stats = [
+  area.county ? { label: 'County', value: area.county } : null,
+  area.zips && area.zips.length ? { label: 'ZIP codes served', value: area.zips.join(', ') } : null,
+  { label: 'Typical response', value: area.responseTime ?? '~30 min' },
+  { label: 'Serving since', value: site.sinceYear },
+  { label: 'Google rating', value: `★ ${site.ratingValue} (${Number(site.ratingCount).toLocaleString('en-US')})` },
+].filter(Boolean);
+---
+<section>
+  <Container>
+    <div class="max-w-[1180px] mx-auto py-6">
+      <div class="grid grid-cols-2 md:grid-cols-5 gap-3">
+        {stats.map((s) => (
+          <div class="rounded-[16px] border border-border bg-surface p-4 text-center">
+            <div class="text-[12px] font-bold uppercase tracking-[0.6px] text-muted">{s.label}</div>
+            <div class="mt-1 text-[15px] font-bold text-ink">{s.value}</div>
+          </div>
+        ))}
+      </div>
+    </div>
+  </Container>
+</section>
