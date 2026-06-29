@@ -10,6 +10,7 @@ interface ServiceItem {
   desc: string;
   order: number;
   photo?: string;
+  href?: string;
 }
 
 interface Props {
@@ -23,21 +24,25 @@ const sorted = [...items].sort((a, b) => a.order - b.order);
 
 <Section id="services" class="pt-12 pb-16">
   <Container>
-    <div class="max-w-[760px] mb-10">
+    <div class="mb-10">
       <h2
         class="m-0 mb-[14px] font-medium leading-[1.28] tracking-[-0.8px] text-ink"
         style="font-size:clamp(28px,3.6vw,36px);"
       >
-        Trusted Locksmith Services in Gainesville &amp; Ocala, FL
+        Trusted Locksmith Services in Gainesville, FL, and Ocala, FL
       </h2>
+      <p class="m-0 mb-4 text-base leading-[1.5] tracking-[-0.16px] text-muted">
+        Since 2012, Be Secure Locksmith has provided professional, reliable, affordable automotive, residential, and commercial locksmith services in the Gainesville, FL metro region, including Ocala, The Villages, High Springs, Alachua, and more. Our team of highly-trained, licensed technicians is here to assist you with lockouts, lock rekeying, property management services, car key replacement, smart lock installation, and so much more! When you&rsquo;re looking for a mobile locksmith near me, choose Be Secure!
+      </p>
       <p class="m-0 text-base leading-[1.5] tracking-[-0.16px] text-muted">
-        Serving Gainesville, Ocala, The Villages, High Springs, Alachua and more since 2012 — residential, commercial, and automotive.
+        Contact us today with questions about our reliable locksmith services or to schedule a mobile locksmith service appointment. We look forward to working with you!
       </p>
     </div>
 
-    <div class="grid gap-6" style="grid-template-columns:repeat(auto-fill,minmax(300px,1fr));">
+    <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6">
       {sorted.map((svc) => {
         const slug = svc.title.toLowerCase().replace(/[^a-z0-9]+/g, '-').replace(/-$/, '');
+        const cardHref = svc.href ?? '/services/';
         return (
           <Card class="!rounded-[32px] overflow-hidden flex flex-col">
             <div class="h-[200px] bg-surface relative overflow-hidden">
@@ -47,6 +52,7 @@ const sorted = [...items].sort((a, b) => a.order - b.order);
                   alt={svc.title}
                   loading="lazy"
                   class="w-full h-full object-cover block"
+                  style={`object-position:${svc.focal ?? 'center'};`}
                 />
               ) : (
                 <div
@@ -61,7 +67,7 @@ const sorted = [...items].sort((a, b) => a.order - b.order);
             <div class="p-6 flex flex-col flex-1">
               <h3 class="m-0 mb-2 text-[22px] font-medium leading-[1.25] tracking-[-0.4px] text-ink">{svc.title}</h3>
               <p class="m-0 mb-5 text-[14px] leading-[1.5] tracking-[-0.14px] text-muted flex-1">{svc.desc}</p>
-              <Button href="/services/" variant="dark" class="self-start">Learn more</Button>
+              <Button href={cardHref} variant="dark" class="self-start">Learn more</Button>
             </div>
           </Card>
         );

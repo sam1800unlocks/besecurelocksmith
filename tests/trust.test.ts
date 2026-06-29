@@ -13,11 +13,17 @@ test('Credentials renders all five credential titles', async () => {
   }
 });
 
-test('Credentials renders all five marks', async () => {
+test('Credentials renders logo images for all five credentials', async () => {
   const c = await AstroContainer.create();
   const html = await c.renderToString(Credentials, { props: {} });
-  for (const m of ['ALOA', 'BNI', '1·800', 'FT', 'GG']) {
-    expect(html).toContain(m);
+  for (const src of [
+    '/img/credentials/ALOA-300wx200h.jpg',
+    '/img/credentials/BNI-logo-300x200-1.png',
+    '/img/credentials/1-800-unlocks-300x200-1.png',
+    '/img/credentials/fair-trade-300x200-1.png',
+    '/img/credentials/Gainesville-Chamber-of-Commerce.png',
+  ]) {
+    expect(html).toContain(src);
   }
 });
 

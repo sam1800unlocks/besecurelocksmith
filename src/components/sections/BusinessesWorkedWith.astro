@@ -3,15 +3,15 @@ import Section from '../primitives/Section.astro';
 import Container from '../primitives/Container.astro';
 
 const businesses = [
-  'Home Depot',
-  'Lowe’s',
-  'McDonald’s',
-  'Outback Steakhouse',
-  'Publix',
-  'Walmart',
-  'Rural King',
-  'Crunch Fitness',
-  'Carrabba’s',
+  { name: 'The Home Depot',    logo: '/img/businesses/The-Home-Depot.png' },
+  { name: 'Lowe’s',      logo: '/img/businesses/Lowes.png' },
+  { name: 'McDonald’s',  logo: '/img/businesses/McDonalds.png' },
+  { name: 'Outback Steakhouse', logo: '/img/businesses/Outback-Steakhouse.png' },
+  { name: 'Publix',            logo: '/img/businesses/Publix.png' },
+  { name: 'Walmart',           logo: '/img/businesses/Walmart.png' },
+  { name: 'Rural King',        logo: '/img/businesses/Rural-King.png' },
+  { name: 'Crunch Fitness',    logo: '/img/businesses/Crunch-Fitness.png' },
+  { name: 'Carrabba’s',  logo: '/img/businesses/Carrabbas.png' },
 ];
 ---
 
@@ -19,13 +19,18 @@ const businesses = [
   <Container>
     <div class="py-12">
       <h3 class="m-0 mb-7 text-2xl font-medium tracking-[-0.4px] text-ink text-center">
-        Businesses We’ve Had the Pleasure of Working With
+        Businesses We&rsquo;ve Had the Pleasure of Working With
       </h3>
-      <div class="flex flex-wrap items-center justify-center gap-3">
+      <div class="flex flex-wrap justify-center gap-4">
         {businesses.map(b => (
-          <span class="bg-white border border-border rounded-pill px-[22px] py-[11px] text-[15px] font-bold tracking-[-0.2px] text-muted">
-            {b}
-          </span>
+          <div class="bg-white border border-border rounded-[16px] h-[92px] w-[160px] flex items-center justify-center p-[18px]">
+            <img
+              src={b.logo}
+              alt={b.name}
+              loading="lazy"
+              class="max-w-full max-h-[46px] object-contain grayscale opacity-[0.62] transition-opacity hover:opacity-100 hover:grayscale-0"
+            />
+          </div>
         ))}
       </div>
     </div>

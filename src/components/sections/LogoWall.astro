@@ -27,9 +27,9 @@ const clientLogos = [
       <h3 class="m-0 mb-7 text-2xl font-medium tracking-[-0.4px] text-ink text-center">
         Our Gainesville Property Management Clients
       </h3>
-      <div class="grid gap-4" style="grid-template-columns:repeat(auto-fill,minmax(150px,1fr));">
+      <div class="flex flex-wrap justify-center gap-4">
         {clientLogos.map(file => (
-          <div class="bg-surface rounded-[16px] h-[92px] flex items-center justify-center p-[18px]">
+          <div class="bg-surface rounded-[16px] h-[92px] w-[160px] flex items-center justify-center p-[18px]">
             <img
               src={`/img/clients/${file}`}
               alt="Property management client"

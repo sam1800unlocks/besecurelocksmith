@@ -7,6 +7,8 @@ const services = defineCollection({
     desc: z.string(),
     order: z.number(),
     photo: z.string().optional(),
+    href: z.string().optional(),
+    focal: z.string().optional(),
   }),
 });
 

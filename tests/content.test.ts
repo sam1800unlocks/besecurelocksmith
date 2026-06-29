@@ -24,7 +24,7 @@ describe('content collections are seeded with homepage data', () => {
   test('smart lock service has photo field set', () => {
     const raw = readFileSync(join(contentDir, 'services/08-smart-lock-installation.json'), 'utf-8');
     const data = JSON.parse(raw);
-    expect(data.photo).toBe('/img/smart-lock-installation-Be-Secure-Locksmith-1024x768.jpeg');
+    expect(data.photo).toBe('/img/services/cards/smart-lock-installation.webp');
   });
 
   test('first review matches Riva Wallace verbatim', () => {
@@ -40,9 +40,9 @@ describe('content collections are seeded with homepage data', () => {
   test('first faq matches verbatim', () => {
     const raw = readFileSync(join(contentDir, 'faqs/01-what-services.json'), 'utf-8');
     const data = JSON.parse(raw);
-    expect(data.question).toBe('What services do you offer?');
+    expect(data.question).toBe('What types of locksmith services do you offer?');
     expect(data.answer).toBe(
-      'Residential, commercial, and automotive locksmith services — rekeying, lock installation, key programming, emergency lockout, and lock repair.'
+      'Be Secure Locksmith provides a wide range of services including residential locksmith services, commercial locksmith services, and automotive locksmith solutions. This includes re-keying, lock installation, key programming, and emergency lockout assistance. We also offer lock repair services as well.'
     );
     expect(data.order).toBe(1);
   });
