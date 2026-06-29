@@ -47,4 +47,4 @@ const serviceAreas = defineCollection({
   }),
 });
 
-export const collections = { services, reviews, faqs, serviceAreas };
+export const collections = { services, reviews, faqs, 'service-areas': serviceAreas };
