@@ -11,4 +11,5 @@ test('Hampton is rich with live body, relativized links, and facts', () => {
   expect(body).toContain('href="/services/emergency-lockouts/"');  // inline link preserved
   expect(body).not.toContain('besecurelocksmith.com');             // relativized
   expect(d.intro.length).toBeGreaterThan(5);
+  expect(body).toContain('Skilled Professionals');
 });
