@@ -7,9 +7,7 @@
       "Bash(cat \"$\\(git rev-parse --show-toplevel\\)/.superpowers/sdd/progress.md\")",
       "Bash(npm init *)",
       "Bash(npm approve-scripts *)",
-      "Bash(npm test *)",
-      "Bash(curl -sS http://localhost:4321/)",
-      "Bash(python3 *)"
+      "Bash(npm test *)"
     ]
   },
   "enabledPlugins": {}
