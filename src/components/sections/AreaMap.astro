@@ -1,0 +1,32 @@
+---
+import Container from '../primitives/Container.astro';
+import Button from '../primitives/Button.astro';
+import { offices } from '../../config/offices';
+import { telHref } from '../../config/site';
+const { area } = Astro.props;
+const office = offices[area.office ?? 'gainesville'];
+const mapQuery = `${area.city}, FL`;
+const rt = (area.responseTime ?? '~30 min').replace('~', '');
+---
+<section>
+  <Container>
+    <div class="max-w-[1180px] mx-auto py-10">
+      <h2 class="m-0 mb-6 text-ink font-medium tracking-[-0.4px]" style="font-size:clamp(22px,3vw,28px);">Locksmith Coverage in {area.city}, FL</h2>
+      <div class="grid gap-6 items-stretch" style="grid-template-columns:repeat(auto-fit,minmax(320px,1fr));">
+        <div class="relative rounded-[24px] overflow-hidden border border-border" style="min-height:300px;">
+          <iframe title={`Locksmith coverage map for ${area.city}, FL`} loading="lazy" class="w-full h-full border-0 block" style="min-height:300px;"
+            src={`https://maps.google.com/maps?q=${encodeURIComponent(mapQuery)}&t=&z=12&ie=UTF8&iwloc=&output=embed`}></iframe>
+          <a href={office.gbp} target="_blank" rel="noopener noreferrer" aria-label={`View our ${office.label} office on Google`} class="absolute inset-0 z-10 flex items-end justify-end p-3">
+            <span class="inline-flex items-center rounded-pill bg-white/95 px-3 py-[7px] text-[12.5px] font-semibold text-ink shadow-[0_2px_12px_rgba(10,19,23,0.20)]">View on Google &rarr;</span>
+          </a>
+        </div>
+        <div class="rounded-[24px] border border-border bg-surface flex flex-col justify-center" style="padding:clamp(24px,3vw,36px);">
+          <h3 class="m-0 mb-2 text-ink font-bold text-[20px]">Served from our {office.label} office</h3>
+          <p class="m-0 mb-2 text-[16px] leading-[1.5] text-secondary">Typically on-site in {rt} across {area.city}.</p>
+          <p class="m-0 mb-5 text-[15px] leading-[1.5] text-muted">{office.street}<br />{office.cityStateZip}</p>
+          <Button href={telHref(office.phone)} variant="primary" class="self-start">Call {office.phone}</Button>
+        </div>
+      </div>
+    </div>
+  </Container>
+</section>
