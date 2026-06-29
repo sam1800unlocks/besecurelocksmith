@@ -6,27 +6,39 @@ import NavBar from '../../../components/sections/NavBar.astro';
 import AreaHero from '../../../components/sections/AreaHero.astro';
 import TrustStrip from '../../../components/sections/TrustStrip.astro';
 import LocalIntro from '../../../components/sections/LocalIntro.astro';
+import AreaStats from '../../../components/sections/AreaStats.astro';
 import ServicesGrid from '../../../components/sections/ServicesGrid.astro';
+import AreaMap from '../../../components/sections/AreaMap.astro';
+import AreaNearby from '../../../components/sections/AreaNearby.astro';
+import Reviews from '../../../components/sections/Reviews.astro';
+import Faq from '../../../components/sections/Faq.astro';
 import CtaCard from '../../../components/sections/CtaCard.astro';
 import Footer from '../../../components/sections/Footer.astro';
 import StickyCallBar from '../../../components/sections/StickyCallBar.astro';
 import Container from '../../../components/primitives/Container.astro';
 import { resolveLocation, resolvePhone } from '../../../lib/locations';
 import { site } from '../../../config/site';
+import { offices } from '../../../config/offices';
+import { buildAreaFaqs } from '../../../lib/area-faqs';
 
 export async function getStaticPaths() {
   const areas = await getCollection('service-areas');
-  return areas.map((a) => ({ params: { slug: a.data.slug }, props: { area: a.data } }));
+  return areas.map((a) => ({ params: { slug: a.data.slug }, props: { area: a.data, all: areas.map((x) => x.data) } }));
 }
 
-const { area } = Astro.props;
+const { area, all } = Astro.props;
 const loc = resolveLocation(area.location);
 const phone = resolvePhone(loc);
+const isRich = area.variant === 'rich';
+const office = offices[area.office ?? 'gainesville'];
+const nearby = all.filter((a) => a.slug !== area.slug).slice(0, 8).map((a) => ({ city: a.city, slug: a.slug }));
+const areaFaqs = isRich ? buildAreaFaqs(area, office.label) : [];
 const pageUrl = `https://besecurelocksmith.com/service-areas/${area.slug}/`;
+const ctaBody = `Locked out or need new locks in ${area.city}? Be Secure Locksmith is your trusted local, mobile locksmith. <a href="/contact-us/">Contact us today</a> or call now — fast, licensed, and insured service.`;
 
 const localBusinessJsonLd = {
-  '@context': 'https://schema.org', '@type': 'LocalBusiness',
-  name: site.name, telephone: phone, areaServed: { '@type': 'City', name: `${area.city}, FL` }, url: pageUrl,
+  '@context': 'https://schema.org', '@type': 'LocalBusiness', name: site.name, telephone: phone,
+  areaServed: { '@type': 'City', name: `${area.city}, FL` }, url: pageUrl,
   address: { '@type': 'PostalAddress', streetAddress: loc.nap.street, addressLocality: loc.nap.city, addressRegion: loc.nap.state, postalCode: loc.nap.zip },
   aggregateRating: { '@type': 'AggregateRating', ratingValue: site.ratingValue, reviewCount: site.ratingCount },
 };
@@ -38,9 +50,8 @@ const breadcrumbJsonLd = {
     { '@type': 'ListItem', position: 3, name: area.city, item: pageUrl },
   ],
 };
-const ctaBody = `Locked out or need new locks in ${area.city}? Be Secure Locksmith is your trusted local, mobile locksmith. <a href="/contact-us/">Contact us today</a> or call now — fast, licensed, and insured service.`;
 ---
-<BaseLayout title={area.title} description={area.description} location={area.location}>
+<BaseLayout title={area.title} description={area.description} location={area.location} localBusiness={false}>
   <Fragment slot="head">
     <script type="application/ld+json" set:html={JSON.stringify(localBusinessJsonLd)} />
     <script type="application/ld+json" set:html={JSON.stringify(breadcrumbJsonLd)} />
@@ -52,7 +63,12 @@ const ctaBody = `Locked out or need new locks in ${area.city}? Be Secure Locksmi
     <AreaHero city={area.city} heroSubhead={area.heroSubhead} location={area.location} />
     <TrustStrip />
     <LocalIntro city={area.city} intro={area.intro} />
+    {isRich && <AreaStats area={area} />}
     <ServicesGrid />
+    {isRich && <AreaMap area={area} />}
+    {isRich && <AreaNearby area={area} nearby={nearby} />}
+    {isRich && <Reviews />}
+    {isRich && <Faq faqs={areaFaqs} />}
     <section>
       <Container>
         <div class="max-w-[1180px] mx-auto pb-16 md:pb-20">

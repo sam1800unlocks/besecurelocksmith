@@ -1,32 +1,13 @@
 ---
-import { telHref } from '../../config/site';
+import { telHref, site } from '../../config/site';
+import { offices } from '../../config/offices';
 import Section from '../primitives/Section.astro';
 import Container from '../primitives/Container.astro';
 import Button from '../primitives/Button.astro';
 
 const { location = 'main' } = Astro.props;
 
-// Both physical locations, matching the live site (addresses + tracking phones).
-const locations = [
-  {
-    label: 'Gainesville',
-    street: '901 NW 8th Ave. C17',
-    cityStateZip: 'Gainesville, FL 32601',
-    hours: 'Mon–Fri 8am–5pm · Sat–Sun Closed',
-    phone: '352-706-5295',
-    mapQuery: '901 NW 8th Ave C17 Gainesville FL 32601',
-    gbp: 'https://www.google.com/search?kgmid=/g/1ptx2pkfg',
-  },
-  {
-    label: 'Ocala',
-    street: '217 SE 1st Ave. Suite 200-50',
-    cityStateZip: 'Ocala, FL 34471',
-    hours: 'Mon–Fri 8am–5pm · Sat–Sun Closed',
-    phone: '352-325-7953',
-    mapQuery: '217 SE 1st Ave Suite 200 Ocala FL 34471',
-    gbp: 'https://www.google.com/search?kgmid=/g/1yfprvxjj',
-  },
-];
+const locations = Object.values(offices).map((o) => ({ ...o, hours: site.hours }));
 ---
 
 <Section class="py-6 pb-16">
