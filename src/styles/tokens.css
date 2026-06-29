@@ -3,6 +3,10 @@
 @theme {
   --color-primary: #0064e0;
   --color-primary-hover: #0457cb;
+  --color-booking: #3761aa;
+  --color-booking-hover: #2d4f8c;
+  --color-call: #bb2527;
+  --color-call-hover: #9d1f21;
   --color-ink: #0a1317;
   --color-body: #1c1e21;
   --color-secondary: #444950;

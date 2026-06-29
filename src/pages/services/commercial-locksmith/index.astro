@@ -148,8 +148,8 @@ const pricingNote = 'Estimates only — prices vary by job and include parts and
             Commercial Locksmith Near Me in Gainesville, FL
           </h1>
           <div class="flex flex-wrap gap-3">
-            <Button href={telHref(phone)} variant="primary">{phone}</Button>
-            <a href={site.bookingUrl} target="_blank" rel="noopener noreferrer" class="inline-flex items-center gap-2 text-[15px] font-bold px-[30px] py-[15px] rounded-[100px] border border-white/40 text-white transition-colors hover:bg-white/10">Book Now</a>
+            <Button href={telHref(phone)} variant="call">{phone}</Button>
+            <Button href={site.bookingUrl} variant="booking" target="_blank" rel="noopener noreferrer">Book Now</Button>
           </div>
         </div>
       </Container>
@@ -245,7 +245,7 @@ const pricingNote = 'Estimates only — prices vary by job and include parts and
             </div>
             <p class="mt-5 text-[12.5px] leading-[1.5] text-muted">{pricingNote}</p>
             <div class="mt-6 flex flex-wrap items-center gap-x-5 gap-y-3">
-              <Button href={telHref(phone)} variant="primary">Get a Custom Quote</Button>
+              <Button href={telHref(phone)} variant="call">Get a Custom Quote</Button>
               <a href="/price-list/" class="inline-flex items-center gap-1.5 text-[15px] font-semibold text-primary hover:text-primary-hover">See full price list &rarr;</a>
             </div>
           </section>

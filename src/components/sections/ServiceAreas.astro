@@ -49,7 +49,7 @@ const locations = Object.values(offices).map((o) => ({ ...o, hours: site.hours }
               {l.street}<br />{l.cityStateZip}
             </p>
             <p class="m-0 mb-6 text-sm text-muted">{l.hours}</p>
-            <Button href={telHref(l.phone)} variant="primary" class="self-start mt-auto">
+            <Button href={telHref(l.phone)} variant="call" class="self-start mt-auto">
               {l.phone}
             </Button>
           </div>

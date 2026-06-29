@@ -24,7 +24,7 @@ const rt = (area.responseTime ?? '~30 min').replace('~', '');
           <h3 class="m-0 mb-2 text-ink font-bold text-[20px]">Served from our {office.label} office</h3>
           <p class="m-0 mb-2 text-[16px] leading-[1.5] text-secondary">Typically on-site in {rt} across {area.city}.</p>
           <p class="m-0 mb-5 text-[15px] leading-[1.5] text-muted">{office.street}<br />{office.cityStateZip}</p>
-          <Button href={telHref(office.phone)} variant="primary" class="self-start">{office.phone}</Button>
+          <Button href={telHref(office.phone)} variant="call" class="self-start">{office.phone}</Button>
         </div>
       </div>
     </div>
