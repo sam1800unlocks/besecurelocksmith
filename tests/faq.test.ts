@@ -42,3 +42,19 @@ test('FAQ JSON-LD contains all questions as mainEntity', async () => {
   expect(html).toContain('"@type":"Question"');
   expect(html).toContain('What payment methods do you accept?');
 });
+
+test('plain variant (default) has no rich markers', async () => {
+  const c = await AstroContainer.create();
+  const html = await c.renderToString(Faq, { props: { faqs: fixtures } });
+  expect(html).not.toContain('faq--rich');
+  expect(html).not.toContain('border-l-primary');
+});
+
+test('rich variant adds accent + animated answer and still emits FAQPage', async () => {
+  const c = await AstroContainer.create();
+  const html = await c.renderToString(Faq, { props: { faqs: fixtures, variant: 'rich' } });
+  expect(html).toContain('faq--rich');          // wrapper gate
+  expect(html).toContain('border-l-primary');   // accent bar
+  expect(html).toContain('faq-answer');         // animated answer
+  expect(html).toContain('"@type":"FAQPage"');  // schema preserved
+});

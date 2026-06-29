@@ -13,6 +13,24 @@ test('renders post cards that link out, with a heading', async () => {
   expect(html).toContain('Read article');
 });
 
+test('renders the featured image when a post has one', async () => {
+  const c = await AstroContainer.create();
+  const html = await c.renderToString(RelatedBlogs, { props: { posts: [
+    { title: 'Smart Lock Mistakes', url: 'https://besecurelocksmith.com/blog/smart/', image: '/img/blog/smart-lock-installation-mistakes.webp' },
+  ] } });
+  expect(html).toContain('src="/img/blog/smart-lock-installation-mistakes.webp"');
+  expect(html).toContain('alt="Smart Lock Mistakes"');
+});
+
+test('falls back to a branded placeholder when a post has no image', async () => {
+  const c = await AstroContainer.create();
+  const html = await c.renderToString(RelatedBlogs, { props: { posts: [
+    { title: 'No Image Post', url: 'https://besecurelocksmith.com/blog/none/' },
+  ] } });
+  expect(html).not.toContain('<img');
+  expect(html).toContain('repeating-linear-gradient');   // stripe placeholder
+});
+
 test('renders nothing when there are no posts', async () => {
   const c = await AstroContainer.create();
   const html = await c.renderToString(RelatedBlogs, { props: { posts: [] } });
