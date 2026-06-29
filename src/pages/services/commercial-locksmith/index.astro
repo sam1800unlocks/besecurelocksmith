@@ -1,0 +1,303 @@
+---
+import BaseLayout from '../../../layouts/BaseLayout.astro';
+import PromoBar from '../../../components/sections/PromoBar.astro';
+import NavBar from '../../../components/sections/NavBar.astro';
+import Footer from '../../../components/sections/Footer.astro';
+import StickyCallBar from '../../../components/sections/StickyCallBar.astro';
+import Container from '../../../components/primitives/Container.astro';
+import Button from '../../../components/primitives/Button.astro';
+import { site, telHref } from '../../../config/site';
+import { resolveLocation, resolvePhone } from '../../../lib/locations';
+
+const location = 'main';
+const phone = resolvePhone(resolveLocation(location));
+const bookingUrl = 'https://online-booking.workiz.com/?ac=744610670459142e62f3f47913956e45311c10147d3f5224d2489d7eab57c2a7';
+
+// SEO — pulled exactly from the live page.
+const title = 'Commercial Locksmith Gainesville, FL - Access Control';
+const description = 'Securing a business in Gainesville, FL? Our commercial locksmiths handle access control, master keys, and panic hardware. Licensed local team. Get help now.';
+const robots = 'follow, index, max-snippet:-1, max-video-preview:-1, max-image-preview:large';
+const ogImage = '/img/services/commercial/commercial-locksmith-services.webp';
+const pageUrl = 'https://besecurelocksmith.com/services/commercial-locksmith/';
+
+// Body content migrated verbatim from the live page (internal links rewritten to same-origin paths).
+// Image captions are the descriptive paragraphs that follow each photo on the live page.
+const blocks = [
+  { t: 'h2', text: 'Expert Gainesville Commercial Locksmiths' },
+  { t: 'p', html: 'Be Secure Locksmith provides comprehensive locksmith services for businesses in Gainesville, FL, and nearby areas. Our experienced locksmiths help secure commercial properties with lock installation, repairs, rekeying, and upgrades. We are committed to satisfying our clients by delivering reliable service and professional results.' },
+  { t: 'figure', src: '/img/services/commercial/commercial-locksmith-services.webp', alt: 'Locksmith installing a panic bar on a commercial metal door.', caption: 'Our locksmith technician installs and carefully aligns a commercial panic bar on a metal door to ensure safe, reliable, and code-compliant access.' },
+
+  { t: 'h3', text: 'Commercial Emergency Locksmith Services' },
+  { t: 'p', html: 'Emergencies can disrupt your operations. If you face an emergency situation, such as being locked out of your office, losing keys, or dealing with a broken office lock, our Gainesville locksmith team is ready to assist. Our mobile locksmith services provide fast, on-site solutions to get your business running smoothly again. We specialize in:' },
+  { t: 'ul', items: [
+    '<a href="/services/emergency-lockouts/">Emergency lockouts for offices, storefronts, and storage facilities</a>',
+    'Replacing lost or stolen keys',
+    'Fixing malfunctioning locks or doors',
+  ] },
+
+  { t: 'h3', text: 'New Lock Installation' },
+  { t: 'p', html: 'We offer <a href="/services/new-lock-installation/">professional lock installation</a> to secure your commercial property. Whether you’re installing locks for a new space or want to upgrade your security, our experienced technicians can install a wide variety of locks, including:' },
+  { t: 'ul', items: ['High-security locks', 'Smart Locks', 'Gate locks', 'Storage closet locks', 'and more'] },
+
+  { t: 'h3', text: 'Lock Rekeying' },
+  { t: 'p', html: 'Rekeying allows you to change a lock without replacing the entire lock. When our techs rekey a lock, they remove the internal lock cylinder and change the pins to match the cuts in a unique new key. Rekeying is a cost-effective option for a number of situations, including:' },
+  { t: 'ul', items: ['You lose a key', 'You suspect unauthorized access', 'A staff member leaves the company'] },
+
+  { t: 'h3', text: 'Lock Repair Services' },
+  { t: 'p', html: 'Damaged locks can compromise your business’s security. Our team provides lock repair to restore their functionality. We work on a variety of systems, including deadbolts, keyless locks, and high-security locks. If repair is not possible, we offer affordable replacement options.' },
+
+  { t: 'h3', text: 'Key Duplication' },
+  { t: 'p', html: 'Spare keys and key fobs improve convenience and security for your business. We <a href="/services/key-duplication/">duplicate keys</a> for all types of locks, including office doors, storage units, file cabinets, padlocks, high-security locks, locks that use tubular keys, mortise locks, and more.' },
+
+  { t: 'h3', text: 'Master Key Systems & Interchangeable Core Locks' },
+  { t: 'figure', src: '/img/services/commercial/locks-IC-core-interchangeablelock-cores-500w.jpg.webp', alt: 'Interchangable core lock (IC Core lock for short) and a key.', caption: 'Interchangeable core locks add convenience and cost savings to your master key system maintenance.' },
+  { t: 'p', html: '<a href="/services/master-key-systems/">Master key systems</a> simplify access management for your business. You can unlock all designated doors with a single key, while employees only access specific areas. We design and install customized master key systems to meet your business’s security needs. If your business finds itself changing a lot of locks on a regular basis, the addition of <a href="/services/interchangeable-core-locks/">interchangeable core locks</a> (“IC Core locks” for short) can make the process of changing, repairing, and rekeying locks quicker and easier.' },
+
+  { t: 'h3', text: 'Smart Lock Installation' },
+  { t: 'p', html: '<a href="/services/smart-lock-installation/">Smart Locks</a> are a great option for businesses of all sizes and provide convenient keyless entry for employees.' },
+
+  { t: 'h3', text: 'Mailbox Lock Replacement' },
+  { t: 'p', html: 'Secure your business’s mail by replacing worn or outdated mailbox locks. We provide <a href="/services/mailbox-lock-installation/">mailbox lock replacement</a> for individual boxes or multi-unit systems to ensure privacy and prevent unauthorized access.' },
+
+  { t: 'h3', text: 'Why Choose Be Secure Locksmith in Gainesville?' },
+  { t: 'ul', variant: 'check', items: [
+    '<strong>Experienced Locksmiths:</strong> Years of experience in commercial locksmith services.',
+    '<strong>Fully Licensed and Insured:</strong> Providing professional and secure service.',
+    '<strong>Mobile Locksmith Services:</strong> Fast, on-site assistance for your business.',
+    '<strong>High-Quality Hardware:</strong> We work with trusted brands like Schlage, Yale, and Kwikset.',
+    '<strong>Customer Satisfaction:</strong> We prioritize prompt, courteous service and clear communication.',
+  ] },
+];
+
+const contactHtml = 'Be Secure Locksmith is your trusted locksmith for all your locksmith needs. From emergency services to advanced security solutions, our Gainesville locksmiths help businesses in Gainesville, FL, stay secure. <a href="/contact-us/">Contact us today</a> to schedule a service or request assistance in an emergency situation. Let us protect your business with reliable and professional locksmith services.';
+
+// Structured data (the live page had none) — additive SEO, no visible-content change.
+const serviceJsonLd = {
+  '@context': 'https://schema.org', '@type': 'Service', serviceType: 'Commercial Locksmith',
+  name: 'Commercial Locksmith Gainesville, FL', url: pageUrl,
+  provider: { '@type': 'LocalBusiness', name: site.name, telephone: phone },
+  areaServed: { '@type': 'City', name: 'Gainesville, FL' },
+};
+const breadcrumbJsonLd = {
+  '@context': 'https://schema.org', '@type': 'BreadcrumbList',
+  itemListElement: [
+    { '@type': 'ListItem', position: 1, name: 'Home', item: 'https://besecurelocksmith.com/' },
+    { '@type': 'ListItem', position: 2, name: 'Services', item: 'https://besecurelocksmith.com/services/' },
+    { '@type': 'ListItem', position: 3, name: 'Commercial Locksmith', item: pageUrl },
+  ],
+};
+
+const checkSvg = '<svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="#31a24c" stroke-width="3.2" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"/></svg>';
+
+// Trust strip — confirmed facts only.
+const trustItems = [
+  `Licensed #${site.license}`,
+  `Insured #${site.insurance}`,
+  `Since ${site.sinceYear}`,
+  'Family-operated',
+  'Free security assessment',
+  '~30-min typical response',
+];
+const reviewCount = Number(site.ratingCount).toLocaleString('en-US');
+
+// In-page navigation built from the service sub-sections (h3s, excluding "Why Choose").
+const slugify = (s) => s.toLowerCase().replace(/&/g, 'and').replace(/[^a-z0-9]+/g, '-').replace(/(^-|-$)/g, '');
+const sections = blocks.filter((b) => b.t === 'h3' && !/^Why Choose/.test(b.text)).map((b) => ({ id: slugify(b.text), text: b.text }));
+
+const keySvg = '<svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="#0064e0" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M21 2l-2 2m-7.61 7.61a5.5 5.5 0 1 1-7.778 7.778 5.5 5.5 0 0 1 7.777-7.777zm0 0L15.5 7.5m0 0l3 3L22 7l-3-3"/></svg>';
+
+// How It Works — simple 3-step process (grounded in confirmed facts).
+const howItWorks = [
+  { n: 1, title: 'Call or book online', desc: 'Reach our local team for fast commercial locksmith help, or book a visit in seconds.' },
+  { n: 2, title: 'Free on-site assessment', desc: 'A licensed technician arrives (typically in about 30 minutes) and quotes the job up front.' },
+  { n: 3, title: 'Done right the first time', desc: 'We complete the work with trusted hardware — parts and labor included, with no hidden fees.' },
+];
+
+// Top commercial services + price ranges — figures pulled verbatim from the live price list.
+const pricing = [
+  { label: 'Commercial Lockout', note: 'Regain entry to your business', price: '$65 and up', href: '/services/emergency-lockouts/' },
+  { label: 'Lock Rekey', note: 'Standard (non high-security) locks', price: '$33 and up', href: '/services/lock-rekeying/' },
+  { label: 'Deadbolt or Doorknob + Installation', note: 'Lock included', price: '$80 and up', href: '/services/new-lock-installation/' },
+  { label: 'Keypad Lock + Installation', note: 'Keypad lock purchased from us', price: '$199 and up', href: '/services/smart-lock-installation/' },
+  { label: 'Mailbox Lock Replacement', note: 'Individual or multi-unit boxes', price: '$85 and up', href: '/services/mailbox-lock-installation/' },
+];
+const pricingNote = 'Estimates only — prices vary by job and include parts and labor for standard business hours (Mon–Sat, 8am–5pm). Trip charge not included. High-security locks and master key systems are quoted per job. You’ll always get a quote before any work begins.';
+---
+<BaseLayout
+  title={title}
+  description={description}
+  location={location}
+  ogType="article"
+  ogImage={ogImage}
+  robots={robots}
+>
+  <Fragment slot="head">
+    <script type="application/ld+json" set:html={JSON.stringify(serviceJsonLd)} />
+    <script type="application/ld+json" set:html={JSON.stringify(breadcrumbJsonLd)} />
+  </Fragment>
+
+  <PromoBar location={location} />
+  <NavBar location={location} />
+
+  <main>
+    <!-- HERO -->
+    <section class="relative overflow-hidden text-white" style="background:linear-gradient(160deg,#0e4a8f 0%,#0b2f5e 42%,#0a1830 100%);">
+      <div class="absolute inset-0 opacity-[0.09]" style="background-image:radial-gradient(circle at 1px 1px,#ffffff 1px,transparent 0);background-size:22px 22px;"></div>
+      <div class="absolute -top-28 -right-20 w-[540px] h-[540px] rounded-full pointer-events-none" style="background:radial-gradient(circle,rgba(56,150,255,0.60),transparent 70%);"></div>
+      <div class="absolute -bottom-40 -left-24 w-[480px] h-[480px] rounded-full pointer-events-none" style="background:radial-gradient(circle,rgba(0,120,255,0.34),transparent 70%);"></div>
+      <Container>
+        <div class="relative max-w-[1180px] mx-auto py-14 md:py-20">
+          <nav aria-label="Breadcrumb" class="mb-5 flex flex-wrap items-center gap-2 text-[13px] text-white/70">
+            <a href="/" class="hover:text-white">Home</a>
+            <span aria-hidden="true">/</span>
+            <a href="/services/" class="hover:text-white">Services</a>
+            <span aria-hidden="true">/</span>
+            <span class="text-white">Commercial Locksmith</span>
+          </nav>
+          <h1 class="m-0 mb-7 font-medium text-white max-w-[760px]" style="font-size:clamp(32px,5.2vw,56px);line-height:1.08;letter-spacing:-1.2px;">
+            Commercial Locksmith Near Me in Gainesville, FL
+          </h1>
+          <div class="flex flex-wrap gap-3">
+            <Button href={telHref(phone)} variant="primary">Call For Service Today: {phone}</Button>
+            <a href={bookingUrl} target="_blank" rel="noopener noreferrer" class="inline-flex items-center gap-2 text-[15px] font-bold px-[30px] py-[15px] rounded-[100px] border border-white/40 text-white transition-colors hover:bg-white/10">Book Now</a>
+          </div>
+        </div>
+      </Container>
+    </section>
+
+    <!-- TRUST STRIP -->
+    <section class="border-b border-border bg-white">
+      <Container>
+        <div class="max-w-[1180px] mx-auto py-[14px] flex flex-wrap items-center justify-center gap-x-3 gap-y-2 text-[13.5px] font-medium text-secondary">
+          {trustItems.map((item) => (
+            <Fragment>
+              <span>{item}</span>
+              <span class="text-border-2" aria-hidden="true">&bull;</span>
+            </Fragment>
+          ))}
+          <span class="inline-flex items-center gap-1.5">
+            <span class="text-amber text-[15px] leading-none">&#9733;</span>
+            <span class="font-bold text-ink">{site.ratingValue}</span>
+            <span>from {reviewCount} Google reviews</span>
+          </span>
+        </div>
+      </Container>
+    </section>
+
+    <!-- ARTICLE BODY -->
+    <article class="article-body">
+      <Container>
+        <div class="max-w-[1180px] mx-auto py-12 md:py-16">
+          <!-- On this page -->
+          <nav aria-label="On this page" class="mb-10">
+            <p class="m-0 mb-3 text-[12px] font-bold uppercase tracking-[1px] text-muted">Our commercial services</p>
+            <div class="flex flex-wrap gap-2">
+              {sections.map((s) => (
+                <a href={`#${s.id}`} class="inline-flex items-center rounded-pill border border-border bg-surface px-[14px] py-[7px] text-[13px] font-medium text-ink transition-colors hover:border-primary hover:text-primary">{s.text}</a>
+              ))}
+            </div>
+          </nav>
+          {blocks.map((b) => (
+            b.t === 'h2' ? (
+              <div class="mt-2 mb-4">
+                <h2 class="m-0 text-ink font-medium tracking-[-0.6px]" style="font-size:clamp(26px,3.4vw,34px);line-height:1.2;">{b.text}</h2>
+                <div class="mt-3 h-1 w-12 rounded-full bg-primary"></div>
+              </div>
+            ) : b.t === 'h3' ? (
+              <h3 id={slugify(b.text)} class="scroll-mt-28 m-0 mt-10 mb-2 flex items-center gap-2.5 text-ink font-bold text-[22px] leading-[1.25] tracking-[-0.3px]">
+                <span class="shrink-0 inline-flex items-center justify-center w-8 h-8 rounded-[10px] bg-primary/10" set:html={keySvg}></span>
+                <span>{b.text}</span>
+              </h3>
+            ) : b.t === 'p' ? (
+              <p class="m-0 mb-4 text-[16px] leading-[1.65] text-secondary" set:html={b.html} />
+            ) : b.t === 'figure' ? (
+              <figure class="my-6 w-full max-w-[500px] mx-auto md:my-2 md:mx-0 md:float-right md:clear-right md:w-[440px] md:ml-8 md:mb-4">
+                <img src={b.src} alt={b.alt} loading="lazy" class="block w-full h-auto rounded-[20px] border border-border" style="box-shadow:0 12px 34px rgba(10,19,23,0.12);" />
+                <figcaption class="mt-[10px] text-[13.5px] leading-[1.5] text-muted italic">{b.caption}</figcaption>
+              </figure>
+            ) : b.t === 'ul' && b.variant === 'check' ? (
+              <div class="clear-both my-8 rounded-[20px] border border-border bg-surface p-6 md:p-8">
+                <ul class="m-0 p-0 list-none flex flex-col gap-3">
+                  {b.items.map((it) => (
+                    <li class="flex items-start gap-3 text-[16px] leading-[1.5] text-body">
+                      <span class="mt-[3px] shrink-0 w-6 h-6 rounded-full bg-success-bg flex items-center justify-center" set:html={checkSvg}></span>
+                      <span set:html={it}></span>
+                    </li>
+                  ))}
+                </ul>
+              </div>
+            ) : b.t === 'ul' ? (
+              <ul class="my-5 p-0 list-none flex flex-col gap-2">
+                {b.items.map((it) => (
+                  <li class="relative pl-6 text-[16px] leading-[1.6] text-secondary">
+                    <span class="absolute left-0 top-[10px] w-2 h-2 rounded-full bg-primary"></span>
+                    <span set:html={it}></span>
+                  </li>
+                ))}
+              </ul>
+            ) : null
+          ))}
+
+          <!-- HOW IT WORKS -->
+          <section class="clear-both mt-14 rounded-[24px] border border-border p-8 md:p-10" style="background:#eef4ff;">
+            <div class="mb-4 h-1 w-12 rounded-full bg-primary"></div>
+            <h2 class="m-0 text-ink font-medium tracking-[-0.4px]" style="font-size:clamp(22px,3vw,28px);line-height:1.2;">How It Works</h2>
+            <div class="mt-6 grid grid-cols-1 sm:grid-cols-3 gap-6">
+              {howItWorks.map((step) => (
+                <div>
+                  <div class="w-10 h-10 rounded-full bg-primary text-white font-bold flex items-center justify-center text-[16px]">{step.n}</div>
+                  <h3 class="mt-4 mb-1.5 text-ink font-bold text-[17px]">{step.title}</h3>
+                  <p class="m-0 text-[14px] leading-[1.55] text-secondary">{step.desc}</p>
+                </div>
+              ))}
+            </div>
+          </section>
+
+          <!-- PRICING -->
+          <section class="clear-both mt-12 rounded-[24px] border border-border bg-surface p-8 md:p-10">
+            <div class="mb-4 h-1 w-12 rounded-full bg-primary"></div>
+            <h2 class="m-0 text-ink font-medium tracking-[-0.4px]" style="font-size:clamp(22px,3vw,28px);line-height:1.2;">Commercial Locksmith Pricing</h2>
+            <p class="mt-3 mb-6 text-[16px] leading-[1.6] text-secondary max-w-[680px]">Upfront, transparent pricing — parts and labor included, and you&rsquo;ll always get a quote before any work begins. No hidden fees.</p>
+            <div class="grid grid-cols-1 sm:grid-cols-2 gap-3">
+              {pricing.map((row) => (
+                <a href={row.href} class="group flex items-center gap-3 rounded-[14px] border border-border bg-white p-4 transition-colors hover:border-primary">
+                  <span class="shrink-0 inline-flex items-center justify-center w-9 h-9 rounded-[10px] bg-primary/10" set:html={keySvg}></span>
+                  <span class="flex-1 min-w-0">
+                    <span class="block text-[15px] font-bold text-ink">{row.label}</span>
+                    <span class="block text-[13px] text-muted">{row.note}</span>
+                  </span>
+                  <span class="shrink-0 text-[15px] font-bold text-ink whitespace-nowrap">{row.price}</span>
+                </a>
+              ))}
+            </div>
+            <p class="mt-5 text-[12.5px] leading-[1.5] text-muted">{pricingNote}</p>
+            <div class="mt-6 flex flex-wrap items-center gap-x-5 gap-y-3">
+              <Button href={telHref(phone)} variant="primary">Get a Custom Quote</Button>
+              <a href="/price-list/" class="inline-flex items-center gap-1.5 text-[15px] font-semibold text-primary hover:text-primary-hover">See full price list &rarr;</a>
+            </div>
+          </section>
+
+          <!-- CONTACT CTA CARD -->
+          <div class="clear-both mt-14 rounded-[24px] border border-border bg-white p-8 md:p-10" style="box-shadow:0 12px 34px rgba(10,19,23,0.10);">
+            <div class="mb-4 h-1 w-12 rounded-full bg-primary"></div>
+            <h3 class="m-0 mb-3 text-ink font-bold text-[24px] leading-[1.25] tracking-[-0.3px]">Contact Be Secure for Gainesville Commercial Locksmith Services</h3>
+            <p class="m-0 mb-6 text-[16px] leading-[1.6] text-secondary max-w-[680px]" set:html={contactHtml}></p>
+            <div class="flex flex-wrap gap-3">
+              <Button href={telHref(phone)} variant="primary">Call {phone}</Button>
+              <Button href={bookingUrl} variant="dark" target="_blank" rel="noopener noreferrer">Book Now</Button>
+            </div>
+          </div>
+        </div>
+      </Container>
+    </article>
+  </main>
+
+  <Footer location={location} />
+  <StickyCallBar location={location} />
+</BaseLayout>
+
+<style is:global>
+  /* Style inline prose links only — NOT buttons (which also render as <a>). */
+  .article-body :is(p, li, figcaption) a { color: #0064e0; text-decoration: underline; text-underline-offset: 2px; }
+  .article-body :is(p, li, figcaption) a:hover { color: #0457cb; }
+</style>
