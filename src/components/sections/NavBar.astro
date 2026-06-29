@@ -10,11 +10,11 @@ const phone = resolvePhone(loc);
 const headerSocials = site.socials.slice(0, 3);
 ---
 <header class="sticky top-0 z-50 w-full bg-white border-b border-border">
-  <nav class="max-w-[1360px] mx-auto h-16 px-6 flex items-center justify-between gap-4">
+  <nav class="max-w-[1360px] mx-auto h-16 md:h-[84px] px-6 flex items-center justify-between gap-4">
 
     <!-- Logo -->
     <a href="/" class="flex items-center flex-shrink-0">
-      <img src={site.logo} alt={site.name} class="h-[38px] w-auto block" />
+      <img src={site.logo} alt={site.name} class="h-[38px] md:h-[52px] w-auto block" />
     </a>
 
     <!-- Desktop nav tabs (hidden ≤880px) -->
@@ -41,13 +41,15 @@ const headerSocials = site.socials.slice(0, 3);
           <a
             href={s.href}
             aria-label={s.name}
+            target="_blank"
+            rel="noopener noreferrer"
             class="w-8 h-8 rounded-full border border-border flex items-center justify-center bg-white"
           >
             <img src={s.icon} alt={s.name} class="w-[15px] h-[15px] object-contain" />
           </a>
         ))}
       </div>
-      <a href="/schedule-an-appointment/" class="bg-black text-white text-[14px] font-bold tracking-[-0.14px] px-[22px] py-[11px] rounded-[100px]">
+      <a href="https://online-booking.workiz.com/?ac=744610670459142e62f3f47913956e45311c10147d3f5224d2489d7eab57c2a7" target="_blank" rel="noopener noreferrer" class="bg-black text-white text-[14px] font-bold tracking-[-0.14px] px-[22px] py-[11px] rounded-[100px]">
         Book Now
       </a>
       <a href={telHref(phone)} class="bg-primary text-white text-[14px] font-bold tracking-[-0.14px] px-[22px] py-[11px] rounded-[100px]">

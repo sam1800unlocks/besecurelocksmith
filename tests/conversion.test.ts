@@ -10,9 +10,9 @@ test('ConversionBand has call and text actions with the right numbers', async ()
   expect(html).toContain('href="sms:3523895305"');
 });
 
-test('ServiceAreas lists cities and the address', async () => {
+test('ServiceAreas shows both office locations', async () => {
   const c = await AstroContainer.create();
   const html = await c.renderToString(ServiceAreas, { props: { location: 'main' } });
-  expect(html).toContain('The Villages');
   expect(html).toContain('901 NW 8th Ave');
+  expect(html).toContain('Ocala, FL 34471');
 });

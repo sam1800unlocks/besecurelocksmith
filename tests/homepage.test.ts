@@ -29,7 +29,7 @@ test('homepage composes all sections and never leaks a non-resolved number', () 
     'Check Out Our Google Reviews',
     'Trust Our Credentials',
     'Be Secure Locksmith FAQs',
-    'Mobile to your door',
+    'Ocala, FL 34471',
     'Powered by The Locksmith Agency',
   ]) {
     expect(distHtml, `missing marker: "${marker}"`).toContain(marker);

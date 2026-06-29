@@ -18,14 +18,30 @@ export const site = {
   footerServices: ['Residential','Commercial','Automotive','Key Duplication','Car Key Replacement','Ignition Repair','Lock Rekeying','Smart Locks','Master Key Systems'],
   payments: ['Cash','Credit Cards','Mobile Pay'],
   socials: [
-    { name: 'Google', icon: '/img/social/google-g-icon.svg', href: '#' },
-    { name: 'Facebook', icon: '/img/social/FB-512.svg', href: '#' },
-    { name: 'YouTube', icon: '/img/social/YouTube-icon.svg', href: '#' },
-    { name: 'Instagram', icon: '/img/social/IG-round-2.svg', href: '#' },
-    { name: 'Yelp', icon: '/img/social/yelp-svgrepo-com.svg', href: '#' },
-    { name: 'LinkedIn', icon: '/img/social/linkedin.svg', href: '#' },
+    { name: 'Facebook', icon: '/img/social/FB-512.svg', href: 'https://www.facebook.com/BeSecureLocksmith/' },
+    { name: 'YouTube', icon: '/img/social/YouTube-icon.svg', href: 'https://www.youtube.com/channel/UCwpODmKG5TrCVIJTzEB6FXA' },
+    { name: 'Instagram', icon: '/img/social/IG-round-2.svg', href: 'https://www.instagram.com/locksmithbesecure/' },
+    { name: 'Yelp', icon: '/img/social/yelp-svgrepo-com.svg', href: 'https://www.yelp.com/biz/be-secure-locksmith-gainesville-2' },
+    { name: 'LinkedIn', icon: '/img/social/linkedin.svg', href: 'https://www.linkedin.com/company/be-secure-locksmith' },
   ],
 } as const;
+
+// Service-area pages that have a dedicated landing page (the "top" areas),
+// mirroring the live site's linked cities. Single source for the footer +
+// any service-area listings. The full list lives at /service-areas/.
+export const serviceAreas = [
+  { name: 'Alachua',      href: '/service-areas/locksmith-alachua-fl/' },
+  { name: 'Belleview',    href: '/service-areas/locksmith-belleview-fl/' },
+  { name: 'Gainesville',  href: '/service-areas/locksmith-gainesville-fl/' },
+  { name: 'Hampton',      href: '/service-areas/locksmith-hampton-fl/' },
+  { name: 'High Springs', href: '/service-areas/locksmith-high-springs-fl/' },
+  { name: 'Lake City',    href: '/service-areas/locksmith-lake-city-fl/' },
+  { name: 'Newberry',     href: '/service-areas/locksmith-newberry-fl/' },
+  { name: 'Ocala',        href: '/service-areas/locksmith-ocala-fl/' },
+  { name: 'Silver Springs', href: '/service-areas/locksmith-silver-springs-fl/' },
+  { name: 'The Villages', href: '/service-areas/locksmith-the-villages-fl/' },
+  { name: 'Williston',    href: '/service-areas/locksmith-williston-fl/' },
+] as const;
 
 export const nav = [
   { label: 'Home',          href: '/',              active: true },
