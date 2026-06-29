@@ -12,4 +12,6 @@ test('Alachua service-area entry has the required fields', () => {
   expect(Array.isArray(d.relatedBlogs)).toBe(true);
   expect(d.relatedBlogs.length).toBeGreaterThan(0);
   expect(d.relatedBlogs[0].url).toContain('/blog/');
+  expect(d.intro.join('')).toContain('href="/services/');     // inline service link preserved, relativized
+  expect(d.intro.join('')).not.toContain('besecurelocksmith.com'); // relativized
 });

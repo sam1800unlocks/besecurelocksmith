@@ -20,4 +20,5 @@ test('Alachua page builds with the unified stack + SEO', () => {
   expect(html).toContain('online-booking.workiz.com');                 // Book Now
   expect(html).not.toContain('Nearby areas we serve');                 // AreaNearby removed
   expect((html.match(/"@type":"LocalBusiness"/g) || []).length).toBe(1); // deduped
+  expect(html).toContain('href="/services/emergency-lockouts/"'); // Alachua live inline link
 });
