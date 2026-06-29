@@ -21,4 +21,17 @@ const { city, intro } = Astro.props;
   .area-intro li { margin-bottom: 0.4rem; font-size: 16px; line-height: 1.6; color: var(--color-secondary); }
   .area-intro a { color: #0064e0; text-decoration: underline; text-underline-offset: 2px; }
   .area-intro a:hover { color: #0457cb; }
+  /* Body figures — match the live page's right/left-floated captioned images */
+  .area-intro figure { margin: 0; }
+  .area-intro figure.alignright,
+  .area-intro figure.alignleft { max-width: 500px; width: 100%; margin: 0.25rem 0 1.25rem; }
+  .area-intro figure.alignright { float: right; margin-left: 2rem; }
+  .area-intro figure.alignleft { float: left; margin-right: 2rem; }
+  .area-intro figure img { display: block; width: 100%; height: auto; border-radius: 16px; }
+  .area-intro figcaption { margin-top: 0.6rem; font-size: 13px; line-height: 1.45; color: var(--color-muted); font-style: italic; }
+  .area-intro::after { content: ""; display: block; clear: both; }
+  @media (max-width: 640px) {
+    .area-intro figure.alignright,
+    .area-intro figure.alignleft { float: none; max-width: 100%; margin: 1rem 0; }
+  }
 </style>
