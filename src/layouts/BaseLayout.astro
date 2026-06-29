@@ -2,9 +2,22 @@
 import '../styles/tokens.css';
 import { resolveLocation, resolvePhone } from '../lib/locations';
 import { site } from '../config/site';
-const { title, description = '', location = 'main' } = Astro.props;
+const {
+  title,
+  description = '',
+  location = 'main',
+  ogType = 'website',
+  ogImage,
+  robots,
+} = Astro.props;
 const loc = resolveLocation(location);
 const phone = resolvePhone(loc);
+
+const siteBase = Astro.site?.href ?? 'https://besecurelocksmith.com/';
+const path = Astro.url?.pathname ?? '/';
+const canonical = new URL(path, siteBase).href;
+const ogImageUrl = ogImage ? new URL(ogImage, siteBase).href : undefined;
+
 const jsonLd = {
   '@context': 'https://schema.org', '@type': 'LocalBusiness',
   name: site.name, telephone: phone,
@@ -19,10 +32,26 @@ const jsonLd = {
   <meta name="viewport" content="width=device-width, initial-scale=1" />
   <title>{title}</title>
   {description && <meta name="description" content={description} />}
+  {robots && <meta name="robots" content={robots} />}
+  <link rel="canonical" href={canonical} />
+
+  <!-- Open Graph / Twitter -->
+  <meta property="og:site_name" content={site.name} />
+  <meta property="og:title" content={title} />
+  {description && <meta property="og:description" content={description} />}
+  <meta property="og:type" content={ogType} />
+  <meta property="og:url" content={canonical} />
+  {ogImageUrl && <meta property="og:image" content={ogImageUrl} />}
+  <meta name="twitter:card" content="summary_large_image" />
+  <meta name="twitter:title" content={title} />
+  {description && <meta name="twitter:description" content={description} />}
+  {ogImageUrl && <meta name="twitter:image" content={ogImageUrl} />}
+
   <link rel="preconnect" href="https://fonts.googleapis.com" />
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
   <link href="https://fonts.googleapis.com/css2?family=Figtree:ital,wght@0,300;0,400;0,500;0,600;0,700;0,800&family=Inter:wght@400;500;700&display=swap" rel="stylesheet" />
   <script type="application/ld+json" set:html={JSON.stringify(jsonLd)} />
+  <slot name="head" />
 </head>
 <body><slot /></body>
 </html>
