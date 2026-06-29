@@ -1,0 +1,31 @@
+---
+import Container from '../primitives/Container.astro';
+import { site } from '../../config/site';
+
+const trustItems = [
+  `Licensed #${site.license}`,
+  `Insured #${site.insurance}`,
+  `Since ${site.sinceYear}`,
+  'Family-operated',
+  'Free security assessment',
+  '~30-min typical response',
+];
+const reviewCount = Number(site.ratingCount).toLocaleString('en-US');
+---
+<section class="border-b border-border bg-white">
+  <Container>
+    <div class="max-w-[1180px] mx-auto py-[14px] flex flex-wrap items-center justify-center gap-x-3 gap-y-2 text-[13.5px] font-medium text-secondary">
+      {trustItems.map((item) => (
+        <Fragment>
+          <span>{item}</span>
+          <span class="text-border-2" aria-hidden="true">&bull;</span>
+        </Fragment>
+      ))}
+      <span class="inline-flex items-center gap-1.5">
+        <span class="text-amber text-[15px] leading-none">&#9733;</span>
+        <span class="font-bold text-ink">{site.ratingValue}</span>
+        <span>from {reviewCount} Google reviews</span>
+      </span>
+    </div>
+  </Container>
+</section>

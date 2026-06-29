@@ -6,6 +6,7 @@ import Footer from '../../../components/sections/Footer.astro';
 import StickyCallBar from '../../../components/sections/StickyCallBar.astro';
 import Container from '../../../components/primitives/Container.astro';
 import Button from '../../../components/primitives/Button.astro';
+import TrustStrip from '../../../components/sections/TrustStrip.astro';
 import { site, telHref } from '../../../config/site';
 import { resolveLocation, resolvePhone } from '../../../lib/locations';
 
@@ -89,17 +90,6 @@ const breadcrumbJsonLd = {
 
 const checkSvg = '<svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="#31a24c" stroke-width="3.2" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"/></svg>';
 
-// Trust strip — confirmed facts only.
-const trustItems = [
-  `Licensed #${site.license}`,
-  `Insured #${site.insurance}`,
-  `Since ${site.sinceYear}`,
-  'Family-operated',
-  'Free security assessment',
-  '~30-min typical response',
-];
-const reviewCount = Number(site.ratingCount).toLocaleString('en-US');
-
 // In-page navigation built from the service sub-sections (h3s, excluding "Why Choose").
 const slugify = (s) => s.toLowerCase().replace(/&/g, 'and').replace(/[^a-z0-9]+/g, '-').replace(/(^-|-$)/g, '');
 const sections = blocks.filter((b) => b.t === 'h3' && !/^Why Choose/.test(b.text)).map((b) => ({ id: slugify(b.text), text: b.text }));
@@ -166,23 +156,7 @@ const pricingNote = 'Estimates only — prices vary by job and include parts and
     </section>
 
     <!-- TRUST STRIP -->
-    <section class="border-b border-border bg-white">
-      <Container>
-        <div class="max-w-[1180px] mx-auto py-[14px] flex flex-wrap items-center justify-center gap-x-3 gap-y-2 text-[13.5px] font-medium text-secondary">
-          {trustItems.map((item) => (
-            <Fragment>
-              <span>{item}</span>
-              <span class="text-border-2" aria-hidden="true">&bull;</span>
-            </Fragment>
-          ))}
-          <span class="inline-flex items-center gap-1.5">
-            <span class="text-amber text-[15px] leading-none">&#9733;</span>
-            <span class="font-bold text-ink">{site.ratingValue}</span>
-            <span>from {reviewCount} Google reviews</span>
-          </span>
-        </div>
-      </Container>
-    </section>
+    <TrustStrip />
 
     <!-- ARTICLE BODY -->
     <article class="article-body">
