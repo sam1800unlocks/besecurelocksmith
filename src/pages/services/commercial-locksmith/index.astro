@@ -7,12 +7,12 @@ import StickyCallBar from '../../../components/sections/StickyCallBar.astro';
 import Container from '../../../components/primitives/Container.astro';
 import Button from '../../../components/primitives/Button.astro';
 import TrustStrip from '../../../components/sections/TrustStrip.astro';
+import CtaCard from '../../../components/sections/CtaCard.astro';
 import { site, telHref } from '../../../config/site';
 import { resolveLocation, resolvePhone } from '../../../lib/locations';
 
 const location = 'main';
 const phone = resolvePhone(resolveLocation(location));
-const bookingUrl = 'https://online-booking.workiz.com/?ac=744610670459142e62f3f47913956e45311c10147d3f5224d2489d7eab57c2a7';
 
 // SEO — pulled exactly from the live page.
 const title = 'Commercial Locksmith Gainesville, FL - Access Control';
@@ -149,7 +149,7 @@ const pricingNote = 'Estimates only — prices vary by job and include parts and
           </h1>
           <div class="flex flex-wrap gap-3">
             <Button href={telHref(phone)} variant="primary">Call For Service Today: {phone}</Button>
-            <a href={bookingUrl} target="_blank" rel="noopener noreferrer" class="inline-flex items-center gap-2 text-[15px] font-bold px-[30px] py-[15px] rounded-[100px] border border-white/40 text-white transition-colors hover:bg-white/10">Book Now</a>
+            <a href={site.bookingUrl} target="_blank" rel="noopener noreferrer" class="inline-flex items-center gap-2 text-[15px] font-bold px-[30px] py-[15px] rounded-[100px] border border-white/40 text-white transition-colors hover:bg-white/10">Book Now</a>
           </div>
         </div>
       </Container>
@@ -252,15 +252,7 @@ const pricingNote = 'Estimates only — prices vary by job and include parts and
           </section>
 
           <!-- CONTACT CTA CARD -->
-          <div class="clear-both mt-14 rounded-[24px] border border-border bg-white p-8 md:p-10" style="box-shadow:0 12px 34px rgba(10,19,23,0.10);">
-            <div class="mb-4 h-1 w-12 rounded-full bg-primary"></div>
-            <h3 class="m-0 mb-3 text-ink font-bold text-[24px] leading-[1.25] tracking-[-0.3px]">Contact Be Secure for Gainesville Commercial Locksmith Services</h3>
-            <p class="m-0 mb-6 text-[16px] leading-[1.6] text-secondary max-w-[680px]" set:html={contactHtml}></p>
-            <div class="flex flex-wrap gap-3">
-              <Button href={telHref(phone)} variant="primary">Call {phone}</Button>
-              <Button href={bookingUrl} variant="dark" target="_blank" rel="noopener noreferrer">Book Now</Button>
-            </div>
-          </div>
+          <div class="clear-both mt-14"><CtaCard location={location} heading="Contact Be Secure for Gainesville Commercial Locksmith Services" body={contactHtml} /></div>
         </div>
       </Container>
     </article>
