@@ -19,11 +19,10 @@ test('Blog post page builds with content, byline, and SEO', () => {
   expect(html).toContain('Back to all posts');
 });
 
-test('only posts with body content get an internal page', () => {
-  // The body-less seeded posts must NOT have a built directory under dist/blog/
-  const bodyless = 'moving-to-gainesville-fl-rekey-your-locks';
-  expect(existsSync(resolve(dir, bodyless, 'index.html'))).toBe(false);
-  // Exactly the post directories that exist correspond to posts with body.
+test('every post with body content gets an internal page', () => {
+  const data = readdirSync(resolve(__dirname, '../src/content/blog')).filter((f) => f.endsWith('.json'));
+  const withBody = data.filter((f) =>
+    Array.isArray(JSON.parse(readFileSync(resolve(__dirname, '../src/content/blog', f), 'utf8')).body));
   const built = readdirSync(dir, { withFileTypes: true }).filter((e) => e.isDirectory()).length;
-  expect(built).toBe(1);
+  expect(built).toBe(withBody.length);   // one built page per body-bearing post
 });

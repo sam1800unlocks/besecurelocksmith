@@ -11,11 +11,10 @@ test('Blog index builds with hero, cards, and SEO', () => {
   expect(html).toContain('Be Secure Locksmith Blog');               // H1
   expect(html).toContain('"@type":"BreadcrumbList"');
   expect(html).toContain('"@type":"Blog"');
-  // One card per seeded post (each card has a "Read article" affordance)
+  // One card per post (each card has a "Read article" affordance)
   const postCount = readdirSync(resolve(__dirname, '../src/content/blog')).filter((f) => f.endsWith('.json')).length;
   expect((html.match(/Read article/g) || []).length).toBe(postCount);
-  // Posts with a built page link internally; the rest link to the live post
+  // Posts with a built page link internally
   expect(html).toContain('href="/blog/transponder-key-vs-remote-head-key-vs-smart-key-in-dunnellon-fl-what-your-car-actually-uses/"');
-  expect(html).toMatch(/href="https:\/\/besecurelocksmith\.com\/blog\/[a-z0-9-]+\/"/); // ≥1 still live
   expect(html).toContain('Commercial Locksmith');                   // a category badge
 });
