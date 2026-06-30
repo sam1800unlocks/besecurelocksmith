@@ -39,13 +39,13 @@ Total: 117 URLs (40 pages + 77 posts).
 - [ ] https://besecurelocksmith.com/service-areas/
 - [ ] https://besecurelocksmith.com/service-areas/locksmith-alachua-fl/
 - [x] https://besecurelocksmith.com/service-areas/locksmith-belleview-fl/
-- [ ] https://besecurelocksmith.com/service-areas/locksmith-gainesville-fl/ ★
+- [x] https://besecurelocksmith.com/service-areas/locksmith-gainesville-fl/ ★
 - [ ] https://besecurelocksmith.com/service-areas/locksmith-hampton-fl/
 - [x] https://besecurelocksmith.com/service-areas/locksmith-high-springs-fl/
-- [ ] https://besecurelocksmith.com/service-areas/locksmith-lake-city-fl/ ★
+- [x] https://besecurelocksmith.com/service-areas/locksmith-lake-city-fl/ ★
 - [x] https://besecurelocksmith.com/service-areas/locksmith-marion-oaks-ocala-fl/
 - [x] https://besecurelocksmith.com/service-areas/locksmith-newberry-fl/
-- [ ] https://besecurelocksmith.com/service-areas/locksmith-ocala-fl/ ★
+- [x] https://besecurelocksmith.com/service-areas/locksmith-ocala-fl/ ★
 - [x] https://besecurelocksmith.com/service-areas/locksmith-silver-springs-fl/
 - [x] https://besecurelocksmith.com/service-areas/locksmith-silver-springs-shores-ocala-fl/
 - [x] https://besecurelocksmith.com/service-areas/locksmith-the-villages-fl/

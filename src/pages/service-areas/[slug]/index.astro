@@ -28,7 +28,9 @@ const { area } = Astro.props;
 const loc = resolveLocation(area.location);
 const phone = resolvePhone(loc);
 const office = offices[area.office ?? 'gainesville'];
-const areaFaqs = buildAreaFaqs(area, office.label);
+const areaFaqs = (area.faqs && area.faqs.length)
+  ? area.faqs.map((q, i) => ({ ...q, order: i + 1 }))
+  : buildAreaFaqs(area, office.label);
 const pageUrl = `https://besecurelocksmith.com/service-areas/${area.slug}/`;
 const ctaBody = `Locked out or need new locks in ${area.city}? Be Secure Locksmith is your trusted local, mobile locksmith. <a href="/contact-us/">Contact us today</a> or call now — fast, licensed, and insured service.`;
 

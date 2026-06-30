@@ -1,5 +1,5 @@
 ---
-import { resolveLocation, resolvePhone } from '../../lib/locations';
+import { resolveLocation, resolvePhone, resolveSocials } from '../../lib/locations';
 import { telHref, site, nav as navTabs, serviceMenu } from '../../config/site';
 import MobileDrawer from './MobileDrawer.astro';
 
@@ -7,7 +7,7 @@ const { location = 'main' } = Astro.props;
 const loc = resolveLocation(location);
 const phone = resolvePhone(loc);
 
-const headerSocials = site.socials.slice(0, 3);
+const headerSocials = resolveSocials(loc).slice(0, 3);
 ---
 <header class="sticky top-0 z-50 w-full bg-white border-b border-border">
   <nav class="max-w-[1360px] mx-auto h-16 md:h-[84px] px-6 flex items-center justify-between gap-4">

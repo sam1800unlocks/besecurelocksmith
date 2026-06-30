@@ -68,6 +68,8 @@ const serviceAreas = defineCollection({
     office: z.enum(['gainesville', 'ocala']).default('gainesville'),
     responseTime: z.string().default('~30 min'),
     relatedBlogs: z.array(z.object({ title: z.string(), url: z.string(), image: z.string().optional() })).default([]),
+    // Optional per-city FAQs (pulled from live); when absent, FAQs are generated.
+    faqs: z.array(z.object({ question: z.string(), answer: z.string() })).optional(),
   }),
 });
 

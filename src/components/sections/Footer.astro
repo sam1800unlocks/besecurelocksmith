@@ -1,7 +1,11 @@
 ---
 import { telHref, smsHref, site, serviceAreas } from '../../config/site';
 import { offices } from '../../config/offices';
+import { resolveLocation, resolveSocials } from '../../lib/locations';
 import Container from '../primitives/Container.astro';
+
+const { location = 'main' } = Astro.props;
+const socials = resolveSocials(resolveLocation(location));
 ---
 
 <footer class="border-t border-border bg-white">
@@ -42,7 +46,7 @@ import Container from '../primitives/Container.astro';
         </p>
         <!-- Social icons -->
         <div class="flex flex-wrap gap-2">
-          {site.socials.map((s) => (
+          {socials.map((s) => (
             <a
               href={s.href}
               aria-label={s.name}
