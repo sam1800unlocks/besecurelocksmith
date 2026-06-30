@@ -24,7 +24,7 @@ const sorted = [...items].sort((a, b) => a.order - b.order);
 
 <Section id="services" class="pt-12 pb-16">
   <Container>
-    <div class="mb-10">
+    <div class="max-w-[1180px] mx-auto mb-10">
       <h2
         class="m-0 mb-[14px] font-medium leading-[1.28] tracking-[-0.8px] text-ink"
         style="font-size:clamp(28px,3.6vw,36px);"
@@ -39,7 +39,7 @@ const sorted = [...items].sort((a, b) => a.order - b.order);
       </p>
     </div>
 
-    <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6">
+    <div class="max-w-[1280px] mx-auto grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6">
       {sorted.map((svc) => {
         const slug = svc.title.toLowerCase().replace(/[^a-z0-9]+/g, '-').replace(/-$/, '');
         const cardHref = svc.href ?? '/services/';
