@@ -1,0 +1,40 @@
+---
+interface Post {
+  title: string;
+  excerpt: string;
+  image: string;
+  category: string;
+  date: string;   // ISO YYYY-MM-DD
+  url: string;
+}
+const { post } = Astro.props as { post: Post };
+
+// Format ISO date → "Jun 23, 2026" (no timezone drift: parse parts directly)
+const [y, m, d] = post.date.split('-').map(Number);
+const MONTHS = ['Jan','Feb','Mar','Apr','May','Jun','Jul','Aug','Sep','Oct','Nov','Dec'];
+const displayDate = (y && m && d) ? `${MONTHS[m - 1]} ${d}, ${y}` : post.date;
+---
+<a
+  href={post.url}
+  target="_blank"
+  rel="noopener noreferrer"
+  class="group rounded-[24px] border border-border bg-white overflow-hidden flex flex-col transition-colors hover:border-primary"
+>
+  <div class="aspect-[16/10] overflow-hidden bg-surface">
+    <img
+      src={post.image}
+      alt={post.title}
+      loading="lazy"
+      class="w-full h-full object-cover block transition-transform duration-300 group-hover:scale-[1.04]"
+    />
+  </div>
+  <div class="p-6 flex flex-col gap-3 flex-1">
+    <span class="self-start rounded-pill bg-primary/10 px-[12px] py-[5px] text-[12px] font-semibold text-primary">{post.category}</span>
+    <h3 class="m-0 text-[18px] font-bold leading-[1.3] tracking-[-0.2px] text-ink">{post.title}</h3>
+    <p class="m-0 text-[14px] leading-[1.55] text-muted">{post.excerpt}</p>
+    <div class="mt-auto pt-1 flex items-center justify-between gap-3">
+      <span class="text-[13px] text-muted-2">{displayDate}</span>
+      <span class="inline-flex items-center gap-1.5 text-[14px] font-semibold text-primary">Read article &rarr;</span>
+    </div>
+  </div>
+</a>

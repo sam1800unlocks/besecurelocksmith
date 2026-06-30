@@ -1,0 +1,77 @@
+---
+import { getCollection } from 'astro:content';
+import BaseLayout from '../../layouts/BaseLayout.astro';
+import PromoBar from '../../components/sections/PromoBar.astro';
+import NavBar from '../../components/sections/NavBar.astro';
+import TrustStrip from '../../components/sections/TrustStrip.astro';
+import BlogCard from '../../components/sections/BlogCard.astro';
+import Footer from '../../components/sections/Footer.astro';
+import StickyCallBar from '../../components/sections/StickyCallBar.astro';
+import Section from '../../components/primitives/Section.astro';
+import Container from '../../components/primitives/Container.astro';
+
+const location = 'main';
+
+const title = 'Locksmith Blog Gainesville, FL - Tips & Lock Guides';
+const description = 'Locksmith tips for Gainesville and Ocala, FL homeowners and businesses. Learn about lockouts, rekeys, smart locks, and car keys from a local team. Read more.';
+const pageUrl = 'https://besecurelocksmith.com/blog/';
+
+const posts = (await getCollection('blog'))
+  .map((e) => e.data)
+  .sort((a, b) => (a.date < b.date ? 1 : -1));   // newest first
+
+const breadcrumbJsonLd = {
+  '@context': 'https://schema.org', '@type': 'BreadcrumbList',
+  itemListElement: [
+    { '@type': 'ListItem', position: 1, name: 'Home', item: 'https://besecurelocksmith.com/' },
+    { '@type': 'ListItem', position: 2, name: 'Blog', item: pageUrl },
+  ],
+};
+const blogJsonLd = {
+  '@context': 'https://schema.org', '@type': 'Blog', name: 'Be Secure Locksmith Blog', url: pageUrl,
+  blogPost: posts.map((p) => ({ '@type': 'BlogPosting', headline: p.title, datePublished: p.date, url: p.url })),
+};
+---
+<BaseLayout title={title} description={description} location={location}>
+  <Fragment slot="head">
+    <script type="application/ld+json" set:html={JSON.stringify(breadcrumbJsonLd)} />
+    <script type="application/ld+json" set:html={JSON.stringify(blogJsonLd)} />
+  </Fragment>
+
+  <PromoBar location={location} />
+  <NavBar location={location} />
+  <main>
+    <!-- HERO -->
+    <section class="relative overflow-hidden text-white" style="background:linear-gradient(160deg,#0e4a8f 0%,#0b2f5e 42%,#0a1830 100%);">
+      <div class="absolute inset-0 opacity-[0.09]" style="background-image:radial-gradient(circle at 1px 1px,#ffffff 1px,transparent 0);background-size:22px 22px;"></div>
+      <div class="absolute -top-28 -right-20 w-[540px] h-[540px] rounded-full pointer-events-none" style="background:radial-gradient(circle,rgba(56,150,255,0.60),transparent 70%);"></div>
+      <Container>
+        <div class="relative max-w-[1180px] mx-auto py-14 md:py-[72px]">
+          <nav aria-label="Breadcrumb" class="mb-5 flex flex-wrap items-center gap-2 text-[13px] text-white/70">
+            <a href="/" class="hover:text-white">Home</a>
+            <span aria-hidden="true">/</span>
+            <span class="text-white">Blog</span>
+          </nav>
+          <h1 class="m-0 mb-4 font-medium text-white max-w-[760px]" style="font-size:clamp(32px,5.2vw,56px);line-height:1.08;letter-spacing:-1.2px;">
+            Be Secure Locksmith Blog
+          </h1>
+          <p class="m-0 text-[18px] leading-[1.4] text-white/80 max-w-[640px]">
+            Locksmith tips for Gainesville and Ocala, FL homeowners and businesses — lockouts, rekeys, smart locks, and car keys from a local team.
+          </p>
+        </div>
+      </Container>
+    </section>
+
+    <TrustStrip />
+
+    <Section class="py-12 md:py-16">
+      <Container>
+        <div class="max-w-[1180px] mx-auto grid gap-6" style="grid-template-columns:repeat(auto-fit,minmax(280px,1fr));">
+          {posts.map((post) => <BlogCard post={post} />)}
+        </div>
+      </Container>
+    </Section>
+  </main>
+  <Footer location={location} />
+  <StickyCallBar location={location} />
+</BaseLayout>

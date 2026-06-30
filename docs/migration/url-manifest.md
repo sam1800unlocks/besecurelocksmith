@@ -52,7 +52,7 @@ Total: 117 URLs (40 pages + 77 posts).
 - [ ] https://besecurelocksmith.com/service-areas/locksmith-williston-fl/
 
 ## Blog index + posts (77)
-- [ ] https://besecurelocksmith.com/blog/
+- [x] https://besecurelocksmith.com/blog/
 - [ ] https://besecurelocksmith.com/blog/3-door-lock-problems-you-shouldnt-ignore/
 - [ ] https://besecurelocksmith.com/blog/3-ways-a-locksmith-can-make-your-home-more-secure/
 - [ ] https://besecurelocksmith.com/blog/4-common-locksmith-security-related-myths-debunked/
