@@ -23,3 +23,11 @@ test('BlogCard renders image, category badge, title, excerpt, date, and an exter
   expect(html).toContain('target="_blank"');
   expect(html).toContain('Read article');
 });
+
+test('BlogCard links internally (no new tab) when the post has a built page', async () => {
+  const c = await AstroContainer.create();
+  const withPage = { ...post, slug: 'why-ocala-ic-core', body: ['<p>Body…</p>'] };
+  const html = await c.renderToString(BlogCard, { props: { post: withPage } });
+  expect(html).toContain('href="/blog/why-ocala-ic-core/"');
+  expect(html).not.toContain('target="_blank"');
+});

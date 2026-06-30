@@ -6,6 +6,8 @@ interface Post {
   category: string;
   date: string;   // ISO YYYY-MM-DD
   url: string;
+  slug: string;
+  body?: string[];
 }
 const { post } = Astro.props as { post: Post };
 
@@ -13,11 +15,15 @@ const { post } = Astro.props as { post: Post };
 const [y, m, d] = post.date.split('-').map(Number);
 const MONTHS = ['Jan','Feb','Mar','Apr','May','Jun','Jul','Aug','Sep','Oct','Nov','Dec'];
 const displayDate = (y && m && d) ? `${MONTHS[m - 1]} ${d}, ${y}` : post.date;
+
+// Posts with migrated body content have an internal page; others link to the live post.
+const hasPage = Array.isArray(post.body) && post.body.length > 0;
+const href = hasPage ? `/blog/${post.slug}/` : post.url;
 ---
 <a
-  href={post.url}
-  target="_blank"
-  rel="noopener noreferrer"
+  href={href}
+  target={hasPage ? undefined : '_blank'}
+  rel={hasPage ? undefined : 'noopener noreferrer'}
   class="group rounded-[24px] border border-border bg-white overflow-hidden flex flex-col transition-colors hover:border-primary"
 >
   <div class="aspect-[16/10] overflow-hidden bg-surface">

@@ -43,6 +43,12 @@ const blog = defineCollection({
     category: z.string(),
     date: z.string(),   // ISO YYYY-MM-DD
     url: z.string(),
+    // Present only for posts that have an internal page built from migrated content:
+    body: z.array(z.string()).optional(),   // HTML blocks
+    author: z.string().optional(),
+    heroImage: z.string().optional(),
+    metaTitle: z.string().optional(),
+    metaDescription: z.string().optional(),
   }),
 });
 
