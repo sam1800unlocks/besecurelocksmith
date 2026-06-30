@@ -13,9 +13,12 @@ test('PromoBar shows the resolved phone as a tel link', async () => {
 test('NavBar renders all eight nav tabs with real hrefs', async () => {
   const c = await AstroContainer.create();
   const html = await c.renderToString(NavBar, { props: { location: 'main' } });
-  for (const href of ['/', '/about/', '/#services', '/price-list/', '/service-areas/', '/testimonials/', '/blog/', '/contact-us/']) {
+  for (const href of ['/', '/about/', '/price-list/', '/service-areas/', '/testimonials/', '/blog/', '/contact-us/']) {
     expect(html).toContain(`href="${href}"`);
   }
+  // "Services" is a non-clickable dropdown trigger (no /services/ page exists)
+  expect(html).toContain('Services');
+  expect(html).not.toContain('href="/#services"');
 });
 
 test('NavBar Services dropdown renders crawlable service links (server-rendered)', async () => {

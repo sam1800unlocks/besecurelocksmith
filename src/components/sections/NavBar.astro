@@ -22,13 +22,14 @@ const headerSocials = site.socials.slice(0, 3);
       {navTabs.map((tab) => (
         tab.dropdown ? (
           <div class="relative group">
-            <a
-              href={tab.href}
-              class="inline-flex items-center gap-1 text-sm font-semibold px-2.5 py-2 rounded-md tracking-[-0.14px] whitespace-nowrap transition-colors text-ink hover:text-primary group-hover:text-primary"
+            <button
+              type="button"
+              aria-haspopup="true"
+              class="inline-flex items-center gap-1 text-sm font-semibold px-2.5 py-2 rounded-md tracking-[-0.14px] whitespace-nowrap transition-colors text-ink hover:text-primary group-hover:text-primary cursor-default bg-transparent border-0"
             >
               {tab.label}
               <svg width="11" height="11" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round" class="transition-transform group-hover:rotate-180" aria-hidden="true"><polyline points="6 9 12 15 18 9"/></svg>
-            </a>
+            </button>
             <!-- Mega-menu panel (server-rendered links; revealed on hover/focus) -->
             <div class="invisible opacity-0 translate-y-1 group-hover:visible group-hover:opacity-100 group-hover:translate-y-0 group-focus-within:visible group-focus-within:opacity-100 group-focus-within:translate-y-0 transition-all duration-150 absolute left-1/2 -translate-x-1/2 top-full pt-3 z-50">
               <div class="w-[680px] max-w-[92vw] bg-white border border-border rounded-2xl p-6 grid grid-cols-3 gap-x-6 gap-y-4" style="box-shadow:0 18px 50px rgba(10,19,23,0.16);">
