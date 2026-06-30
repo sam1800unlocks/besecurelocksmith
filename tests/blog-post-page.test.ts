@@ -23,6 +23,7 @@ test('every post with body content gets an internal page', () => {
   const data = readdirSync(resolve(__dirname, '../src/content/blog')).filter((f) => f.endsWith('.json'));
   const withBody = data.filter((f) =>
     Array.isArray(JSON.parse(readFileSync(resolve(__dirname, '../src/content/blog', f), 'utf8')).body));
-  const built = readdirSync(dir, { withFileTypes: true }).filter((e) => e.isDirectory()).length;
+  const built = readdirSync(dir, { withFileTypes: true })
+    .filter((e) => e.isDirectory() && !['page', 'category'].includes(e.name)).length;
   expect(built).toBe(withBody.length);   // one built page per body-bearing post
 });

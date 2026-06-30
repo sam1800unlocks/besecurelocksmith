@@ -1,0 +1,41 @@
+---
+import BaseLayout from '../../../layouts/BaseLayout.astro';
+import PromoBar from '../../../components/sections/PromoBar.astro';
+import NavBar from '../../../components/sections/NavBar.astro';
+import BlogList from '../../../components/sections/BlogList.astro';
+import Footer from '../../../components/sections/Footer.astro';
+import StickyCallBar from '../../../components/sections/StickyCallBar.astro';
+import { allPosts, categoriesOf, PAGE_SIZE } from '../../../lib/blog';
+
+export async function getStaticPaths() {
+  const posts = await allPosts();
+  const last = Math.max(1, Math.ceil(posts.length / PAGE_SIZE));
+  // Pages 2..last (page 1 lives at /blog/)
+  return Array.from({ length: Math.max(0, last - 1) }, (_, i) => {
+    const n = i + 2;
+    return { params: { page: String(n) }, props: { n, last, posts: posts.slice((n - 1) * PAGE_SIZE, n * PAGE_SIZE), categories: categoriesOf(posts) } };
+  });
+}
+
+const { n, last, posts, categories } = Astro.props;
+const location = 'main';
+const intro = 'Locksmith tips for Gainesville and Ocala, FL homeowners and businesses — lockouts, rekeys, smart locks, and car keys from a local team.';
+---
+<BaseLayout
+  title={`Blog (Page ${n}) | Be Secure Locksmith`}
+  description="More locksmith tips and guides from Be Secure Locksmith."
+  location={location}
+  robots="noindex, follow"
+>
+  <PromoBar location={location} />
+  <NavBar location={location} />
+  <BlogList
+    heading="Be Secure Locksmith Blog"
+    intro={intro}
+    posts={posts}
+    categories={categories}
+    pagination={{ current: n, last }}
+  />
+  <Footer location={location} />
+  <StickyCallBar location={location} />
+</BaseLayout>

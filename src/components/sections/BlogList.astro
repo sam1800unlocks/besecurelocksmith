@@ -1,0 +1,84 @@
+---
+import Container from '../primitives/Container.astro';
+import Section from '../primitives/Section.astro';
+import TrustStrip from './TrustStrip.astro';
+import BlogCard from './BlogCard.astro';
+import type { Category } from '../../lib/blog';
+
+interface Props {
+  heading: string;
+  intro: string;
+  posts: any[];
+  categories: Category[];
+  activeSlug?: string | null;          // active category slug, or null on the main blog
+  categoryName?: string | null;        // breadcrumb crumb on category pages
+  pagination?: { current: number; last: number } | null;
+}
+const { heading, intro, posts, categories, activeSlug = null, categoryName = null, pagination = null } = Astro.props as Props;
+
+const pageHref = (n: number) => (n <= 1 ? '/blog/' : `/blog/page/${n}/`);
+const showPager = pagination && pagination.last > 1;
+---
+<main>
+  <!-- HERO -->
+  <section class="relative overflow-hidden text-white" style="background:linear-gradient(160deg,#0e4a8f 0%,#0b2f5e 42%,#0a1830 100%);">
+    <div class="absolute inset-0 opacity-[0.09]" style="background-image:radial-gradient(circle at 1px 1px,#ffffff 1px,transparent 0);background-size:22px 22px;"></div>
+    <div class="absolute -top-28 -right-20 w-[540px] h-[540px] rounded-full pointer-events-none" style="background:radial-gradient(circle,rgba(56,150,255,0.60),transparent 70%);"></div>
+    <Container>
+      <div class="relative max-w-[1180px] mx-auto py-14 md:py-[72px]">
+        <nav aria-label="Breadcrumb" class="mb-5 flex flex-wrap items-center gap-2 text-[13px] text-white/70">
+          <a href="/" class="hover:text-white">Home</a>
+          <span aria-hidden="true">/</span>
+          {categoryName ? <a href="/blog/" class="hover:text-white">Blog</a> : <span class="text-white">Blog</span>}
+          {categoryName && <span aria-hidden="true">/</span>}
+          {categoryName && <span class="text-white">{categoryName}</span>}
+        </nav>
+        <h1 class="m-0 mb-4 font-medium text-white max-w-[760px]" style="font-size:clamp(32px,5.2vw,56px);line-height:1.08;letter-spacing:-1.2px;">
+          {heading}
+        </h1>
+        <p class="m-0 text-[18px] leading-[1.4] text-white/80 max-w-[640px]">{intro}</p>
+      </div>
+    </Container>
+  </section>
+
+  <TrustStrip />
+
+  <Section class="py-12 md:py-16">
+    <Container>
+      <div class="max-w-[1180px] mx-auto">
+        <!-- Category chips -->
+        <div class="mb-8 flex flex-wrap gap-2">
+          <a href="/blog/" class={`inline-flex items-center rounded-pill px-[14px] py-[7px] text-[13px] font-semibold transition-colors ${!activeSlug ? 'bg-primary text-white' : 'border border-border bg-surface text-ink hover:border-primary hover:text-primary'}`}>All</a>
+          {categories.map((cat) => (
+            <a
+              href={`/blog/category/${cat.slug}/`}
+              class={`inline-flex items-center rounded-pill px-[14px] py-[7px] text-[13px] font-semibold transition-colors ${activeSlug === cat.slug ? 'bg-primary text-white' : 'border border-border bg-surface text-ink hover:border-primary hover:text-primary'}`}
+            >{cat.name}</a>
+          ))}
+        </div>
+
+        <!-- Post grid -->
+        <div class="grid gap-6" style="grid-template-columns:repeat(auto-fit,minmax(280px,1fr));">
+          {posts.map((post) => <BlogCard post={post} />)}
+        </div>
+
+        <!-- Pagination -->
+        {showPager && (
+          <nav aria-label="Blog pagination" class="mt-12 flex items-center justify-center gap-4">
+            {pagination!.current > 1 ? (
+              <a href={pageHref(pagination!.current - 1)} rel="prev" class="inline-flex items-center gap-1.5 rounded-pill border border-border bg-white px-[18px] py-[10px] text-[14px] font-semibold text-ink hover:border-primary hover:text-primary">&larr; Previous</a>
+            ) : (
+              <span class="inline-flex items-center gap-1.5 rounded-pill border border-border bg-surface px-[18px] py-[10px] text-[14px] font-semibold text-muted-2">&larr; Previous</span>
+            )}
+            <span class="text-[14px] font-medium text-muted">Page {pagination!.current} of {pagination!.last}</span>
+            {pagination!.current < pagination!.last ? (
+              <a href={pageHref(pagination!.current + 1)} rel="next" class="inline-flex items-center gap-1.5 rounded-pill border border-border bg-white px-[18px] py-[10px] text-[14px] font-semibold text-ink hover:border-primary hover:text-primary">Next &rarr;</a>
+            ) : (
+              <span class="inline-flex items-center gap-1.5 rounded-pill border border-border bg-surface px-[18px] py-[10px] text-[14px] font-semibold text-muted-2">Next &rarr;</span>
+            )}
+          </nav>
+        )}
+      </div>
+    </Container>
+  </Section>
+</main>
