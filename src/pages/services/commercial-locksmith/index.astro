@@ -103,12 +103,12 @@ const howItWorks = [
   { n: 3, title: 'Done right the first time', desc: 'We complete the work with trusted hardware — parts and labor included, with no hidden fees.' },
 ];
 
-// Commercial lock hardware we service (chips). De-duped the client's list
-// ("Panic / exit bars door" was a duplicate of the crash-bar entry).
+// Commercial lock hardware we service (chips), rendered alphabetically.
 const lockTypes = [
   'Mortise locks',
   'Cylindrical / bored locks',
-  'Panic / exit devices (crash bars)',
+  'Panic devices',
+  'Exit devices (crash bars)',
   'Storefront / Adams Rite locks',
   'Interchangeable core (IC / SFIC)',
   'Rim cylinders',
@@ -119,10 +119,12 @@ const lockTypes = [
   'Lever sets (Grade 1/2)',
   'Door closers',
   'Cam locks',
-  'File / desk / cabinet locks',
+  'Cabinet locks',
+  'Desk locks',
+  'File locks',
   'High-security padlocks',
   'Exit alarm devices',
-];
+].sort((a, b) => a.localeCompare(b));
 
 // Top commercial services + price ranges — figures pulled verbatim from the live price list.
 const pricing = [
@@ -237,8 +239,8 @@ const pricingNote = 'Estimates only — prices vary by job and include parts and
             <div class="absolute inset-0 opacity-[0.08] pointer-events-none" style="background-image:radial-gradient(circle at 1px 1px,#ffffff 1px,transparent 0);background-size:22px 22px;"></div>
             <div class="absolute -top-24 -right-16 w-[360px] h-[360px] rounded-full pointer-events-none" style="background:radial-gradient(circle,rgba(56,150,255,0.45),transparent 70%);"></div>
             <div class="relative p-8 md:p-10">
-              <div class="mb-4 h-1 w-12 rounded-full bg-amber"></div>
               <h2 class="m-0 font-medium tracking-[-0.4px]" style="font-size:clamp(22px,3vw,28px);line-height:1.2;">Commercial Lock Types We Service</h2>
+              <div class="mt-3 mb-4 h-1 w-12 rounded-full bg-amber"></div>
               <p class="mt-3 mb-7 text-[16px] leading-[1.6] text-white/75 max-w-[680px]">From storefronts to back offices, we install, repair, and rekey the full range of commercial door hardware:</p>
               <div class="flex flex-wrap gap-2.5">
                 {lockTypes.map((t) => (
@@ -253,8 +255,8 @@ const pricingNote = 'Estimates only — prices vary by job and include parts and
 
           <!-- HOW IT WORKS -->
           <section class="clear-both mt-14 rounded-[24px] border border-border p-8 md:p-10" style="background:#eef4ff;">
-            <div class="mb-4 h-1 w-12 rounded-full bg-primary"></div>
             <h2 class="m-0 text-ink font-medium tracking-[-0.4px]" style="font-size:clamp(22px,3vw,28px);line-height:1.2;">How It Works</h2>
+            <div class="mt-3 mb-4 h-1 w-12 rounded-full bg-primary"></div>
             <div class="mt-6 grid grid-cols-1 sm:grid-cols-3 gap-6">
               {howItWorks.map((step) => (
                 <div>
@@ -268,8 +270,8 @@ const pricingNote = 'Estimates only — prices vary by job and include parts and
 
           <!-- PRICING -->
           <section class="clear-both mt-12 rounded-[24px] border border-border bg-surface p-8 md:p-10">
-            <div class="mb-4 h-1 w-12 rounded-full bg-primary"></div>
             <h2 class="m-0 text-ink font-medium tracking-[-0.4px]" style="font-size:clamp(22px,3vw,28px);line-height:1.2;">Commercial Locksmith Pricing</h2>
+            <div class="mt-3 mb-4 h-1 w-12 rounded-full bg-primary"></div>
             <p class="mt-3 mb-6 text-[16px] leading-[1.6] text-secondary max-w-[680px]">Upfront, transparent pricing — parts and labor included, and you&rsquo;ll always get a quote before any work begins. No hidden fees.</p>
             <div class="grid grid-cols-1 sm:grid-cols-2 gap-3">
               {pricing.map((row) => (
