@@ -24,7 +24,7 @@ export const site = {
   bookingUrl: 'https://online-booking.workiz.com/?ac=744610670459142e62f3f47913956e45311c10147d3f5224d2489d7eab57c2a7',
   footerServices: ['Residential','Commercial','Automotive','Key Duplication','Car Key Replacement','Ignition Repair','Lock Rekeying','Smart Locks','Master Key Systems'],
   payments: ['Cash','Credit Cards','Mobile Pay'],
-  brands: ['Schlage','Yale','Kwikset'],
+  brands: ['Kwikset','Schlage','Yale'],
   socials: [
     { name: 'Facebook', icon: '/img/social/FB-512.svg', href: 'https://www.facebook.com/BeSecureLocksmith/' },
     { name: 'YouTube', icon: '/img/social/YouTube-icon.svg', href: 'https://www.youtube.com/channel/UCwpODmKG5TrCVIJTzEB6FXA' },

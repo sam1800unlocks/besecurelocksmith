@@ -8,8 +8,8 @@ test('Hero shows headline, license badge, resolved call CTA, and brands', async 
   expect(html).toContain('Top Local Locksmith in Gainesville');
   expect(html).toContain('HCLO18005');
   expect(html).toContain('href="tel:+13527065295"');
-  expect(html).toContain('We install &amp; service:');   // brands row replaces the rating row
-  expect(html).toContain('Schlage');
+  expect(html).toContain('Featured Lock Brands:');       // brands row replaces the rating row
+  expect(html).toContain('Kwikset');
   expect(html).toContain('Upfront pricing');             // reassurance row
   expect(html).toContain('Same-day service');
   expect(html).toContain('Top Local Locksmith in Gainesville &amp; Ocala, FL');
