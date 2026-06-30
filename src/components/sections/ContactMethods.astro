@@ -13,7 +13,7 @@ const bookIcon = '<svg width="22" height="22" viewBox="0 0 24 24" fill="none" st
 
 const methods = [
   { label: 'Call Us',     value: phone,           prompt: 'Talk to a local locksmith now', href: telHref(phone),       icon: phoneIcon, external: false },
-  { label: 'Text Us',     value: site.smsPhone,   prompt: 'Send us a quick message',        href: smsHref(site.smsPhone), icon: textIcon,  external: false },
+  { label: 'Text Us',     value: 'Send a text',   prompt: 'Send us a quick message',        href: smsHref(site.smsPhone), icon: textIcon,  external: false },
   { label: 'Book Online', value: 'Schedule a visit', prompt: 'Reserve a time that works for you', href: site.bookingUrl,  icon: bookIcon,  external: true },
 ];
 ---
