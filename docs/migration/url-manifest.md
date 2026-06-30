@@ -7,7 +7,7 @@ Total: 117 URLs (40 pages + 77 posts).
 
 ## Standalone pages
 - [x] https://besecurelocksmith.com/
-- [ ] https://besecurelocksmith.com/about/
+- [x] https://besecurelocksmith.com/about/
 - [x] https://besecurelocksmith.com/contact-us/
 - [ ] https://besecurelocksmith.com/employment/
 - [x] https://besecurelocksmith.com/price-list/

@@ -1,0 +1,69 @@
+{
+  "mission": [
+    "Since 2012, Be Secure Locksmith’s highly-trained, licensed, and certified technicians have provided automotive, residential, and commercial locksmith services to the good people of Gainesville, FL, Ocala, and the surrounding metro region. We understand the value of building relationships with our local communities, and our company upholds those values with integrity, a high level of expertise, and a constant commitment to customer service. We also take the extra step to perform a free security assessment protocol developed by our experienced technicians to help eliminate any future security risk to your home or business.",
+    "Our company is locally owned and managed, and as owners, our personal core values are reflected in our business’s core values and culture. This philosophy has made us #1 in job performance/expertise, employee care, and customer satisfaction. The three most valued agreements we make between ourselves and our customers are:",
+    "When you hire Be Secure for a locksmith job, big or small, you can rest assured that our commitment to customer service is our top priority."
+  ],
+  "team": [
+    {
+      "name": "Joe",
+      "role": "General Manager",
+      "photo": "/img/team/joe.jpg"
+    },
+    {
+      "name": "Britney",
+      "role": "Commercial Relationship Manager",
+      "photo": "/img/team/britney.png"
+    },
+    {
+      "name": "Emily",
+      "role": "Customer Service Rep",
+      "photo": "/img/team/emily.jpg"
+    },
+    {
+      "name": "Courtney",
+      "role": "Dispatcher",
+      "photo": "/img/team/courtney.png"
+    },
+    {
+      "name": "Laura",
+      "role": "Accounts Receivable",
+      "photo": "/img/team/laura.png"
+    },
+    {
+      "name": "Remington",
+      "role": "Technician",
+      "photo": "/img/team/remington.jpg"
+    },
+    {
+      "name": "Ethan",
+      "role": "Technician",
+      "photo": "/img/team/ethan.jpg"
+    },
+    {
+      "name": "Elijah",
+      "role": "Technician",
+      "photo": "/img/team/elijah.png"
+    },
+    {
+      "name": "John",
+      "role": "Technician",
+      "photo": "/img/team/john.jpeg"
+    },
+    {
+      "name": "Bill",
+      "role": "Technician",
+      "photo": "/img/team/bill.jpg"
+    },
+    {
+      "name": "Dillon",
+      "role": "Technician",
+      "photo": "/img/team/dillon.jpg"
+    },
+    {
+      "name": "Kobi",
+      "role": "Technician",
+      "photo": "/img/team/kobi.jpg"
+    }
+  ]
+}

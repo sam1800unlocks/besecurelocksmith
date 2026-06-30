@@ -21,6 +21,7 @@ const CAPS = [
   ['services/commercial', 1100], // in-article figures (≤440 float / ~600 mobile)
   ['service-areas', 1000],       // area-page body figures (≤500 float × 2 retina)
   ['blog', 760],                 // related-blog card thumbs (≤380px × 2 retina)
+  ['team', 600],                 // team headshots (~300px card × 2 retina)
   ['businesses', 240],           // logo tiles (~160px)
   ['credentials', 260],          // credential logos
   ['clients', 300],              // client logo wall
