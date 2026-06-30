@@ -1,6 +1,9 @@
 ---
-const { href, variant = 'primary', class: cls = '', ...rest } = Astro.props;
-const base = 'inline-flex items-center gap-2 text-[15px] font-bold tracking-[-0.14px] px-[30px] py-[15px] rounded-[100px] transition-colors';
+const { href, variant = 'primary', size = 'md', class: cls = '', ...rest } = Astro.props;
+const sizeClasses = size === 'sm'
+  ? 'text-[13px] px-[18px] py-[9px]'
+  : 'text-[15px] px-[30px] py-[15px]';
+const base = `inline-flex items-center gap-2 font-bold tracking-[-0.14px] rounded-[100px] transition-colors ${sizeClasses}`;
 const tone = variant === 'call' ? 'bg-call hover:bg-call-hover text-white'
   : variant === 'booking' ? 'bg-booking hover:bg-booking-hover text-white'
   : variant === 'primary' ? 'bg-primary hover:bg-primary-hover text-white'

@@ -19,7 +19,7 @@ test('ServicesGrid renders all nine service cards', async () => {
   const html = await c.renderToString(ServicesGrid, { props: { services: fixtures } });
   expect(html).toContain('Residential Locksmith Services');
   expect(html).toContain('Master Key Systems');
-  expect((html.match(/Learn more/g) || []).length).toBe(9);
+  expect((html.match(/Learn More/g) || []).length).toBe(9);
 });
 
 test('ServicesGrid renders an <img> for the photo service', async () => {
