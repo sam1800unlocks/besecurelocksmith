@@ -93,7 +93,9 @@ const itemListJsonLd = {
 
           <!-- City grid grouped by region -->
           {regions.map((region) => {
-            const regionCities = cities.filter((c) => c.office === region.key);
+            const regionCities = cities
+              .filter((c) => c.office === region.key)
+              .sort((a, b) => a.city.localeCompare(b.city));
             return (
               <div class="mb-12">
                 <h3 class="m-0 mb-5 text-ink font-bold text-[20px] tracking-[-0.3px]">{region.label}</h3>
