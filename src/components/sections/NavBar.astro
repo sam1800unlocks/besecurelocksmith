@@ -1,6 +1,6 @@
 ---
 import { resolveLocation, resolvePhone } from '../../lib/locations';
-import { telHref, site, nav as navTabs } from '../../config/site';
+import { telHref, site, nav as navTabs, serviceMenu } from '../../config/site';
 import MobileDrawer from './MobileDrawer.astro';
 
 const { location = 'main' } = Astro.props;
@@ -20,16 +20,47 @@ const headerSocials = site.socials.slice(0, 3);
     <!-- Desktop nav tabs (inline only where 8 tabs fit: ≥1280px) -->
     <div class="hidden xl:flex items-center gap-0.5 flex-1 justify-center">
       {navTabs.map((tab) => (
-        <a
-          href={tab.href}
-          class={`text-sm font-semibold px-2.5 py-2 rounded-md tracking-[-0.14px] whitespace-nowrap transition-colors ${
-            tab.active
-              ? 'text-primary'
-              : 'text-ink hover:text-primary'
-          }`}
-        >
-          {tab.label}
-        </a>
+        tab.dropdown ? (
+          <div class="relative group">
+            <a
+              href={tab.href}
+              class="inline-flex items-center gap-1 text-sm font-semibold px-2.5 py-2 rounded-md tracking-[-0.14px] whitespace-nowrap transition-colors text-ink hover:text-primary group-hover:text-primary"
+            >
+              {tab.label}
+              <svg width="11" height="11" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round" class="transition-transform group-hover:rotate-180" aria-hidden="true"><polyline points="6 9 12 15 18 9"/></svg>
+            </a>
+            <!-- Mega-menu panel (server-rendered links; revealed on hover/focus) -->
+            <div class="invisible opacity-0 translate-y-1 group-hover:visible group-hover:opacity-100 group-hover:translate-y-0 group-focus-within:visible group-focus-within:opacity-100 group-focus-within:translate-y-0 transition-all duration-150 absolute left-1/2 -translate-x-1/2 top-full pt-3 z-50">
+              <div class="w-[680px] max-w-[92vw] bg-white border border-border rounded-2xl p-6 grid grid-cols-3 gap-x-6 gap-y-4" style="box-shadow:0 18px 50px rgba(10,19,23,0.16);">
+                {serviceMenu.map((grp) => (
+                  <div>
+                    {grp.href ? (
+                      <a href={grp.href} class="block mb-2.5 text-[12px] font-bold uppercase tracking-[0.6px] text-primary hover:underline">{grp.label}</a>
+                    ) : (
+                      <span class="block mb-2.5 text-[12px] font-bold uppercase tracking-[0.6px] text-muted-2">{grp.label}</span>
+                    )}
+                    <ul class="flex flex-col gap-1.5 m-0 p-0 list-none">
+                      {grp.items.map((it) => (
+                        <li><a href={it.href} class="text-[14px] leading-[1.4] text-ink hover:text-primary transition-colors">{it.label}</a></li>
+                      ))}
+                    </ul>
+                  </div>
+                ))}
+              </div>
+            </div>
+          </div>
+        ) : (
+          <a
+            href={tab.href}
+            class={`text-sm font-semibold px-2.5 py-2 rounded-md tracking-[-0.14px] whitespace-nowrap transition-colors ${
+              tab.active
+                ? 'text-primary'
+                : 'text-ink hover:text-primary'
+            }`}
+          >
+            {tab.label}
+          </a>
+        )
       ))}
     </div>
 

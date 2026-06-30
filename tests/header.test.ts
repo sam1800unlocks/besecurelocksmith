@@ -13,7 +13,20 @@ test('PromoBar shows the resolved phone as a tel link', async () => {
 test('NavBar renders all eight nav tabs with real hrefs', async () => {
   const c = await AstroContainer.create();
   const html = await c.renderToString(NavBar, { props: { location: 'main' } });
-  for (const href of ['/', '/about/', '/services/', '/price-list/', '/service-areas/', '/testimonials/', '/blog/', '/contact-us/']) {
+  for (const href of ['/', '/about/', '/#services', '/price-list/', '/service-areas/', '/testimonials/', '/blog/', '/contact-us/']) {
+    expect(html).toContain(`href="${href}"`);
+  }
+});
+
+test('NavBar Services dropdown renders crawlable service links (server-rendered)', async () => {
+  const c = await AstroContainer.create();
+  const html = await c.renderToString(NavBar, { props: { location: 'main' } });
+  for (const href of [
+    '/services/automotive-locksmith/', '/services/commercial-locksmith/',
+    '/services/car-key-replacement/', '/services/master-key-systems/',
+    '/services/emergency-lockouts/', '/services/smart-lock-installation/',
+    '/services/residential-locksmith/', '/services/safe-locksmith/',
+  ]) {
     expect(html).toContain(`href="${href}"`);
   }
 });

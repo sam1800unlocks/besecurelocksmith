@@ -13,7 +13,7 @@ test('mobile drawer opens and closes', async ({ page }) => {
 
 test('FAQ accordion toggles', async ({ page }) => {
   await page.goto('/');
-  const first = page.locator('details').first();
+  const first = page.locator('[data-faq]').first();
   // First FAQ starts open (open={i===0}); clicking closes it
   await first.locator('summary').click();
   await expect(first).toHaveJSProperty('open', false);
