@@ -1,0 +1,20 @@
+---
+import Container from '../primitives/Container.astro';
+interface Props { city: string; neighborhoods?: string[]; }
+const { city, neighborhoods = [] } = Astro.props as Props;
+---
+{neighborhoods.length > 0 && (
+  <section>
+    <Container>
+      <div class="max-w-[1180px] mx-auto py-10">
+        <h2 class="m-0 mb-2 text-ink font-medium tracking-[-0.4px]" style="font-size:clamp(22px,3vw,28px);">Neighborhoods We Serve in {city}, FL</h2>
+        <p class="m-0 mb-6 text-[15px] leading-[1.5] text-muted max-w-[680px]">Our mobile locksmiths come to you across {city} and its communities — including:</p>
+        <div class="flex flex-wrap gap-2">
+          {neighborhoods.map((n) => (
+            <span class="inline-flex items-center rounded-pill border border-border bg-surface px-[12px] py-[6px] text-[13px] text-ink">{n}</span>
+          ))}
+        </div>
+      </div>
+    </Container>
+  </section>
+)}

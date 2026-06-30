@@ -70,6 +70,8 @@ const serviceAreas = defineCollection({
     relatedBlogs: z.array(z.object({ title: z.string(), url: z.string(), image: z.string().optional() })).default([]),
     // Optional per-city FAQs (pulled from live); when absent, FAQs are generated.
     faqs: z.array(z.object({ question: z.string(), answer: z.string() })).optional(),
+    // Optional list of local neighborhoods served (rendered as chips).
+    neighborhoods: z.array(z.string()).default([]),
   }),
 });
 
