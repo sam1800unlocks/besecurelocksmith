@@ -10,7 +10,7 @@ Total: 117 URLs (40 pages + 77 posts).
 - [ ] https://besecurelocksmith.com/about/
 - [x] https://besecurelocksmith.com/contact-us/
 - [ ] https://besecurelocksmith.com/employment/
-- [ ] https://besecurelocksmith.com/price-list/
+- [x] https://besecurelocksmith.com/price-list/
 - [ ] https://besecurelocksmith.com/privacy-policy/
 - [ ] https://besecurelocksmith.com/schedule-an-appointment/
 - [ ] https://besecurelocksmith.com/testimonials/

@@ -1,0 +1,181 @@
+---
+import BaseLayout from '../../layouts/BaseLayout.astro';
+import PromoBar from '../../components/sections/PromoBar.astro';
+import NavBar from '../../components/sections/NavBar.astro';
+import TrustStrip from '../../components/sections/TrustStrip.astro';
+import Footer from '../../components/sections/Footer.astro';
+import StickyCallBar from '../../components/sections/StickyCallBar.astro';
+import Section from '../../components/primitives/Section.astro';
+import Container from '../../components/primitives/Container.astro';
+import Button from '../../components/primitives/Button.astro';
+import { site, telHref } from '../../config/site';
+import { resolveLocation, resolvePhone } from '../../lib/locations';
+
+const location = 'main';
+const phone = resolvePhone(resolveLocation(location));
+
+const title = 'Locksmith Prices Gainesville, FL - Upfront, No Surprises';
+const description = 'See upfront locksmith pricing for Gainesville and Ocala, FL. Clear rates for lockouts, rekeys, car keys, and installs with no surprises. View price ranges.';
+const pageUrl = 'https://besecurelocksmith.com/price-list/';
+
+const keySvg = '<svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="#0064e0" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M21 2l-2 2m-7.61 7.61a5.5 5.5 0 1 1-7.778 7.778 5.5 5.5 0 0 1 7.777-7.777zm0 0L15.5 7.5m0 0l3 3L22 7l-3-3"/></svg>';
+const lockoutSvg = '<svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="#0064e0" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="11" width="18" height="11" rx="2"/><path d="M7 11V7a5 5 0 0 1 9.9-1"/></svg>';
+const carSvg = '<svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="#0064e0" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M5 17h14M6 17l-2-6h16l-2 6M7 11l1-4h8l1 4"/><circle cx="7.5" cy="17.5" r="1.5"/><circle cx="16.5" cy="17.5" r="1.5"/></svg>';
+const installSvg = '<svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="#0064e0" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="4" y="4" width="16" height="16" rx="2"/><circle cx="15" cy="12" r="1.5"/></svg>';
+const checkSvg = '<svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="#1f7a36" stroke-width="3.2" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"/></svg>';
+
+// Prices pulled verbatim from the live price list, regrouped into categories.
+const priceGroups = [
+  { label: 'Lockouts', icon: lockoutSvg, items: [
+    { service: 'Auto Lockout',                    desc: 'Unlock auto door or trunk',                  price: '$65 and up' },
+    { service: 'Residential Lockout',             desc: 'Regain entry to residential property',       price: '$65 and up' },
+    { service: 'Commercial Lockout',              desc: 'Regain entry to commercial property',        price: '$65 and up' },
+    { service: 'Scooter Seat Lockout',            desc: 'Unlock scooter seat lock',                   price: '$65 and up' },
+    { service: 'Storage, Padlock, U-Lock Lockout',desc: 'Unlock storage unit, padlock, U-lock',       price: '$65 and up' },
+    { service: 'Semi-Truck Lockout',              desc: 'Unlock semi-truck door',                     price: '$65 and up' },
+  ] },
+  { label: 'Car Keys', icon: carSvg, items: [
+    { service: 'Broken Key Extraction',           desc: 'Extract broken key from lock',               price: '$85 and up' },
+    { service: 'Auto Key Programming',            desc: 'Program automotive key',                     price: '$120 and up' },
+    { service: 'Auto Key Replacement (all keys lost)', desc: 'Fabricate new car key when all copies are lost', price: '$150 and up' },
+  ] },
+  { label: 'Locks & Installation', icon: installSvg, items: [
+    { service: 'Install Customer-Provided Lock',  desc: 'Install lock the customer provides',         price: '$65 and up' },
+    { service: 'Keypad Lock + Installation',      desc: 'Install keypad lock purchased from us',      price: '$199 and up' },
+    { service: 'Mailbox Lock Replacement',        desc: 'Replace a worn or outdated mailbox lock',    price: '$85 and up' },
+    { service: 'Deadbolt or Doorknob + Installation', desc: 'Install a deadbolt or door lock purchased from us (lock included)', price: '$80 and up' },
+  ] },
+  { label: 'Rekeying', icon: keySvg, items: [
+    { service: 'Lock Rekey',                      desc: 'Rekey standard (not high-security) lock',    price: '$33 and up' },
+    { service: 'Lock Rekey (no keys)',            desc: 'Rekey a standard lock that has no keys',     price: '$50 and up' },
+  ] },
+];
+
+const goodToKnow = [
+  'All price estimates include both parts and labor.',
+  'Trip charge is not included in the prices below.',
+  'Prices shown are for standard business hours, Monday–Saturday: 8am–5pm.',
+  'Free on-site security assessment on every visit.',
+  'You always get an upfront quote before any work begins.',
+];
+
+const breadcrumbJsonLd = {
+  '@context': 'https://schema.org', '@type': 'BreadcrumbList',
+  itemListElement: [
+    { '@type': 'ListItem', position: 1, name: 'Home', item: 'https://besecurelocksmith.com/' },
+    { '@type': 'ListItem', position: 2, name: 'Price List', item: pageUrl },
+  ],
+};
+---
+<BaseLayout title={title} description={description} location={location}>
+  <Fragment slot="head">
+    <script type="application/ld+json" set:html={JSON.stringify(breadcrumbJsonLd)} />
+  </Fragment>
+  <PromoBar location={location} />
+  <NavBar location={location} />
+  <main>
+    <!-- HERO -->
+    <section class="relative overflow-hidden text-white" style="background:linear-gradient(160deg,#0e4a8f 0%,#0b2f5e 42%,#0a1830 100%);">
+      <div class="absolute inset-0 opacity-[0.09]" style="background-image:radial-gradient(circle at 1px 1px,#ffffff 1px,transparent 0);background-size:22px 22px;"></div>
+      <div class="absolute -top-28 -right-20 w-[540px] h-[540px] rounded-full pointer-events-none" style="background:radial-gradient(circle,rgba(56,150,255,0.60),transparent 70%);"></div>
+      <Container>
+        <div class="relative max-w-[1180px] mx-auto py-14 md:py-20">
+          <nav aria-label="Breadcrumb" class="mb-5 flex flex-wrap items-center gap-2 text-[13px] text-white/70">
+            <a href="/" class="hover:text-white">Home</a>
+            <span aria-hidden="true">/</span>
+            <span class="text-white">Price List</span>
+          </nav>
+          <h1 class="m-0 mb-4 font-medium text-white max-w-[820px]" style="font-size:clamp(32px,5.2vw,56px);line-height:1.08;letter-spacing:-1.2px;">
+            Be Secure Locksmith Service Prices
+          </h1>
+          <p class="m-0 mb-7 text-[18px] leading-[1.4] text-white/80 max-w-[640px]">
+            Upfront, transparent pricing — parts and labor included, no surprises.
+          </p>
+          <div class="flex flex-wrap gap-3">
+            <Button href={telHref(phone)} variant="call">{phone}</Button>
+            <Button href={site.bookingUrl} variant="booking" target="_blank" rel="noopener noreferrer">Book Now</Button>
+          </div>
+        </div>
+      </Container>
+    </section>
+
+    <TrustStrip />
+
+    <Section class="py-12 md:py-16">
+      <Container>
+        <div class="max-w-[1180px] mx-auto">
+          <!-- Intro -->
+          <div class="max-w-[760px] mb-10">
+            <h2 class="m-0 text-ink font-medium tracking-[-0.6px]" style="font-size:clamp(26px,3.4vw,34px);line-height:1.2;">How Much Do Our Locksmith Services Cost?</h2>
+            <div class="mt-3 mb-5 h-1 w-12 rounded-full bg-primary"></div>
+            <p class="m-0 text-[16px] leading-[1.65] text-secondary">
+              These are general estimates for some of our most popular services. The prices listed are estimates and may vary based on several factors. Specialty jobs and high-security locks may incur higher costs than the average prices listed in this chart.
+            </p>
+          </div>
+
+          <!-- Category cards -->
+          <div class="grid gap-6" style="grid-template-columns:repeat(auto-fit,minmax(320px,1fr));">
+            {priceGroups.map((grp) => (
+              <div class="rounded-[24px] border border-border bg-white p-6 md:p-7 flex flex-col" style="box-shadow:0 10px 30px rgba(10,19,23,0.06);">
+                <div class="flex items-center gap-3 mb-4">
+                  <span class="shrink-0 inline-flex items-center justify-center w-10 h-10 rounded-[12px] bg-primary/10" set:html={grp.icon}></span>
+                  <h3 class="m-0 text-ink font-bold text-[20px] tracking-[-0.3px]">{grp.label}</h3>
+                </div>
+                <ul class="m-0 p-0 list-none flex flex-col divide-y divide-border">
+                  {grp.items.map((it) => (
+                    <li class="flex items-start justify-between gap-4 py-3">
+                      <span class="min-w-0">
+                        <span class="block text-[15px] font-bold text-ink leading-[1.3]">{it.service}</span>
+                        <span class="block text-[13px] text-muted leading-[1.4]">{it.desc}</span>
+                      </span>
+                      <span class="shrink-0 rounded-pill bg-success-bg text-success-2 text-[13px] font-bold px-[12px] py-[6px] whitespace-nowrap">{it.price}</span>
+                    </li>
+                  ))}
+                </ul>
+              </div>
+            ))}
+          </div>
+        </div>
+      </Container>
+    </Section>
+
+    <!-- GOOD TO KNOW -->
+    <Section class="pb-12 md:pb-16">
+      <Container>
+        <div class="max-w-[1180px] mx-auto rounded-[24px] border border-border p-8 md:p-10" style="background:#eef4ff;">
+          <div class="mb-4 h-1 w-12 rounded-full bg-primary"></div>
+          <h2 class="m-0 mb-5 text-ink font-medium tracking-[-0.4px]" style="font-size:clamp(22px,3vw,28px);line-height:1.2;">Good to know</h2>
+          <ul class="m-0 p-0 list-none grid gap-3 sm:grid-cols-2">
+            {goodToKnow.map((g) => (
+              <li class="flex items-start gap-3 text-[16px] leading-[1.5] text-body">
+                <span class="mt-[3px] shrink-0 w-6 h-6 rounded-full bg-success-bg flex items-center justify-center" set:html={checkSvg}></span>
+                <span>{g}</span>
+              </li>
+            ))}
+          </ul>
+        </div>
+      </Container>
+    </Section>
+
+    <!-- CTA -->
+    <Section class="pb-16 md:pb-20">
+      <Container>
+        <div class="max-w-[1180px] mx-auto rounded-[24px] text-white relative overflow-hidden" style="background:linear-gradient(150deg,#0e4a8f 0%,#0b2f5e 60%,#0a1830 100%);">
+          <div class="absolute -top-24 -right-16 w-[360px] h-[360px] rounded-full pointer-events-none" style="background:radial-gradient(circle,rgba(56,150,255,0.45),transparent 70%);"></div>
+          <div class="relative p-8 md:p-12 flex flex-col items-start gap-5">
+            <h2 class="m-0 font-medium tracking-[-0.4px] max-w-[640px]" style="font-size:clamp(24px,3.4vw,34px);line-height:1.15;">Get a personalized quote</h2>
+            <p class="m-0 text-[17px] leading-[1.55] text-white/80 max-w-[640px]">
+              To get a personalized quote for your service, contact us today so we can discuss the details and schedule a service appointment.
+            </p>
+            <div class="flex flex-wrap gap-3">
+              <Button href={telHref(phone)} variant="call">{phone}</Button>
+              <Button href={site.bookingUrl} variant="booking" target="_blank" rel="noopener noreferrer">Book Now</Button>
+            </div>
+          </div>
+        </div>
+      </Container>
+    </Section>
+  </main>
+  <Footer location={location} />
+  <StickyCallBar location={location} />
+</BaseLayout>
