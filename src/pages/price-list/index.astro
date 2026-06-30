@@ -54,7 +54,7 @@ const priceGroups = [
 const goodToKnow = [
   'All price estimates include both parts and labor.',
   'Trip charge is not included in the prices below.',
-  'Prices shown are for standard business hours, Monday–Saturday: 8am–5pm.',
+  'Prices shown are for standard business hours.',
   'Free on-site security assessment on every visit.',
   'You always get an upfront quote before any work begins.',
 ];
@@ -105,12 +105,26 @@ const breadcrumbJsonLd = {
       <Container>
         <div class="max-w-[1180px] mx-auto">
           <!-- Intro -->
-          <div class="max-w-[760px] mb-10">
+          <div class="mb-8">
             <h2 class="m-0 text-ink font-medium tracking-[-0.6px]" style="font-size:clamp(26px,3.4vw,34px);line-height:1.2;">How Much Do Our Locksmith Services Cost?</h2>
             <div class="mt-3 mb-5 h-1 w-12 rounded-full bg-primary"></div>
             <p class="m-0 text-[16px] leading-[1.65] text-secondary">
               These are general estimates for some of our most popular services. The prices listed are estimates and may vary based on several factors. Specialty jobs and high-security locks may incur higher costs than the average prices listed in this chart.
             </p>
+          </div>
+
+          <!-- Good to know -->
+          <div class="rounded-[24px] border border-border p-8 md:p-10 mb-10" style="background:#eef4ff;">
+            <div class="mb-4 h-1 w-12 rounded-full bg-primary"></div>
+            <h2 class="m-0 mb-5 text-ink font-medium tracking-[-0.4px]" style="font-size:clamp(22px,3vw,28px);line-height:1.2;">Good to know</h2>
+            <ul class="m-0 p-0 list-none grid gap-3 sm:grid-cols-2">
+              {goodToKnow.map((g) => (
+                <li class="flex items-start gap-3 text-[16px] leading-[1.5] text-body">
+                  <span class="mt-[3px] shrink-0 w-6 h-6 rounded-full bg-success-bg flex items-center justify-center" set:html={checkSvg}></span>
+                  <span>{g}</span>
+                </li>
+              ))}
+            </ul>
           </div>
 
           <!-- Category cards -->
@@ -135,24 +149,6 @@ const breadcrumbJsonLd = {
               </div>
             ))}
           </div>
-        </div>
-      </Container>
-    </Section>
-
-    <!-- GOOD TO KNOW -->
-    <Section class="pb-12 md:pb-16">
-      <Container>
-        <div class="max-w-[1180px] mx-auto rounded-[24px] border border-border p-8 md:p-10" style="background:#eef4ff;">
-          <div class="mb-4 h-1 w-12 rounded-full bg-primary"></div>
-          <h2 class="m-0 mb-5 text-ink font-medium tracking-[-0.4px]" style="font-size:clamp(22px,3vw,28px);line-height:1.2;">Good to know</h2>
-          <ul class="m-0 p-0 list-none grid gap-3 sm:grid-cols-2">
-            {goodToKnow.map((g) => (
-              <li class="flex items-start gap-3 text-[16px] leading-[1.5] text-body">
-                <span class="mt-[3px] shrink-0 w-6 h-6 rounded-full bg-success-bg flex items-center justify-center" set:html={checkSvg}></span>
-                <span>{g}</span>
-              </li>
-            ))}
-          </ul>
         </div>
       </Container>
     </Section>
