@@ -10,6 +10,11 @@ const { location = 'main' } = Astro.props;
 const loc = resolveLocation(location);
 const phone = resolvePhone(loc);
 const phoneHref = telHref(phone);
+
+// Hero reassurance points. NOTE: "Workmanship guaranteed" is used instead of
+// "Warranty" because the site FAQ states the business does not offer warranties
+// but stands behind its workmanship — see src/content/faqs/02-warranty.json.
+const reassurances = ['Upfront pricing', 'Quality parts', 'Same-day service', 'Workmanship guaranteed'];
 ---
 
 <Section id="top" class="py-16">
@@ -50,6 +55,16 @@ const phoneHref = telHref(phone);
           <Button href="/services/" variant="dark">
             Explore Our Services
           </Button>
+        </div>
+
+        <!-- Reassurances -->
+        <div class="flex flex-wrap items-center gap-x-4 gap-y-2 mb-4 text-sm font-medium text-secondary">
+          {reassurances.map((r) => (
+            <span class="inline-flex items-center gap-1.5">
+              <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="#1f7a36" stroke-width="3" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><polyline points="20 6 9 17 4 12"/></svg>
+              {r}
+            </span>
+          ))}
         </div>
 
         <!-- Trusted brands we install -->
