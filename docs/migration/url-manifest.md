@@ -38,18 +38,18 @@ Total: 117 URLs (40 pages + 77 posts).
 ## Service-areas index + area pages (14)  — ★ = location-specific tracking phone
 - [ ] https://besecurelocksmith.com/service-areas/
 - [ ] https://besecurelocksmith.com/service-areas/locksmith-alachua-fl/
-- [ ] https://besecurelocksmith.com/service-areas/locksmith-belleview-fl/
+- [x] https://besecurelocksmith.com/service-areas/locksmith-belleview-fl/
 - [ ] https://besecurelocksmith.com/service-areas/locksmith-gainesville-fl/ ★
 - [ ] https://besecurelocksmith.com/service-areas/locksmith-hampton-fl/
-- [ ] https://besecurelocksmith.com/service-areas/locksmith-high-springs-fl/
+- [x] https://besecurelocksmith.com/service-areas/locksmith-high-springs-fl/
 - [ ] https://besecurelocksmith.com/service-areas/locksmith-lake-city-fl/ ★
-- [ ] https://besecurelocksmith.com/service-areas/locksmith-marion-oaks-ocala-fl/
-- [ ] https://besecurelocksmith.com/service-areas/locksmith-newberry-fl/
+- [x] https://besecurelocksmith.com/service-areas/locksmith-marion-oaks-ocala-fl/
+- [x] https://besecurelocksmith.com/service-areas/locksmith-newberry-fl/
 - [ ] https://besecurelocksmith.com/service-areas/locksmith-ocala-fl/ ★
-- [ ] https://besecurelocksmith.com/service-areas/locksmith-silver-springs-fl/
-- [ ] https://besecurelocksmith.com/service-areas/locksmith-silver-springs-shores-ocala-fl/
-- [ ] https://besecurelocksmith.com/service-areas/locksmith-the-villages-fl/
-- [ ] https://besecurelocksmith.com/service-areas/locksmith-williston-fl/
+- [x] https://besecurelocksmith.com/service-areas/locksmith-silver-springs-fl/
+- [x] https://besecurelocksmith.com/service-areas/locksmith-silver-springs-shores-ocala-fl/
+- [x] https://besecurelocksmith.com/service-areas/locksmith-the-villages-fl/
+- [x] https://besecurelocksmith.com/service-areas/locksmith-williston-fl/
 
 ## Blog index + posts (77)
 - [x] https://besecurelocksmith.com/blog/

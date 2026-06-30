@@ -44,9 +44,11 @@ export const serviceAreas = [
   { name: 'Hampton',      href: '/service-areas/locksmith-hampton-fl/' },
   { name: 'High Springs', href: '/service-areas/locksmith-high-springs-fl/' },
   { name: 'Lake City',    href: '/service-areas/locksmith-lake-city-fl/' },
+  { name: 'Marion Oaks',  href: '/service-areas/locksmith-marion-oaks-ocala-fl/' },
   { name: 'Newberry',     href: '/service-areas/locksmith-newberry-fl/' },
   { name: 'Ocala',        href: '/service-areas/locksmith-ocala-fl/' },
   { name: 'Silver Springs', href: '/service-areas/locksmith-silver-springs-fl/' },
+  { name: 'Silver Springs Shores', href: '/service-areas/locksmith-silver-springs-shores-ocala-fl/' },
   { name: 'The Villages', href: '/service-areas/locksmith-the-villages-fl/' },
   { name: 'Williston',    href: '/service-areas/locksmith-williston-fl/' },
 ] as const;
