@@ -2,7 +2,6 @@
 import { resolveLocation, resolvePhone } from '../../lib/locations';
 import { telHref, site } from '../../config/site';
 import Button from '../primitives/Button.astro';
-import Stars from '../primitives/Stars.astro';
 import Section from '../primitives/Section.astro';
 import Container from '../primitives/Container.astro';
 import Badge from '../primitives/Badge.astro';
@@ -53,11 +52,15 @@ const phoneHref = telHref(phone);
           </Button>
         </div>
 
-        <!-- Rating row -->
-        <div class="flex items-center gap-[10px] text-sm text-secondary font-medium">
-          <Stars count={5} />
-          <span class="text-ink font-bold">{site.ratingValue}</span>
-          <span>· {Number(site.ratingCount).toLocaleString('en-US')} Google reviews · Family-operated</span>
+        <!-- Trusted brands we install -->
+        <div class="flex flex-wrap items-center gap-x-[10px] gap-y-1.5 text-sm">
+          <span class="text-muted font-medium">We install &amp; service:</span>
+          {site.brands.map((b, i) => (
+            <Fragment>
+              {i > 0 && <span class="text-border-2" aria-hidden="true">·</span>}
+              <span class="text-ink font-bold tracking-[-0.2px]">{b}</span>
+            </Fragment>
+          ))}
         </div>
 
       </div>
