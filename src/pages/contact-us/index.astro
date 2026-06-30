@@ -1,0 +1,94 @@
+---
+import BaseLayout from '../../layouts/BaseLayout.astro';
+import PromoBar from '../../components/sections/PromoBar.astro';
+import NavBar from '../../components/sections/NavBar.astro';
+import TrustStrip from '../../components/sections/TrustStrip.astro';
+import ContactMethods from '../../components/sections/ContactMethods.astro';
+import ContactForm from '../../components/sections/ContactForm.astro';
+import ServiceAreas from '../../components/sections/ServiceAreas.astro';
+import Footer from '../../components/sections/Footer.astro';
+import StickyCallBar from '../../components/sections/StickyCallBar.astro';
+import Section from '../../components/primitives/Section.astro';
+import Container from '../../components/primitives/Container.astro';
+import Button from '../../components/primitives/Button.astro';
+import { resolveLocation, resolvePhone } from '../../lib/locations';
+import { site, telHref } from '../../config/site';
+
+const location = 'main';
+const loc = resolveLocation(location);
+const phone = resolvePhone(loc);
+
+const title = 'Contact Our Gainesville, FL Locksmith - Get Service';
+const description = 'Need a locksmith in Gainesville or Ocala, FL? Reach our licensed mobile team for home, car, and business lock service. Local, fast, and friendly. Get help now.';
+const pageUrl = 'https://besecurelocksmith.com/contact-us/';
+
+const localBusinessJsonLd = {
+  '@context': 'https://schema.org', '@type': 'LocalBusiness', name: site.name, telephone: phone, url: pageUrl,
+  address: { '@type': 'PostalAddress', streetAddress: loc.nap.street, addressLocality: loc.nap.city, addressRegion: loc.nap.state, postalCode: loc.nap.zip },
+  aggregateRating: { '@type': 'AggregateRating', ratingValue: site.ratingValue, reviewCount: site.ratingCount },
+};
+const breadcrumbJsonLd = {
+  '@context': 'https://schema.org', '@type': 'BreadcrumbList',
+  itemListElement: [
+    { '@type': 'ListItem', position: 1, name: 'Home', item: 'https://besecurelocksmith.com/' },
+    { '@type': 'ListItem', position: 2, name: 'Contact Us', item: pageUrl },
+  ],
+};
+---
+<BaseLayout title={title} description={description} location={location} localBusiness={false}>
+  <Fragment slot="head">
+    <script type="application/ld+json" set:html={JSON.stringify(localBusinessJsonLd)} />
+    <script type="application/ld+json" set:html={JSON.stringify(breadcrumbJsonLd)} />
+  </Fragment>
+
+  <PromoBar location={location} />
+  <NavBar location={location} />
+  <main>
+    <!-- HERO -->
+    <section class="relative overflow-hidden text-white" style="background:linear-gradient(160deg,#0e4a8f 0%,#0b2f5e 42%,#0a1830 100%);">
+      <div class="absolute inset-0 opacity-[0.09]" style="background-image:radial-gradient(circle at 1px 1px,#ffffff 1px,transparent 0);background-size:22px 22px;"></div>
+      <div class="absolute -top-28 -right-20 w-[540px] h-[540px] rounded-full pointer-events-none" style="background:radial-gradient(circle,rgba(56,150,255,0.60),transparent 70%);"></div>
+      <div class="absolute -bottom-40 -left-24 w-[480px] h-[480px] rounded-full pointer-events-none" style="background:radial-gradient(circle,rgba(0,120,255,0.34),transparent 70%);"></div>
+      <Container>
+        <div class="relative max-w-[1180px] mx-auto py-14 md:py-20">
+          <nav aria-label="Breadcrumb" class="mb-5 flex flex-wrap items-center gap-2 text-[13px] text-white/70">
+            <a href="/" class="hover:text-white">Home</a>
+            <span aria-hidden="true">/</span>
+            <span class="text-white">Contact Us</span>
+          </nav>
+          <h1 class="m-0 mb-4 font-medium text-white max-w-[760px]" style="font-size:clamp(32px,5.2vw,56px);line-height:1.08;letter-spacing:-1.2px;">
+            Contact Us
+          </h1>
+          <p class="m-0 mb-7 text-[18px] leading-[1.4] text-white/80 max-w-[640px]">
+            Contact us today to get a free quote or book a mobile service appointment.
+          </p>
+          <div class="flex flex-wrap gap-3">
+            <Button href={telHref(phone)} variant="call">{phone}</Button>
+            <Button href={site.bookingUrl} variant="booking" target="_blank" rel="noopener noreferrer">Book Now</Button>
+          </div>
+        </div>
+      </Container>
+    </section>
+
+    <ContactMethods location={location} />
+    <TrustStrip />
+    <ContactForm />
+    <ServiceAreas location={location} />
+
+    <!-- What's next -->
+    <Section class="bg-surface">
+      <Container>
+        <div class="max-w-[760px] mx-auto py-14 text-center">
+          <h2 class="m-0 mb-4 text-ink font-medium tracking-[-0.6px]" style="font-size:clamp(24px,3.2vw,32px);line-height:1.2;">
+            Booked an appointment? What&rsquo;s next?
+          </h2>
+          <p class="m-0 text-[17px] leading-[1.6] text-secondary">
+            Our team of professional dispatchers and technicians will be with you every step of the way. Our mission is to provide an unmatched level of efficiency for each service that we provide, to all of our customers.
+          </p>
+        </div>
+      </Container>
+    </Section>
+  </main>
+  <Footer location={location} />
+  <StickyCallBar location={location} />
+</BaseLayout>
