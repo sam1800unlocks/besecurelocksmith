@@ -36,7 +36,7 @@ Total: 117 URLs (40 pages + 77 posts).
 - [ ] https://besecurelocksmith.com/services/smart-lock-installation/
 
 ## Service-areas index + area pages (14)  — ★ = location-specific tracking phone
-- [ ] https://besecurelocksmith.com/service-areas/
+- [x] https://besecurelocksmith.com/service-areas/
 - [ ] https://besecurelocksmith.com/service-areas/locksmith-alachua-fl/
 - [x] https://besecurelocksmith.com/service-areas/locksmith-belleview-fl/
 - [x] https://besecurelocksmith.com/service-areas/locksmith-gainesville-fl/ ★

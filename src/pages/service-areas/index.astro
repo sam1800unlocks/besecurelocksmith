@@ -1,0 +1,145 @@
+---
+import { getCollection } from 'astro:content';
+import BaseLayout from '../../layouts/BaseLayout.astro';
+import PromoBar from '../../components/sections/PromoBar.astro';
+import NavBar from '../../components/sections/NavBar.astro';
+import TrustStrip from '../../components/sections/TrustStrip.astro';
+import ServiceAreas from '../../components/sections/ServiceAreas.astro';
+import Footer from '../../components/sections/Footer.astro';
+import StickyCallBar from '../../components/sections/StickyCallBar.astro';
+import Section from '../../components/primitives/Section.astro';
+import Container from '../../components/primitives/Container.astro';
+import Button from '../../components/primitives/Button.astro';
+import { site, telHref } from '../../config/site';
+import { resolveLocation, resolvePhone } from '../../lib/locations';
+
+const location = 'main';
+const phone = resolvePhone(resolveLocation(location));
+
+const title = 'Locksmith Service Areas - Gainesville & Ocala, FL Pros';
+const description = 'See where our mobile locksmiths work across Gainesville, Ocala, and North Central FL. Home, car, and business lock service near you. Find your area today.';
+const pageUrl = 'https://besecurelocksmith.com/service-areas/';
+
+const cities = (await getCollection('service-areas')).map((e) => e.data).sort((a, b) => a.city.localeCompare(b.city));
+
+const regions = [
+  { key: 'gainesville', label: 'Gainesville Area', nearby: ['Archer', 'Bronson', 'Brooker', 'Fort White', 'Hawthorne', 'Jonesville', 'La Crosse', 'Micanopy', 'Starke', 'Trenton', 'Waldo'] },
+  { key: 'ocala', label: 'Ocala Area', nearby: ['Beverly Hills', 'Dunnellon', 'Fort McCoy', 'Inverness', 'Leesburg', 'Summerfield', 'Wildwood'] },
+];
+
+const pinSvg = '<svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0 1 18 0z"/><circle cx="12" cy="10" r="3"/></svg>';
+
+const breadcrumbJsonLd = {
+  '@context': 'https://schema.org', '@type': 'BreadcrumbList',
+  itemListElement: [
+    { '@type': 'ListItem', position: 1, name: 'Home', item: 'https://besecurelocksmith.com/' },
+    { '@type': 'ListItem', position: 2, name: 'Service Areas', item: pageUrl },
+  ],
+};
+const itemListJsonLd = {
+  '@context': 'https://schema.org', '@type': 'ItemList', name: 'Locksmith Service Areas',
+  itemListElement: cities.map((c, i) => ({ '@type': 'ListItem', position: i + 1, name: `${c.city}, FL`, item: `https://besecurelocksmith.com/service-areas/${c.slug}/` })),
+};
+---
+<BaseLayout title={title} description={description} location={location}>
+  <Fragment slot="head">
+    <script type="application/ld+json" set:html={JSON.stringify(breadcrumbJsonLd)} />
+    <script type="application/ld+json" set:html={JSON.stringify(itemListJsonLd)} />
+  </Fragment>
+  <PromoBar location={location} />
+  <NavBar location={location} />
+  <main>
+    <!-- HERO -->
+    <section class="relative overflow-hidden text-white" style="background:linear-gradient(160deg,#0e4a8f 0%,#0b2f5e 42%,#0a1830 100%);">
+      <div class="absolute inset-0 opacity-[0.09]" style="background-image:radial-gradient(circle at 1px 1px,#ffffff 1px,transparent 0);background-size:22px 22px;"></div>
+      <div class="absolute -top-28 -right-20 w-[540px] h-[540px] rounded-full pointer-events-none" style="background:radial-gradient(circle,rgba(56,150,255,0.60),transparent 70%);"></div>
+      <Container>
+        <div class="relative max-w-[1180px] mx-auto py-14 md:py-20">
+          <nav aria-label="Breadcrumb" class="mb-5 flex flex-wrap items-center gap-2 text-[13px] text-white/70">
+            <a href="/" class="hover:text-white">Home</a>
+            <span aria-hidden="true">/</span>
+            <span class="text-white">Service Areas</span>
+          </nav>
+          <h1 class="m-0 mb-4 font-medium text-white max-w-[820px]" style="font-size:clamp(32px,5.2vw,56px);line-height:1.08;letter-spacing:-1.2px;">
+            Our Locksmith Service Areas
+          </h1>
+          <p class="m-0 mb-7 text-[18px] leading-[1.4] text-white/80 max-w-[680px]">
+            See where our mobile locksmiths work across Gainesville, Ocala, and North Central FL — home, car, and business lock service near you.
+          </p>
+          <div class="flex flex-wrap gap-3">
+            <Button href={telHref(phone)} variant="call">{phone}</Button>
+            <Button href={site.bookingUrl} variant="booking" target="_blank" rel="noopener noreferrer">Book Now</Button>
+          </div>
+        </div>
+      </Container>
+    </section>
+
+    <TrustStrip />
+
+    <Section class="py-12 md:py-16">
+      <Container>
+        <div class="max-w-[1180px] mx-auto">
+          <!-- Intro -->
+          <div class="mb-10 max-w-[860px]">
+            <h2 class="m-0 text-ink font-medium tracking-[-0.6px]" style="font-size:clamp(26px,3.4vw,34px);line-height:1.2;">Professional Mobile Locksmith Service For the Gainesville &amp; Ocala, FL Region</h2>
+            <div class="mt-3 mb-5 h-1 w-12 rounded-full bg-primary"></div>
+            <p class="m-0 mb-3 text-[16px] leading-[1.65] text-secondary">
+              We serve Gainesville, Ocala, and the surrounding areas, including Alachua, Archer, Belleview, Brooker, Citrus County, Dunnellon, Hampton, Hawthorne, High Springs, Newberry, Silver Springs Shores, Summerfield, The Villages, Waldo, Wildwood, and Williston.
+            </p>
+            <p class="m-0 text-[15px] leading-[1.6] text-muted">
+              Note: If you don&rsquo;t see your location below, please call to inquire about service.
+            </p>
+          </div>
+
+          <!-- City grid grouped by region -->
+          {regions.map((region) => {
+            const regionCities = cities.filter((c) => c.office === region.key);
+            return (
+              <div class="mb-12">
+                <h3 class="m-0 mb-5 text-ink font-bold text-[20px] tracking-[-0.3px]">{region.label}</h3>
+                <div class="grid gap-3" style="grid-template-columns:repeat(auto-fill,minmax(240px,1fr));">
+                  {regionCities.map((c) => (
+                    <a href={`/service-areas/${c.slug}/`} class="group rounded-[16px] border border-border bg-white px-5 py-4 flex items-center gap-3 transition-colors hover:border-primary">
+                      <span class="text-primary" set:html={pinSvg}></span>
+                      <span class="font-semibold text-ink leading-tight">Locksmith in {c.city}, FL</span>
+                      <span class="ml-auto text-primary font-bold transition-transform group-hover:translate-x-0.5" aria-hidden="true">&rarr;</span>
+                    </a>
+                  ))}
+                </div>
+                <p class="mt-5 mb-2 text-[13px] font-bold uppercase tracking-[0.6px] text-muted">Also serving nearby</p>
+                <div class="flex flex-wrap gap-2">
+                  {region.nearby.map((town) => (
+                    <span class="inline-flex items-center rounded-pill border border-border bg-surface px-[12px] py-[6px] text-[13px] text-muted">{town}, FL</span>
+                  ))}
+                </div>
+              </div>
+            );
+          })}
+
+          <p class="text-[15px] text-secondary">Don&rsquo;t see your town? <a href={telHref(phone)} class="text-primary font-semibold">Call {phone}</a> — we likely cover it.</p>
+        </div>
+      </Container>
+    </Section>
+
+    <ServiceAreas location={location} />
+
+    <!-- CTA -->
+    <Section class="pb-16 md:pb-20">
+      <Container>
+        <div class="max-w-[1180px] mx-auto rounded-[24px] text-white relative overflow-hidden" style="background:linear-gradient(150deg,#0e4a8f 0%,#0b2f5e 60%,#0a1830 100%);">
+          <div class="absolute -top-24 -right-16 w-[360px] h-[360px] rounded-full pointer-events-none" style="background:radial-gradient(circle,rgba(56,150,255,0.45),transparent 70%);"></div>
+          <div class="relative p-8 md:p-12 flex flex-col items-start gap-5">
+            <h2 class="m-0 font-medium tracking-[-0.4px] max-w-[640px]" style="font-size:clamp(24px,3.4vw,34px);line-height:1.15;">Locksmith near you, when you need it</h2>
+            <p class="m-0 text-[17px] leading-[1.55] text-white/80 max-w-[640px]">Fast, licensed mobile service across the Gainesville and Ocala region. Call now or book online.</p>
+            <div class="flex flex-wrap gap-3">
+              <Button href={telHref(phone)} variant="call">{phone}</Button>
+              <Button href={site.bookingUrl} variant="booking" target="_blank" rel="noopener noreferrer">Book Now</Button>
+            </div>
+          </div>
+        </div>
+      </Container>
+    </Section>
+  </main>
+  <Footer location={location} />
+  <StickyCallBar location={location} />
+</BaseLayout>
