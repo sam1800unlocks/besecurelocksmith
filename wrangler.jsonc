@@ -1,0 +1,14 @@
+{
+  // Static-assets-only Workers deployment for the Astro static build.
+  // `npm run build` outputs the site to ./dist; Cloudflare serves it directly
+  // (no Worker script / `main`, so no SSR). Committing this file stops
+  // `wrangler deploy` from auto-running `astro add cloudflare` on every build.
+  "$schema": "node_modules/wrangler/config-schema.json",
+  "name": "besecurelocksmith",
+  "compatibility_date": "2026-07-01",
+  "assets": {
+    "directory": "./dist",
+    // Astro uses trailingSlash: 'always' + directory format (/page/index.html).
+    "html_handling": "auto-trailing-slash"
+  }
+}

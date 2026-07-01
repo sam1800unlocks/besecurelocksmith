@@ -7,6 +7,10 @@ dist/
 .env.*
 .dev.vars
 
+# Cloudflare Wrangler local state
+.wrangler/
+worker-configuration.d.ts
+
 # SDD scratch workspace and Playwright artifacts
 .superpowers/
 test-results/
