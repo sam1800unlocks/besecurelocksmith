@@ -1,0 +1,11 @@
+---
+import ServicePage from '../../../components/ServicePage.astro';
+import data from '../../../data/service-emergency-lockouts.json';
+const pricing = [
+  { label: "Auto Lockout", note: "Unlock a car door or trunk", price: "$65 and up", href: "/services/automotive-locksmith/" },
+  { label: "Residential Lockout", note: "Regain entry to your home", price: "$65 and up", href: "/services/residential-locksmith/" },
+  { label: "Commercial Lockout", note: "Regain entry to your business", price: "$65 and up", href: "/services/commercial-locksmith/" },
+  { label: "Storage / Padlock / U-Lock Lockout", note: "Unlock storage unit, padlock, or U-lock", price: "$65 and up", href: "/price-list/" },
+];
+---
+<ServicePage data={data} name="Emergency Lockouts" noun="emergency lockout" serviceType="Emergency Lockout" pricing={pricing} />

@@ -1,0 +1,9 @@
+---
+import ServicePage from '../../../components/ServicePage.astro';
+import data from '../../../data/service-car-key-programming.json';
+const pricing = [
+  { label: "Auto Key Programming", note: "Program a transponder key or fob", price: "$120 and up", href: "/price-list/" },
+  { label: "Auto Key Replacement", note: "New car key when all keys are lost", price: "$150 and up", href: "/services/car-key-replacement/" },
+];
+---
+<ServicePage data={data} name="Car Key Programming" noun="car key programming" serviceType="Car Key Programming" pricing={pricing} />

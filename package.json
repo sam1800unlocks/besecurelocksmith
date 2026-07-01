@@ -16,6 +16,7 @@
   "author": "",
   "license": "ISC",
   "dependencies": {
+    "@astrojs/sitemap": "^3.2.1",
     "astro": "^4.16.19",
     "aws4fetch": "^1.0.20",
     "zod": "^3.25.76"

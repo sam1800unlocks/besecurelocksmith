@@ -1,0 +1,143 @@
+---
+import BaseLayout from '../../layouts/BaseLayout.astro';
+import PromoBar from '../../components/sections/PromoBar.astro';
+import NavBar from '../../components/sections/NavBar.astro';
+import TrustStrip from '../../components/sections/TrustStrip.astro';
+import Reviews from '../../components/sections/Reviews.astro';
+import Credentials from '../../components/sections/Credentials.astro';
+import Footer from '../../components/sections/Footer.astro';
+import StickyCallBar from '../../components/sections/StickyCallBar.astro';
+import Section from '../../components/primitives/Section.astro';
+import Container from '../../components/primitives/Container.astro';
+import Button from '../../components/primitives/Button.astro';
+import { site, telHref } from '../../config/site';
+import { resolveLocation, resolvePhone, resolveSocials } from '../../lib/locations';
+
+const location = 'main';
+const phone = resolvePhone(resolveLocation(location));
+const ratingCount = Number(site.ratingCount).toLocaleString('en-US');
+const googleReview = (resolveSocials(resolveLocation(location)).find((s) => s.name === 'Google')?.href)
+  ?? 'https://www.google.com/search?q=Be+Secure+Locksmith+Gainesville+reviews';
+
+const title = 'Locksmith Reviews Gainesville, FL - 1,300+ Ratings';
+const description = 'Read why Gainesville and Ocala, FL trust Be Secure for lockouts, rekeys, and car keys. Rated 4.9 stars across 1,300+ verified reviews. See our testimonials.';
+const pageUrl = 'https://besecurelocksmith.com/testimonials/';
+
+// Video testimonials (YouTube), migrated from the live page — loaded on click via a lightweight facade.
+const videos = ['5Ndn4vBkFJ4', 'moOw-0AX4EE', 'N8v9gixWfOQ', 'oRXW6oagQWQ'];
+
+const breadcrumbJsonLd = {
+  '@context': 'https://schema.org', '@type': 'BreadcrumbList',
+  itemListElement: [
+    { '@type': 'ListItem', position: 1, name: 'Home', item: 'https://besecurelocksmith.com/' },
+    { '@type': 'ListItem', position: 2, name: 'Testimonials', item: pageUrl },
+  ],
+};
+const playSvg = '<svg width="26" height="26" viewBox="0 0 24 24" fill="#ffffff" aria-hidden="true"><path d="M8 5v14l11-7z"/></svg>';
+---
+<BaseLayout title={title} description={description} location={location}>
+  <Fragment slot="head">
+    <script type="application/ld+json" set:html={JSON.stringify(breadcrumbJsonLd)} />
+  </Fragment>
+  <PromoBar location={location} />
+  <NavBar location={location} />
+  <main>
+    <!-- HERO -->
+    <section class="relative overflow-hidden text-white" style="background:linear-gradient(160deg,#0e4a8f 0%,#0b2f5e 42%,#0a1830 100%);">
+      <div class="absolute inset-0 opacity-[0.09]" style="background-image:radial-gradient(circle at 1px 1px,#ffffff 1px,transparent 0);background-size:22px 22px;"></div>
+      <div class="absolute -top-28 -right-20 w-[540px] h-[540px] rounded-full pointer-events-none" style="background:radial-gradient(circle,rgba(56,150,255,0.60),transparent 70%);"></div>
+      <Container>
+        <div class="relative max-w-[1180px] mx-auto py-14 md:py-20">
+          <nav aria-label="Breadcrumb" class="mb-5 flex flex-wrap items-center gap-2 text-[13px] text-white/70">
+            <a href="/" class="hover:text-white">Home</a>
+            <span aria-hidden="true">/</span>
+            <span class="text-white">Testimonials</span>
+          </nav>
+          <h1 class="m-0 mb-4 font-medium text-white max-w-[820px]" style="font-size:clamp(32px,5.2vw,56px);line-height:1.08;letter-spacing:-1.2px;">
+            Customer Testimonials
+          </h1>
+          <p class="m-0 mb-7 text-[18px] leading-[1.4] text-white/80 max-w-[680px]">
+            See why Gainesville and Ocala, FL trust Be Secure Locksmith for fast, honest, professional service.
+          </p>
+          <div class="flex flex-wrap items-center gap-x-6 gap-y-3">
+            <div class="flex items-center gap-3">
+              <span class="text-amber text-[22px] tracking-[2px]" aria-hidden="true">★★★★★</span>
+              <span class="text-[16px] text-white/90"><strong class="text-white">{site.ratingValue}</strong> from <strong class="text-white">{ratingCount}+</strong> reviews</span>
+            </div>
+          </div>
+          <div class="mt-7 flex flex-wrap gap-3">
+            <Button href={telHref(phone)} variant="call">{phone}</Button>
+            <Button href={googleReview} variant="booking" target="_blank" rel="noopener noreferrer">Read Google Reviews</Button>
+          </div>
+        </div>
+      </Container>
+    </section>
+
+    <TrustStrip />
+    <Reviews />
+
+    <!-- VIDEO TESTIMONIALS -->
+    <Section class="pb-4 md:pb-8">
+      <Container>
+        <div class="max-w-[1180px] mx-auto">
+          <h2 class="m-0 mb-3 font-medium tracking-[-0.8px] text-ink" style="font-size:clamp(26px,3.4vw,36px);">Testimonials From Our Happy Customers</h2>
+          <div class="mb-8 h-1 w-12 rounded-full bg-primary"></div>
+          <div class="grid gap-6 md:grid-cols-2">
+            {videos.map((id) => (
+              <figure class="m-0">
+                <div class="relative aspect-video rounded-[20px] overflow-hidden border border-border bg-black" style="box-shadow:0 12px 34px rgba(10,19,23,0.10);">
+                  <button type="button" data-yt={id} aria-label="Play customer video testimonial" class="group absolute inset-0 w-full h-full cursor-pointer">
+                    <img src={`https://i.ytimg.com/vi/${id}/hqdefault.jpg`} alt="Be Secure Locksmith customer video testimonial" loading="lazy" class="w-full h-full object-cover opacity-90 transition-opacity duration-200 group-hover:opacity-100" />
+                    <span class="absolute inset-0 flex items-center justify-center">
+                      <span class="w-16 h-16 rounded-full bg-primary flex items-center justify-center shadow-[0_6px_20px_rgba(0,0,0,0.35)] transition-transform duration-200 group-hover:scale-105" set:html={playSvg}></span>
+                    </span>
+                  </button>
+                </div>
+              </figure>
+            ))}
+          </div>
+        </div>
+      </Container>
+    </Section>
+
+    <Credentials />
+
+    <!-- CTA -->
+    <Section class="pb-16 md:pb-20">
+      <Container>
+        <div class="max-w-[1180px] mx-auto rounded-[24px] text-white relative overflow-hidden" style="background:linear-gradient(150deg,#0e4a8f 0%,#0b2f5e 60%,#0a1830 100%);">
+          <div class="absolute -top-24 -right-16 w-[360px] h-[360px] rounded-full pointer-events-none" style="background:radial-gradient(circle,rgba(56,150,255,0.45),transparent 70%);"></div>
+          <div class="relative p-8 md:p-12 flex flex-col items-start gap-5">
+            <h2 class="m-0 font-medium tracking-[-0.4px] max-w-[640px]" style="font-size:clamp(24px,3.4vw,34px);line-height:1.15;">Experience the service our neighbors rave about</h2>
+            <p class="m-0 text-[17px] leading-[1.55] text-white/80 max-w-[640px]">Licensed, insured, and family-operated since 2012. Call now or book your mobile locksmith service online.</p>
+            <div class="flex flex-wrap gap-3">
+              <Button href={telHref(phone)} variant="call">{phone}</Button>
+              <Button href={site.bookingUrl} variant="booking" target="_blank" rel="noopener noreferrer">Book Now</Button>
+            </div>
+          </div>
+        </div>
+      </Container>
+    </Section>
+  </main>
+  <Footer location={location} />
+  <StickyCallBar location={location} />
+
+  <script>
+    document.querySelectorAll('[data-yt]').forEach((btn) => {
+      btn.addEventListener('click', () => {
+        const id = btn.getAttribute('data-yt');
+        const wrap = btn.parentElement;
+        if (!id || !wrap) return;
+        const iframe = document.createElement('iframe');
+        iframe.src = `https://www.youtube-nocookie.com/embed/${id}?autoplay=1&rel=0`;
+        iframe.title = 'Be Secure Locksmith customer video testimonial';
+        iframe.allow = 'accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share';
+        iframe.setAttribute('allowfullscreen', '');
+        iframe.className = 'absolute inset-0 w-full h-full';
+        iframe.style.border = '0';
+        btn.remove();
+        wrap.appendChild(iframe);
+      });
+    });
+  </script>
+</BaseLayout>

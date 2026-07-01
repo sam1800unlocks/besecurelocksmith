@@ -1,0 +1,9 @@
+---
+import ServicePage from '../../../components/ServicePage.astro';
+import data from '../../../data/service-lock-rekeying.json';
+const pricing = [
+  { label: "Lock Rekey", note: "Standard (non high-security) locks", price: "$33 and up", href: "/price-list/" },
+  { label: "Lock Rekey (no keys)", note: "Rekey a standard lock with no keys", price: "$50 and up", href: "/price-list/" },
+];
+---
+<ServicePage data={data} name="Lock Rekeying" noun="lock rekeying" serviceType="Lock Rekeying" pricing={pricing} />

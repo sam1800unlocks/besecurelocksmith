@@ -3,10 +3,10 @@ import Section from '../primitives/Section.astro';
 import Container from '../primitives/Container.astro';
 
 const pressLogos = [
-  { name: 'Markets Insider', file: 'markets-insider.png' },
-  { name: 'Associated Press', file: 'associated-press.png' },
-  { name: 'Benzinga',         file: 'benzinga.png' },
-  { name: 'Apple News',       file: 'apple-news.png' },
+  { name: 'Markets Insider', file: 'markets-insider.png', href: 'https://markets.businessinsider.com/news/stocks/be-secure-locksmith-surpasses-1-300-five-star-reviews-reinforcing-position-as-gainesville-florida-s-most-trusted-locksmith-1036237273' },
+  { name: 'Associated Press', file: 'associated-press.png', href: 'https://apnews.com/press-release/globenewswire-mobile/press-release-9b03659da41ae0c4ef929db11e35e681' },
+  { name: 'Benzinga',         file: 'benzinga.png',         href: 'https://www.benzinga.com/pressreleases/26/06/g53105941/be-secure-locksmith-surpasses-1-300-five-star-reviews-reinforcing-position-as-gainesville-floridas' },
+  { name: 'Apple News',       file: 'apple-news.png',       href: 'https://apple.news/TzgDuq0U2RBOYM3-_d2KkQg' },
 ];
 ---
 
@@ -16,13 +16,21 @@ const pressLogos = [
       <p class="m-0 text-[12px] font-semibold tracking-[1px] uppercase text-muted">As featured in</p>
       <div class="flex flex-wrap items-center justify-center gap-[clamp(28px,6vw,72px)]">
         {pressLogos.map(logo => (
-          <img
-            src={`/img/press/${logo.file}`}
-            alt={logo.name}
-            height="26"
-            class="h-[26px] w-auto object-contain grayscale opacity-55"
-            loading="lazy"
-          />
+          <a
+            href={logo.href}
+            target="_blank"
+            rel="noopener noreferrer nofollow"
+            aria-label={`Be Secure Locksmith featured on ${logo.name} (opens in a new tab)`}
+            class="inline-flex items-center"
+          >
+            <img
+              src={`/img/press/${logo.file}`}
+              alt={logo.name}
+              height="26"
+              class="h-[26px] w-auto object-contain grayscale opacity-55 transition-all duration-200 hover:grayscale-0 hover:opacity-100"
+              loading="lazy"
+            />
+          </a>
         ))}
       </div>
     </div>

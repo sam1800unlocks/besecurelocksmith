@@ -1,0 +1,80 @@
+---
+import BaseLayout from '../../layouts/BaseLayout.astro';
+import PromoBar from '../../components/sections/PromoBar.astro';
+import NavBar from '../../components/sections/NavBar.astro';
+import Footer from '../../components/sections/Footer.astro';
+import StickyCallBar from '../../components/sections/StickyCallBar.astro';
+import Container from '../../components/primitives/Container.astro';
+import data from '../../data/page-privacy-policy.json';
+
+const location = 'main';
+const title = 'Privacy Policy - Be Secure Locksmith Gainesville, FL';
+const description = 'Read our privacy policy to understand how Be Secure Locksmith handles your data. Serving Gainesville and Ocala with transparent, professional service.';
+const pageUrl = 'https://besecurelocksmith.com/privacy-policy/';
+const blocks = data.blocks;
+
+const breadcrumbJsonLd = {
+  '@context': 'https://schema.org', '@type': 'BreadcrumbList',
+  itemListElement: [
+    { '@type': 'ListItem', position: 1, name: 'Home', item: 'https://besecurelocksmith.com/' },
+    { '@type': 'ListItem', position: 2, name: 'Privacy Policy', item: pageUrl },
+  ],
+};
+---
+<BaseLayout title={title} description={description} location={location} robots="noindex, follow">
+  <Fragment slot="head">
+    <script type="application/ld+json" set:html={JSON.stringify(breadcrumbJsonLd)} />
+  </Fragment>
+  <PromoBar location={location} />
+  <NavBar location={location} />
+  <main>
+    <!-- HERO -->
+    <section class="relative overflow-hidden text-white" style="background:linear-gradient(160deg,#0e4a8f 0%,#0b2f5e 42%,#0a1830 100%);">
+      <div class="absolute inset-0 opacity-[0.09]" style="background-image:radial-gradient(circle at 1px 1px,#ffffff 1px,transparent 0);background-size:22px 22px;"></div>
+      <div class="absolute -top-28 -right-20 w-[540px] h-[540px] rounded-full pointer-events-none" style="background:radial-gradient(circle,rgba(56,150,255,0.60),transparent 70%);"></div>
+      <Container>
+        <div class="relative max-w-[820px] mx-auto py-14 md:py-16">
+          <nav aria-label="Breadcrumb" class="mb-5 flex flex-wrap items-center gap-2 text-[13px] text-white/70">
+            <a href="/" class="hover:text-white">Home</a>
+            <span aria-hidden="true">/</span>
+            <span class="text-white">Privacy Policy</span>
+          </nav>
+          <h1 class="m-0 font-medium text-white" style="font-size:clamp(30px,4.6vw,48px);line-height:1.1;letter-spacing:-1px;">
+            Privacy Policy
+          </h1>
+        </div>
+      </Container>
+    </section>
+
+    <!-- BODY -->
+    <article class="article-body">
+      <Container>
+        <div class="max-w-[820px] mx-auto py-12 md:py-16">
+          {blocks.map((b) => (
+            b.t === 'h2' ? (
+              <div class="mt-10 first:mt-0 mb-3">
+                <h2 class="m-0 text-ink font-bold tracking-[-0.3px]" style="font-size:clamp(21px,2.6vw,26px);line-height:1.25;">{b.text}</h2>
+                <div class="mt-3 h-1 w-12 rounded-full bg-primary"></div>
+              </div>
+            ) : b.t === 'h3' ? (
+              <h3 class="m-0 mt-7 mb-2 text-ink font-bold text-[18px]">{b.text}</h3>
+            ) : b.t === 'p' ? (
+              <p class="m-0 mb-4 text-[16px] leading-[1.7] text-secondary" set:html={b.html} />
+            ) : b.t === 'ul' ? (
+              <ul class="my-4 p-0 list-none flex flex-col gap-2">
+                {b.items.map((it) => (
+                  <li class="relative pl-6 text-[16px] leading-[1.6] text-secondary">
+                    <span class="absolute left-0 top-[10px] w-2 h-2 rounded-full bg-primary"></span>
+                    <span set:html={it}></span>
+                  </li>
+                ))}
+              </ul>
+            ) : null
+          ))}
+        </div>
+      </Container>
+    </article>
+  </main>
+  <Footer location={location} />
+  <StickyCallBar location={location} />
+</BaseLayout>

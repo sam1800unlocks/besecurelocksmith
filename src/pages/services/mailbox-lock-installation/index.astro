@@ -1,0 +1,8 @@
+---
+import ServicePage from '../../../components/ServicePage.astro';
+import data from '../../../data/service-mailbox-lock-installation.json';
+const pricing = [
+  { label: "Mailbox Lock Replacement", note: "Individual or multi-unit boxes", price: "$85 and up", href: "/price-list/" },
+];
+---
+<ServicePage data={data} name="Mailbox Lock Installation" noun="mailbox lock" serviceType="Mailbox Lock Installation" pricing={pricing} />

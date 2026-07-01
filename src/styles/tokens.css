@@ -33,4 +33,7 @@
   html,body{margin:0;padding:0;}
   body{font-family:'Figtree','Inter',system-ui,sans-serif;color:#1c1e21;background:#fff;-webkit-font-smoothing:antialiased;text-rendering:optimizeLegibility;}
   a{color:inherit;text-decoration:none;}
+  /* Body-content links (service pages, articles): blue + underlined, site-wide */
+  .article-body :is(p, li, figcaption) a{color:#0064e0;text-decoration:underline;text-underline-offset:2px;}
+  .article-body :is(p, li, figcaption) a:hover{color:#0457cb;}
 }

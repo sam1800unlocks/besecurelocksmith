@@ -22,7 +22,17 @@ export const site = {
   defaultPhone: '352-706-5295',
   smsPhone: '352-389-5305',
   bookingUrl: 'https://online-booking.workiz.com/?ac=744610670459142e62f3f47913956e45311c10147d3f5224d2489d7eab57c2a7',
-  footerServices: ['Residential','Commercial','Automotive','Key Duplication','Car Key Replacement','Ignition Repair','Lock Rekeying','Smart Locks','Master Key Systems'],
+  footerServices: [
+    { label: 'Residential', href: '/services/residential-locksmith/' },
+    { label: 'Commercial', href: '/services/commercial-locksmith/' },
+    { label: 'Automotive', href: '/services/automotive-locksmith/' },
+    { label: 'Key Duplication', href: '/services/key-duplication/' },
+    { label: 'Car Key Replacement', href: '/services/car-key-replacement/' },
+    { label: 'Ignition Repair', href: '/services/ignition-repair/' },
+    { label: 'Lock Rekeying', href: '/services/lock-rekeying/' },
+    { label: 'Smart Locks', href: '/services/smart-lock-installation/' },
+    { label: 'Master Key Systems', href: '/services/master-key-systems/' },
+  ],
   payments: ['Cash','Credit Cards','Mobile Pay'],
   brands: ['Kwikset','Schlage','Yale'],
   socials: [

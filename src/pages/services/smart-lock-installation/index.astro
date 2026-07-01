@@ -1,0 +1,8 @@
+---
+import ServicePage from '../../../components/ServicePage.astro';
+import data from '../../../data/service-smart-lock-installation.json';
+const pricing = [
+  { label: "Keypad Lock + Installation", note: "Keypad lock purchased from us", price: "$199 and up", href: "/price-list/" },
+];
+---
+<ServicePage data={data} name="Smart Lock Installation" noun="smart lock installation" serviceType="Smart Lock Installation" pricing={pricing} />
