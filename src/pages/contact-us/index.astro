@@ -35,7 +35,7 @@ const breadcrumbJsonLd = {
   ],
 };
 ---
-<BaseLayout title={title} description={description} location={location} localBusiness={false}>
+<BaseLayout title={title} description={description} location={location}>
   <Fragment slot="head">
     <script type="application/ld+json" set:html={JSON.stringify(localBusinessJsonLd)} />
     <script type="application/ld+json" set:html={JSON.stringify(breadcrumbJsonLd)} />
