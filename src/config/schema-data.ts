@@ -1,0 +1,67 @@
+import catalog from '../data/service-catalog.json';
+
+const BASE = 'https://besecurelocksmith.com';
+
+export const schemaData = {
+  base: BASE,
+  orgId: `${BASE}/#organization`,
+  legalName: 'Be Secure Locksmith LLC',
+  name: 'Be Secure Locksmith',
+  foundingDate: '2012-04-15',
+  url: BASE,
+  email: 'info@besecurelocksmith.com',
+  telephone: '1-352-706-5295',
+  logo: `${BASE}/img/besecure-logo-100h.png`,
+  image: `${BASE}/img/smart-lock-installation-Be-Secure-Locksmith-1024x768.jpeg`,
+  description:
+    'Be Secure Locksmith is a premier mobile locksmith service provider in North Central Florida, serving Gainesville, Ocala, and surrounding regions. Established in 2012, our fully insured technicians specialize in emergency automotive lockouts, high-security key fob programming, residential rekeying, and comprehensive commercial lock installation and master key systems.',
+  priceRange: '$$',
+  paymentAccepted: 'Cash, Visa, Mastercard, PayPal',
+  currenciesAccepted: 'USD',
+  combinedRating: { ratingValue: '4.9', reviewCount: '2544' },
+  founder: {
+    name: 'Netta Kaiden',
+    jobTitle: 'Owner & Master Locksmith',
+    credentialId: 'AR125393',
+    knowsAbout: [
+      'https://en.wikipedia.org/wiki/Locksmithing',
+      'https://en.wikipedia.org/wiki/Automotive_security',
+      'https://en.wikipedia.org/wiki/Transponder_car_key',
+      'https://en.wikipedia.org/wiki/Master_key',
+      'https://en.wikipedia.org/wiki/Interchangeable_core',
+      'https://en.wikipedia.org/wiki/High-security_lock',
+      'https://en.wikipedia.org/wiki/Deadbolt',
+      'https://en.wikipedia.org/wiki/Crash_bar',
+    ],
+  },
+  memberOf: [
+    { name: 'Greater Gainesville Chamber of Commerce', sameAs: 'https://members.gainesvillechamber.com/list/member/be-secure-locksmith-gainesville-30726' },
+    { name: 'Associated Locksmiths of America', sameAs: 'https://en.wikipedia.org/wiki/Associated_Locksmiths_of_America' },
+  ],
+  areaServed: [
+    { type: 'AdministrativeArea', name: 'Alachua County', sameAs: 'https://en.wikipedia.org/wiki/Alachua_County,_Florida' },
+    { type: 'AdministrativeArea', name: 'Marion County', sameAs: 'https://en.wikipedia.org/wiki/Marion_County,_Florida' },
+    { type: 'AdministrativeArea', name: 'Citrus County', sameAs: 'https://en.wikipedia.org/wiki/Citrus_County,_Florida' },
+    { type: 'City', name: 'Gainesville', sameAs: 'https://en.wikipedia.org/wiki/Gainesville,_Florida' },
+    { type: 'City', name: 'Ocala', sameAs: 'https://en.wikipedia.org/wiki/Ocala,_Florida' },
+    { type: 'City', name: 'The Villages', sameAs: 'https://en.wikipedia.org/wiki/The_Villages,_Florida' },
+    { type: 'City', name: 'Lake City', sameAs: 'https://en.wikipedia.org/wiki/Lake_City,_Florida' },
+    { type: 'City', name: 'High Springs', sameAs: 'https://en.wikipedia.org/wiki/High_Springs,_Florida' },
+    { type: 'City', name: 'Newberry', sameAs: 'https://en.wikipedia.org/wiki/Newberry,_Florida' },
+    { type: 'City', name: 'Williston', sameAs: 'https://en.wikipedia.org/wiki/Williston,_Florida' },
+  ],
+  sameAs: [
+    'https://www.google.com/search?kgmid=/g/1ptx2pkfg',
+    'https://www.yelp.com/biz/be-secure-locksmith-gainesville-2',
+    'https://www.facebook.com/BeSecureLocksmith',
+    'https://linkedin.com/company/be-secure-locksmith',
+    'https://twitter.com/belocksmith',
+    'https://www.youtube.com/@BeSecureLocksmith',
+    'https://www.bbb.org/us/fl/gainesville/profile/locksmith/be-secure-locksmith-llc-0403-235965422/',
+    'https://1800unlocks.com/locksmith/florida/gainesville/be-secure-locksmith-gainesville/',
+    'https://fairtradelocksmiths.com/locksmith/local/be-secure-locksmith-gainesville',
+    'https://members.gainesvillechamber.com/list/member/be-secure-locksmith-gainesville-30726',
+  ],
+  hours: { days: ['Monday', 'Tuesday', 'Wednesday', 'Thursday', 'Friday'], opens: '08:00', closes: '17:00' },
+  catalog: catalog as Array<{ name: string; description: string; additionalType: string | null; minPrice: string | null }>,
+} as const;

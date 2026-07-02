@@ -27,10 +27,10 @@ const locations = Object.values(offices).map((o) => ({ ...o, hours: site.hours }
               title={`Be Secure Locksmith — ${l.label} location`}
               loading="lazy"
               class="w-full h-full border-0 block"
-              src={`https://maps.google.com/maps?q=${encodeURIComponent(l.mapQuery)}&t=&z=14&ie=UTF8&iwloc=&output=embed`}
+              src={`https://www.google.com/maps/place/?cid=${l.cid}&output=embed`}
             ></iframe>
             <a
-              href={l.gbp}
+              href={l.sameAs[0]}
               target="_blank"
               rel="noopener noreferrer"
               aria-label={`View the ${l.label} location on Google`}
