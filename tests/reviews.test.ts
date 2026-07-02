@@ -15,5 +15,5 @@ test('Reviews renders all five reviewers and the rating', async () => {
   const html = await c.renderToString(Reviews, { props: { reviews: fixtures } });
   expect(html).toContain('Riva Wallace');
   expect(html).toContain('stephanie calareso');
-  expect(html).toContain('2,551');
+  expect(html).toContain('2,544');
 });

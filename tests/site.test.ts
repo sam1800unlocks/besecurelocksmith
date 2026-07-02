@@ -18,5 +18,5 @@ test('site carries verbatim brand facts', () => {
   expect(site.smsPhone).toBe('352-389-5305');
   expect(site.license).toBe('HCLO18005');
   expect(site.ratingValue).toBe('4.9');
-  expect(site.ratingCount).toBe('2551');
+  expect(site.ratingCount).toBe('2544');
 });

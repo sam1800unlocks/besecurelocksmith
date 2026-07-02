@@ -14,5 +14,7 @@ test('Hampton page builds with the unified stack + live links', () => {
   expect(html).toContain('/blog/');                                    // RelatedBlogs
   expect(html).toContain('"@type":"FAQPage"');                         // localized FAQ
   expect(html).not.toContain('Nearby areas we serve');                 // AreaNearby removed
-  expect((html.match(/"@type":"LocalBusiness"/g) || []).length).toBe(1); // deduped
+  // Non-office area pages carry no business schema (only the two office pages do)
+  expect(html).not.toContain('"@type":"LocalBusiness"');
+  expect((html.match(/"@type":"LocalBusiness"/g) || []).length).toBe(0);
 });

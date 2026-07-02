@@ -23,7 +23,7 @@ const { reviews } = Astro.props;
 const items = reviews ?? (await getCollection('reviews')).map(e => e.data);
 const sorted = [...items].sort((a, b) => a.order - b.order);
 
-// Format ratingCount as "2,551" from the raw "2551" in site config
+// Format ratingCount as "2,544" from the raw "2544" in site config
 const ratingCount = Number(site.ratingCount).toLocaleString('en-US');
 ---
 

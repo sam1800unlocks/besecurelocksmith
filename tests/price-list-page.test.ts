@@ -20,6 +20,7 @@ test('Price list page builds with grouped prices, content, and SEO', () => {
   expect(html).toContain('Auto Key Programming');
   expect(html).toContain('include both parts and labor');           // good-to-know note
   expect(html).toContain('"@type":"BreadcrumbList"');
-  // de-duped LocalBusiness
-  expect((html.match(/"@type":"LocalBusiness"/g) || []).length).toBe(1);
+  // Price-list page carries no business schema (only BreadcrumbList)
+  expect(html).not.toContain('"@type":"LocalBusiness"');
+  expect((html.match(/"@type":"LocalBusiness"/g) || []).length).toBe(0);
 });

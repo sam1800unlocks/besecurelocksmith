@@ -3,14 +3,15 @@ import { experimental_AstroContainer as AstroContainer } from 'astro/container';
 import BaseLayout from '../src/layouts/BaseLayout.astro';
 import { createSlotValueFromString } from 'astro/runtime/server/render/slot.js';
 
-test('BaseLayout emits fonts and LocalBusiness JSON-LD with the resolved phone', async () => {
+test('BaseLayout emits fonts and Locksmith org JSON-LD when schema=org-home', async () => {
   const c = await AstroContainer.create();
   const html = await c.renderToString(BaseLayout, {
-    props: { title: 'Home', location: 'main' },
+    props: { title: 'Home', location: 'main', schema: 'org-home' },
     slots: { default: createSlotValueFromString('<main>x</main>') },
   });
   expect(html).toContain('family=Figtree');
-  expect(html).toContain('"@type":"LocalBusiness"');
-  expect(html).toContain('"telephone":"352-706-5295"');
+  // Schema is now conditional on the `schema` prop; org-home emits a Locksmith node
+  expect(html).toContain('"@type":"Locksmith"');
+  expect(html).not.toContain('"@type":"LocalBusiness"');
   expect(html).toContain('<main>x</main>');
 });

@@ -17,6 +17,7 @@ test('Contact page builds with the expected content + SEO', () => {
   expect(html).toContain('217 SE 1st Ave');                               // Ocala office (ServiceAreas)
   expect(html).toContain('Booked an appointment?');                       // what's-next band
   expect(html).toContain('"@type":"BreadcrumbList"');
-  expect(html).toContain('"@type":"LocalBusiness"');
-  expect((html.match(/"@type":"LocalBusiness"/g) || []).length).toBe(1);  // deduped
+  // Contact page carries no business schema (only BreadcrumbList)
+  expect(html).not.toContain('"@type":"LocalBusiness"');
+  expect((html.match(/"@type":"LocalBusiness"/g) || []).length).toBe(0);
 });

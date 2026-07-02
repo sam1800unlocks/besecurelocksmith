@@ -24,8 +24,9 @@ test('Service-areas index builds with all city links, regions, nearby chips, SEO
   expect(html).toContain('Archer, FL');
   expect(html).toContain('Dunnellon, FL');
   expect(html).toContain('Summerfield, FL');
-  // structured data + dedup
+  // structured data — index page has no business schema (only BreadcrumbList + ItemList)
   expect(html).toContain('"@type":"BreadcrumbList"');
   expect(html).toContain('"@type":"ItemList"');
-  expect((html.match(/"@type":"LocalBusiness"/g) || []).length).toBe(1);
+  expect(html).not.toContain('"@type":"LocalBusiness"');
+  expect((html.match(/"@type":"LocalBusiness"/g) || []).length).toBe(0);
 });

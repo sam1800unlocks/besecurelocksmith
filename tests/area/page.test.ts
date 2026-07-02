@@ -15,10 +15,11 @@ test('Alachua page builds with the unified stack + SEO', () => {
   expect(html).toContain('/blog/');                                    // RelatedBlogs
   expect(html).toContain('href="tel:+13527065295"');
   expect(html).toContain('"@type":"BreadcrumbList"');
-  expect(html).toContain('"@type":"LocalBusiness"');
+  // Non-office area pages carry no business schema (only office pages do)
+  expect(html).not.toContain('"@type":"LocalBusiness"');
+  expect((html.match(/"@type":"LocalBusiness"/g) || []).length).toBe(0);
   expect(html).toContain('"@type":"FAQPage"');                         // localized FAQ
   expect(html).toContain('online-booking.workiz.com');                 // Book Now
   expect(html).not.toContain('Nearby areas we serve');                 // AreaNearby removed
-  expect((html.match(/"@type":"LocalBusiness"/g) || []).length).toBe(1); // deduped
   expect(html).toContain('href="/services/emergency-lockouts/"'); // Alachua live inline link
 });

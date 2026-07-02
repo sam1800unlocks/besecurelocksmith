@@ -37,6 +37,8 @@ test('new city pages build with the unified stack', () => {
     const html = readFileSync(p, 'utf8');
     expect(html).toContain('"@type":"FAQPage"');
     expect(html).toContain('Service Area');                 // AreaMap heading
-    expect((html.match(/"@type":"LocalBusiness"/g) || []).length).toBe(1);
+    // Non-office area pages carry no business schema
+    expect(html).not.toContain('"@type":"LocalBusiness"');
+    expect((html.match(/"@type":"LocalBusiness"/g) || []).length).toBe(0);
   }
 });

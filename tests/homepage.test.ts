@@ -36,6 +36,7 @@ test('homepage composes all sections and never leaks a non-resolved number', () 
   ]) {
     expect(distHtml, `missing marker: "${marker}"`).toContain(marker);
   }
-  expect(distHtml, 'missing LocalBusiness JSON-LD').toContain('"@type":"LocalBusiness"');
+  // Homepage emits a Locksmith org node (combined 2544-review rating) — not the old generic LocalBusiness
+  expect(distHtml, 'missing Locksmith org JSON-LD').toContain('"@type":"Locksmith"');
   expect(distHtml, 'missing FAQPage JSON-LD').toContain('"@type":"FAQPage"');
 });

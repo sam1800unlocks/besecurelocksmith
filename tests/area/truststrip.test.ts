@@ -8,7 +8,7 @@ test('TrustStrip renders the confirmed trust facts', async () => {
   expect(html).toContain('Licensed &amp; insured');     // single phrase, no license numbers here
   expect(html).toContain('Free security assessment');
   expect(html).toContain('30-min typical response');
-  expect(html).toContain('from 2,551 Google reviews');
+  expect(html).toContain('from 2,544 Google reviews');
   // License/insurance numbers are consolidated to the footer only
   expect(html).not.toContain('HCLO18005');
   expect(html).not.toContain('BKS56465112');
