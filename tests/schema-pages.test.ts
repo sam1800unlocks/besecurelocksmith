@@ -25,7 +25,7 @@ test('Gainesville office page: location node + lean org, correct address & ratin
   expect(h).toContain('"streetAddress":"901 NW 8th Ave c17"');
   expect(h).toContain('"reviewCount":"1330"');
   expect(h).toContain('cid=1525264823828817691');
-  expect(h).toContain('maps/place/?cid=1525264823828817691');
+  expect(h).toContain('maps/place/?cid=1525264823828817691&output=embed');
   expect(h).toContain('"parentOrganization"');
   expect(h).toContain('#organization');       // lean org node present
   expect(h).not.toContain('"reviewCount":"2544"'); // no combined rating here
