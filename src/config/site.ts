@@ -34,7 +34,7 @@ export const site = {
     { label: 'Master Key Systems', href: '/services/master-key-systems/' },
   ],
   payments: ['Cash','Credit Cards','Mobile Pay'],
-  brands: ['Kwikset','Schlage','Yale'],
+  brands: ['Kwikset','Schlage','Lockly'],
   socials: [
     { name: 'Facebook', icon: '/img/social/FB-512.svg', href: 'https://www.facebook.com/BeSecureLocksmith/' },
     { name: 'YouTube', icon: '/img/social/YouTube-icon.svg', href: 'https://www.youtube.com/channel/UCwpODmKG5TrCVIJTzEB6FXA' },

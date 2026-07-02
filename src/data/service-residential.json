@@ -41,7 +41,7 @@
     },
     {
       "t": "p",
-      "html": "We work with high-quality locks from brands like Schlage, Yale, Kwikset, and Mul-T-Lock. Our options include:"
+      "html": "We work with high-quality locks from brands like Schlage, Lockly, Kwikset, and Mul-T-Lock. Our options include:"
     },
     {
       "t": "ul",
@@ -199,7 +199,7 @@
     },
     {
       "question": "What lock brands do you work with?",
-      "answer": "We install high-quality hardware from trusted brands like Schlage, Yale, and Kwikset, and can match new locks to what you already have on your home."
+      "answer": "We install high-quality hardware from trusted brands like Schlage, Lockly, and Kwikset, and can match new locks to what you already have on your home."
     }
   ]
 }
