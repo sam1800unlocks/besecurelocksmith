@@ -6,6 +6,10 @@
   "$schema": "node_modules/wrangler/config-schema.json",
   "name": "besecurelocksmith",
   "compatibility_date": "2026-07-01",
+  // The Worker is served via a dashboard-attached Custom Domain (e.g. dev.yourkeyfob.com),
+  // not a workers.dev subdomain. Disable workers.dev so `wrangler deploy` doesn't fail
+  // requiring a registered subdomain. (preview_urls defaults to this value too.)
+  "workers_dev": false,
   "assets": {
     "directory": "./dist",
     // Astro uses trailingSlash: 'always' + directory format (/page/index.html).
