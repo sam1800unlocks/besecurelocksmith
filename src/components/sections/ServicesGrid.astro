@@ -67,7 +67,7 @@ const sorted = [...items].sort((a, b) => a.order - b.order);
             <div class="p-6 flex flex-col flex-1">
               <h3 class="m-0 mb-2 text-[22px] font-medium leading-[1.25] tracking-[-0.4px] text-ink">{svc.title}</h3>
               <p class="m-0 mb-5 text-[14px] leading-[1.5] tracking-[-0.14px] text-muted flex-1">{svc.desc}</p>
-              <Button href={cardHref} variant="dark" size="sm" class="self-start">Learn More</Button>
+              <Button href={cardHref} variant="dark" size="sm" class="self-start" aria-label={`Learn more about ${svc.title} in Gainesville & Ocala, FL`}>Learn More</Button>
             </div>
           </Card>
         );
