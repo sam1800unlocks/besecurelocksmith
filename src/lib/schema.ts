@@ -42,7 +42,7 @@ export function organizationNode({ homepage }: { homepage: boolean }) {
       address: {
         '@type': 'PostalAddress',
         streetAddress: offices.gainesville.streetSchema,
-        addressLocality: 'Gainesville', addressRegion: 'FL', postalCode: '32601', addressCountry: 'US',
+        addressLocality: offices.gainesville.city, addressRegion: offices.gainesville.state, postalCode: offices.gainesville.zip, addressCountry: 'US',
       },
     } : {}),
     contactPoint: { '@type': 'ContactPoint', telephone: S.telephone, email: S.email, contactType: 'customer service', availableLanguage: 'English' },

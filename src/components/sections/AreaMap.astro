@@ -7,7 +7,7 @@ const { area, cid } = Astro.props;
 const office = offices[area.office ?? 'gainesville'];
 const mapQuery = `${area.city}, FL`;
 const embedSrc = cid
-  ? `https://www.google.com/maps?cid=${cid}&output=embed`
+  ? `https://www.google.com/maps/place/?cid=${cid}&output=embed`
   : `https://maps.google.com/maps?q=${encodeURIComponent(mapQuery)}&t=&z=11&ie=UTF8&iwloc=&output=embed`;
 const mapsLink = cid
   ? `https://www.google.com/maps/place/?cid=${cid}`

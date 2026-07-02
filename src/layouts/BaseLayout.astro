@@ -3,6 +3,17 @@ import '../styles/tokens.css';
 import { resolveLocation, resolvePhone } from '../lib/locations';
 import { site } from '../config/site';
 import { organizationNode } from '../lib/schema';
+
+interface Props {
+  title: string;
+  description?: string;
+  location?: string;
+  ogType?: string;
+  ogImage?: string;
+  robots?: string;
+  schema?: 'org-home' | 'org-lean' | 'none';
+}
+
 const {
   title,
   description = '',

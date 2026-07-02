@@ -25,6 +25,7 @@ test('Gainesville office page: location node + lean org, correct address & ratin
   expect(h).toContain('"streetAddress":"901 NW 8th Ave c17"');
   expect(h).toContain('"reviewCount":"1330"');
   expect(h).toContain('cid=1525264823828817691');
+  expect(h).toContain('maps/place/?cid=1525264823828817691');
   expect(h).toContain('"parentOrganization"');
   expect(h).toContain('#organization');       // lean org node present
   expect(h).not.toContain('"reviewCount":"2544"'); // no combined rating here
@@ -36,6 +37,7 @@ test('Ocala office page uses the Ocala address + rating', () => {
   expect(h).toContain('"streetAddress":"217 SE 1st Ave Suite 200-50"');
   expect(h).toContain('"reviewCount":"1214"');
   expect(h).toContain('cid=4138983982412980004');
+  expect(h).toContain('#organization');
   expect(h).not.toContain('"streetAddress":"901 NW 8th Ave c17"'); // NOT Gainesville schema address
 });
 
