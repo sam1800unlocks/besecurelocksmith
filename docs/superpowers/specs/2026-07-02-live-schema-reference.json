@@ -1,0 +1,1723 @@
+{
+  "_note": "Live schema captured 2026-07-02 from besecurelocksmith.com \u2014 source of truth for the Astro port. Review counts to be overridden per client: Gainesville 1330, Ocala 1214, combined 2544.",
+  "org_node_homepage": {
+    "@context": "https://schema.org",
+    "@type": "Locksmith",
+    "@id": "https://besecurelocksmith.com/service-areas/locksmith-ocala-fl/#localbusiness",
+    "parentOrganization": {
+      "@id": "https://besecurelocksmith.com/#organization"
+    },
+    "name": "Be Secure Locksmith \u2014 Ocala",
+    "url": "https://besecurelocksmith.com/service-areas/locksmith-ocala-fl/",
+    "email": "info@besecurelocksmith.com",
+    "telephone": "1-352-325-7953",
+    "image": "https://besecurelocksmith.com/wp-content/uploads/2026/05/John-locksmith-tech-at-Be-Secure-Locksmith-in-Ocala-Florida.jpeg",
+    "description": "Be Secure Locksmith has served Ocala, FL and Marion County since 2012 with fast, reliable mobile locksmith services. Our fully insured technicians provide automotive lockouts, key fob programming, transponder key replacement, residential rekeying, commercial lock installation, and master key systems.",
+    "address": {
+      "@type": "PostalAddress",
+      "streetAddress": "217 SE 1st Ave Suite 200-50",
+      "addressLocality": "Ocala",
+      "addressRegion": "FL",
+      "postalCode": "34471",
+      "addressCountry": "US"
+    },
+    "geo": {
+      "@type": "GeoCoordinates",
+      "latitude": 29.1844122,
+      "longitude": -82.1355775
+    },
+    "hasMap": "https://www.google.com/maps/place/?cid=4138983982412980004",
+    "priceRange": "$$",
+    "currenciesAccepted": "USD",
+    "paymentAccepted": "Cash, Visa, Mastercard, PayPal",
+    "contactPoint": {
+      "@type": "ContactPoint",
+      "telephone": "1-352-325-7953",
+      "contactType": "customer service",
+      "availableLanguage": "English"
+    },
+    "openingHoursSpecification": [
+      {
+        "@type": "OpeningHoursSpecification",
+        "dayOfWeek": [
+          "Monday",
+          "Tuesday",
+          "Wednesday",
+          "Thursday",
+          "Friday",
+          "Saturday"
+        ],
+        "opens": "08:00",
+        "closes": "19:00"
+      }
+    ],
+    "aggregateRating": {
+      "@type": "AggregateRating",
+      "ratingValue": "4.9",
+      "reviewCount": "1212",
+      "bestRating": "5",
+      "worstRating": "1"
+    },
+    "sameAs": [
+      "https://www.google.com/search?kgmid=/g/1yfprvxjj",
+      "https://www.yelp.com/biz/be-secure-locksmith-ocala",
+      "https://www.facebook.com/BeSecureLocksmith",
+      "https://linkedin.com/company/be-secure-locksmith",
+      "https://1800unlocks.com/locksmith/florida/ocala/be-secure-locksmith-ocala/",
+      "https://fairtradelocksmiths.com/locksmith/local/be-secure-locksmith-ocala"
+    ],
+    "areaServed": {
+      "@type": "AdministrativeArea",
+      "name": "Ocala Metro Region",
+      "containsPlace": [
+        {
+          "@type": "AdministrativeArea",
+          "name": "Marion County",
+          "sameAs": "https://en.wikipedia.org/wiki/Marion_County,_Florida"
+        },
+        {
+          "@type": "AdministrativeArea",
+          "name": "Citrus County",
+          "sameAs": "https://en.wikipedia.org/wiki/Citrus_County,_Florida"
+        },
+        {
+          "@type": "City",
+          "name": "Ocala",
+          "sameAs": "https://en.wikipedia.org/wiki/Ocala,_Florida"
+        },
+        {
+          "@type": "City",
+          "name": "Belleview",
+          "sameAs": "https://en.wikipedia.org/wiki/Belleview,_Florida"
+        },
+        {
+          "@type": "City",
+          "name": "Beverly Hills",
+          "sameAs": "https://en.wikipedia.org/wiki/Beverly_Hills,_Citrus_County,_Florida"
+        },
+        {
+          "@type": "City",
+          "name": "Dunnellon",
+          "sameAs": "https://en.wikipedia.org/wiki/Dunnellon,_Florida"
+        },
+        {
+          "@type": "City",
+          "name": "Fort McCoy",
+          "sameAs": "https://en.wikipedia.org/wiki/Fort_McCoy,_Florida"
+        },
+        {
+          "@type": "City",
+          "name": "Inverness",
+          "sameAs": "https://en.wikipedia.org/wiki/Inverness,_Florida"
+        },
+        {
+          "@type": "City",
+          "name": "Marion Oaks",
+          "sameAs": "https://en.wikipedia.org/wiki/Marion_Oaks,_Florida"
+        },
+        {
+          "@type": "City",
+          "name": "Silver Springs",
+          "sameAs": "https://en.wikipedia.org/wiki/Silver_Springs,_Florida"
+        },
+        {
+          "@type": "City",
+          "name": "Summerfield",
+          "sameAs": "https://en.wikipedia.org/wiki/Summerfield,_Florida"
+        },
+        {
+          "@type": "City",
+          "name": "The Villages",
+          "sameAs": "https://en.wikipedia.org/wiki/The_Villages,_Florida"
+        },
+        {
+          "@type": "City",
+          "name": "Wildwood",
+          "sameAs": "https://en.wikipedia.org/wiki/Wildwood,_Florida"
+        },
+        {
+          "@type": "City",
+          "name": "Williston",
+          "sameAs": "https://en.wikipedia.org/wiki/Williston,_Florida"
+        }
+      ]
+    },
+    "hasOfferCatalog": {
+      "@type": "OfferCatalog",
+      "name": "Locksmith Services \u2014 Ocala, FL",
+      "itemListElement": [
+        {
+          "@type": "Offer",
+          "itemOffered": {
+            "@type": "Service",
+            "name": "Automotive Lockout Service",
+            "description": "Ocala drivers and Marion County residents trust Be Secure Locksmith for fast, damage-free car lockouts. We unlock any make or model on-site anywhere in Marion and Citrus County \u2014 no tow truck needed.",
+            "additionalType": "https://en.wikipedia.org/wiki/Locksmithing"
+          },
+          "priceSpecification": {
+            "@type": "PriceSpecification",
+            "minPrice": "65.00",
+            "priceCurrency": "USD",
+            "description": "Starting price \u2014 final price depends on vehicle, lock type, and job complexity"
+          }
+        },
+        {
+          "@type": "Offer",
+          "itemOffered": {
+            "@type": "Service",
+            "name": "Car Key Programming",
+            "description": "Transponder keys and smart keys programmed on-site for Ocala drivers throughout Marion County. We come to your home, workplace, or wherever you are stranded \u2014 no dealership visit required.",
+            "additionalType": "https://en.wikipedia.org/wiki/Transponder_car_key"
+          },
+          "priceSpecification": {
+            "@type": "PriceSpecification",
+            "minPrice": "120.00",
+            "priceCurrency": "USD",
+            "description": "Starting price \u2014 final price depends on vehicle, lock type, and job complexity"
+          }
+        },
+        {
+          "@type": "Offer",
+          "itemOffered": {
+            "@type": "Service",
+            "name": "Car Key Replacement",
+            "description": "Lost or broken car keys replaced on-site anywhere in Ocala and Marion County. We cut and program most domestic and foreign vehicle keys.",
+            "additionalType": "https://en.wikipedia.org/wiki/Transponder_car_key"
+          },
+          "priceSpecification": {
+            "@type": "PriceSpecification",
+            "minPrice": "150.00",
+            "priceCurrency": "USD",
+            "description": "Starting price \u2014 final price depends on vehicle, lock type, and job complexity"
+          }
+        },
+        {
+          "@type": "Offer",
+          "itemOffered": {
+            "@type": "Service",
+            "name": "Key Fob Programming",
+            "description": "Key fobs programmed on-site for push-to-start and remote entry vehicles throughout Ocala and Marion County. New fob supplied and paired to your vehicle without a tow.",
+            "additionalType": "https://en.wikipedia.org/wiki/Key_fob"
+          }
+        },
+        {
+          "@type": "Offer",
+          "itemOffered": {
+            "@type": "Service",
+            "name": "Ignition Repair",
+            "description": "Stuck key, worn ignition cylinder, or faulty switch diagnosed and repaired at your Ocala location. Most vehicles serviced on-site without a tow.",
+            "additionalType": "https://en.wikipedia.org/wiki/Ignition_system"
+          }
+        },
+        {
+          "@type": "Offer",
+          "itemOffered": {
+            "@type": "Service",
+            "name": "Broken Key Extraction",
+            "description": "Broken key stuck in your Ocala home, business, or vehicle lock? We remove it safely without damaging the hardware \u2014 available throughout Ocala, Marion County, and surrounding communities.",
+            "additionalType": "https://en.wikipedia.org/wiki/Locksmithing"
+          },
+          "priceSpecification": {
+            "@type": "PriceSpecification",
+            "minPrice": "85.00",
+            "priceCurrency": "USD",
+            "description": "Starting price \u2014 final price depends on vehicle, lock type, and job complexity"
+          }
+        },
+        {
+          "@type": "Offer",
+          "itemOffered": {
+            "@type": "Service",
+            "name": "Emergency Lockout Service",
+            "description": "Immediate dispatch for home, vehicle, and business lockouts throughout Ocala and Marion County. Available Monday through Saturday, 8am to 7pm.",
+            "additionalType": "https://en.wikipedia.org/wiki/Locksmithing"
+          }
+        },
+        {
+          "@type": "Offer",
+          "itemOffered": {
+            "@type": "Service",
+            "name": "Home Lockout Service",
+            "description": "Locked out of your Ocala home in Marion Oaks, Belleview, or anywhere in Marion County? Be Secure Locksmith provides fast, damage-free residential entry throughout the region.",
+            "additionalType": "https://en.wikipedia.org/wiki/Locksmithing"
+          },
+          "priceSpecification": {
+            "@type": "PriceSpecification",
+            "minPrice": "65.00",
+            "priceCurrency": "USD",
+            "description": "Starting price \u2014 final price depends on vehicle, lock type, and job complexity"
+          }
+        },
+        {
+          "@type": "Offer",
+          "itemOffered": {
+            "@type": "Service",
+            "name": "Lock Rekeying",
+            "description": "Ocala homeowners, landlords, and property managers rely on Be Secure Locksmith for fast, affordable rekeying after move-ins, tenant turnover, or lost keys. All major brands serviced on-site.",
+            "additionalType": "https://en.wikipedia.org/wiki/Rekey_(lock)"
+          },
+          "priceSpecification": {
+            "@type": "PriceSpecification",
+            "minPrice": "33.00",
+            "priceCurrency": "USD",
+            "description": "Starting price \u2014 final price depends on vehicle, lock type, and job complexity"
+          }
+        },
+        {
+          "@type": "Offer",
+          "itemOffered": {
+            "@type": "Service",
+            "name": "New Lock Installation",
+            "description": "Deadbolts, handle sets, and entry locks installed on any door for Ocala homeowners and businesses. We carry Schlage, Kwikset, and other leading brands.",
+            "additionalType": "https://en.wikipedia.org/wiki/Lock_(security_device)"
+          }
+        },
+        {
+          "@type": "Offer",
+          "itemOffered": {
+            "@type": "Service",
+            "name": "Lock Repair",
+            "description": "Worn, damaged, or misaligned locks repaired on-site throughout Ocala and Marion County. We service all major residential and commercial lock brands.",
+            "additionalType": "https://en.wikipedia.org/wiki/Lock_(security_device)"
+          }
+        },
+        {
+          "@type": "Offer",
+          "itemOffered": {
+            "@type": "Service",
+            "name": "Lock Change",
+            "description": "Full lock replacement for Ocala homes and businesses where rekeying is not sufficient. We install residential and commercial-grade locks on all door types.",
+            "additionalType": "https://en.wikipedia.org/wiki/Lock_(security_device)"
+          }
+        },
+        {
+          "@type": "Offer",
+          "itemOffered": {
+            "@type": "Service",
+            "name": "Deadbolt Installation",
+            "description": "ANSI Grade 1 and Grade 2 deadbolts installed for Ocala homeowners and businesses. We carry Schlage, Kwikset, and other trusted brands in a range of finishes.",
+            "brand": [
+              {
+                "@type": "Brand",
+                "name": "Schlage"
+              },
+              {
+                "@type": "Brand",
+                "name": "Kwikset"
+              },
+              {
+                "@type": "Brand",
+                "name": "Emtek"
+              },
+              {
+                "@type": "Brand",
+                "name": "Baldwin"
+              }
+            ],
+            "additionalType": "https://en.wikipedia.org/wiki/Deadbolt"
+          },
+          "priceSpecification": {
+            "@type": "PriceSpecification",
+            "minPrice": "80.00",
+            "priceCurrency": "USD",
+            "description": "Starting price \u2014 final price depends on vehicle, lock type, and job complexity"
+          }
+        },
+        {
+          "@type": "Offer",
+          "itemOffered": {
+            "@type": "Service",
+            "name": "Smart Lock Installation",
+            "description": "Smart locks from Schlage, Kwikset, and Yale installed and configured for Ocala homes and businesses. Keyless entry with app integration and remote access.",
+            "brand": [
+              {
+                "@type": "Brand",
+                "name": "Schlage"
+              },
+              {
+                "@type": "Brand",
+                "name": "Kwikset"
+              },
+              {
+                "@type": "Brand",
+                "name": "Yale"
+              },
+              {
+                "@type": "Brand",
+                "name": "Lockly"
+              }
+            ],
+            "additionalType": "https://en.wikipedia.org/wiki/Smart_lock"
+          }
+        },
+        {
+          "@type": "Offer",
+          "itemOffered": {
+            "@type": "Service",
+            "name": "Keypad Lock Installation",
+            "description": "Standalone battery-operated keypad locks installed for Ocala homes and businesses. No subscription or network required \u2014 simple, reliable keyless entry.",
+            "brand": [
+              {
+                "@type": "Brand",
+                "name": "Schlage"
+              },
+              {
+                "@type": "Brand",
+                "name": "Kwikset"
+              },
+              {
+                "@type": "Brand",
+                "name": "Yale"
+              },
+              {
+                "@type": "Brand",
+                "name": "Lockly"
+              }
+            ],
+            "additionalType": "https://en.wikipedia.org/wiki/Electronic_lock"
+          },
+          "priceSpecification": {
+            "@type": "PriceSpecification",
+            "minPrice": "199.00",
+            "priceCurrency": "USD",
+            "description": "Starting price \u2014 final price depends on vehicle, lock type, and job complexity"
+          }
+        },
+        {
+          "@type": "Offer",
+          "itemOffered": {
+            "@type": "Service",
+            "name": "Mailbox Lock Replacement",
+            "description": "Mailbox locks replaced quickly and affordably for Ocala homeowners and property managers. We carry common lock sizes and install on-site.",
+            "additionalType": "https://en.wikipedia.org/wiki/Lock_(security_device)"
+          },
+          "priceSpecification": {
+            "@type": "PriceSpecification",
+            "minPrice": "85.00",
+            "priceCurrency": "USD",
+            "description": "Starting price \u2014 final price depends on vehicle, lock type, and job complexity"
+          }
+        },
+        {
+          "@type": "Offer",
+          "itemOffered": {
+            "@type": "Service",
+            "name": "Key Duplication",
+            "description": "Spare keys cut on-site for Ocala homes, businesses, and vehicles. We duplicate residential, commercial, and high-security keys at your location.",
+            "additionalType": "https://en.wikipedia.org/wiki/Key_duplication"
+          }
+        },
+        {
+          "@type": "Offer",
+          "itemOffered": {
+            "@type": "Service",
+            "name": "Commercial Locksmith Services",
+            "description": "Be Secure Locksmith serves Ocala offices, retail stores, restaurants, warehouses, and apartment complexes with commercial lock installation, rekeying, and lockout response.",
+            "additionalType": "https://en.wikipedia.org/wiki/Locksmithing"
+          }
+        },
+        {
+          "@type": "Offer",
+          "itemOffered": {
+            "@type": "Service",
+            "name": "Commercial Lockout Service",
+            "description": "Locked out of your Ocala business? We dispatch immediately and arrive equipped for commercial-grade locks with minimal disruption to your operations.",
+            "additionalType": "https://en.wikipedia.org/wiki/Locksmithing"
+          },
+          "priceSpecification": {
+            "@type": "PriceSpecification",
+            "minPrice": "65.00",
+            "priceCurrency": "USD",
+            "description": "Starting price \u2014 final price depends on vehicle, lock type, and job complexity"
+          }
+        },
+        {
+          "@type": "Offer",
+          "itemOffered": {
+            "@type": "Service",
+            "name": "Master Key Systems",
+            "description": "Master key systems designed and installed for Ocala businesses and multi-unit properties. One key for management, individual keys for staff.",
+            "additionalType": "https://en.wikipedia.org/wiki/Master_key"
+          }
+        },
+        {
+          "@type": "Offer",
+          "itemOffered": {
+            "@type": "Service",
+            "name": "Interchangeable Core Locks",
+            "description": "Interchangeable core systems installed for Ocala commercial properties needing frequent access changes. Cores swap in seconds without removing the lock.",
+            "additionalType": "https://en.wikipedia.org/wiki/Interchangeable_core"
+          }
+        },
+        {
+          "@type": "Offer",
+          "itemOffered": {
+            "@type": "Service",
+            "name": "Property Management Locksmith Services",
+            "description": "Be Secure Locksmith partners with Ocala property managers and HOAs across Marion County for rekeying, lock changes, and lockout response. Fast turnaround across multi-unit properties, retirement communities, and commercial buildings.",
+            "additionalType": "https://en.wikipedia.org/wiki/Locksmithing"
+          }
+        },
+        {
+          "@type": "Offer",
+          "itemOffered": {
+            "@type": "Service",
+            "name": "Panic Bar Installation",
+            "description": "Code-compliant panic bar and exit device installation for commercial doors throughout Ocala. We service all major brands and ensure Florida life safety compliance.",
+            "brand": [
+              {
+                "@type": "Brand",
+                "name": "Von Duprin"
+              },
+              {
+                "@type": "Brand",
+                "name": "Falcon"
+              },
+              {
+                "@type": "Brand",
+                "name": "Dorma"
+              },
+              {
+                "@type": "Brand",
+                "name": "Detex"
+              }
+            ],
+            "additionalType": "https://en.wikipedia.org/wiki/Crash_bar"
+          }
+        },
+        {
+          "@type": "Offer",
+          "itemOffered": {
+            "@type": "Service",
+            "name": "Panic Bar Repair",
+            "description": "Malfunctioning panic bars diagnosed and repaired on-site for Ocala commercial buildings. We service all major exit device brands.",
+            "additionalType": "https://en.wikipedia.org/wiki/Crash_bar"
+          }
+        },
+        {
+          "@type": "Offer",
+          "itemOffered": {
+            "@type": "Service",
+            "name": "Door Closer Installation",
+            "description": "Commercial door closers installed and adjusted for Ocala offices, retail stores, and institutional buildings. ADA-compliant closing force configured per door.",
+            "additionalType": "https://en.wikipedia.org/wiki/Door_closer"
+          }
+        },
+        {
+          "@type": "Offer",
+          "itemOffered": {
+            "@type": "Service",
+            "name": "Security Assessment",
+            "description": "Complimentary security assessment included with every Be Secure Locksmith visit in Ocala. Honest vulnerability findings with no obligation or upsell pressure.",
+            "additionalType": "https://en.wikipedia.org/wiki/Security_management"
+          }
+        }
+      ]
+    },
+    "review": [
+      {
+        "@type": "Review",
+        "author": {
+          "@type": "Person",
+          "name": "Suzi P."
+        },
+        "datePublished": "2026-05-03",
+        "reviewBody": "Dillon was a great technician which explained everything to us before even getting started to make sure it was acceptable. I would not only recommend this company, we will also use again for future jobs. Thank u",
+        "reviewRating": {
+          "@type": "Rating",
+          "ratingValue": "5",
+          "bestRating": "5",
+          "worstRating": "1"
+        }
+      },
+      {
+        "@type": "Review",
+        "author": {
+          "@type": "Person",
+          "name": "Stephanie C."
+        },
+        "datePublished": "2026-05-13",
+        "reviewBody": "Dillon was a respectful and courteous technician, and he was able to rekey my door lock without additional new parts or costs. I appreciate his willingness and ability to complete the task without adding extra charges.",
+        "reviewRating": {
+          "@type": "Rating",
+          "ratingValue": "5",
+          "bestRating": "5",
+          "worstRating": "1"
+        }
+      },
+      {
+        "@type": "Review",
+        "author": {
+          "@type": "Person",
+          "name": "Angela P."
+        },
+        "datePublished": "2026-05-10",
+        "reviewBody": "Very professional and kind. I would definitely recommend and use them again!",
+        "reviewRating": {
+          "@type": "Rating",
+          "ratingValue": "5",
+          "bestRating": "5",
+          "worstRating": "1"
+        }
+      }
+    ]
+  },
+  "location_gainesville": {
+    "@context": "https://schema.org",
+    "@type": "Locksmith",
+    "@id": "https://besecurelocksmith.com/service-areas/locksmith-gainesville-fl/#localbusiness",
+    "parentOrganization": {
+      "@id": "https://besecurelocksmith.com/#organization"
+    },
+    "name": "Be Secure Locksmith \u2014 Gainesville",
+    "url": "https://besecurelocksmith.com/service-areas/locksmith-gainesville-fl/",
+    "email": "info@besecurelocksmith.com",
+    "telephone": "1-352-290-7035",
+    "image": "https://besecurelocksmith.com/wp-content/uploads/2024/11/John-locksmith-tech-at-Be-Secure-Locksmith-in-Gainesville-Florida.jpeg",
+    "description": "Be Secure Locksmith has served Gainesville, FL and Alachua County since 2012 with fast, reliable mobile locksmith services. Our fully insured technicians provide automotive lockouts, key fob programming, transponder key replacement, residential rekeying, commercial lock installation, and master key systems.",
+    "address": {
+      "@type": "PostalAddress",
+      "streetAddress": "901 NW 8th Ave c17",
+      "addressLocality": "Gainesville",
+      "addressRegion": "FL",
+      "postalCode": "32601",
+      "addressCountry": "US"
+    },
+    "geo": {
+      "@type": "GeoCoordinates",
+      "latitude": 29.65886,
+      "longitude": -82.3345
+    },
+    "hasMap": "https://www.google.com/maps/place/?cid=1525264823828817691",
+    "priceRange": "$$",
+    "currenciesAccepted": "USD",
+    "paymentAccepted": "Cash, Visa, Mastercard, PayPal",
+    "contactPoint": {
+      "@type": "ContactPoint",
+      "telephone": "1-352-290-7035",
+      "contactType": "customer service",
+      "availableLanguage": "English"
+    },
+    "openingHoursSpecification": [
+      {
+        "@type": "OpeningHoursSpecification",
+        "dayOfWeek": [
+          "Monday",
+          "Tuesday",
+          "Wednesday",
+          "Thursday",
+          "Friday"
+        ],
+        "opens": "08:00",
+        "closes": "17:00"
+      }
+    ],
+    "aggregateRating": {
+      "@type": "AggregateRating",
+      "ratingValue": "4.9",
+      "reviewCount": "1313",
+      "bestRating": "5",
+      "worstRating": "1"
+    },
+    "sameAs": [
+      "https://www.google.com/search?kgmid=/g/1ptx2pkfg",
+      "https://www.yelp.com/biz/be-secure-locksmith-gainesville-2",
+      "https://www.facebook.com/BeSecureLocksmith",
+      "https://linkedin.com/company/be-secure-locksmith",
+      "https://www.bbb.org/us/fl/gainesville/profile/locksmith/be-secure-locksmith-llc-0403-235965422/",
+      "https://1800unlocks.com/locksmith/florida/gainesville/be-secure-locksmith-gainesville/",
+      "https://fairtradelocksmiths.com/locksmith/local/be-secure-locksmith-gainesville",
+      "https://members.gainesvillechamber.com/list/member/be-secure-locksmith-gainesville-30726"
+    ],
+    "areaServed": {
+      "@type": "AdministrativeArea",
+      "name": "Gainesville Metro Region",
+      "containsPlace": [
+        {
+          "@type": "AdministrativeArea",
+          "name": "Alachua County",
+          "sameAs": "https://en.wikipedia.org/wiki/Alachua_County,_Florida"
+        },
+        {
+          "@type": "City",
+          "name": "Gainesville",
+          "sameAs": "https://en.wikipedia.org/wiki/Gainesville,_Florida"
+        },
+        {
+          "@type": "City",
+          "name": "Alachua",
+          "sameAs": "https://en.wikipedia.org/wiki/Alachua,_Florida"
+        },
+        {
+          "@type": "City",
+          "name": "Archer",
+          "sameAs": "https://en.wikipedia.org/wiki/Archer,_Florida"
+        },
+        {
+          "@type": "City",
+          "name": "Bronson",
+          "sameAs": "https://en.wikipedia.org/wiki/Bronson,_Florida"
+        },
+        {
+          "@type": "City",
+          "name": "Brooker",
+          "sameAs": "https://en.wikipedia.org/wiki/Brooker,_Florida"
+        },
+        {
+          "@type": "City",
+          "name": "Fort White",
+          "sameAs": "https://en.wikipedia.org/wiki/Fort_White,_Florida"
+        },
+        {
+          "@type": "City",
+          "name": "Hampton",
+          "sameAs": "https://en.wikipedia.org/wiki/Hampton,_Florida"
+        },
+        {
+          "@type": "City",
+          "name": "Hawthorne",
+          "sameAs": "https://en.wikipedia.org/wiki/Hawthorne,_Florida"
+        },
+        {
+          "@type": "City",
+          "name": "High Springs",
+          "sameAs": "https://en.wikipedia.org/wiki/High_Springs,_Florida"
+        },
+        {
+          "@type": "City",
+          "name": "Jonesville",
+          "sameAs": "https://en.wikipedia.org/wiki/Jonesville,_Florida"
+        },
+        {
+          "@type": "City",
+          "name": "La Crosse",
+          "sameAs": "https://en.wikipedia.org/wiki/La_Crosse,_Florida"
+        },
+        {
+          "@type": "City",
+          "name": "Lake City",
+          "sameAs": "https://en.wikipedia.org/wiki/Lake_City,_Florida"
+        },
+        {
+          "@type": "City",
+          "name": "Micanopy",
+          "sameAs": "https://en.wikipedia.org/wiki/Micanopy,_Florida"
+        },
+        {
+          "@type": "City",
+          "name": "Newberry",
+          "sameAs": "https://en.wikipedia.org/wiki/Newberry,_Florida"
+        },
+        {
+          "@type": "City",
+          "name": "Starke",
+          "sameAs": "https://en.wikipedia.org/wiki/Starke,_Florida"
+        },
+        {
+          "@type": "City",
+          "name": "Trenton",
+          "sameAs": "https://en.wikipedia.org/wiki/Trenton,_Florida"
+        },
+        {
+          "@type": "City",
+          "name": "Waldo",
+          "sameAs": "https://en.wikipedia.org/wiki/Waldo,_Florida"
+        },
+        {
+          "@type": "City",
+          "name": "Williston",
+          "sameAs": "https://en.wikipedia.org/wiki/Williston,_Florida"
+        }
+      ]
+    },
+    "hasOfferCatalog": {
+      "@type": "OfferCatalog",
+      "name": "Locksmith Services \u2014 Gainesville, FL",
+      "itemListElement": [
+        {
+          "@type": "Offer",
+          "itemOffered": {
+            "@type": "Service",
+            "name": "Automotive Lockout Service",
+            "description": "Gainesville drivers trust Be Secure Locksmith for fast, damage-free car lockouts near UF, Butler Plaza, and throughout Alachua County. We unlock any make or model on-site \u2014 no tow truck needed.",
+            "additionalType": "https://en.wikipedia.org/wiki/Locksmithing"
+          },
+          "priceSpecification": {
+            "@type": "PriceSpecification",
+            "minPrice": "65.00",
+            "priceCurrency": "USD",
+            "description": "Starting price \u2014 final price depends on vehicle, lock type, and job complexity"
+          }
+        },
+        {
+          "@type": "Offer",
+          "itemOffered": {
+            "@type": "Service",
+            "name": "Car Key Programming",
+            "description": "Transponder keys and smart keys programmed on-site for Gainesville drivers. We come to your home, office, or wherever you are stranded in Alachua County \u2014 no dealership visit required.",
+            "additionalType": "https://en.wikipedia.org/wiki/Transponder_car_key"
+          },
+          "priceSpecification": {
+            "@type": "PriceSpecification",
+            "minPrice": "120.00",
+            "priceCurrency": "USD",
+            "description": "Starting price \u2014 final price depends on vehicle, lock type, and job complexity"
+          }
+        },
+        {
+          "@type": "Offer",
+          "itemOffered": {
+            "@type": "Service",
+            "name": "Car Key Replacement",
+            "description": "Lost or broken car keys replaced on-site anywhere in Gainesville and Alachua County. We cut and program most domestic and foreign vehicle keys.",
+            "additionalType": "https://en.wikipedia.org/wiki/Transponder_car_key"
+          },
+          "priceSpecification": {
+            "@type": "PriceSpecification",
+            "minPrice": "150.00",
+            "priceCurrency": "USD",
+            "description": "Starting price \u2014 final price depends on vehicle, lock type, and job complexity"
+          }
+        },
+        {
+          "@type": "Offer",
+          "itemOffered": {
+            "@type": "Service",
+            "name": "Transponder Key Programming",
+            "description": "Chip keys programmed to your vehicle's immobilizer system at your location throughout the Gainesville area. Domestic and foreign makes supported.",
+            "additionalType": "https://en.wikipedia.org/wiki/Transponder_car_key"
+          }
+        },
+        {
+          "@type": "Offer",
+          "itemOffered": {
+            "@type": "Service",
+            "name": "Key Fob Programming",
+            "description": "Key fobs programmed on-site for push-to-start and remote entry vehicles throughout Gainesville and Alachua County. New fob supplied and paired to your vehicle without a tow.",
+            "additionalType": "https://en.wikipedia.org/wiki/Key_fob"
+          }
+        },
+        {
+          "@type": "Offer",
+          "itemOffered": {
+            "@type": "Service",
+            "name": "Ignition Repair",
+            "description": "Stuck key, worn ignition cylinder, or faulty switch diagnosed and repaired at your Gainesville location. Most vehicles serviced on-site without a tow.",
+            "additionalType": "https://en.wikipedia.org/wiki/Ignition_system"
+          }
+        },
+        {
+          "@type": "Offer",
+          "itemOffered": {
+            "@type": "Service",
+            "name": "Broken Key Extraction",
+            "description": "Broken key stuck in your Gainesville home, office, or vehicle lock? We remove it safely without damaging the hardware \u2014 available throughout Gainesville and Alachua County.",
+            "additionalType": "https://en.wikipedia.org/wiki/Locksmithing"
+          },
+          "priceSpecification": {
+            "@type": "PriceSpecification",
+            "minPrice": "85.00",
+            "priceCurrency": "USD",
+            "description": "Starting price \u2014 final price depends on vehicle, lock type, and job complexity"
+          }
+        },
+        {
+          "@type": "Offer",
+          "itemOffered": {
+            "@type": "Service",
+            "name": "Emergency Lockout Service",
+            "description": "Immediate dispatch for home, vehicle, and business lockouts throughout Gainesville and Alachua County. Available Monday through Saturday, 8am to 7pm.",
+            "additionalType": "https://en.wikipedia.org/wiki/Locksmithing"
+          }
+        },
+        {
+          "@type": "Offer",
+          "itemOffered": {
+            "@type": "Service",
+            "name": "Home Lockout Service",
+            "description": "Locked out of your Gainesville home in Haile Plantation, Duckpond, or anywhere in Alachua County? We provide fast, damage-free residential entry seven days a week.",
+            "additionalType": "https://en.wikipedia.org/wiki/Locksmithing"
+          },
+          "priceSpecification": {
+            "@type": "PriceSpecification",
+            "minPrice": "65.00",
+            "priceCurrency": "USD",
+            "description": "Starting price \u2014 final price depends on vehicle, lock type, and job complexity"
+          }
+        },
+        {
+          "@type": "Offer",
+          "itemOffered": {
+            "@type": "Service",
+            "name": "Lock Rekeying",
+            "description": "Gainesville homeowners and landlords rely on Be Secure Locksmith for fast, affordable rekeying after move-ins, tenant turnover, or lost keys. All major brands serviced on-site.",
+            "additionalType": "https://en.wikipedia.org/wiki/Rekey_(lock)"
+          },
+          "priceSpecification": {
+            "@type": "PriceSpecification",
+            "minPrice": "33.00",
+            "priceCurrency": "USD",
+            "description": "Starting price \u2014 final price depends on vehicle, lock type, and job complexity"
+          }
+        },
+        {
+          "@type": "Offer",
+          "itemOffered": {
+            "@type": "Service",
+            "name": "New Lock Installation",
+            "description": "Deadbolts, handle sets, and entry locks installed on any door for Gainesville homeowners and businesses. We carry Schlage, Kwikset, and other leading brands.",
+            "additionalType": "https://en.wikipedia.org/wiki/Lock_(security_device)"
+          }
+        },
+        {
+          "@type": "Offer",
+          "itemOffered": {
+            "@type": "Service",
+            "name": "Lock Repair",
+            "description": "Worn, damaged, or misaligned locks repaired on-site throughout Gainesville. We service all major residential and commercial lock brands.",
+            "additionalType": "https://en.wikipedia.org/wiki/Lock_(security_device)"
+          }
+        },
+        {
+          "@type": "Offer",
+          "itemOffered": {
+            "@type": "Service",
+            "name": "Lock Change",
+            "description": "Full lock replacement for Gainesville homes and businesses where rekeying is not sufficient. We install residential and commercial-grade locks on all door types.",
+            "additionalType": "https://en.wikipedia.org/wiki/Lock_(security_device)"
+          }
+        },
+        {
+          "@type": "Offer",
+          "itemOffered": {
+            "@type": "Service",
+            "name": "Deadbolt Installation",
+            "description": "ANSI Grade 1 and Grade 2 deadbolts installed for Gainesville homeowners and businesses. We carry Schlage, Kwikset, and other trusted brands.",
+            "brand": [
+              {
+                "@type": "Brand",
+                "name": "Schlage"
+              },
+              {
+                "@type": "Brand",
+                "name": "Kwikset"
+              },
+              {
+                "@type": "Brand",
+                "name": "Emtek"
+              },
+              {
+                "@type": "Brand",
+                "name": "Baldwin"
+              }
+            ],
+            "additionalType": "https://en.wikipedia.org/wiki/Deadbolt"
+          },
+          "priceSpecification": {
+            "@type": "PriceSpecification",
+            "minPrice": "80.00",
+            "priceCurrency": "USD",
+            "description": "Starting price \u2014 final price depends on vehicle, lock type, and job complexity"
+          }
+        },
+        {
+          "@type": "Offer",
+          "itemOffered": {
+            "@type": "Service",
+            "name": "Smart Lock Installation",
+            "description": "Smart locks from Schlage, Kwikset, and Yale installed and configured for Gainesville homes and businesses. Keyless entry with app integration and remote access.",
+            "brand": [
+              {
+                "@type": "Brand",
+                "name": "Schlage"
+              },
+              {
+                "@type": "Brand",
+                "name": "Kwikset"
+              },
+              {
+                "@type": "Brand",
+                "name": "Yale"
+              },
+              {
+                "@type": "Brand",
+                "name": "Lockly"
+              }
+            ],
+            "additionalType": "https://en.wikipedia.org/wiki/Smart_lock"
+          }
+        },
+        {
+          "@type": "Offer",
+          "itemOffered": {
+            "@type": "Service",
+            "name": "Keypad Lock Installation",
+            "description": "Standalone battery-operated keypad locks installed for Gainesville homes and businesses. No subscription or network required \u2014 simple, reliable keyless entry.",
+            "brand": [
+              {
+                "@type": "Brand",
+                "name": "Schlage"
+              },
+              {
+                "@type": "Brand",
+                "name": "Kwikset"
+              },
+              {
+                "@type": "Brand",
+                "name": "Yale"
+              },
+              {
+                "@type": "Brand",
+                "name": "Lockly"
+              }
+            ],
+            "additionalType": "https://en.wikipedia.org/wiki/Electronic_lock"
+          },
+          "priceSpecification": {
+            "@type": "PriceSpecification",
+            "minPrice": "199.00",
+            "priceCurrency": "USD",
+            "description": "Starting price \u2014 final price depends on vehicle, lock type, and job complexity"
+          }
+        },
+        {
+          "@type": "Offer",
+          "itemOffered": {
+            "@type": "Service",
+            "name": "Mailbox Lock Replacement",
+            "description": "Mailbox locks replaced quickly and affordably for Gainesville homeowners and property managers. We carry common mailbox lock sizes and install on-site.",
+            "additionalType": "https://en.wikipedia.org/wiki/Lock_(security_device)"
+          },
+          "priceSpecification": {
+            "@type": "PriceSpecification",
+            "minPrice": "85.00",
+            "priceCurrency": "USD",
+            "description": "Starting price \u2014 final price depends on vehicle, lock type, and job complexity"
+          }
+        },
+        {
+          "@type": "Offer",
+          "itemOffered": {
+            "@type": "Service",
+            "name": "Key Duplication",
+            "description": "Spare keys cut on-site for Gainesville homes, businesses, and vehicles. We duplicate residential, commercial, and high-security keys at your location.",
+            "additionalType": "https://en.wikipedia.org/wiki/Key_duplication"
+          }
+        },
+        {
+          "@type": "Offer",
+          "itemOffered": {
+            "@type": "Service",
+            "name": "Commercial Locksmith Services",
+            "description": "Be Secure Locksmith serves Gainesville offices, retail stores, restaurants, warehouses, and apartment complexes with commercial lock installation, rekeying, and lockout response.",
+            "additionalType": "https://en.wikipedia.org/wiki/Locksmithing"
+          }
+        },
+        {
+          "@type": "Offer",
+          "itemOffered": {
+            "@type": "Service",
+            "name": "Commercial Lockout Service",
+            "description": "Locked out of your Gainesville business? We dispatch immediately and arrive equipped for commercial-grade locks with minimal disruption to your operations.",
+            "additionalType": "https://en.wikipedia.org/wiki/Locksmithing"
+          },
+          "priceSpecification": {
+            "@type": "PriceSpecification",
+            "minPrice": "65.00",
+            "priceCurrency": "USD",
+            "description": "Starting price \u2014 final price depends on vehicle, lock type, and job complexity"
+          }
+        },
+        {
+          "@type": "Offer",
+          "itemOffered": {
+            "@type": "Service",
+            "name": "Master Key Systems",
+            "description": "Master key systems designed and installed for Gainesville businesses and multi-unit properties. One key for management, individual keys for staff.",
+            "additionalType": "https://en.wikipedia.org/wiki/Master_key"
+          }
+        },
+        {
+          "@type": "Offer",
+          "itemOffered": {
+            "@type": "Service",
+            "name": "Interchangeable Core Locks",
+            "description": "Interchangeable core systems installed for Gainesville commercial properties that need frequent access changes. Cores swap in seconds without removing the lock.",
+            "additionalType": "https://en.wikipedia.org/wiki/Interchangeable_core"
+          }
+        },
+        {
+          "@type": "Offer",
+          "itemOffered": {
+            "@type": "Service",
+            "name": "Property Management Locksmith Services",
+            "description": "Be Secure Locksmith is the preferred locksmith partner for Gainesville property managers. We handle rekeying, lock changes, and lockout calls across apartment complexes, student housing, and multi-unit properties throughout Alachua County.",
+            "additionalType": "https://en.wikipedia.org/wiki/Locksmithing"
+          }
+        },
+        {
+          "@type": "Offer",
+          "itemOffered": {
+            "@type": "Service",
+            "name": "Panic Bar Installation",
+            "description": "Code-compliant panic bar and exit device installation for commercial doors throughout Gainesville. We service all major brands and ensure Florida life safety compliance.",
+            "brand": [
+              {
+                "@type": "Brand",
+                "name": "Von Duprin"
+              },
+              {
+                "@type": "Brand",
+                "name": "Falcon"
+              },
+              {
+                "@type": "Brand",
+                "name": "Dorma"
+              },
+              {
+                "@type": "Brand",
+                "name": "Detex"
+              }
+            ],
+            "additionalType": "https://en.wikipedia.org/wiki/Crash_bar"
+          }
+        },
+        {
+          "@type": "Offer",
+          "itemOffered": {
+            "@type": "Service",
+            "name": "Panic Bar Repair",
+            "description": "Malfunctioning panic bars diagnosed and repaired on-site for Gainesville commercial buildings. We service all major exit device brands.",
+            "additionalType": "https://en.wikipedia.org/wiki/Crash_bar"
+          }
+        },
+        {
+          "@type": "Offer",
+          "itemOffered": {
+            "@type": "Service",
+            "name": "Door Closer Installation",
+            "description": "Commercial door closers installed and adjusted for Gainesville offices, retail stores, and institutional buildings. ADA-compliant closing force configured per door.",
+            "additionalType": "https://en.wikipedia.org/wiki/Door_closer"
+          }
+        },
+        {
+          "@type": "Offer",
+          "itemOffered": {
+            "@type": "Service",
+            "name": "Security Assessment",
+            "description": "Complimentary security assessment included with every Be Secure Locksmith visit in Gainesville. Honest vulnerability findings with no obligation or upsell pressure.",
+            "additionalType": "https://en.wikipedia.org/wiki/Security_management"
+          }
+        }
+      ]
+    },
+    "review": [
+      {
+        "@type": "Review",
+        "author": {
+          "@type": "Person",
+          "name": "Carmelia S."
+        },
+        "datePublished": "2026-06-02",
+        "reviewBody": "Service was awesome and affordable. The technician arrived on time and unlocked the door in less than 5 minutes.",
+        "reviewRating": {
+          "@type": "Rating",
+          "ratingValue": "5",
+          "bestRating": "5",
+          "worstRating": "1"
+        }
+      },
+      {
+        "@type": "Review",
+        "author": {
+          "@type": "Person",
+          "name": "Max T."
+        },
+        "datePublished": "2026-05-28",
+        "reviewBody": "Amazing quick professional service. From the receptionist who scheduled the same day service to our locksmith Netta who was courteous, extraordinarily competent and efficient. This is the BEST locksmith company available!",
+        "reviewRating": {
+          "@type": "Rating",
+          "ratingValue": "5",
+          "bestRating": "5",
+          "worstRating": "1"
+        }
+      },
+      {
+        "@type": "Review",
+        "author": {
+          "@type": "Person",
+          "name": "Eric S."
+        },
+        "datePublished": "2026-05-20",
+        "reviewBody": "Locksmith was able to come same-day (within the hour!) to help reconfigure antique door locking mechanism to allow for key access. Amazing help for an elderly family member to assist with a big safety concern. Thank you so much to the amazing tech who responded, Netta, for your speedy, courteous, and professional help in our family members home. Worth every penny for peace of mind.",
+        "reviewRating": {
+          "@type": "Rating",
+          "ratingValue": "5",
+          "bestRating": "5",
+          "worstRating": "1"
+        }
+      }
+    ]
+  },
+  "location_ocala": {
+    "@context": "https://schema.org",
+    "@type": "Locksmith",
+    "@id": "https://besecurelocksmith.com/service-areas/locksmith-ocala-fl/#localbusiness",
+    "parentOrganization": {
+      "@id": "https://besecurelocksmith.com/#organization"
+    },
+    "name": "Be Secure Locksmith \u2014 Ocala",
+    "url": "https://besecurelocksmith.com/service-areas/locksmith-ocala-fl/",
+    "email": "info@besecurelocksmith.com",
+    "telephone": "1-352-325-7953",
+    "image": "https://besecurelocksmith.com/wp-content/uploads/2026/05/John-locksmith-tech-at-Be-Secure-Locksmith-in-Ocala-Florida.jpeg",
+    "description": "Be Secure Locksmith has served Ocala, FL and Marion County since 2012 with fast, reliable mobile locksmith services. Our fully insured technicians provide automotive lockouts, key fob programming, transponder key replacement, residential rekeying, commercial lock installation, and master key systems.",
+    "address": {
+      "@type": "PostalAddress",
+      "streetAddress": "217 SE 1st Ave Suite 200-50",
+      "addressLocality": "Ocala",
+      "addressRegion": "FL",
+      "postalCode": "34471",
+      "addressCountry": "US"
+    },
+    "geo": {
+      "@type": "GeoCoordinates",
+      "latitude": 29.1844122,
+      "longitude": -82.1355775
+    },
+    "hasMap": "https://www.google.com/maps/place/?cid=4138983982412980004",
+    "priceRange": "$$",
+    "currenciesAccepted": "USD",
+    "paymentAccepted": "Cash, Visa, Mastercard, PayPal",
+    "contactPoint": {
+      "@type": "ContactPoint",
+      "telephone": "1-352-325-7953",
+      "contactType": "customer service",
+      "availableLanguage": "English"
+    },
+    "openingHoursSpecification": [
+      {
+        "@type": "OpeningHoursSpecification",
+        "dayOfWeek": [
+          "Monday",
+          "Tuesday",
+          "Wednesday",
+          "Thursday",
+          "Friday"
+        ],
+        "opens": "08:00",
+        "closes": "17:00"
+      }
+    ],
+    "aggregateRating": {
+      "@type": "AggregateRating",
+      "ratingValue": "4.9",
+      "reviewCount": "1212",
+      "bestRating": "5",
+      "worstRating": "1"
+    },
+    "sameAs": [
+      "https://www.google.com/search?kgmid=/g/1yfprvxjj",
+      "https://www.yelp.com/biz/be-secure-locksmith-ocala",
+      "https://www.facebook.com/BeSecureLocksmith",
+      "https://linkedin.com/company/be-secure-locksmith",
+      "https://1800unlocks.com/locksmith/florida/ocala/be-secure-locksmith-ocala/",
+      "https://fairtradelocksmiths.com/locksmith/local/be-secure-locksmith-ocala"
+    ],
+    "areaServed": {
+      "@type": "AdministrativeArea",
+      "name": "Ocala Metro Region",
+      "containsPlace": [
+        {
+          "@type": "AdministrativeArea",
+          "name": "Marion County",
+          "sameAs": "https://en.wikipedia.org/wiki/Marion_County,_Florida"
+        },
+        {
+          "@type": "AdministrativeArea",
+          "name": "Citrus County",
+          "sameAs": "https://en.wikipedia.org/wiki/Citrus_County,_Florida"
+        },
+        {
+          "@type": "City",
+          "name": "Ocala",
+          "sameAs": "https://en.wikipedia.org/wiki/Ocala,_Florida"
+        },
+        {
+          "@type": "City",
+          "name": "Belleview",
+          "sameAs": "https://en.wikipedia.org/wiki/Belleview,_Florida"
+        },
+        {
+          "@type": "City",
+          "name": "Beverly Hills",
+          "sameAs": "https://en.wikipedia.org/wiki/Beverly_Hills,_Citrus_County,_Florida"
+        },
+        {
+          "@type": "City",
+          "name": "Dunnellon",
+          "sameAs": "https://en.wikipedia.org/wiki/Dunnellon,_Florida"
+        },
+        {
+          "@type": "City",
+          "name": "Fort McCoy",
+          "sameAs": "https://en.wikipedia.org/wiki/Fort_McCoy,_Florida"
+        },
+        {
+          "@type": "City",
+          "name": "Inverness",
+          "sameAs": "https://en.wikipedia.org/wiki/Inverness,_Florida"
+        },
+        {
+          "@type": "City",
+          "name": "Marion Oaks",
+          "sameAs": "https://en.wikipedia.org/wiki/Marion_Oaks,_Florida"
+        },
+        {
+          "@type": "City",
+          "name": "Silver Springs",
+          "sameAs": "https://en.wikipedia.org/wiki/Silver_Springs,_Florida"
+        },
+        {
+          "@type": "City",
+          "name": "Summerfield",
+          "sameAs": "https://en.wikipedia.org/wiki/Summerfield,_Florida"
+        },
+        {
+          "@type": "City",
+          "name": "The Villages",
+          "sameAs": "https://en.wikipedia.org/wiki/The_Villages,_Florida"
+        },
+        {
+          "@type": "City",
+          "name": "Wildwood",
+          "sameAs": "https://en.wikipedia.org/wiki/Wildwood,_Florida"
+        },
+        {
+          "@type": "City",
+          "name": "Williston",
+          "sameAs": "https://en.wikipedia.org/wiki/Williston,_Florida"
+        }
+      ]
+    },
+    "hasOfferCatalog": {
+      "@type": "OfferCatalog",
+      "name": "Locksmith Services \u2014 Ocala, FL",
+      "itemListElement": [
+        {
+          "@type": "Offer",
+          "itemOffered": {
+            "@type": "Service",
+            "name": "Automotive Lockout Service",
+            "description": "Ocala drivers and Marion County residents trust Be Secure Locksmith for fast, damage-free car lockouts. We unlock any make or model on-site anywhere in Marion and Citrus County \u2014 no tow truck needed.",
+            "additionalType": "https://en.wikipedia.org/wiki/Locksmithing"
+          },
+          "priceSpecification": {
+            "@type": "PriceSpecification",
+            "minPrice": "65.00",
+            "priceCurrency": "USD",
+            "description": "Starting price \u2014 final price depends on vehicle, lock type, and job complexity"
+          }
+        },
+        {
+          "@type": "Offer",
+          "itemOffered": {
+            "@type": "Service",
+            "name": "Car Key Programming",
+            "description": "Transponder keys and smart keys programmed on-site for Ocala drivers throughout Marion County. We come to your home, workplace, or wherever you are stranded \u2014 no dealership visit required.",
+            "additionalType": "https://en.wikipedia.org/wiki/Transponder_car_key"
+          },
+          "priceSpecification": {
+            "@type": "PriceSpecification",
+            "minPrice": "120.00",
+            "priceCurrency": "USD",
+            "description": "Starting price \u2014 final price depends on vehicle, lock type, and job complexity"
+          }
+        },
+        {
+          "@type": "Offer",
+          "itemOffered": {
+            "@type": "Service",
+            "name": "Car Key Replacement",
+            "description": "Lost or broken car keys replaced on-site anywhere in Ocala and Marion County. We cut and program most domestic and foreign vehicle keys.",
+            "additionalType": "https://en.wikipedia.org/wiki/Transponder_car_key"
+          },
+          "priceSpecification": {
+            "@type": "PriceSpecification",
+            "minPrice": "150.00",
+            "priceCurrency": "USD",
+            "description": "Starting price \u2014 final price depends on vehicle, lock type, and job complexity"
+          }
+        },
+        {
+          "@type": "Offer",
+          "itemOffered": {
+            "@type": "Service",
+            "name": "Key Fob Programming",
+            "description": "Key fobs programmed on-site for push-to-start and remote entry vehicles throughout Ocala and Marion County. New fob supplied and paired to your vehicle without a tow.",
+            "additionalType": "https://en.wikipedia.org/wiki/Key_fob"
+          }
+        },
+        {
+          "@type": "Offer",
+          "itemOffered": {
+            "@type": "Service",
+            "name": "Ignition Repair",
+            "description": "Stuck key, worn ignition cylinder, or faulty switch diagnosed and repaired at your Ocala location. Most vehicles serviced on-site without a tow.",
+            "additionalType": "https://en.wikipedia.org/wiki/Ignition_system"
+          }
+        },
+        {
+          "@type": "Offer",
+          "itemOffered": {
+            "@type": "Service",
+            "name": "Broken Key Extraction",
+            "description": "Broken key stuck in your Ocala home, business, or vehicle lock? We remove it safely without damaging the hardware \u2014 available throughout Ocala, Marion County, and surrounding communities.",
+            "additionalType": "https://en.wikipedia.org/wiki/Locksmithing"
+          },
+          "priceSpecification": {
+            "@type": "PriceSpecification",
+            "minPrice": "85.00",
+            "priceCurrency": "USD",
+            "description": "Starting price \u2014 final price depends on vehicle, lock type, and job complexity"
+          }
+        },
+        {
+          "@type": "Offer",
+          "itemOffered": {
+            "@type": "Service",
+            "name": "Emergency Lockout Service",
+            "description": "Immediate dispatch for home, vehicle, and business lockouts throughout Ocala and Marion County. Available Monday through Saturday, 8am to 7pm.",
+            "additionalType": "https://en.wikipedia.org/wiki/Locksmithing"
+          }
+        },
+        {
+          "@type": "Offer",
+          "itemOffered": {
+            "@type": "Service",
+            "name": "Home Lockout Service",
+            "description": "Locked out of your Ocala home in Marion Oaks, Belleview, or anywhere in Marion County? Be Secure Locksmith provides fast, damage-free residential entry throughout the region.",
+            "additionalType": "https://en.wikipedia.org/wiki/Locksmithing"
+          },
+          "priceSpecification": {
+            "@type": "PriceSpecification",
+            "minPrice": "65.00",
+            "priceCurrency": "USD",
+            "description": "Starting price \u2014 final price depends on vehicle, lock type, and job complexity"
+          }
+        },
+        {
+          "@type": "Offer",
+          "itemOffered": {
+            "@type": "Service",
+            "name": "Lock Rekeying",
+            "description": "Ocala homeowners, landlords, and property managers rely on Be Secure Locksmith for fast, affordable rekeying after move-ins, tenant turnover, or lost keys. All major brands serviced on-site.",
+            "additionalType": "https://en.wikipedia.org/wiki/Rekey_(lock)"
+          },
+          "priceSpecification": {
+            "@type": "PriceSpecification",
+            "minPrice": "33.00",
+            "priceCurrency": "USD",
+            "description": "Starting price \u2014 final price depends on vehicle, lock type, and job complexity"
+          }
+        },
+        {
+          "@type": "Offer",
+          "itemOffered": {
+            "@type": "Service",
+            "name": "New Lock Installation",
+            "description": "Deadbolts, handle sets, and entry locks installed on any door for Ocala homeowners and businesses. We carry Schlage, Kwikset, and other leading brands.",
+            "additionalType": "https://en.wikipedia.org/wiki/Lock_(security_device)"
+          }
+        },
+        {
+          "@type": "Offer",
+          "itemOffered": {
+            "@type": "Service",
+            "name": "Lock Repair",
+            "description": "Worn, damaged, or misaligned locks repaired on-site throughout Ocala and Marion County. We service all major residential and commercial lock brands.",
+            "additionalType": "https://en.wikipedia.org/wiki/Lock_(security_device)"
+          }
+        },
+        {
+          "@type": "Offer",
+          "itemOffered": {
+            "@type": "Service",
+            "name": "Lock Change",
+            "description": "Full lock replacement for Ocala homes and businesses where rekeying is not sufficient. We install residential and commercial-grade locks on all door types.",
+            "additionalType": "https://en.wikipedia.org/wiki/Lock_(security_device)"
+          }
+        },
+        {
+          "@type": "Offer",
+          "itemOffered": {
+            "@type": "Service",
+            "name": "Deadbolt Installation",
+            "description": "ANSI Grade 1 and Grade 2 deadbolts installed for Ocala homeowners and businesses. We carry Schlage, Kwikset, and other trusted brands in a range of finishes.",
+            "brand": [
+              {
+                "@type": "Brand",
+                "name": "Schlage"
+              },
+              {
+                "@type": "Brand",
+                "name": "Kwikset"
+              },
+              {
+                "@type": "Brand",
+                "name": "Emtek"
+              },
+              {
+                "@type": "Brand",
+                "name": "Baldwin"
+              }
+            ],
+            "additionalType": "https://en.wikipedia.org/wiki/Deadbolt"
+          },
+          "priceSpecification": {
+            "@type": "PriceSpecification",
+            "minPrice": "80.00",
+            "priceCurrency": "USD",
+            "description": "Starting price \u2014 final price depends on vehicle, lock type, and job complexity"
+          }
+        },
+        {
+          "@type": "Offer",
+          "itemOffered": {
+            "@type": "Service",
+            "name": "Smart Lock Installation",
+            "description": "Smart locks from Schlage, Kwikset, and Yale installed and configured for Ocala homes and businesses. Keyless entry with app integration and remote access.",
+            "brand": [
+              {
+                "@type": "Brand",
+                "name": "Schlage"
+              },
+              {
+                "@type": "Brand",
+                "name": "Kwikset"
+              },
+              {
+                "@type": "Brand",
+                "name": "Yale"
+              },
+              {
+                "@type": "Brand",
+                "name": "Lockly"
+              }
+            ],
+            "additionalType": "https://en.wikipedia.org/wiki/Smart_lock"
+          }
+        },
+        {
+          "@type": "Offer",
+          "itemOffered": {
+            "@type": "Service",
+            "name": "Keypad Lock Installation",
+            "description": "Standalone battery-operated keypad locks installed for Ocala homes and businesses. No subscription or network required \u2014 simple, reliable keyless entry.",
+            "brand": [
+              {
+                "@type": "Brand",
+                "name": "Schlage"
+              },
+              {
+                "@type": "Brand",
+                "name": "Kwikset"
+              },
+              {
+                "@type": "Brand",
+                "name": "Yale"
+              },
+              {
+                "@type": "Brand",
+                "name": "Lockly"
+              }
+            ],
+            "additionalType": "https://en.wikipedia.org/wiki/Electronic_lock"
+          },
+          "priceSpecification": {
+            "@type": "PriceSpecification",
+            "minPrice": "199.00",
+            "priceCurrency": "USD",
+            "description": "Starting price \u2014 final price depends on vehicle, lock type, and job complexity"
+          }
+        },
+        {
+          "@type": "Offer",
+          "itemOffered": {
+            "@type": "Service",
+            "name": "Mailbox Lock Replacement",
+            "description": "Mailbox locks replaced quickly and affordably for Ocala homeowners and property managers. We carry common lock sizes and install on-site.",
+            "additionalType": "https://en.wikipedia.org/wiki/Lock_(security_device)"
+          },
+          "priceSpecification": {
+            "@type": "PriceSpecification",
+            "minPrice": "85.00",
+            "priceCurrency": "USD",
+            "description": "Starting price \u2014 final price depends on vehicle, lock type, and job complexity"
+          }
+        },
+        {
+          "@type": "Offer",
+          "itemOffered": {
+            "@type": "Service",
+            "name": "Key Duplication",
+            "description": "Spare keys cut on-site for Ocala homes, businesses, and vehicles. We duplicate residential, commercial, and high-security keys at your location.",
+            "additionalType": "https://en.wikipedia.org/wiki/Key_duplication"
+          }
+        },
+        {
+          "@type": "Offer",
+          "itemOffered": {
+            "@type": "Service",
+            "name": "Commercial Locksmith Services",
+            "description": "Be Secure Locksmith serves Ocala offices, retail stores, restaurants, warehouses, and apartment complexes with commercial lock installation, rekeying, and lockout response.",
+            "additionalType": "https://en.wikipedia.org/wiki/Locksmithing"
+          }
+        },
+        {
+          "@type": "Offer",
+          "itemOffered": {
+            "@type": "Service",
+            "name": "Commercial Lockout Service",
+            "description": "Locked out of your Ocala business? We dispatch immediately and arrive equipped for commercial-grade locks with minimal disruption to your operations.",
+            "additionalType": "https://en.wikipedia.org/wiki/Locksmithing"
+          },
+          "priceSpecification": {
+            "@type": "PriceSpecification",
+            "minPrice": "65.00",
+            "priceCurrency": "USD",
+            "description": "Starting price \u2014 final price depends on vehicle, lock type, and job complexity"
+          }
+        },
+        {
+          "@type": "Offer",
+          "itemOffered": {
+            "@type": "Service",
+            "name": "Master Key Systems",
+            "description": "Master key systems designed and installed for Ocala businesses and multi-unit properties. One key for management, individual keys for staff.",
+            "additionalType": "https://en.wikipedia.org/wiki/Master_key"
+          }
+        },
+        {
+          "@type": "Offer",
+          "itemOffered": {
+            "@type": "Service",
+            "name": "Interchangeable Core Locks",
+            "description": "Interchangeable core systems installed for Ocala commercial properties needing frequent access changes. Cores swap in seconds without removing the lock.",
+            "additionalType": "https://en.wikipedia.org/wiki/Interchangeable_core"
+          }
+        },
+        {
+          "@type": "Offer",
+          "itemOffered": {
+            "@type": "Service",
+            "name": "Property Management Locksmith Services",
+            "description": "Be Secure Locksmith partners with Ocala property managers and HOAs across Marion County for rekeying, lock changes, and lockout response. Fast turnaround across multi-unit properties, retirement communities, and commercial buildings.",
+            "additionalType": "https://en.wikipedia.org/wiki/Locksmithing"
+          }
+        },
+        {
+          "@type": "Offer",
+          "itemOffered": {
+            "@type": "Service",
+            "name": "Panic Bar Installation",
+            "description": "Code-compliant panic bar and exit device installation for commercial doors throughout Ocala. We service all major brands and ensure Florida life safety compliance.",
+            "brand": [
+              {
+                "@type": "Brand",
+                "name": "Von Duprin"
+              },
+              {
+                "@type": "Brand",
+                "name": "Falcon"
+              },
+              {
+                "@type": "Brand",
+                "name": "Dorma"
+              },
+              {
+                "@type": "Brand",
+                "name": "Detex"
+              }
+            ],
+            "additionalType": "https://en.wikipedia.org/wiki/Crash_bar"
+          }
+        },
+        {
+          "@type": "Offer",
+          "itemOffered": {
+            "@type": "Service",
+            "name": "Panic Bar Repair",
+            "description": "Malfunctioning panic bars diagnosed and repaired on-site for Ocala commercial buildings. We service all major exit device brands.",
+            "additionalType": "https://en.wikipedia.org/wiki/Crash_bar"
+          }
+        },
+        {
+          "@type": "Offer",
+          "itemOffered": {
+            "@type": "Service",
+            "name": "Door Closer Installation",
+            "description": "Commercial door closers installed and adjusted for Ocala offices, retail stores, and institutional buildings. ADA-compliant closing force configured per door.",
+            "additionalType": "https://en.wikipedia.org/wiki/Door_closer"
+          }
+        },
+        {
+          "@type": "Offer",
+          "itemOffered": {
+            "@type": "Service",
+            "name": "Security Assessment",
+            "description": "Complimentary security assessment included with every Be Secure Locksmith visit in Ocala. Honest vulnerability findings with no obligation or upsell pressure.",
+            "additionalType": "https://en.wikipedia.org/wiki/Security_management"
+          }
+        }
+      ]
+    },
+    "review": [
+      {
+        "@type": "Review",
+        "author": {
+          "@type": "Person",
+          "name": "Suzi P."
+        },
+        "datePublished": "2026-05-03",
+        "reviewBody": "Dillon was a great technician which explained everything to us before even getting started to make sure it was acceptable. I would not only recommend this company, we will also use again for future jobs. Thank u",
+        "reviewRating": {
+          "@type": "Rating",
+          "ratingValue": "5",
+          "bestRating": "5",
+          "worstRating": "1"
+        }
+      },
+      {
+        "@type": "Review",
+        "author": {
+          "@type": "Person",
+          "name": "Stephanie C."
+        },
+        "datePublished": "2026-05-13",
+        "reviewBody": "Dillon was a respectful and courteous technician, and he was able to rekey my door lock without additional new parts or costs. I appreciate his willingness and ability to complete the task without adding extra charges.",
+        "reviewRating": {
+          "@type": "Rating",
+          "ratingValue": "5",
+          "bestRating": "5",
+          "worstRating": "1"
+        }
+      },
+      {
+        "@type": "Review",
+        "author": {
+          "@type": "Person",
+          "name": "Angela P."
+        },
+        "datePublished": "2026-05-10",
+        "reviewBody": "Very professional and kind. I would definitely recommend and use them again!",
+        "reviewRating": {
+          "@type": "Rating",
+          "ratingValue": "5",
+          "bestRating": "5",
+          "worstRating": "1"
+        }
+      }
+    ]
+  }
+}
