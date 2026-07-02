@@ -30,16 +30,16 @@ Replace the single site-wide `LocalBusiness` with:
 
 - **Organization node** — `@id = https://besecurelocksmith.com/#organization`
   - `name`, `url`, `logo` (ImageObject), `image`, `description`, `sameAs` (both GBP `kgmid`/CID, all socials + directories: Facebook, Instagram, Yelp, LinkedIn, YouTube, 1800unlocks, Fair Trade, Chamber, ALOA, BNI), `contactPoint`.
-  - `legalName`, `foundingDate` live **only** here (org-level).
-  - Emitted **site-wide** via `BaseLayout` in place of today's default `LocalBusiness` (i.e., default `localBusiness` becomes the Organization).
-  - **Homepage** additionally emits a **combined `aggregateRating`** on the Organization node (weighted avg rating + summed review count across both GBPs) and references both location nodes (`subOrganization` / `location` array or by `@id`).
+  - `legalName`, `foundingDate`, `founder`, `hasCredential`, `memberOf`, `areaServed` (counties + cities w/ Wikipedia), and the full **`hasOfferCatalog` (34 services)** live **only** here (org-level) — matching live.
+  - Emitted **site-wide** via `BaseLayout` in place of today's default `LocalBusiness` (i.e., default becomes the Organization node with the two `subOrganization` refs).
+  - **Homepage** carries the **combined `aggregateRating`** (4.9 / 2525) on the org node. (Non-homepage pages may emit the org node without `aggregateRating`/`hasOfferCatalog` to keep it lean — confirm during planning.)
 
-- **Two `Locksmith` location nodes** — `@id = …/#gainesville` and `…/#ocala`
+- **Two `Locksmith` location nodes (lean)** — `@id = …/service-areas/locksmith-{gainesville,ocala}-fl/#localbusiness`
   - Each `parentOrganization: { "@id": ".../#organization" }`.
-  - Fields per skill required-list: `@type:"Locksmith"`, `@id`, `name`, `url` (its location page), `telephone` (dashed), `email`, `priceRange:"$$"`, `paymentAccepted`, `currenciesAccepted:"USD"`, `hasMap` (CID), `logo`, `image`, `description`, `address` (that office), `geo` (verified lat/long), `contactPoint`, `sameAs` (that office's GBP), `aggregateRating` (that office's GBP numbers), `openingHoursSpecification` (grouped days, no false 24/7), `areaServed` (`AdministrativeArea` → `containsPlace` cities w/ **Wikipedia** `sameAs`), `hasOfferCatalog` (each service `name` + `description`).
-  - Emitted on the respective **office location page**.
+  - Fields (matching live — leaner than the org): `@type:"Locksmith"`, `@id`, `name` ("Be Secure Locksmith — {City}"), `url`, `telephone` (tracking line), `address` (that office), `geo`, `hasMap` (CID), `aggregateRating` (that store's count), `openingHoursSpecification`, `sameAs` (that office's GBP + local directory profiles), `parentOrganization`. (No per-location `hasOfferCatalog`/`areaServed` — those stay on the org.)
+  - Emitted on the respective **office location page** (the upgraded service-area page).
 
-- **Service-area pages (11 non-office cities):** do **not** emit a `LocalBusiness` with a physical address (the office is in a different city — that's the current bug). Instead emit a **`Service`** node: `serviceType` = "Locksmith", `provider: { "@id": ".../#organization" }`, `areaServed: { "@type":"City", name, sameAs: <Wikipedia> }`, and reference the **nearest office** location node by `@id`. Keep the existing `BreadcrumbList`. (The two *office* cities keep their full `Locksmith` node per above.)
+- **Service-area pages (11 non-office cities):** **remove** the current mismatched Gainesville `LocalBusiness` (that's the bug) — the live site emits **no** business schema on these pages. Match live parity: keep only the existing `BreadcrumbList` + `LocalBusiness`-free page. *Optional enhancement (decide in planning, additive vs. live):* a light **`Service`** node — `provider:{"@id":".../#organization"}`, `areaServed:{City, Wikipedia sameAs}` — to reinforce each city; only if it validates cleanly and doesn't reintroduce a physical address. The two *office* cities keep their full `Locksmith` node per above.
 
 - **Service pages:** keep `Service` schema; set `provider` → `#organization`; `areaServed` = both cities/region.
 
@@ -69,17 +69,20 @@ Replace the single site-wide `LocalBusiness` with:
 - Standardize the ` | Be Secure Locksmith` suffix where missing; keep lengths within ~60 chars (title) / ~155 (meta).
 - Leave the ~75 blog + already-localized service titles unchanged.
 
-## Data intake (prerequisite — blocks the schema build)
+## Source data — harvested from the live site (no intake form needed)
 
-Gathered up front via the skill's batched intake form. Required before writing the JSON-LD:
+**The live WordPress site already implements this exact multi-location schema** (built with the house schema skill). This project is a **port** of that proven, ranking markup into the Astro codebase — not a new build. All required values were pulled from the live homepage + the two live location pages (audited 2026-07-02). Source of truth:
 
-- **Per office:** verified `geo` (lat/long from Google Maps), **CID URL** (`…/maps/place/?cid=…` — we only have `kgmid`), exact **hours per day** (must match GBP), **email**, current **review count + star rating** (fresh from that GBP).
-- **Combined** review count + rating for the homepage org node (or compute from the two).
-- **Org:** `foundingDate` (YYYY-MM-DD, matches GBP), `legalName`, payment methods, logo URL, real photo URL for `image`.
-- **Founder:** name, job title, 3–6 real `knowsAbout` specialties (see `references/knowsabout-taxonomy.md`).
-- **Per office:** the service-area cities/counties it serves, with **Wikipedia** article URLs.
-- **All `sameAs`** profile URLs (socials + directories) confirmed live.
-- Confirm what the current `2551` count represents (single GBP vs combined) so per-location numbers are correct.
+- **Org (homepage `/#organization`):** `@type:"Locksmith"`, `legalName:"Be Secure Locksmith LLC"`, `foundingDate:"2012-04-15"`, `priceRange:"$$"`, `paymentAccepted:"Cash, Visa, Mastercard, PayPal"`, `currenciesAccepted:"USD"`, combined `aggregateRating` 4.9 / 2525, `founder` (Netta Kaiden, Owner & Master Locksmith; `hasCredential` ALOA `AR125393`; `knowsAbout` = Wikipedia URLs), `contactPoint` tel `1-352-706-5295`, `areaServed` (Alachua/Marion/Citrus counties + Gainesville, Ocala, The Villages, Lake City, High Springs, Newberry, Williston — Wikipedia `sameAs`), `sameAs` (Gainesville `kgmid`, Yelp, Facebook, LinkedIn, Twitter, YouTube, BBB, 1800unlocks, Fair Trade, Chamber), `memberOf` (Chamber, ALOA), `hasOfferCatalog` (34 `Offer`→`Service` items, each `name` + `description` + `additionalType` Wikipedia + `priceSpecification.minPrice`), `subOrganization` → the two location `@id`s.
+- **Gainesville location** (`…/service-areas/locksmith-gainesville-fl/#localbusiness`): name "Be Secure Locksmith — Gainesville", tel `1-352-290-7035` (tracking line), address `901 NW 8th Ave c17, Gainesville FL 32601`, `geo 29.65886,-82.3345`, `hasMap` CID `1525264823828817691`, `aggregateRating` 4.9 / **1313**, `sameAs` (Gainesville `kgmid` + Gainesville Yelp/1800unlocks/Fair Trade/Chamber + FB/LinkedIn/BBB), hours Mon–Fri 08:00–17:00, `parentOrganization → #organization`.
+- **Ocala location** (`…/service-areas/locksmith-ocala-fl/#localbusiness`): name "Be Secure Locksmith — Ocala", tel `1-352-325-7953`, address `217 SE 1st Ave Suite 200-50, Ocala FL 34471`, `geo 29.1844122,-82.1355775`, `hasMap` CID `4138983982412980004`, `aggregateRating` 4.9 / **1212**, `sameAs` (Ocala `kgmid` + Ocala Yelp/1800unlocks/Fair Trade + FB/LinkedIn), hours Mon–Fri 08:00–17:00, `parentOrganization → #organization`.
+
+**Notes / reconciliations:**
+- Combined = sum of locations: **1313 + 1212 = 2525** (homepage). Our current hardcoded `2551` is stale → replace with per-location `1313`/`1212` + combined `2525`.
+- Phones: **location nodes use the tracking numbers** (Gainesville `352-290-7035`, Ocala `352-325-7953`); the org `contactPoint` uses the main `352-706-5295`. Store these in `offices.ts` (extend with `trackingPhone`, `geo`, `cid`, `reviewCount`, `email?`).
+- Phone format on live uses the `1-###-###-####` form (not the skill's plain dashed form) — match live for parity.
+- Live schema **omits `email` and org-level `geo`/`hasMap`** (geo/CID live only on the location nodes). Follow live; optionally add `email` (skill lists it) — confirm with user.
+- Review counts drift; this port hardcodes the audited values. The paused live-reviews project will later auto-refresh them (see Out of scope).
 
 ## Out of scope (separate/paused efforts)
 
