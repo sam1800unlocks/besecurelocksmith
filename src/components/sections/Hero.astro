@@ -19,10 +19,10 @@ const reassurances = ['Upfront pricing', 'Quality parts', 'Same-day service'];
     <div class="grid gap-12 items-center" style="grid-template-columns:repeat(auto-fit,minmax(340px,1fr));">
 
       <!-- Left: copy -->
-      <div class="flex flex-col items-start">
+      <div class="flex flex-col items-start" data-hero-col>
 
         <!-- Trust badge -->
-        <Badge tone="success" class="gap-2 text-[13px] font-bold px-[14px] py-[7px] mb-5">
+        <Badge tone="success" class="gap-2 text-[13px] font-bold px-[14px] py-[7px] mb-5 border border-success-2/45">
           <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
             <polyline points="20 6 9 17 4 12"/>
           </svg>
@@ -72,7 +72,7 @@ const reassurances = ['Upfront pricing', 'Quality parts', 'Same-day service'];
       </div>
 
       <!-- Right: image -->
-      <div class="relative">
+      <div class="relative" data-anim="hero-img">
         <img
           src="/img/smart-lock-installation-Be-Secure-Locksmith-1024x768.jpeg"
           alt="Be Secure Locksmith technician installing a smart lock"

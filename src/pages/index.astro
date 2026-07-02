@@ -21,6 +21,22 @@ import StickyCallBar from '../components/sections/StickyCallBar.astro';
 const location = 'main';
 ---
 <BaseLayout title="Top Local Locksmith in Gainesville & Ocala, FL | Be Secure Locksmith" description="Licensed & insured mobile locksmith serving Gainesville, Ocala & surrounding areas since 2012." location={location}>
+  <Fragment slot="head">
+    <!-- Pre-hide hero for a flash-free GSAP reveal — only when JS is on AND motion is allowed. -->
+    <script is:inline>
+      (function () {
+        var d = document.documentElement;
+        if (window.matchMedia && window.matchMedia('(prefers-reduced-motion: reduce)').matches) return;
+        d.classList.add('gsap-anim');
+        // Failsafe: reveal even if the animation script never runs.
+        setTimeout(function () { d.classList.remove('gsap-anim'); }, 1600);
+      })();
+    </script>
+    <style is:global>
+      .gsap-anim [data-hero-col] > *,
+      .gsap-anim [data-anim="hero-img"] { opacity: 0; }
+    </style>
+  </Fragment>
   <PromoBar location={location} />
   <NavBar location={location} />
   <Hero location={location} />
@@ -39,4 +55,8 @@ const location = 'main';
   <ContactForm />
   <Footer location={location} />
   <StickyCallBar location={location} />
+
+  <script>
+    import '../components/scripts/home-anim.ts';
+  </script>
 </BaseLayout>
