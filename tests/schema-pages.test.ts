@@ -18,3 +18,30 @@ test('a generic page emits NO Organization/LocalBusiness schema', () => {
   expect(h).not.toContain('#organization');
   expect(h).not.toContain('aggregateRating');
 });
+
+test('Gainesville office page: location node + lean org, correct address & rating', () => {
+  const h = read('service-areas/locksmith-gainesville-fl/index.html');
+  expect(h).toContain('"@id":"https://besecurelocksmith.com/service-areas/locksmith-gainesville-fl/#localbusiness"');
+  expect(h).toContain('"streetAddress":"901 NW 8th Ave c17"');
+  expect(h).toContain('"reviewCount":"1330"');
+  expect(h).toContain('cid=1525264823828817691');
+  expect(h).toContain('"parentOrganization"');
+  expect(h).toContain('#organization');       // lean org node present
+  expect(h).not.toContain('"reviewCount":"2544"'); // no combined rating here
+  expect(h).not.toContain('"@type":"OfferCatalog"'); // no catalog on lean org
+});
+
+test('Ocala office page uses the Ocala address + rating', () => {
+  const h = read('service-areas/locksmith-ocala-fl/index.html');
+  expect(h).toContain('"streetAddress":"217 SE 1st Ave Suite 200-50"');
+  expect(h).toContain('"reviewCount":"1214"');
+  expect(h).toContain('cid=4138983982412980004');
+  expect(h).not.toContain('"streetAddress":"901 NW 8th Ave c17"'); // NOT Gainesville schema address
+});
+
+test('a non-office area page has no business schema', () => {
+  const h = read('service-areas/locksmith-alachua-fl/index.html');
+  expect(h).not.toContain('#localbusiness');
+  expect(h).not.toContain('#organization');
+  expect(h).not.toContain('"@type":"LocalBusiness"');
+});

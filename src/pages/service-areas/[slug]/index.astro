@@ -16,9 +16,9 @@ import Footer from '../../../components/sections/Footer.astro';
 import StickyCallBar from '../../../components/sections/StickyCallBar.astro';
 import Container from '../../../components/primitives/Container.astro';
 import { resolveLocation, resolvePhone } from '../../../lib/locations';
-import { site } from '../../../config/site';
 import { offices } from '../../../config/offices';
 import { buildAreaFaqs } from '../../../lib/area-faqs';
+import { officeBySlug, locationNode } from '../../../lib/schema';
 
 export async function getStaticPaths() {
   const areas = await getCollection('service-areas');
@@ -28,19 +28,18 @@ export async function getStaticPaths() {
 const { area } = Astro.props;
 const loc = resolveLocation(area.location);
 const phone = resolvePhone(loc);
-const office = offices[area.office ?? 'gainesville'];
+const office = officeBySlug(area.slug);        // Office | undefined
+const locNode = office ? locationNode(office.key) : null;
+const servingOffice = offices[area.office ?? 'gainesville'];
 const areaFaqs = (area.faqs && area.faqs.length)
   ? area.faqs.map((q, i) => ({ ...q, order: i + 1 }))
-  : buildAreaFaqs(area, office.label);
+  : buildAreaFaqs(area, servingOffice.label);
 const pageUrl = `https://besecurelocksmith.com/service-areas/${area.slug}/`;
 const ctaBody = `Locked out or need new locks in ${area.city}? Be Secure Locksmith is your trusted local, mobile locksmith. <a href="/contact-us/">Contact us today</a> or call now — fast, licensed, and insured service.`;
-
-const localBusinessJsonLd = {
-  '@context': 'https://schema.org', '@type': 'LocalBusiness', name: site.name, telephone: phone,
-  areaServed: { '@type': 'City', name: `${area.city}, FL` }, url: pageUrl,
-  address: { '@type': 'PostalAddress', streetAddress: loc.nap.street, addressLocality: loc.nap.city, addressRegion: loc.nap.state, postalCode: loc.nap.zip },
-  aggregateRating: { '@type': 'AggregateRating', ratingValue: site.ratingValue, reviewCount: site.ratingCount },
-};
+const pageTitle = office ? `Locksmith in ${office.label}, FL | Be Secure Locksmith` : area.title;
+const pageDesc = office
+  ? `Be Secure Locksmith's ${office.label}, FL office — mobile locksmith for car, home & business. Lockouts, rekeys, car keys & installs. Call ${office.phone}.`
+  : area.description;
 const breadcrumbJsonLd = {
   '@context': 'https://schema.org', '@type': 'BreadcrumbList',
   itemListElement: [
@@ -50,9 +49,9 @@ const breadcrumbJsonLd = {
   ],
 };
 ---
-<BaseLayout title={area.title} description={area.description} location={area.location}>
+<BaseLayout title={pageTitle} description={pageDesc} location={area.location} schema={office ? 'org-lean' : 'none'}>
   <Fragment slot="head">
-    <script type="application/ld+json" set:html={JSON.stringify(localBusinessJsonLd)} />
+    {locNode && <script type="application/ld+json" set:html={JSON.stringify(locNode)} />}
     <script type="application/ld+json" set:html={JSON.stringify(breadcrumbJsonLd)} />
   </Fragment>
 
@@ -62,7 +61,21 @@ const breadcrumbJsonLd = {
     <AreaHero city={area.city} heroSubhead={area.heroSubhead} location={area.location} />
     <TrustStrip />
     <LocalIntro city={area.city} intro={area.intro} />
-    <AreaMap area={area} />
+    {office && (
+      <section class="border-b border-border" style="background:#f4f4f4;">
+        <Container>
+          <div class="max-w-[1180px] mx-auto py-8 flex flex-wrap items-center gap-x-10 gap-y-3">
+            <div>
+              <p class="m-0 text-[12px] font-bold uppercase tracking-[1px] text-muted">Our {office.label} Office</p>
+              <p class="m-0 mt-1 text-[15px] font-semibold text-ink">{office.street}<br />{office.cityStateZip}</p>
+            </div>
+            <a href={`https://www.google.com/maps/place/?cid=${office.cid}`} target="_blank" rel="noopener noreferrer" class="text-[14px] font-semibold text-primary hover:text-primary-hover">View on Google Maps &rarr;</a>
+            <a href={`tel:${office.trackingPhone.replace(/[^0-9+]/g,'')}`} class="inline-flex items-center rounded-pill bg-call hover:bg-call-hover text-white font-bold text-[14px] px-[18px] py-[9px]">{office.phone}</a>
+          </div>
+        </Container>
+      </section>
+    )}
+    <AreaMap area={area} cid={office?.cid} />
     <ServicesGrid />
     <RelatedBlogs posts={area.relatedBlogs} city={area.city} />
     <AreaNeighborhoods city={area.city} neighborhoods={area.neighborhoods} />

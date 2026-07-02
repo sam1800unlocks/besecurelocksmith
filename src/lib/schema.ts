@@ -38,11 +38,13 @@ export function organizationNode({ homepage }: { homepage: boolean }) {
       }],
       knowsAbout: [...S.founder.knowsAbout],
     }],
-    address: {
-      '@type': 'PostalAddress',
-      streetAddress: offices.gainesville.streetSchema,
-      addressLocality: 'Gainesville', addressRegion: 'FL', postalCode: '32601', addressCountry: 'US',
-    },
+    ...(homepage ? {
+      address: {
+        '@type': 'PostalAddress',
+        streetAddress: offices.gainesville.streetSchema,
+        addressLocality: 'Gainesville', addressRegion: 'FL', postalCode: '32601', addressCountry: 'US',
+      },
+    } : {}),
     contactPoint: { '@type': 'ContactPoint', telephone: S.telephone, email: S.email, contactType: 'customer service', availableLanguage: 'English' },
     openingHoursSpecification: hoursSpec(),
     priceRange: S.priceRange,

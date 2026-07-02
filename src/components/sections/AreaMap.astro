@@ -3,10 +3,15 @@ import Container from '../primitives/Container.astro';
 import Button from '../primitives/Button.astro';
 import { offices } from '../../config/offices';
 import { telHref, site } from '../../config/site';
-const { area } = Astro.props;
+const { area, cid } = Astro.props;
 const office = offices[area.office ?? 'gainesville'];
 const mapQuery = `${area.city}, FL`;
-const mapsLink = `https://www.google.com/maps/search/?api=1&query=${encodeURIComponent(mapQuery)}`;
+const embedSrc = cid
+  ? `https://www.google.com/maps?cid=${cid}&output=embed`
+  : `https://maps.google.com/maps?q=${encodeURIComponent(mapQuery)}&t=&z=11&ie=UTF8&iwloc=&output=embed`;
+const mapsLink = cid
+  ? `https://www.google.com/maps/place/?cid=${cid}`
+  : `https://www.google.com/maps/search/?api=1&query=${encodeURIComponent(mapQuery)}`;
 const rt = (area.responseTime ?? '~30 min').replace('~', '');
 ---
 <section>
@@ -16,7 +21,7 @@ const rt = (area.responseTime ?? '~30 min').replace('~', '');
       <div class="grid gap-6 items-stretch" style="grid-template-columns:repeat(auto-fit,minmax(320px,1fr));">
         <div class="relative rounded-[24px] overflow-hidden border border-border" style="min-height:300px;">
           <iframe title={`Service area map for ${area.city}, FL`} loading="lazy" class="w-full h-full border-0 block" style="min-height:300px;"
-            src={`https://maps.google.com/maps?q=${encodeURIComponent(mapQuery)}&t=&z=11&ie=UTF8&iwloc=&output=embed`}></iframe>
+            src={embedSrc}></iframe>
           <a href={mapsLink} target="_blank" rel="noopener noreferrer" aria-label={`View ${area.city}, FL on Google Maps`} class="absolute inset-0 z-10 flex items-end justify-end p-3">
             <span class="inline-flex items-center rounded-pill bg-white/95 px-3 py-[7px] text-[12.5px] font-semibold text-ink shadow-[0_2px_12px_rgba(10,19,23,0.20)]">View on Google &rarr;</span>
           </a>
