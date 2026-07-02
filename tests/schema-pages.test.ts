@@ -45,3 +45,11 @@ test('a non-office area page has no business schema', () => {
   expect(h).not.toContain('#organization');
   expect(h).not.toContain('"@type":"LocalBusiness"');
 });
+
+test('contact page shows both offices and no business schema', () => {
+  const h = read('contact-us/index.html');
+  expect(h).toContain('Gainesville, FL 32601');
+  expect(h).toContain('Ocala, FL 34471');
+  expect(h).not.toContain('"@type":"LocalBusiness"');
+  expect(h).not.toContain('#organization');
+});

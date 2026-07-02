@@ -13,6 +13,7 @@ import Container from '../../components/primitives/Container.astro';
 import Button from '../../components/primitives/Button.astro';
 import { resolveLocation, resolvePhone } from '../../lib/locations';
 import { site, telHref } from '../../config/site';
+import { offices } from '../../config/offices';
 
 const location = 'main';
 const loc = resolveLocation(location);
@@ -22,11 +23,6 @@ const title = 'Contact Our Gainesville, FL Locksmith - Get Service';
 const description = 'Need a locksmith in Gainesville or Ocala, FL? Reach our licensed mobile team for home, car, and business lock service. Local, fast, and friendly. Get help now.';
 const pageUrl = 'https://besecurelocksmith.com/contact-us/';
 
-const localBusinessJsonLd = {
-  '@context': 'https://schema.org', '@type': 'LocalBusiness', name: site.name, telephone: phone, url: pageUrl,
-  address: { '@type': 'PostalAddress', streetAddress: loc.nap.street, addressLocality: loc.nap.city, addressRegion: loc.nap.state, postalCode: loc.nap.zip },
-  aggregateRating: { '@type': 'AggregateRating', ratingValue: site.ratingValue, reviewCount: site.ratingCount },
-};
 const breadcrumbJsonLd = {
   '@context': 'https://schema.org', '@type': 'BreadcrumbList',
   itemListElement: [
@@ -37,7 +33,6 @@ const breadcrumbJsonLd = {
 ---
 <BaseLayout title={title} description={description} location={location}>
   <Fragment slot="head">
-    <script type="application/ld+json" set:html={JSON.stringify(localBusinessJsonLd)} />
     <script type="application/ld+json" set:html={JSON.stringify(breadcrumbJsonLd)} />
   </Fragment>
 
@@ -72,6 +67,25 @@ const breadcrumbJsonLd = {
 
     <TrustStrip />
     <ContactMethods location={location} />
+
+    <!-- Our Offices -->
+    <Section class="bg-surface">
+      <Container>
+        <div class="max-w-[760px] mx-auto py-10">
+          <h2 class="m-0 mb-6 text-ink font-medium tracking-[-0.6px]" style="font-size:clamp(20px,2.8vw,28px);line-height:1.2;">Our Offices</h2>
+          <div class="grid gap-6 sm:grid-cols-2">
+            {Object.values(offices).map((o) => (
+              <div class="rounded-[16px] border border-border bg-white p-5">
+                <p class="m-0 text-[13px] font-bold uppercase tracking-[0.6px] text-primary">{o.label} Office</p>
+                <p class="m-0 mt-2 text-[15px] text-ink font-semibold">{o.street}<br />{o.cityStateZip}</p>
+                <a href={`tel:${o.trackingPhone.replace(/[^0-9+]/g,'')}`} class="mt-2 inline-block text-[15px] font-semibold text-primary">{o.phone}</a>
+              </div>
+            ))}
+          </div>
+        </div>
+      </Container>
+    </Section>
+
     <ContactForm />
     <ServiceAreas location={location} />
 
