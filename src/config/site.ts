@@ -16,7 +16,7 @@ export const site = {
   address: { street: '901 NW 8th Ave. C17', city: 'Gainesville', state: 'FL', zip: '32601' },
   hours: 'Mon–Fri 8am–5pm · Sat–Sun Closed',
   ratingValue: '4.9',
-  ratingCount: '2551',
+  ratingCount: '2544',
   sinceYear: '2012',
   agencyCredit: 'Powered by The Locksmith Agency',
   defaultPhone: '352-706-5295',

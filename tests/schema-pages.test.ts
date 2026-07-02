@@ -53,3 +53,16 @@ test('contact page shows both offices and no business schema', () => {
   expect(h).not.toContain('"@type":"LocalBusiness"');
   expect(h).not.toContain('#organization');
 });
+
+test('rating display uses the combined 2,544', () => {
+  const h = read('index.html');
+  expect(h).toContain('2,544');            // formatted via toLocaleString
+  expect(h).not.toContain('2,551');
+});
+
+test('About title covers both cities', () => {
+  const h = read('about/index.html');
+  const title = h.match(/<title>([^<]*)<\/title>/)?.[1] ?? '';
+  expect(title).toContain('Gainesville');
+  expect(title).toContain('Ocala');
+});
