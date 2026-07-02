@@ -19,7 +19,9 @@ Each office ranks in its own city; the correct office NAP appears in the right p
 
 - **Location model:** two co-equal staffed offices → parent **Organization** + two **`Locksmith`** location nodes.
 - **Information architecture:** *upgrade the existing* `/service-areas/locksmith-gainesville-fl/` and `/service-areas/locksmith-ocala-fl/` into full office "location pages" (keep URLs, no new competing `/locations/` pages). The other 11 service-area pages remain, each **assigned to its nearest office**.
-- **aggregateRating:** **combined** rating at the Organization level on the homepage (the overall figure the badge shows), and **individual** per-store rating + review count on each location node / location page.
+- **aggregateRating:** **combined** rating on the homepage org node only; **individual** per-store rating on each location node/page. Counts (static, hardcoded now): **Gainesville 1,330 · Ocala 1,214 · combined 2,544** (updates the stale 2,551). `ratingValue` 4.9 throughout. Update the visible badges (`Reviews`, `TrustStrip`, `testimonials`) to the combined **2,544**.
+- **Org node placement:** the **full org node** (combined rating + `hasOfferCatalog` + `subOrganization` + `areaServed` + founder/memberOf) appears on the **homepage only**. A **lean org-identity node** (same `@id`, `@type`, name, url, logo, sameAs, founder — **no** combined rating, **no** catalog) appears on the **two location pages** so each location node's `parentOrganization` resolves on-page. **No** Organization/LocalBusiness schema on any other page (about, contact, services, blog, the 11 area pages).
+- **Email:** add `info@besecurelocksmith.com` to the org node (`email` + `contactPoint.email`). (Live omits it; client wants it.)
 - **Titles/metas:** *targeted* fixes only (not a full rewrite) — optimize the two office pages, add Ocala where pages are Gainesville-only, standardize the brand suffix. Blog + already-good service titles untouched.
 
 ## Architecture
@@ -31,8 +33,8 @@ Replace the single site-wide `LocalBusiness` with:
 - **Organization node** — `@id = https://besecurelocksmith.com/#organization`
   - `name`, `url`, `logo` (ImageObject), `image`, `description`, `sameAs` (both GBP `kgmid`/CID, all socials + directories: Facebook, Instagram, Yelp, LinkedIn, YouTube, 1800unlocks, Fair Trade, Chamber, ALOA, BNI), `contactPoint`.
   - `legalName`, `foundingDate`, `founder`, `hasCredential`, `memberOf`, `areaServed` (counties + cities w/ Wikipedia), and the full **`hasOfferCatalog` (34 services)** live **only** here (org-level) — matching live.
-  - Emitted **site-wide** via `BaseLayout` in place of today's default `LocalBusiness` (i.e., default becomes the Organization node with the two `subOrganization` refs).
-  - **Homepage** carries the **combined `aggregateRating`** (4.9 / 2525) on the org node. (Non-homepage pages may emit the org node without `aggregateRating`/`hasOfferCatalog` to keep it lean — confirm during planning.)
+  - **Placement:** the **full** org node (combined `aggregateRating` 4.9 / **2544**, `hasOfferCatalog`, `areaServed`, `subOrganization` → both location `@id`s, founder, memberOf) is emitted on the **homepage only**. A **lean** org-identity node (same `@id`/`@type`/name/url/logo/sameAs/founder — no combined rating, no catalog) is emitted on the **two location pages** to anchor `parentOrganization`. Remove today's default site-wide `LocalBusiness` from `BaseLayout` (via the `localBusiness` prop) so **no other page** carries org/business schema.
+  - Add `email:"info@besecurelocksmith.com"` and `contactPoint.email` to the org node.
 
 - **Two `Locksmith` location nodes (lean)** — `@id = …/service-areas/locksmith-{gainesville,ocala}-fl/#localbusiness`
   - Each `parentOrganization: { "@id": ".../#organization" }`.
@@ -56,11 +58,12 @@ Replace the single site-wide `LocalBusiness` with:
 - Emit the per-office `Locksmith` node (§1).
 - Optimized title/meta (city + primary keyword + brand).
 
-### 3. Address placement
+### 3. Address placement (visible content — separate from schema)
 
-- **Homepage / global pages:** Organization identity (no single street address presented as "the" business location); both offices surfaced in the footer (already ✓) and reachable via the two location pages.
-- **Contact page:** show **both** office NAP blocks (currently one).
-- **Each service-area / location page:** its nearest office's NAP in visible content and schema.
+- **Homepage / global pages:** no single "the business address" implied; both offices in the footer (already ✓) and via the two location pages. No org street address rendered as canonical.
+- **Contact page:** show **both** office NAP blocks in visible content (currently one). No business-schema node (per placement rule).
+- **Office location pages:** that office's NAP prominent, in content **and** its location-node schema.
+- **11 area pages:** nearest office's NAP may appear in visible content; **no** business schema.
 
 ### 4. Titles/metas (targeted)
 
@@ -73,15 +76,16 @@ Replace the single site-wide `LocalBusiness` with:
 
 **The live WordPress site already implements this exact multi-location schema** (built with the house schema skill). This project is a **port** of that proven, ranking markup into the Astro codebase — not a new build. All required values were pulled from the live homepage + the two live location pages (audited 2026-07-02). Source of truth:
 
-- **Org (homepage `/#organization`):** `@type:"Locksmith"`, `legalName:"Be Secure Locksmith LLC"`, `foundingDate:"2012-04-15"`, `priceRange:"$$"`, `paymentAccepted:"Cash, Visa, Mastercard, PayPal"`, `currenciesAccepted:"USD"`, combined `aggregateRating` 4.9 / 2525, `founder` (Netta Kaiden, Owner & Master Locksmith; `hasCredential` ALOA `AR125393`; `knowsAbout` = Wikipedia URLs), `contactPoint` tel `1-352-706-5295`, `areaServed` (Alachua/Marion/Citrus counties + Gainesville, Ocala, The Villages, Lake City, High Springs, Newberry, Williston — Wikipedia `sameAs`), `sameAs` (Gainesville `kgmid`, Yelp, Facebook, LinkedIn, Twitter, YouTube, BBB, 1800unlocks, Fair Trade, Chamber), `memberOf` (Chamber, ALOA), `hasOfferCatalog` (34 `Offer`→`Service` items, each `name` + `description` + `additionalType` Wikipedia + `priceSpecification.minPrice`), `subOrganization` → the two location `@id`s.
-- **Gainesville location** (`…/service-areas/locksmith-gainesville-fl/#localbusiness`): name "Be Secure Locksmith — Gainesville", tel `1-352-290-7035` (tracking line), address `901 NW 8th Ave c17, Gainesville FL 32601`, `geo 29.65886,-82.3345`, `hasMap` CID `1525264823828817691`, `aggregateRating` 4.9 / **1313**, `sameAs` (Gainesville `kgmid` + Gainesville Yelp/1800unlocks/Fair Trade/Chamber + FB/LinkedIn/BBB), hours Mon–Fri 08:00–17:00, `parentOrganization → #organization`.
-- **Ocala location** (`…/service-areas/locksmith-ocala-fl/#localbusiness`): name "Be Secure Locksmith — Ocala", tel `1-352-325-7953`, address `217 SE 1st Ave Suite 200-50, Ocala FL 34471`, `geo 29.1844122,-82.1355775`, `hasMap` CID `4138983982412980004`, `aggregateRating` 4.9 / **1212**, `sameAs` (Ocala `kgmid` + Ocala Yelp/1800unlocks/Fair Trade + FB/LinkedIn), hours Mon–Fri 08:00–17:00, `parentOrganization → #organization`.
+- **Org (homepage `/#organization`):** `@type:"Locksmith"`, `legalName:"Be Secure Locksmith LLC"`, `foundingDate:"2012-04-15"`, `priceRange:"$$"`, `paymentAccepted:"Cash, Visa, Mastercard, PayPal"`, `currenciesAccepted:"USD"`, combined `aggregateRating` 4.9 / 2544, `founder` (Netta Kaiden, Owner & Master Locksmith; `hasCredential` ALOA `AR125393`; `knowsAbout` = Wikipedia URLs), `contactPoint` tel `1-352-706-5295`, `areaServed` (Alachua/Marion/Citrus counties + Gainesville, Ocala, The Villages, Lake City, High Springs, Newberry, Williston — Wikipedia `sameAs`), `sameAs` (Gainesville `kgmid`, Yelp, Facebook, LinkedIn, Twitter, YouTube, BBB, 1800unlocks, Fair Trade, Chamber), `memberOf` (Chamber, ALOA), `hasOfferCatalog` (34 `Offer`→`Service` items, each `name` + `description` + `additionalType` Wikipedia + `priceSpecification.minPrice`), `subOrganization` → the two location `@id`s.
+- **Gainesville location** (`…/service-areas/locksmith-gainesville-fl/#localbusiness`): name "Be Secure Locksmith — Gainesville", tel `1-352-290-7035` (tracking line), address `901 NW 8th Ave c17, Gainesville FL 32601`, `geo 29.65886,-82.3345`, `hasMap` CID `1525264823828817691`, `aggregateRating` 4.9 / **1330**, `sameAs` (Gainesville `kgmid` + Gainesville Yelp/1800unlocks/Fair Trade/Chamber + FB/LinkedIn/BBB), hours Mon–Fri 08:00–17:00, `parentOrganization → #organization`.
+- **Ocala location** (`…/service-areas/locksmith-ocala-fl/#localbusiness`): name "Be Secure Locksmith — Ocala", tel `1-352-325-7953`, address `217 SE 1st Ave Suite 200-50, Ocala FL 34471`, `geo 29.1844122,-82.1355775`, `hasMap` CID `4138983982412980004`, `aggregateRating` 4.9 / **1214**, `sameAs` (Ocala `kgmid` + Ocala Yelp/1800unlocks/Fair Trade + FB/LinkedIn), hours Mon–Fri 08:00–17:00, `parentOrganization → #organization`.
 
 **Notes / reconciliations:**
-- Combined = sum of locations: **1313 + 1212 = 2525** (homepage). Our current hardcoded `2551` is stale → replace with per-location `1313`/`1212` + combined `2525`.
+- Combined = sum of locations: **1330 + 1214 = 2544** (homepage). Our current hardcoded `2551` is stale → replace with per-location `1330`/`1214` + combined `2544`.
 - Phones: **location nodes use the tracking numbers** (Gainesville `352-290-7035`, Ocala `352-325-7953`); the org `contactPoint` uses the main `352-706-5295`. Store these in `offices.ts` (extend with `trackingPhone`, `geo`, `cid`, `reviewCount`, `email?`).
 - Phone format on live uses the `1-###-###-####` form (not the skill's plain dashed form) — match live for parity.
-- Live schema **omits `email` and org-level `geo`/`hasMap`** (geo/CID live only on the location nodes). Follow live; optionally add `email` (skill lists it) — confirm with user.
+- Live schema **omits `email` and org-level `geo`/`hasMap`** (geo/CID live only on the location nodes). Follow live for geo/hasMap; **add `email:"info@besecurelocksmith.com"`** to the org node per client.
+- Counts updated per client (static for now): **Gainesville 1,330 · Ocala 1,214 · combined 2,544** (live audit showed 1313/1212/2525).
 - Review counts drift; this port hardcodes the audited values. The paused live-reviews project will later auto-refresh them (see Out of scope).
 
 ## Out of scope (separate/paused efforts)
