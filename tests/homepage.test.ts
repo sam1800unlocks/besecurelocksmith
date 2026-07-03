@@ -11,9 +11,11 @@
  */
 import { test, expect } from 'vitest';
 import { existsSync, readFileSync } from 'node:fs';
-import { resolve } from 'node:path';
+import { resolve, join } from 'node:path';
 
 const distPath = resolve(__dirname, '../dist/index.html');
+const dist = resolve(__dirname, '..', 'dist');
+const read = (p: string) => { const f = join(dist, p); if (!existsSync(f)) throw new Error(`dist ${p} missing — run \`npm run build\``); return readFileSync(f, 'utf8'); };
 
 test('homepage composes all sections and never leaks a non-resolved number', () => {
   if (!existsSync(distPath)) {
@@ -39,4 +41,13 @@ test('homepage composes all sections and never leaks a non-resolved number', () 
   // Homepage emits a Locksmith org node (combined 2544-review rating) — not the old generic LocalBusiness
   expect(distHtml, 'missing Locksmith org JSON-LD').toContain('"@type":"Locksmith"');
   expect(distHtml, 'missing FAQPage JSON-LD').toContain('"@type":"FAQPage"');
+});
+
+test('homepage shows the two-office band before the service-area list', () => {
+  const h = read('index.html');
+  expect(h).toContain('Visit Our Gainesville &amp; Ocala Offices');
+  expect(h).toContain('View Gainesville details');
+  expect(h).toContain('View Ocala details');
+  // band appears before the ServiceAreas city list (which links Belleview)
+  expect(h.indexOf('Visit Our Gainesville')).toBeLessThan(h.indexOf('/service-areas/locksmith-belleview-fl/'));
 });
