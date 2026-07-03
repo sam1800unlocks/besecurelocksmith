@@ -15,7 +15,7 @@ import { resolveLocation, resolvePhone } from '../../lib/locations';
 const location = 'main';
 const phone = resolvePhone(resolveLocation(location));
 const title = 'Our Locksmith Offices in Gainesville & Ocala, FL | Be Secure Locksmith';
-const description = "Be Secure Locksmith has two staffed, licensed mobile locksmith offices — Gainesville and Ocala, FL. See each office's address, hours, phone, and directions.";
+const description = "Be Secure Locksmith has two licensed, insured mobile locksmith offices — Gainesville and Ocala, FL. See each office's address, hours, phone, and directions.";
 const pageUrl = 'https://besecurelocksmith.com/locations/';
 const breadcrumbJsonLd = {
   '@context': 'https://schema.org', '@type': 'BreadcrumbList',
@@ -41,7 +41,7 @@ const breadcrumbJsonLd = {
             <a href="/" class="hover:text-white">Home</a><span aria-hidden="true">/</span><span class="text-white">Locations</span>
           </nav>
           <h1 class="m-0 mb-4 font-medium text-white max-w-[820px]" style="font-size:clamp(32px,5.2vw,56px);line-height:1.08;letter-spacing:-1.2px;">Our Locksmith Offices in Gainesville &amp; Ocala, FL</h1>
-          <p class="m-0 mb-7 text-[18px] leading-[1.4] text-white/80 max-w-[680px]">Two staffed, licensed, and insured mobile locksmith offices serving North Central Florida since 2012.</p>
+          <p class="m-0 mb-7 text-[18px] leading-[1.4] text-white/80 max-w-[680px]">Two licensed and insured mobile locksmith offices serving North Central Florida since 2012.</p>
           <div class="flex flex-wrap gap-3">
             <Button href={telHref(phone)} variant="call">{phone}</Button>
             <Button href={site.bookingUrl} variant="booking" target="_blank" rel="noopener noreferrer">Book Now</Button>
@@ -50,7 +50,7 @@ const breadcrumbJsonLd = {
       </Container>
     </section>
     <TrustStrip />
-    <OfficesBand heading="Two Staffed Offices, One Trusted Team" subheading="Each office runs its own local mobile team for car, home, and business locksmith service. Call the office nearest you or get directions below." />
+    <OfficesBand heading="Two Offices, One Trusted Team" subheading="Each office runs its own local mobile team for car, home, and business locksmith service. Call the office nearest you or get directions below." />
     <Section class="bg-surface">
       <Container>
         <div class="max-w-[1180px] mx-auto py-12 text-center">
