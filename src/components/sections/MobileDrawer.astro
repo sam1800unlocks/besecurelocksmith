@@ -1,6 +1,6 @@
 ---
 import { resolveLocation, resolvePhone } from '../../lib/locations';
-import { telHref, site, nav as navTabs, serviceMenu } from '../../config/site';
+import { telHref, site, nav as navTabs, serviceMenu, aboutMenu, locationsMenu } from '../../config/site';
 
 const { location = 'main' } = Astro.props;
 const loc = resolveLocation(location);
@@ -41,18 +41,22 @@ const phone = resolvePhone(loc);
               <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round" class="transition-transform group-open/svc:rotate-180" aria-hidden="true"><polyline points="6 9 12 15 18 9"/></svg>
             </summary>
             <div class="flex flex-col gap-3 pl-4 pb-2 pt-1">
-              {serviceMenu.map((grp) => (
-                <div>
-                  {grp.href ? (
-                    <a href={grp.href} data-drawer-close class="block px-2 py-1 text-[12px] font-bold uppercase tracking-[0.6px] text-primary">{grp.label}</a>
-                  ) : (
-                    <span class="block px-2 py-1 text-[12px] font-bold uppercase tracking-[0.6px] text-muted-2">{grp.label}</span>
-                  )}
-                  {grp.items.map((it) => (
-                    <a href={it.href} data-drawer-close class="block px-2 py-[7px] text-[14px] text-ink rounded-md hover:bg-surface">{it.label}</a>
-                  ))}
-                </div>
-              ))}
+              {tab.dropdown === 'services' ? (
+                serviceMenu.map((grp) => (
+                  <div>
+                    {grp.href ? (
+                      <a href={grp.href} data-drawer-close class="block px-2 py-1 text-[12px] font-bold uppercase tracking-[0.6px] text-primary">{grp.label}</a>
+                    ) : (
+                      <span class="block px-2 py-1 text-[12px] font-bold uppercase tracking-[0.6px] text-muted-2">{grp.label}</span>
+                    )}
+                    {grp.items.map((it) => (<a href={it.href} data-drawer-close class="block px-2 py-[7px] text-[14px] text-ink rounded-md hover:bg-surface">{it.label}</a>))}
+                  </div>
+                ))
+              ) : (
+                (tab.dropdown === 'about' ? aboutMenu : locationsMenu).map((it) => (
+                  <a href={it.href} data-drawer-close class="block px-2 py-[7px] text-[14px] text-ink rounded-md hover:bg-surface">{it.label}</a>
+                ))
+              )}
             </div>
           </details>
         ) : (

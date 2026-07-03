@@ -1,6 +1,6 @@
 ---
 import { resolveLocation, resolvePhone, resolveSocials } from '../../lib/locations';
-import { telHref, site, nav as navTabs, serviceMenu } from '../../config/site';
+import { telHref, site, nav as navTabs, serviceMenu, aboutMenu, locationsMenu } from '../../config/site';
 import MobileDrawer from './MobileDrawer.astro';
 
 const { location = 'main' } = Astro.props;
@@ -22,45 +22,44 @@ const headerSocials = resolveSocials(loc).slice(0, 3);
       {navTabs.map((tab) => (
         tab.dropdown ? (
           <div class="relative group">
-            <button
-              type="button"
-              aria-haspopup="true"
-              class="inline-flex items-center gap-1 text-sm font-semibold px-2.5 py-2 rounded-md tracking-[-0.14px] whitespace-nowrap transition-colors text-ink hover:text-primary group-hover:text-primary cursor-default bg-transparent border-0"
-            >
+            <button type="button" aria-haspopup="true" class="inline-flex items-center gap-1 text-sm font-semibold px-2.5 py-2 rounded-md tracking-[-0.14px] whitespace-nowrap transition-colors text-ink hover:text-primary group-hover:text-primary cursor-default bg-transparent border-0">
               {tab.label}
               <svg width="11" height="11" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round" class="transition-transform group-hover:rotate-180" aria-hidden="true"><polyline points="6 9 12 15 18 9"/></svg>
             </button>
-            <!-- Mega-menu panel (server-rendered links; revealed on hover/focus) -->
             <div class="hidden group-hover:block group-focus-within:block absolute left-1/2 -translate-x-1/2 top-full pt-3 z-50">
-              <div class="w-[680px] max-w-[92vw] bg-white border border-border rounded-2xl p-6 grid grid-cols-3 gap-x-6 gap-y-4" style="box-shadow:0 18px 50px rgba(10,19,23,0.16);">
-                {serviceMenu.map((grp) => (
-                  <div>
-                    {grp.href ? (
-                      <a href={grp.href} class="block mb-2.5 text-[12px] font-bold uppercase tracking-[0.6px] text-primary hover:underline">{grp.label}</a>
+              {tab.dropdown === 'services' ? (
+                <div class="w-[620px] max-w-[92vw] bg-white border border-border rounded-2xl p-6 grid grid-cols-2 gap-x-8 gap-y-5" style="box-shadow:0 18px 50px rgba(10,19,23,0.16);">
+                  {serviceMenu.map((grp) => (
+                    <div>
+                      {grp.href ? (
+                        <a href={grp.href} class="block mb-2.5 text-[12px] font-bold uppercase tracking-[0.6px] text-primary hover:underline">{grp.label}</a>
+                      ) : (
+                        <span class="block mb-2.5 text-[12px] font-bold uppercase tracking-[0.6px] text-muted-2">{grp.label}</span>
+                      )}
+                      <ul class="flex flex-col gap-1.5 m-0 p-0 list-none">
+                        {grp.items.map((it) => (<li><a href={it.href} class="text-[14px] leading-[1.4] text-ink hover:text-primary transition-colors">{it.label}</a></li>))}
+                      </ul>
+                    </div>
+                  ))}
+                </div>
+              ) : (
+                <div class="w-[290px] bg-white border border-border rounded-2xl p-3" style="box-shadow:0 18px 50px rgba(10,19,23,0.16);">
+                  {(tab.dropdown === 'about' ? aboutMenu : locationsMenu).map((it) => (
+                    it.cta ? (
+                      <a href={it.href} class="block mt-1 px-3 py-2.5 text-[13px] font-bold uppercase tracking-[0.6px] text-primary border-t border-border hover:underline">{it.label} &rarr;</a>
                     ) : (
-                      <span class="block mb-2.5 text-[12px] font-bold uppercase tracking-[0.6px] text-muted-2">{grp.label}</span>
-                    )}
-                    <ul class="flex flex-col gap-1.5 m-0 p-0 list-none">
-                      {grp.items.map((it) => (
-                        <li><a href={it.href} class="text-[14px] leading-[1.4] text-ink hover:text-primary transition-colors">{it.label}</a></li>
-                      ))}
-                    </ul>
-                  </div>
-                ))}
-              </div>
+                      <a href={it.href} class="block px-3 py-2.5 rounded-lg hover:bg-surface">
+                        <span class="block text-[14px] font-semibold text-ink">{it.label}</span>
+                        {it.sub && <span class="block text-[12px] text-muted">{it.sub}</span>}
+                      </a>
+                    )
+                  ))}
+                </div>
+              )}
             </div>
           </div>
         ) : (
-          <a
-            href={tab.href}
-            class={`text-sm font-semibold px-2.5 py-2 rounded-md tracking-[-0.14px] whitespace-nowrap transition-colors ${
-              tab.active
-                ? 'text-primary'
-                : 'text-ink hover:text-primary'
-            }`}
-          >
-            {tab.label}
-          </a>
+          <a href={tab.href} class={`text-sm font-semibold px-2.5 py-2 rounded-md tracking-[-0.14px] whitespace-nowrap transition-colors ${tab.active ? 'text-primary' : 'text-ink hover:text-primary'}`}>{tab.label}</a>
         )
       ))}
     </div>

@@ -65,37 +65,49 @@ export const serviceAreas = [
 
 export const nav = [
   { label: 'Home',          href: '/',              active: true },
-  { label: 'About',         href: '/about/' },
-  { label: 'Services',      href: '/#services',     dropdown: true },
+  { label: 'About',         href: '/about/',        dropdown: 'about' },
+  { label: 'Services',      href: '/#services',     dropdown: 'services' },
   { label: 'Price List',    href: '/price-list/' },
   { label: 'Service Areas', href: '/service-areas/' },
-  { label: 'Testimonials',  href: '/testimonials/' },
+  { label: 'Locations',     href: '/locations/',    dropdown: 'locations' },
   { label: 'Blog',          href: '/blog/' },
   { label: 'Contact',       href: '/contact-us/' },
 ] as const;
 
-// Services dropdown, grouped exactly like the live site's "Our Services" menu.
-// Group headers Automotive/Commercial are themselves service pages (href set);
-// "Lock Services" is a category label (no page).
+type NavMenuItem = { label: string; href: string; sub?: string; cta?: boolean };
+
+export const aboutMenu: NavMenuItem[] = [
+  { label: 'About Us',     href: '/about/' },
+  { label: 'Testimonials', href: '/testimonials/' },
+  { label: 'Careers',      href: '/employment/' },
+];
+
+export const locationsMenu: NavMenuItem[] = [
+  { label: 'Gainesville Office', href: '/service-areas/locksmith-gainesville-fl/', sub: '901 NW 8th Ave. C17' },
+  { label: 'Ocala Office',       href: '/service-areas/locksmith-ocala-fl/',       sub: '217 SE 1st Ave. Suite 200-50' },
+  { label: 'View all locations', href: '/locations/', cta: true },
+];
+
 export const serviceMenu = [
   { label: 'Automotive', href: '/services/automotive-locksmith/', items: [
     { label: 'Car Key Programming',  href: '/services/car-key-programming/' },
     { label: 'Car Key Replacement',  href: '/services/car-key-replacement/' },
     { label: 'Ignition Repair',      href: '/services/ignition-repair/' },
   ] },
+  { label: 'Residential', href: '/services/residential-locksmith/', items: [
+    { label: 'Lock Rekeying',        href: '/services/lock-rekeying/' },
+    { label: 'Lock Repair',          href: '/services/lock-repair/' },
+    { label: 'New Lock Installation',href: '/services/new-lock-installation/' },
+  ] },
   { label: 'Commercial', href: '/services/commercial-locksmith/', items: [
     { label: 'Interchangeable Core Locks', href: '/services/interchangeable-core-locks/' },
     { label: 'Master Key Systems',         href: '/services/master-key-systems/' },
+    { label: 'Property Management',        href: '/services/property-management/' },
   ] },
   { label: 'Lock Services', href: '', items: [
     { label: 'Emergency Lockout Service',  href: '/services/emergency-lockouts/' },
     { label: 'Key Duplication',            href: '/services/key-duplication/' },
-    { label: 'New Lock Installation',      href: '/services/new-lock-installation/' },
-    { label: 'Lock Repair',                href: '/services/lock-repair/' },
-    { label: 'Lock Rekeying',              href: '/services/lock-rekeying/' },
     { label: 'Mailbox Lock Installation',  href: '/services/mailbox-lock-installation/' },
-    { label: 'Property Management',        href: '/services/property-management/' },
-    { label: 'Residential',                href: '/services/residential-locksmith/' },
     { label: 'Safe Locksmith',             href: '/services/safe-locksmith/' },
     { label: 'Smart Lock Installation',    href: '/services/smart-lock-installation/' },
   ] },
