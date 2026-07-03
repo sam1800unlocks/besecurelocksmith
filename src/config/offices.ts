@@ -13,6 +13,7 @@ export interface Office {
   trackingPhone: string;      // "1-352-290-7035" (schema/CTA on the location page)
   email: string;
   geo: { lat: number; lng: number };
+  hoursDisplay: string;
   cid: string;
   kgmid: string;              // "/g/1ptx2pkfg"
   ratingValue: string;        // "4.9"
@@ -28,6 +29,7 @@ export const offices: Record<OfficeKey, Office> = {
     street: '901 NW 8th Ave. C17', cityStateZip: 'Gainesville, FL 32601',
     city: 'Gainesville', state: 'FL', zip: '32601',
     streetSchema: '901 NW 8th Ave c17',
+    hoursDisplay: 'Mon–Fri 8 am–5 pm',
     phone: '352-706-5295', trackingPhone: '1-352-290-7035',
     email: 'info@besecurelocksmith.com',
     geo: { lat: 29.65886, lng: -82.3345 },
@@ -51,6 +53,7 @@ export const offices: Record<OfficeKey, Office> = {
     street: '217 SE 1st Ave. Suite 200-50', cityStateZip: 'Ocala, FL 34471',
     city: 'Ocala', state: 'FL', zip: '34471',
     streetSchema: '217 SE 1st Ave Suite 200-50',
+    hoursDisplay: 'Mon–Fri 8 am–5 pm',
     phone: '352-325-7953', trackingPhone: '1-352-325-7953',
     email: 'info@besecurelocksmith.com',
     geo: { lat: 29.1844122, lng: -82.1355775 },
