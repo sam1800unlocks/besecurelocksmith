@@ -5,7 +5,7 @@ import NavBar from '../../components/sections/NavBar.astro';
 import TrustStrip from '../../components/sections/TrustStrip.astro';
 import ContactMethods from '../../components/sections/ContactMethods.astro';
 import ContactForm from '../../components/sections/ContactForm.astro';
-import ServiceAreas from '../../components/sections/ServiceAreas.astro';
+import OfficesBand from '../../components/sections/OfficesBand.astro';
 import Footer from '../../components/sections/Footer.astro';
 import StickyCallBar from '../../components/sections/StickyCallBar.astro';
 import Section from '../../components/primitives/Section.astro';
@@ -13,13 +13,11 @@ import Container from '../../components/primitives/Container.astro';
 import Button from '../../components/primitives/Button.astro';
 import { resolveLocation, resolvePhone } from '../../lib/locations';
 import { site, telHref } from '../../config/site';
-import { offices } from '../../config/offices';
-
 const location = 'main';
 const loc = resolveLocation(location);
 const phone = resolvePhone(loc);
 
-const title = 'Contact Our Gainesville, FL Locksmith - Get Service';
+const title = 'Contact Our Gainesville & Ocala, FL Locksmith';
 const description = 'Need a locksmith in Gainesville or Ocala, FL? Reach our licensed mobile team for home, car, and business lock service. Local, fast, and friendly. Get help now.';
 const pageUrl = 'https://besecurelocksmith.com/contact-us/';
 
@@ -68,26 +66,16 @@ const breadcrumbJsonLd = {
     <TrustStrip />
     <ContactMethods location={location} />
 
-    <!-- Our Offices -->
+    <OfficesBand heading="Our Offices" />
+
+    <ContactForm />
     <Section class="bg-surface">
       <Container>
-        <div class="max-w-[760px] mx-auto py-10">
-          <h2 class="m-0 mb-6 text-ink font-medium tracking-[-0.6px]" style="font-size:clamp(20px,2.8vw,28px);line-height:1.2;">Our Offices</h2>
-          <div class="grid gap-6 sm:grid-cols-2">
-            {Object.values(offices).map((o) => (
-              <div class="rounded-[16px] border border-border bg-white p-5">
-                <p class="m-0 text-[13px] font-bold uppercase tracking-[0.6px] text-primary">{o.label} Office</p>
-                <p class="m-0 mt-2 text-[15px] text-ink font-semibold">{o.street}<br />{o.cityStateZip}</p>
-                <a href={`tel:${o.trackingPhone.replace(/[^0-9+]/g,'')}`} class="mt-2 inline-block text-[15px] font-semibold text-primary">{o.phone}</a>
-              </div>
-            ))}
-          </div>
+        <div class="max-w-[760px] mx-auto py-10 text-center">
+          <p class="m-0 text-[16px] leading-[1.6] text-secondary">We also serve 13+ nearby cities across North Central Florida. <a href="/service-areas/" class="text-primary font-semibold underline">See all service areas &rarr;</a></p>
         </div>
       </Container>
     </Section>
-
-    <ContactForm />
-    <ServiceAreas location={location} />
 
     <!-- What's next -->
     <Section class="bg-surface">
