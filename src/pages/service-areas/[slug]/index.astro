@@ -13,7 +13,6 @@ import AreaNeighborhoods from '../../../components/sections/AreaNeighborhoods.as
 import Faq from '../../../components/sections/Faq.astro';
 import CtaCard from '../../../components/sections/CtaCard.astro';
 import Footer from '../../../components/sections/Footer.astro';
-import StickyCallBar from '../../../components/sections/StickyCallBar.astro';
 import Container from '../../../components/primitives/Container.astro';
 import { resolveLocation, resolvePhone } from '../../../lib/locations';
 import { offices } from '../../../config/offices';
@@ -89,5 +88,4 @@ const breadcrumbJsonLd = {
     </section>
   </main>
   <Footer location={area.location} />
-  <StickyCallBar location={area.location} />
 </BaseLayout>

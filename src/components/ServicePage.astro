@@ -3,7 +3,6 @@ import BaseLayout from '../layouts/BaseLayout.astro';
 import PromoBar from './sections/PromoBar.astro';
 import NavBar from './sections/NavBar.astro';
 import Footer from './sections/Footer.astro';
-import StickyCallBar from './sections/StickyCallBar.astro';
 import Container from './primitives/Container.astro';
 import Button from './primitives/Button.astro';
 import TrustStrip from './sections/TrustStrip.astro';
@@ -306,7 +305,6 @@ const sections = orderedBlocks.filter((b) => b.t === 'h3' && !/^Why Choose/.test
   </main>
 
   <Footer location={location} />
-  <StickyCallBar location={location} />
 
   <script>
     import './scripts/faq.ts';

@@ -44,8 +44,8 @@ const ratingCount = Number(site.ratingCount).toLocaleString('en-US');
         <div class="inline-flex items-center gap-3 bg-white border border-border rounded-[16px] px-[18px] py-3">
           <img src="/img/google-g-icon.svg" alt="Google" class="w-[26px] h-[26px]" />
           <div class="text-left">
-            <div class="text-[14px] font-bold text-ink">Excellent · {site.ratingValue}</div>
-            <div class="text-[12px] text-muted">Based on {ratingCount} reviews</div>
+            <div class="text-[14px] font-bold text-ink">Excellent · <span data-countup={site.ratingValue} data-countup-decimals="1">{site.ratingValue}</span></div>
+            <div class="text-[12px] text-muted">Based on <span data-countup={site.ratingCount}>{ratingCount}</span> reviews</div>
           </div>
           <Stars />
         </div>
@@ -78,10 +78,10 @@ const ratingCount = Number(site.ratingCount).toLocaleString('en-US');
          No-JS fallback: viewport is overflow-x:auto so it's scrollable.
          With JS (reviews.ts): buttons call scrollBy on the viewport.         -->
     <div class="overflow-x-auto" data-reviews-viewport tabindex="0" role="region" aria-label="Customer reviews">
-      <div class="flex gap-4 pb-1" data-reviews-track>
+      <div class="flex gap-4 pb-1" data-reviews-track data-cards>
         {sorted.map((rv) => (
           <Card class="flex-none w-[360px] max-w-[84vw] p-7 flex flex-col gap-[14px]">
-            <Stars />
+            <span data-star-draw class="inline-block overflow-hidden"><Stars /></span>
             <p class="m-0 text-base leading-[1.5] tracking-[-0.16px] text-body flex-1">
               &#x201C;{rv.quote}&#x201D;
             </p>
