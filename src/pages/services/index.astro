@@ -1,0 +1,127 @@
+---
+import BaseLayout from '../../layouts/BaseLayout.astro';
+import PromoBar from '../../components/sections/PromoBar.astro';
+import NavBar from '../../components/sections/NavBar.astro';
+import TrustStrip from '../../components/sections/TrustStrip.astro';
+import Footer from '../../components/sections/Footer.astro';
+import Section from '../../components/primitives/Section.astro';
+import Container from '../../components/primitives/Container.astro';
+import Button from '../../components/primitives/Button.astro';
+import { site, telHref, serviceMenu } from '../../config/site';
+import { resolveLocation, resolvePhone } from '../../lib/locations';
+
+const location = 'main';
+const phone = resolvePhone(resolveLocation(location));
+
+const title = 'Locksmith Services - Gainesville & Ocala, FL | Be Secure';
+const description = 'Explore our full range of locksmith services in Gainesville & Ocala, FL — automotive, residential, commercial, and emergency lockout help. Licensed & mobile. Call today.';
+const pageUrl = 'https://besecurelocksmith.com/services/';
+
+// Short blurb per group to add context under each heading.
+const groupBlurbs = {
+  Automotive: 'Car keys, fobs, and ignitions — cut, programmed, and repaired on-site.',
+  Residential: 'Rekeying, repairs, and new installs to keep your home secure.',
+  Commercial: 'Master key systems and access control for offices and property managers.',
+  'Lock Services': 'Everyday lock help — from emergency lockouts to safes and smart locks.',
+};
+
+const breadcrumbJsonLd = {
+  '@context': 'https://schema.org', '@type': 'BreadcrumbList',
+  itemListElement: [
+    { '@type': 'ListItem', position: 1, name: 'Home', item: 'https://besecurelocksmith.com/' },
+    { '@type': 'ListItem', position: 2, name: 'Services', item: pageUrl },
+  ],
+};
+const allServices = serviceMenu.flatMap((g) => [
+  ...(g.href ? [{ label: `${g.label} Locksmith`, href: g.href }] : []),
+  ...g.items,
+]);
+const itemListJsonLd = {
+  '@context': 'https://schema.org', '@type': 'ItemList', name: 'Locksmith Services',
+  itemListElement: allServices.map((s, i) => ({ '@type': 'ListItem', position: i + 1, name: s.label, item: `https://besecurelocksmith.com${s.href}` })),
+};
+
+const keySvg = '<svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M21 2l-2 2m-7.61 7.61a5.5 5.5 0 1 1-7.778 7.778 5.5 5.5 0 0 1 7.777-7.777zm0 0L15.5 7.5m0 0l3 3L22 7l-3-3"/></svg>';
+---
+<BaseLayout title={title} description={description} location={location}>
+  <Fragment slot="head">
+    <script type="application/ld+json" set:html={JSON.stringify(breadcrumbJsonLd)} />
+    <script type="application/ld+json" set:html={JSON.stringify(itemListJsonLd)} />
+  </Fragment>
+  <PromoBar location={location} />
+  <NavBar location={location} />
+  <main>
+    <!-- HERO -->
+    <section class="relative overflow-hidden text-white" style="background:linear-gradient(160deg,#0e4a8f 0%,#0b2f5e 42%,#0a1830 100%);">
+      <div class="absolute inset-0 opacity-[0.09]" style="background-image:radial-gradient(circle at 1px 1px,#ffffff 1px,transparent 0);background-size:22px 22px;"></div>
+      <div class="absolute -top-28 -right-20 w-[540px] h-[540px] rounded-full pointer-events-none" style="background:radial-gradient(circle,rgba(56,150,255,0.60),transparent 70%);"></div>
+      <Container>
+        <div class="relative max-w-[1180px] mx-auto py-14 md:py-20">
+          <nav aria-label="Breadcrumb" class="mb-5 flex flex-wrap items-center gap-2 text-[13px] text-white/70">
+            <a href="/" class="hover:text-white">Home</a>
+            <span aria-hidden="true">/</span>
+            <span class="text-white">Services</span>
+          </nav>
+          <h1 class="m-0 mb-4 font-medium text-white max-w-[820px]" style="font-size:clamp(32px,5.2vw,56px);line-height:1.08;letter-spacing:-1.2px;">
+            Our Locksmith Services
+          </h1>
+          <p class="m-0 mb-7 text-[18px] leading-[1.4] text-white/80 max-w-[680px]">
+            Licensed, mobile locksmiths for cars, homes, and businesses across Gainesville, Ocala, and North Central FL — including fast emergency lockout help.
+          </p>
+          <div class="flex flex-wrap gap-3">
+            <Button href={telHref(phone)} variant="call">{phone}</Button>
+            <Button href={site.bookingUrl} variant="booking" target="_blank" rel="noopener noreferrer">Book Now</Button>
+          </div>
+        </div>
+      </Container>
+    </section>
+
+    <TrustStrip />
+
+    <Section class="py-12 md:py-16">
+      <Container>
+        <div class="max-w-[1180px] mx-auto">
+          {serviceMenu.map((group) => (
+            <div class="mb-12">
+              <div class="mb-5">
+                {group.href
+                  ? <a href={group.href} class="group inline-flex items-center gap-2 text-ink hover:text-primary transition-colors"><h2 class="m-0 font-bold text-[20px] tracking-[-0.3px]">{group.label} Locksmith</h2><span class="text-primary font-bold transition-transform group-hover:translate-x-0.5" aria-hidden="true">&rarr;</span></a>
+                  : <h2 class="m-0 text-ink font-bold text-[20px] tracking-[-0.3px]">{group.label}</h2>}
+                <p class="mt-1.5 mb-0 text-[15px] leading-[1.5] text-muted max-w-[640px]">{groupBlurbs[group.label]}</p>
+              </div>
+              <div class="grid gap-3" style="grid-template-columns:repeat(auto-fill,minmax(240px,1fr));">
+                {group.items.map((s) => (
+                  <a href={s.href} class="group rounded-[16px] border border-border bg-white px-5 py-4 flex items-center gap-3 transition-colors hover:border-primary">
+                    <span class="text-primary" set:html={keySvg}></span>
+                    <span class="font-semibold text-ink leading-tight">{s.label}</span>
+                    <span class="ml-auto text-primary font-bold transition-transform group-hover:translate-x-0.5" aria-hidden="true">&rarr;</span>
+                  </a>
+                ))}
+              </div>
+            </div>
+          ))}
+
+          <p class="text-[15px] text-secondary">Not sure what you need? <a href={telHref(phone)} class="text-primary font-semibold">Call {phone}</a> — we&rsquo;ll point you to the right service.</p>
+        </div>
+      </Container>
+    </Section>
+
+    <!-- CTA -->
+    <Section class="pb-16 md:pb-20">
+      <Container>
+        <div class="max-w-[1180px] mx-auto rounded-[24px] text-white relative overflow-hidden" style="background:linear-gradient(150deg,#0e4a8f 0%,#0b2f5e 60%,#0a1830 100%);">
+          <div class="absolute -top-24 -right-16 w-[360px] h-[360px] rounded-full pointer-events-none" style="background:radial-gradient(circle,rgba(56,150,255,0.45),transparent 70%);"></div>
+          <div class="relative p-8 md:p-12 flex flex-col items-start gap-5">
+            <h2 class="m-0 font-medium tracking-[-0.4px] max-w-[640px]" style="font-size:clamp(24px,3.4vw,34px);line-height:1.15;">Locked out or need a locksmith fast?</h2>
+            <p class="m-0 text-[17px] leading-[1.55] text-white/80 max-w-[640px]">Fast, licensed mobile service across the Gainesville and Ocala region. Call now or book online.</p>
+            <div class="flex flex-wrap gap-3">
+              <Button href={telHref(phone)} variant="call">{phone}</Button>
+              <Button href={site.bookingUrl} variant="booking" target="_blank" rel="noopener noreferrer">Book Now</Button>
+            </div>
+          </div>
+        </div>
+      </Container>
+    </Section>
+  </main>
+  <Footer location={location} />
+</BaseLayout>

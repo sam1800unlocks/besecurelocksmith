@@ -42,7 +42,9 @@ const phone = resolvePhone(loc);
             </summary>
             <div class="flex flex-col gap-3 pl-4 pb-2 pt-1">
               {tab.dropdown === 'services' ? (
-                serviceMenu.map((grp) => (
+                <>
+                <a href={tab.href} data-drawer-close class="block px-2 py-[7px] text-[14px] font-semibold text-primary rounded-md hover:bg-surface">View All Services &rarr;</a>
+                {serviceMenu.map((grp) => (
                   <div>
                     {grp.href ? (
                       <a href={grp.href} data-drawer-close class="block px-2 py-1 text-[12px] font-bold uppercase tracking-[0.6px] text-primary">{grp.label}</a>
@@ -51,7 +53,8 @@ const phone = resolvePhone(loc);
                     )}
                     {grp.items.map((it) => (<a href={it.href} data-drawer-close class="block px-2 py-[7px] text-[14px] text-ink rounded-md hover:bg-surface">{it.label}</a>))}
                   </div>
-                ))
+                ))}
+                </>
               ) : (
                 (tab.dropdown === 'about' ? aboutMenu : locationsMenu).map((it) => (
                   <a href={it.href} data-drawer-close class="block px-2 py-[7px] text-[14px] text-ink rounded-md hover:bg-surface">{it.label}</a>
