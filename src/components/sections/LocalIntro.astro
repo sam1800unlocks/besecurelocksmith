@@ -6,7 +6,7 @@ const { city, intro } = Astro.props;
   <Container>
     <div class="area-intro max-w-[1180px] mx-auto pt-14 md:pt-16 pb-6 md:pb-8">
       <h2 class="m-0 text-ink font-medium tracking-[-0.6px]" style="font-size:clamp(26px,3.4vw,34px);line-height:1.2;">
-        Your Local, Mobile Locksmith in {city}, FL
+        Trusted Locksmith Services in {city}, FL
       </h2>
       <div class="mt-3 mb-6 h-1 w-12 rounded-full bg-primary"></div>
       {intro.map((block) => <Fragment set:html={block} />)}
