@@ -45,6 +45,10 @@ const orgSchema = schema === 'org-home' ? organizationNode({ homepage: true })
   {robots && <meta name="robots" content={robots} />}
   <link rel="canonical" href={canonical} />
 
+  <!-- Favicon -->
+  <link rel="icon" type="image/png" href="/favicon.png" sizes="32x32" />
+  <link rel="apple-touch-icon" href="/favicon.png" />
+
   <!-- Open Graph / Twitter -->
   <meta property="og:site_name" content={site.name} />
   <meta property="og:title" content={title} />
