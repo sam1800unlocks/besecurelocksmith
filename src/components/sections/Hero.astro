@@ -73,15 +73,19 @@ const reassurances = ['Upfront pricing', 'Quality parts', 'Same-day service'];
 
       <!-- Right: image -->
       <div class="relative" data-anim="hero-img">
-        <img
-          src="/img/smart-lock-installation-Be-Secure-Locksmith-1024x768.jpeg"
-          alt="Be Secure Locksmith technician installing a smart lock"
-          fetchpriority="high"
-          width="1024"
-          height="768"
-          class="w-full h-auto object-cover rounded-[32px] block"
-          style="aspect-ratio:4/3;"
-        />
+        <picture>
+          <source srcset="/img/smart-lock-installation-Be-Secure-Locksmith-1024x768.avif" type="image/avif" />
+          <source srcset="/img/smart-lock-installation-Be-Secure-Locksmith-1024x768.webp" type="image/webp" />
+          <img
+            src="/img/smart-lock-installation-Be-Secure-Locksmith-1024x768.jpeg"
+            alt="Be Secure Locksmith technician installing a smart lock"
+            fetchpriority="high"
+            width="1024"
+            height="768"
+            class="w-full h-auto object-cover rounded-[32px] block"
+            style="aspect-ratio:4/3;"
+          />
+        </picture>
         <!-- Floating pill -->
         <div class="absolute left-5 bottom-5 bg-white/[0.96] backdrop-blur-sm rounded-[100px] px-[18px] py-[10px] flex items-center gap-[9px] shadow-[0_4px_18px_rgba(10,19,23,0.12)]">
           <span class="w-[9px] h-[9px] rounded-full bg-success-2 inline-block" aria-hidden="true"></span>
