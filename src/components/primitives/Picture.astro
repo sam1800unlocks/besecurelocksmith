@@ -1,0 +1,19 @@
+---
+// Renders <picture> with AVIF/WebP sources (whichever siblings exist next to
+// the original) and the original as the <img> fallback. Generate siblings with
+// `node scripts/gen-webp.mjs`. All extra attributes (alt, class, width, height,
+// loading, fetchpriority, style, …) pass through to the <img>.
+import { existsSync } from 'node:fs';
+const { src, alt = '', class: className, ...rest } = Astro.props;
+const ext = src.slice(src.lastIndexOf('.'));
+const base = src.slice(0, -ext.length);
+const webp = base + '.webp';
+const avif = base + '.avif';
+const hasWebp = existsSync('public' + webp);
+const hasAvif = existsSync('public' + avif);
+---
+<picture>
+  {hasAvif && <source srcset={avif} type="image/avif" />}
+  {hasWebp && <source srcset={webp} type="image/webp" />}
+  <img src={src} alt={alt} class={className} {...rest} />
+</picture>

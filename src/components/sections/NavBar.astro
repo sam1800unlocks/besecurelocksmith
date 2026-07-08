@@ -2,6 +2,7 @@
 import { resolveLocation, resolvePhone, resolveSocials } from '../../lib/locations';
 import { telHref, site, nav as navTabs, serviceMenu, aboutMenu, locationsMenu } from '../../config/site';
 import MobileDrawer from './MobileDrawer.astro';
+import Picture from '../primitives/Picture.astro';
 
 const { location = 'main' } = Astro.props;
 const loc = resolveLocation(location);
@@ -14,7 +15,7 @@ const headerSocials = resolveSocials(loc).slice(0, 3);
 
     <!-- Logo -->
     <a href="/" class="flex items-center flex-shrink-0">
-      <img src={site.logo} alt={site.name} class="h-[38px] md:h-[52px] w-auto block" />
+      <Picture src={site.logo} alt={site.name} class="h-[38px] md:h-[52px] w-auto block" />
     </a>
 
     <!-- Desktop nav tabs (inline only where 8 tabs fit: ≥1280px) -->

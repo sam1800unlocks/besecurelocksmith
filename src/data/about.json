@@ -8,62 +8,62 @@
     {
       "name": "Joe",
       "role": "General Manager",
-      "photo": "/img/team/joe.jpg"
+      "photo": "/img/team/joe.webp"
     },
     {
       "name": "Britney",
       "role": "Commercial Relationship Manager",
-      "photo": "/img/team/britney.png"
+      "photo": "/img/team/britney.webp"
     },
     {
       "name": "Emily",
       "role": "Customer Service Rep",
-      "photo": "/img/team/emily.jpg"
+      "photo": "/img/team/emily.webp"
     },
     {
       "name": "Courtney",
       "role": "Dispatcher",
-      "photo": "/img/team/courtney.png"
+      "photo": "/img/team/courtney.webp"
     },
     {
       "name": "Laura",
       "role": "Accounts Receivable",
-      "photo": "/img/team/laura.png"
+      "photo": "/img/team/laura.webp"
     },
     {
       "name": "Remington",
       "role": "Technician",
-      "photo": "/img/team/remington.jpg"
+      "photo": "/img/team/remington.webp"
     },
     {
       "name": "Ethan",
       "role": "Technician",
-      "photo": "/img/team/ethan.jpg"
+      "photo": "/img/team/ethan.webp"
     },
     {
       "name": "Elijah",
       "role": "Technician",
-      "photo": "/img/team/elijah.png"
+      "photo": "/img/team/elijah.webp"
     },
     {
       "name": "John",
       "role": "Technician",
-      "photo": "/img/team/john.jpeg"
+      "photo": "/img/team/john.webp"
     },
     {
       "name": "Bill",
       "role": "Technician",
-      "photo": "/img/team/bill.jpg"
+      "photo": "/img/team/bill.webp"
     },
     {
       "name": "Dillon",
       "role": "Technician",
-      "photo": "/img/team/dillon.jpg"
+      "photo": "/img/team/dillon.webp"
     },
     {
       "name": "Kobi",
       "role": "Technician",
-      "photo": "/img/team/kobi.jpg"
+      "photo": "/img/team/kobi.webp"
     }
   ]
 }

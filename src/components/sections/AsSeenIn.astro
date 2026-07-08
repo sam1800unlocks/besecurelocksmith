@@ -1,6 +1,7 @@
 ---
 import Section from '../primitives/Section.astro';
 import Container from '../primitives/Container.astro';
+import Picture from '../primitives/Picture.astro';
 
 const pressLogos = [
   { name: 'Markets Insider', file: 'markets-insider.png', href: 'https://markets.businessinsider.com/news/stocks/be-secure-locksmith-surpasses-1-300-five-star-reviews-reinforcing-position-as-gainesville-florida-s-most-trusted-locksmith-1036237273' },
@@ -23,7 +24,7 @@ const pressLogos = [
             aria-label={`Be Secure Locksmith featured on ${logo.name} (opens in a new tab)`}
             class="inline-flex items-center"
           >
-            <img
+            <Picture
               src={`/img/press/${logo.file}`}
               alt={logo.name}
               height="26"

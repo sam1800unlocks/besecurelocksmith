@@ -2,6 +2,7 @@
 import Section from '../primitives/Section.astro';
 import Container from '../primitives/Container.astro';
 import Button from '../primitives/Button.astro';
+import Picture from '../primitives/Picture.astro';
 
 const pmFeatures = [
   { label: 'Master Key Systems', icon: '/img/pm/key-chain-icon.png' },
@@ -34,7 +35,7 @@ const pmFeatures = [
         {pmFeatures.map((f) => (
           <div class="rounded-[16px] p-6 flex flex-col gap-[14px]"
                style="background:rgba(255,255,255,.06);border:1px solid rgba(255,255,255,.12);">
-            <img
+            <Picture
               src={f.icon}
               alt=""
               width="40"

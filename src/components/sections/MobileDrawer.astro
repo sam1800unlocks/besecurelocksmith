@@ -1,6 +1,7 @@
 ---
 import { resolveLocation, resolvePhone } from '../../lib/locations';
 import { telHref, site, nav as navTabs, serviceMenu, aboutMenu, locationsMenu } from '../../config/site';
+import Picture from '../primitives/Picture.astro';
 
 const { location = 'main' } = Astro.props;
 const loc = resolveLocation(location);
@@ -18,7 +19,7 @@ const phone = resolvePhone(loc);
   <div class="absolute top-0 right-0 bottom-0 w-[min(380px,86vw)] bg-white flex flex-col p-5 overflow-y-auto">
     <!-- Header -->
     <div class="flex items-center justify-between mb-6">
-      <img src={site.logo} alt={site.name} class="h-[34px]" />
+      <Picture src={site.logo} alt={site.name} class="h-[34px]" />
       <button
         data-drawer-close
         aria-label="Close"

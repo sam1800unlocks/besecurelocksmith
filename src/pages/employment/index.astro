@@ -6,6 +6,7 @@ import TrustStrip from '../../components/sections/TrustStrip.astro';
 import Footer from '../../components/sections/Footer.astro';
 import Container from '../../components/primitives/Container.astro';
 import Button from '../../components/primitives/Button.astro';
+import Picture from '../../components/primitives/Picture.astro';
 import { site, telHref } from '../../config/site';
 import { resolveLocation, resolvePhone } from '../../lib/locations';
 
@@ -111,7 +112,7 @@ const jobJsonLd = {
               </div>
 
               <figure class="m-0 mt-8">
-                <img src="/img/employment/be-secure-team.jpg" alt="The Be Secure Locksmith team" width="640" height="480" loading="lazy" class="block w-full h-auto rounded-[20px] border border-border" style="box-shadow:0 12px 34px rgba(10,19,23,0.12);" />
+                <Picture src="/img/employment/be-secure-team.jpg" alt="The Be Secure Locksmith team" width="640" height="480" loading="lazy" class="block w-full h-auto rounded-[20px] border border-border" style="box-shadow:0 12px 34px rgba(10,19,23,0.12);" />
                 <figcaption class="mt-[10px] text-[13.5px] leading-[1.5] text-muted italic">Apply today to be a part of the Be Secure Locksmith team that provides reliable, mobile locksmith services across Gainesville, Ocala, Lake City, The Villages, and other surrounding areas.</figcaption>
               </figure>
             </div>

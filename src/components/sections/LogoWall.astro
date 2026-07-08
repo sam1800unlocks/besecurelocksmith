@@ -1,6 +1,7 @@
 ---
 import Section from '../primitives/Section.astro';
 import Container from '../primitives/Container.astro';
+import Picture from '../primitives/Picture.astro';
 
 const clientLogos = [
   'All-Weather-Contractors-Logo-blue.png',
@@ -30,7 +31,7 @@ const clientLogos = [
       <div class="flex flex-wrap justify-center gap-4">
         {clientLogos.map(file => (
           <div class="bg-surface rounded-[16px] h-[92px] w-[160px] flex items-center justify-center p-[18px]">
-            <img
+            <Picture
               src={`/img/clients/${file}`}
               alt="Property management client"
               loading="lazy"

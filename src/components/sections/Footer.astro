@@ -3,6 +3,7 @@ import { telHref, smsHref, site, serviceAreas } from '../../config/site';
 import { offices } from '../../config/offices';
 import { resolveLocation, resolveSocials } from '../../lib/locations';
 import Container from '../primitives/Container.astro';
+import Picture from '../primitives/Picture.astro';
 
 const { location = 'main' } = Astro.props;
 const socials = resolveSocials(resolveLocation(location));
@@ -37,7 +38,7 @@ const socials = resolveSocials(resolveLocation(location));
     <div class="py-14 grid grid-cols-1 sm:grid-cols-2 md:grid-cols-[2fr_1fr_1fr_1fr] gap-10">
       <!-- Brand column — wider, leads the row -->
       <div class="max-w-[380px]">
-        <img src={site.logo} alt={site.name} class="h-10 mb-4" />
+        <Picture src={site.logo} alt={site.name} class="h-10 mb-4" />
         <p class="m-0 mb-3 text-[18px] font-bold tracking-[-0.2px] text-ink">
           {site.tagline}
         </p>
