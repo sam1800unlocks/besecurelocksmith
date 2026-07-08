@@ -32,7 +32,10 @@ function run() {
 
   // --- Scroll reveals: every top-level content block after the hero ---
   // Blocks containing [data-stagger] are excluded so the stagger is the only visible effect.
-  const children = Array.from(document.body.children) as HTMLElement[];
+  // Content sections live inside <main> (added for the a11y landmark); fall
+  // back to <body> so this keeps working if that ever changes.
+  const scope = (document.querySelector('main') || document.body) as HTMLElement;
+  const children = Array.from(scope.children) as HTMLElement[];
   const heroIdx = children.findIndex((el) => el.id === 'top');
   const blocks = children.slice(heroIdx + 1).filter((el) => {
     if (el.tagName === 'FOOTER') return false; // leave the footer static
