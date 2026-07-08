@@ -48,8 +48,26 @@ const siteKey = import.meta.env.PUBLIC_TURNSTILE_SITE_KEY ?? '0x4AAAAAADyGNYjgOo
   </Container>
 </Section>
 
-<script is:inline src="https://challenges.cloudflare.com/turnstile/v0/api.js" async defer></script>
 <script>
+  // Lazy-load the Turnstile script only when the form nears the viewport, so it
+  // isn't a render/main-thread cost on initial load (the form is below the fold
+  // on most pages). Turnstile auto-renders the .cf-turnstile widget on load.
+  const tsHost = document.querySelector('.cf-turnstile');
+  if (tsHost && !document.querySelector('script[src*="turnstile/v0/api.js"]')) {
+    const loadTurnstile = () => {
+      if (document.querySelector('script[src*="turnstile/v0/api.js"]')) return;
+      const s = document.createElement('script');
+      s.src = 'https://challenges.cloudflare.com/turnstile/v0/api.js';
+      s.async = true;
+      s.defer = true;
+      document.head.appendChild(s);
+    };
+    const io = new IntersectionObserver((entries, obs) => {
+      if (entries.some((e) => e.isIntersecting)) { loadTurnstile(); obs.disconnect(); }
+    }, { rootMargin: '400px' });
+    io.observe(tsHost);
+  }
+
   const form = document.querySelector('[data-contact-form]') as HTMLFormElement | null;
   const status = document.querySelector('[data-contact-status]');
   form?.addEventListener('submit', async (e) => {
