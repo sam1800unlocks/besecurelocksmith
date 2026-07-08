@@ -42,9 +42,11 @@ function run() {
     return el.offsetHeight > 0;
   });
   blocks.forEach((el) => {
-    gsap.from(el, {
-      opacity: 0,
-      y: 24,
+    // fromTo (explicit start+end) is refresh-safe; plain .from() can leave an
+    // element stuck if a ScrollTrigger.refresh() lands mid-tween.
+    gsap.fromTo(el, { opacity: 0, y: 24 }, {
+      opacity: 1,
+      y: 0,
       duration: 0.6,
       ease: 'power2.out',
       scrollTrigger: { trigger: el, start: 'top 88%', once: true },
@@ -83,9 +85,9 @@ function run() {
   // data-stagger on a container → its direct children stagger in.
   gsap.utils.toArray<HTMLElement>('[data-stagger]').forEach((container) => {
     const kids = Array.from(container.children) as HTMLElement[];
-    gsap.from(kids, {
-      opacity: 0,
-      y: 16,
+    gsap.fromTo(kids, { opacity: 0, y: 16 }, {
+      opacity: 1,
+      y: 0,
       stagger: 0.08,
       duration: 0.5,
       ease: 'power2.out',
@@ -147,9 +149,9 @@ function run() {
   const cardTrack = document.querySelector<HTMLElement>('[data-cards]');
   if (cardTrack) {
     const cards = Array.from(cardTrack.children) as HTMLElement[];
-    gsap.from(cards, {
-      opacity: 0,
-      x: 24,
+    gsap.fromTo(cards, { opacity: 0, x: 24 }, {
+      opacity: 1,
+      x: 0,
       stagger: 0.08,
       duration: 0.5,
       ease: 'power2.out',
