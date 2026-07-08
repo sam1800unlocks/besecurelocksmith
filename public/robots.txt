@@ -1,5 +1,4 @@
-# TEMPORARY pre-launch block — REMOVE before going live so the site can be indexed.
 User-agent: *
-Disallow: /
+Allow: /
 
 Sitemap: https://besecurelocksmith.com/sitemap-index.xml
