@@ -1,8 +1,9 @@
 ---
 import '../styles/tokens.css';
-// Self-hosted fonts (same-origin, no render-blocking Google Fonts request).
+// Self-hosted font (same-origin, no render-blocking Google Fonts request).
 import '@fontsource-variable/figtree';
-import '@fontsource-variable/inter';
+// Preload the primary (latin) subset so it's fetched immediately, minimizing FOUT.
+import figtreeLatin from '@fontsource-variable/figtree/files/figtree-latin-wght-normal.woff2';
 import { resolveLocation, resolvePhone } from '../lib/locations';
 import { site } from '../config/site';
 import { organizationNode } from '../lib/schema';
@@ -47,6 +48,9 @@ const orgSchema = schema === 'org-home' ? organizationNode({ homepage: true })
   {description && <meta name="description" content={description} />}
   {robots && <meta name="robots" content={robots} />}
   <link rel="canonical" href={canonical} />
+
+  <!-- Preload the primary font subset to cut FOUT / font-swap shift -->
+  <link rel="preload" href={figtreeLatin} as="font" type="font/woff2" crossorigin="anonymous" />
 
   <!-- Favicon -->
   <link rel="icon" type="image/png" href="/favicon.png" sizes="32x32" />
