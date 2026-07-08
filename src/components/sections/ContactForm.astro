@@ -2,7 +2,7 @@
 import Section from '../primitives/Section.astro';
 import Container from '../primitives/Container.astro';
 import { telHref, site } from '../../config/site';
-const siteKey = import.meta.env.PUBLIC_TURNSTILE_SITE_KEY ?? '1x00000000000000000000AA'; // CF "always passes" test key
+const siteKey = import.meta.env.PUBLIC_TURNSTILE_SITE_KEY ?? '0x4AAAAAADyGNYjgOoL-BQLJ'; // Turnstile site key (public; overridable via env)
 ---
 <Section id="contact" class="bg-surface">
   <Container>
