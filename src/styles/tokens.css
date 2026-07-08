@@ -23,8 +23,8 @@
   --color-alert: #f0284a;
   --color-link-dark: #7fb4ff;
   --color-bar-accent: #38bdf8;
-  --font-figtree: 'Figtree', system-ui, sans-serif;
-  --font-inter: 'Inter', system-ui, sans-serif;
+  --font-figtree: 'Figtree Variable', 'Figtree', system-ui, sans-serif;
+  --font-inter: 'Inter Variable', 'Inter', system-ui, sans-serif;
   --radius-card: 32px;
   --radius-box: 16px;
   --radius-pill: 100px;
@@ -32,7 +32,7 @@
 @layer base {
   *{box-sizing:border-box;}
   html,body{margin:0;padding:0;}
-  body{font-family:'Figtree','Inter',system-ui,sans-serif;color:#1c1e21;background:#fff;-webkit-font-smoothing:antialiased;text-rendering:optimizeLegibility;}
+  body{font-family:'Figtree Variable','Figtree','Inter',system-ui,sans-serif;color:#1c1e21;background:#fff;-webkit-font-smoothing:antialiased;text-rendering:optimizeLegibility;}
   a{color:inherit;text-decoration:none;}
   /* Body-content links (service pages, articles): blue + underlined, site-wide */
   .article-body :is(p, li, figcaption) a{color:#0064e0;text-decoration:underline;text-underline-offset:2px;}

@@ -8,7 +8,7 @@ const EXCLUDE = ['/privacy-policy/', '/thank-you/', '/blog/category/', '/blog/pa
 export default defineConfig({
   site: 'https://besecurelocksmith.com',
   trailingSlash: 'always',
-  build: { format: 'directory' },
+  build: { format: 'directory', inlineStylesheets: 'always' },
   integrations: [
     sitemap({
       filter: (page) => !EXCLUDE.some((p) => new URL(page).pathname.startsWith(p)),
