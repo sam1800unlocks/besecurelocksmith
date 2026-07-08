@@ -157,6 +157,31 @@ function run() {
     });
   }
 
+  // --- Keep reveal triggers accurate as lazy images settle ---
+  // Below-the-fold images (loading="lazy") finish during scroll and shift layout
+  // after ScrollTrigger's load-time refresh, which can leave reveals like the
+  // credentials row stuck at opacity:0. Re-refresh on load and as images decode.
+  let refreshQueued = 0;
+  const refresh = () => {
+    cancelAnimationFrame(refreshQueued);
+    refreshQueued = requestAnimationFrame(() => ScrollTrigger.refresh());
+  };
+  window.addEventListener('load', refresh, { once: true });
+  document.querySelectorAll<HTMLImageElement>('img').forEach((im) => {
+    if (!im.complete) im.addEventListener('load', refresh, { once: true });
+  });
+
+  // Hard failsafe: guarantee no reveal target is ever left invisible, even if a
+  // ScrollTrigger fails to fire (mirrors the hero's failsafe).
+  gsap.delayedCall(3, () => {
+    ScrollTrigger.refresh();
+    document.querySelectorAll<HTMLElement>('[data-stagger] > *, [data-cards] > *, [data-star-draw]').forEach((el) => {
+      if (parseFloat(getComputedStyle(el).opacity) < 0.05) {
+        gsap.set(el, { opacity: 1, clearProps: 'transform' });
+      }
+    });
+  });
+
   document.documentElement.classList.add('gsap-ready');
 }
 
