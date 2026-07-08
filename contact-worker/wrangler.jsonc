@@ -1,0 +1,28 @@
+/**
+ * For more details on how to configure Wrangler, refer to:
+ * https://developers.cloudflare.com/workers/wrangler/configuration/
+ */
+{
+	"$schema": "node_modules/wrangler/config-schema.json",
+	"name": "contact-worker",
+	"main": "src/index.js",
+	"compatibility_date": "2026-07-08",
+	"observability": {
+		"enabled": true
+	},
+	"upload_source_maps": true,
+	"compatibility_flags": [
+		"nodejs_compat"
+	],
+	// This Worker only answers on the custom route below — no public
+	// *.workers.dev URL or preview URLs needed. Explicit here to silence the
+	// deploy warnings and lock in the intended behavior.
+	"workers_dev": false,
+	"preview_urls": false,
+	// Same-origin route: the Worker intercepts /api/contact in front of the
+	// Pages site serving the live besecurelocksmith.com domain.
+	"routes": [
+		{ "pattern": "besecurelocksmith.com/api/contact", "zone_name": "besecurelocksmith.com" }
+	]
+	// Secrets (set via `wrangler secret put`, Step 6): RESEND_API_KEY, TURNSTILE_SECRET_KEY
+}
