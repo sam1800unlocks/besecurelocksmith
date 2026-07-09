@@ -30,7 +30,7 @@ export const offices: Record<OfficeKey, Office> = {
     city: 'Gainesville', state: 'FL', zip: '32601',
     streetSchema: '901 NW 8th Ave c17',
     hoursDisplay: 'Mon–Fri 8 am–5 pm',
-    phone: '352-706-5295', trackingPhone: '1-352-290-7035',
+    phone: '352-290-7035', trackingPhone: '1-352-290-7035',
     email: 'info@besecurelocksmith.com',
     geo: { lat: 29.65886, lng: -82.3345 },
     cid: '1525264823828817691', kgmid: '/g/1ptx2pkfg',
