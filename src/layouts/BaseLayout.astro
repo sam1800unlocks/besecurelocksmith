@@ -23,7 +23,7 @@ const {
   description = '',
   location = 'main',
   ogType = 'website',
-  ogImage,
+  ogImage = '/img/og-default.jpg',
   robots,
   schema = 'none',
 } = Astro.props;
@@ -34,6 +34,9 @@ const siteBase = Astro.site?.href ?? 'https://besecurelocksmith.com/';
 const path = Astro.url?.pathname ?? '/';
 const canonical = new URL(path, siteBase).href;
 const ogImageUrl = ogImage ? new URL(ogImage, siteBase).href : undefined;
+// Only advertise 1200x630 for our known default OG image; page-supplied
+// images may differ in size, so we omit width/height for those.
+const ogIsDefault = ogImage === '/img/og-default.jpg';
 
 const orgSchema = schema === 'org-home' ? organizationNode({ homepage: true })
   : schema === 'org-lean' ? organizationNode({ homepage: false })
@@ -63,6 +66,9 @@ const orgSchema = schema === 'org-home' ? organizationNode({ homepage: true })
   <meta property="og:type" content={ogType} />
   <meta property="og:url" content={canonical} />
   {ogImageUrl && <meta property="og:image" content={ogImageUrl} />}
+  {ogImageUrl && ogIsDefault && <meta property="og:image:width" content="1200" />}
+  {ogImageUrl && ogIsDefault && <meta property="og:image:height" content="630" />}
+  {ogImageUrl && <meta property="og:image:alt" content={title} />}
   <meta name="twitter:card" content="summary_large_image" />
   <meta name="twitter:title" content={title} />
   {description && <meta name="twitter:description" content={description} />}
