@@ -1,12 +1,9 @@
-# Cloudflare redirects (static). Format: <from>  <to>  <status>
-# One rule per source in canonical trailing-slash form; auto-trailing-slash
-# handles bare no-slash requests. Splat (*) only allowed at path end.
+# Cloudflare redirects. Static (plain path) rules first, dynamic (splat) last.
+# Workers-assets: 2000 static + 100 dynamic. Order matters: static must precede dynamic.
 
-/wp-content/*   /   301
 /WLfcZ/WZmYZ/PgMWZ/WRKWZ/ZfSZZ/XdUSV/YkWnZ/247-emergency-lockout-service/   /services/emergency-lockouts/   301
 /MfoMZ/LmahZ/RNLgZ/PpiaZ/LWQZZ/RgknZ/VQgaZ/MMLSZ/ZYmOg/MjYVT/LkLcZ/YkWnZ/247-emergency-lockout-service/   /services/emergency-lockouts/   301
 /eQMXj/ehpNo/kQXUR/new-lock-installation/   /services/new-lock-installation/   301
-
 /mailbox-lock-installation/   /services/mailbox-lock-installation/   301
 /247-emergency-lockout-service/   /services/emergency-lockouts/   301
 /automotive-locksmith/   /services/automotive-locksmith/   301
@@ -97,9 +94,6 @@
 /service-areas/locksmith-willow-oak-gainesville-fl/   /service-areas/locksmith-gainesville-fl/   301
 /service-areas/locksmith-turkey-creek-gainesville-fl/   /service-areas/locksmith-gainesville-fl/   301
 /service-areas/locksmith-university-park-gainesville-fl/   /service-areas/locksmith-gainesville-fl/   301
-
-# Bare (no-trailing-slash) twins for short/single-segment paths hit by citations.
-# Kept small on purpose — Workers-assets counts these toward the 100 'dynamic' cap.
 /mailbox-lock-installation   /services/mailbox-lock-installation/   301
 /247-emergency-lockout-service   /services/emergency-lockouts/   301
 /automotive-locksmith   /services/automotive-locksmith/   301
@@ -127,3 +121,6 @@
 /about-us   /about/   301
 /home   /   301
 /service-areas/lake-city   /service-areas/locksmith-lake-city-fl/   301
+
+# --- dynamic (splat) rules LAST ---
+/wp-content/*   /   301
