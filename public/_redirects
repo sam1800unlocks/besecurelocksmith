@@ -10,3 +10,41 @@
 
 # Stale WordPress asset paths -> homepage
 /wp-content/uploads/2023/01/bg-video.png   /   301
+
+# --- Sweep 2026-07-20: root-level service slugs -> canonical /services/ pages ---
+/automotive-locksmith/   /services/automotive-locksmith/   301
+/automotive-locksmith    /services/automotive-locksmith/   301
+/car-key-programming/   /services/car-key-programming/   301
+/car-key-programming    /services/car-key-programming/   301
+/car-key-replacement/   /services/car-key-replacement/   301
+/car-key-replacement    /services/car-key-replacement/   301
+/commercial-locksmith/   /services/commercial-locksmith/   301
+/commercial-locksmith    /services/commercial-locksmith/   301
+/emergency-lockouts/   /services/emergency-lockouts/   301
+/emergency-lockouts    /services/emergency-lockouts/   301
+/ignition-repair/   /services/ignition-repair/   301
+/ignition-repair    /services/ignition-repair/   301
+/interchangeable-core-locks/   /services/interchangeable-core-locks/   301
+/interchangeable-core-locks    /services/interchangeable-core-locks/   301
+/key-duplication/   /services/key-duplication/   301
+/key-duplication    /services/key-duplication/   301
+/lock-rekeying/   /services/lock-rekeying/   301
+/lock-rekeying    /services/lock-rekeying/   301
+/lock-repair/   /services/lock-repair/   301
+/lock-repair    /services/lock-repair/   301
+/master-key-systems/   /services/master-key-systems/   301
+/master-key-systems    /services/master-key-systems/   301
+/new-lock-installation/   /services/new-lock-installation/   301
+/new-lock-installation    /services/new-lock-installation/   301
+/property-management/   /services/property-management/   301
+/property-management    /services/property-management/   301
+/residential-locksmith/   /services/residential-locksmith/   301
+/residential-locksmith    /services/residential-locksmith/   301
+/safe-locksmith/   /services/safe-locksmith/   301
+/safe-locksmith    /services/safe-locksmith/   301
+/smart-lock-installation/   /services/smart-lock-installation/   301
+/smart-lock-installation    /services/smart-lock-installation/   301
+
+# Old ranked page never migrated -> contact page (change target if desired)
+/schedule-an-appointment/   /contact-us/   301
+/schedule-an-appointment    /contact-us/   301
