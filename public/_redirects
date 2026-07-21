@@ -97,3 +97,33 @@
 /service-areas/locksmith-willow-oak-gainesville-fl/   /service-areas/locksmith-gainesville-fl/   301
 /service-areas/locksmith-turkey-creek-gainesville-fl/   /service-areas/locksmith-gainesville-fl/   301
 /service-areas/locksmith-university-park-gainesville-fl/   /service-areas/locksmith-gainesville-fl/   301
+
+# Bare (no-trailing-slash) twins for short/single-segment paths hit by citations.
+# Kept small on purpose — Workers-assets counts these toward the 100 'dynamic' cap.
+/mailbox-lock-installation   /services/mailbox-lock-installation/   301
+/247-emergency-lockout-service   /services/emergency-lockouts/   301
+/automotive-locksmith   /services/automotive-locksmith/   301
+/car-key-programming   /services/car-key-programming/   301
+/car-key-replacement   /services/car-key-replacement/   301
+/commercial-locksmith   /services/commercial-locksmith/   301
+/emergency-lockouts   /services/emergency-lockouts/   301
+/ignition-repair   /services/ignition-repair/   301
+/interchangeable-core-locks   /services/interchangeable-core-locks/   301
+/key-duplication   /services/key-duplication/   301
+/lock-rekeying   /services/lock-rekeying/   301
+/lock-repair   /services/lock-repair/   301
+/master-key-systems   /services/master-key-systems/   301
+/new-lock-installation   /services/new-lock-installation/   301
+/property-management   /services/property-management/   301
+/residential-locksmith   /services/residential-locksmith/   301
+/safe-locksmith   /services/safe-locksmith/   301
+/smart-lock-installation   /services/smart-lock-installation/   301
+/schedule-an-appointment   /contact-us/   301
+/high-security-lock-installation   /services/new-lock-installation/   301
+/fivestars-4   /testimonials/   301
+/alachua   /service-areas/locksmith-alachua-fl/   301
+/electronic-door-locksmiths   /services/smart-lock-installation/   301
+/high-springs   /service-areas/locksmith-high-springs-fl/   301
+/about-us   /about/   301
+/home   /   301
+/service-areas/lake-city   /service-areas/locksmith-lake-city-fl/   301
