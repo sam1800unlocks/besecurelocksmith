@@ -48,3 +48,20 @@
 # Old ranked page never migrated -> contact page (change target if desired)
 /schedule-an-appointment/   /contact-us/   301
 /schedule-an-appointment    /contact-us/   301
+
+# --- Fixes 2026-07-20 (batch 2) ---
+# Renamed/removed service page -> closest canonical service
+/high-security-lock-installation/   /services/new-lock-installation/   301
+/high-security-lock-installation    /services/new-lock-installation/   301
+
+# Old review-widget page -> testimonials
+/fivestars-4/   /testimonials/   301
+/fivestars-4    /testimonials/   301
+
+# ALL stale WordPress media -> homepage (covers every /wp-content/ hotlink)
+/wp-content/*   /   301
+
+# Spam-injected garbage paths ending in a real service slug (exact; * only allowed at end)
+/WLfcZ/WZmYZ/PgMWZ/WRKWZ/ZfSZZ/XdUSV/YkWnZ/247-emergency-lockout-service/   /services/emergency-lockouts/   301
+/MfoMZ/LmahZ/RNLgZ/PpiaZ/LWQZZ/RgknZ/VQgaZ/MMLSZ/ZYmOg/MjYVT/LkLcZ/YkWnZ/247-emergency-lockout-service/   /services/emergency-lockouts/   301
+/eQMXj/ehpNo/kQXUR/new-lock-installation/   /services/new-lock-installation/   301
