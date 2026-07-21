@@ -5,3 +5,5 @@
 # Short/root service paths -> canonical /services/ URLs
 /mailbox-lock-installation/   /services/mailbox-lock-installation/   301
 /mailbox-lock-installation    /services/mailbox-lock-installation/   301
+/247-emergency-lockout-service/   /services/emergency-lockouts/   301
+/247-emergency-lockout-service    /services/emergency-lockouts/   301
