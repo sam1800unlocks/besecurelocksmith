@@ -1,207 +1,99 @@
-# Cloudflare Pages redirects.  Format: <from>  <to>  <status>
-# 301 = permanent (passes SEO link equity, tells Google the target is canonical).
-# Trailing slash matters — the site is built with trailingSlash: 'always'.
+# Cloudflare redirects (static). Format: <from>  <to>  <status>
+# One rule per source in canonical trailing-slash form; auto-trailing-slash
+# handles bare no-slash requests. Splat (*) only allowed at path end.
 
-# Short/root service paths -> canonical /services/ URLs
-/mailbox-lock-installation/   /services/mailbox-lock-installation/   301
-/mailbox-lock-installation    /services/mailbox-lock-installation/   301
-/247-emergency-lockout-service/   /services/emergency-lockouts/   301
-/247-emergency-lockout-service    /services/emergency-lockouts/   301
-
-# Stale WordPress asset paths -> homepage
-/wp-content/uploads/2023/01/bg-video.png   /   301
-
-# --- Sweep 2026-07-20: root-level service slugs -> canonical /services/ pages ---
-/automotive-locksmith/   /services/automotive-locksmith/   301
-/automotive-locksmith    /services/automotive-locksmith/   301
-/car-key-programming/   /services/car-key-programming/   301
-/car-key-programming    /services/car-key-programming/   301
-/car-key-replacement/   /services/car-key-replacement/   301
-/car-key-replacement    /services/car-key-replacement/   301
-/commercial-locksmith/   /services/commercial-locksmith/   301
-/commercial-locksmith    /services/commercial-locksmith/   301
-/emergency-lockouts/   /services/emergency-lockouts/   301
-/emergency-lockouts    /services/emergency-lockouts/   301
-/ignition-repair/   /services/ignition-repair/   301
-/ignition-repair    /services/ignition-repair/   301
-/interchangeable-core-locks/   /services/interchangeable-core-locks/   301
-/interchangeable-core-locks    /services/interchangeable-core-locks/   301
-/key-duplication/   /services/key-duplication/   301
-/key-duplication    /services/key-duplication/   301
-/lock-rekeying/   /services/lock-rekeying/   301
-/lock-rekeying    /services/lock-rekeying/   301
-/lock-repair/   /services/lock-repair/   301
-/lock-repair    /services/lock-repair/   301
-/master-key-systems/   /services/master-key-systems/   301
-/master-key-systems    /services/master-key-systems/   301
-/new-lock-installation/   /services/new-lock-installation/   301
-/new-lock-installation    /services/new-lock-installation/   301
-/property-management/   /services/property-management/   301
-/property-management    /services/property-management/   301
-/residential-locksmith/   /services/residential-locksmith/   301
-/residential-locksmith    /services/residential-locksmith/   301
-/safe-locksmith/   /services/safe-locksmith/   301
-/safe-locksmith    /services/safe-locksmith/   301
-/smart-lock-installation/   /services/smart-lock-installation/   301
-/smart-lock-installation    /services/smart-lock-installation/   301
-
-# Old ranked page never migrated -> contact page (change target if desired)
-/schedule-an-appointment/   /contact-us/   301
-/schedule-an-appointment    /contact-us/   301
-
-# --- Fixes 2026-07-20 (batch 2) ---
-# Renamed/removed service page -> closest canonical service
-/high-security-lock-installation/   /services/new-lock-installation/   301
-/high-security-lock-installation    /services/new-lock-installation/   301
-
-# Old review-widget page -> testimonials
-/fivestars-4/   /testimonials/   301
-/fivestars-4    /testimonials/   301
-
-# ALL stale WordPress media -> homepage (covers every /wp-content/ hotlink)
 /wp-content/*   /   301
-
-# Spam-injected garbage paths ending in a real service slug (exact; * only allowed at end)
 /WLfcZ/WZmYZ/PgMWZ/WRKWZ/ZfSZZ/XdUSV/YkWnZ/247-emergency-lockout-service/   /services/emergency-lockouts/   301
 /MfoMZ/LmahZ/RNLgZ/PpiaZ/LWQZZ/RgknZ/VQgaZ/MMLSZ/ZYmOg/MjYVT/LkLcZ/YkWnZ/247-emergency-lockout-service/   /services/emergency-lockouts/   301
 /eQMXj/ehpNo/kQXUR/new-lock-installation/   /services/new-lock-installation/   301
 
-# --- GSC Coverage export 2026-07-20: old hyperlocal/neighborhood + city/misc 404s ---
+/mailbox-lock-installation/   /services/mailbox-lock-installation/   301
+/247-emergency-lockout-service/   /services/emergency-lockouts/   301
+/automotive-locksmith/   /services/automotive-locksmith/   301
+/car-key-programming/   /services/car-key-programming/   301
+/car-key-replacement/   /services/car-key-replacement/   301
+/commercial-locksmith/   /services/commercial-locksmith/   301
+/emergency-lockouts/   /services/emergency-lockouts/   301
+/ignition-repair/   /services/ignition-repair/   301
+/interchangeable-core-locks/   /services/interchangeable-core-locks/   301
+/key-duplication/   /services/key-duplication/   301
+/lock-rekeying/   /services/lock-rekeying/   301
+/lock-repair/   /services/lock-repair/   301
+/master-key-systems/   /services/master-key-systems/   301
+/new-lock-installation/   /services/new-lock-installation/   301
+/property-management/   /services/property-management/   301
+/residential-locksmith/   /services/residential-locksmith/   301
+/safe-locksmith/   /services/safe-locksmith/   301
+/smart-lock-installation/   /services/smart-lock-installation/   301
+/schedule-an-appointment/   /contact-us/   301
+/high-security-lock-installation/   /services/new-lock-installation/   301
+/fivestars-4/   /testimonials/   301
 /alachua/   /service-areas/locksmith-alachua-fl/   301
-/alachua    /service-areas/locksmith-alachua-fl/   301
 /service-areas/alachua/   /service-areas/locksmith-alachua-fl/   301
-/service-areas/alachua    /service-areas/locksmith-alachua-fl/   301
 /service-areas/gainesville/   /service-areas/locksmith-gainesville-fl/   301
-/service-areas/gainesville    /service-areas/locksmith-gainesville-fl/   301
 /service-areas/locksmith-gainesville-fl-2/   /service-areas/locksmith-gainesville-fl/   301
-/service-areas/locksmith-gainesville-fl-2    /service-areas/locksmith-gainesville-fl/   301
 /service-areas/locksmith-phoenix-gainesville-fl/   /service-areas/locksmith-gainesville-fl/   301
-/service-areas/locksmith-phoenix-gainesville-fl    /service-areas/locksmith-gainesville-fl/   301
 /electronic-door-locksmiths/   /services/smart-lock-installation/   301
-/electronic-door-locksmiths    /services/smart-lock-installation/   301
 /services/electronic-door-locksmiths/   /services/smart-lock-installation/   301
-/services/electronic-door-locksmiths    /services/smart-lock-installation/   301
 /service-areas/lake-city/   /service-areas/locksmith-lake-city-fl/   301
-/service-areas/lake-city    /service-areas/locksmith-lake-city-fl/   301
 /high-springs/   /service-areas/locksmith-high-springs-fl/   301
-/high-springs    /service-areas/locksmith-high-springs-fl/   301
 /service-areas/high-springs/   /service-areas/locksmith-high-springs-fl/   301
-/service-areas/high-springs    /service-areas/locksmith-high-springs-fl/   301
 /service-areas/williston/   /service-areas/locksmith-williston-fl/   301
-/service-areas/williston    /service-areas/locksmith-williston-fl/   301
 /about-us/   /about/   301
-/about-us    /about/   301
 /service-areas/locksmith-evergreen-ocala-fl/   /service-areas/locksmith-ocala-fl/   301
-/service-areas/locksmith-evergreen-ocala-fl    /service-areas/locksmith-ocala-fl/   301
 /service-areas/locksmith-willison-fl/   /service-areas/locksmith-williston-fl/   301
-/service-areas/locksmith-willison-fl    /service-areas/locksmith-williston-fl/   301
 /service-areas/locksmith-carol-estates-gainesville-fl/   /service-areas/locksmith-gainesville-fl/   301
-/service-areas/locksmith-carol-estates-gainesville-fl    /service-areas/locksmith-gainesville-fl/   301
 /service-areas/locksmith-lincoln-estates-gainesville-fl/   /service-areas/locksmith-gainesville-fl/   301
-/service-areas/locksmith-lincoln-estates-gainesville-fl    /service-areas/locksmith-gainesville-fl/   301
 /service-areas/locksmith-north-lincoln-heights-gainesville-fl/   /service-areas/locksmith-gainesville-fl/   301
-/service-areas/locksmith-north-lincoln-heights-gainesville-fl    /service-areas/locksmith-gainesville-fl/   301
 /service-areas/locksmith-rainbows-end-gainesville-fl/   /service-areas/locksmith-gainesville-fl/   301
-/service-areas/locksmith-rainbows-end-gainesville-fl    /service-areas/locksmith-gainesville-fl/   301
 /service-areas/locksmith-ridgeview-gainesville-fl/   /service-areas/locksmith-gainesville-fl/   301
-/service-areas/locksmith-ridgeview-gainesville-fl    /service-areas/locksmith-gainesville-fl/   301
 /service-areas/locksmith-springtree-gainesville-fl/   /service-areas/locksmith-gainesville-fl/   301
-/service-areas/locksmith-springtree-gainesville-fl    /service-areas/locksmith-gainesville-fl/   301
 /service-areas/locksmith-hawks-landing-ocala-fl/   /service-areas/locksmith-ocala-fl/   301
-/service-areas/locksmith-hawks-landing-ocala-fl    /service-areas/locksmith-ocala-fl/   301
 /service-areas/locksmith-ocala-downs-ocala-fl/   /service-areas/locksmith-ocala-fl/   301
-/service-areas/locksmith-ocala-downs-ocala-fl    /service-areas/locksmith-ocala-fl/   301
 /service-areas/locksmith-ocala-highlands-ocala-fl/   /service-areas/locksmith-ocala-fl/   301
-/service-areas/locksmith-ocala-highlands-ocala-fl    /service-areas/locksmith-ocala-fl/   301
 /service-areas/locksmith-saddle-creek-ocala-fl/   /service-areas/locksmith-ocala-fl/   301
-/service-areas/locksmith-saddle-creek-ocala-fl    /service-areas/locksmith-ocala-fl/   301
 /service-areas/locksmith-landmark-woods-gainesville-fl/   /service-areas/locksmith-gainesville-fl/   301
-/service-areas/locksmith-landmark-woods-gainesville-fl    /service-areas/locksmith-gainesville-fl/   301
 /home/   /   301
-/home    /   301
 /service-areas/locksmith-rosemont-gainesville-fl/   /service-areas/locksmith-gainesville-fl/   301
-/service-areas/locksmith-rosemont-gainesville-fl    /service-areas/locksmith-gainesville-fl/   301
 /service-areas/locksmith-holly-heights-gainesville-fl/   /service-areas/locksmith-gainesville-fl/   301
-/service-areas/locksmith-holly-heights-gainesville-fl    /service-areas/locksmith-gainesville-fl/   301
 /service-areas/locksmith-raintree-gainesville-fl/   /service-areas/locksmith-gainesville-fl/   301
-/service-areas/locksmith-raintree-gainesville-fl    /service-areas/locksmith-gainesville-fl/   301
 /service-areas/locksmith-east-gainesville-estates-gainesville-fl/   /service-areas/locksmith-gainesville-fl/   301
-/service-areas/locksmith-east-gainesville-estates-gainesville-fl    /service-areas/locksmith-gainesville-fl/   301
 /service-areas/locksmith-palm-terrace-gainesville-fl/   /service-areas/locksmith-gainesville-fl/   301
-/service-areas/locksmith-palm-terrace-gainesville-fl    /service-areas/locksmith-gainesville-fl/   301
 /service-areas/locksmith-country-club-of-ocala-fl/   /service-areas/locksmith-ocala-fl/   301
-/service-areas/locksmith-country-club-of-ocala-fl    /service-areas/locksmith-ocala-fl/   301
 /service-areas/locksmith-edgewood-hills-gainesville-fl/   /service-areas/locksmith-gainesville-fl/   301
-/service-areas/locksmith-edgewood-hills-gainesville-fl    /service-areas/locksmith-gainesville-fl/   301
 /service-areas/locksmith-porters-quarters-gainesville-fl/   /service-areas/locksmith-gainesville-fl/   301
-/service-areas/locksmith-porters-quarters-gainesville-fl    /service-areas/locksmith-gainesville-fl/   301
 /service-areas/locksmith-fore-ranch-ocala-fl/   /service-areas/locksmith-ocala-fl/   301
-/service-areas/locksmith-fore-ranch-ocala-fl    /service-areas/locksmith-ocala-fl/   301
 /service-areas/locksmith-lake-diamond-ocala-fl/   /service-areas/locksmith-ocala-fl/   301
-/service-areas/locksmith-lake-diamond-ocala-fl    /service-areas/locksmith-ocala-fl/   301
 /service-areas/locksmith-summit-downs-ocala-fl/   /service-areas/locksmith-ocala-fl/   301
-/service-areas/locksmith-summit-downs-ocala-fl    /service-areas/locksmith-ocala-fl/   301
 /service-areas/locksmith-college-park-gainesville-fl/   /service-areas/locksmith-gainesville-fl/   301
-/service-areas/locksmith-college-park-gainesville-fl    /service-areas/locksmith-gainesville-fl/   301
 /service-areas/locksmith-forest-ridge-gainesville-fl/   /service-areas/locksmith-gainesville-fl/   301
-/service-areas/locksmith-forest-ridge-gainesville-fl    /service-areas/locksmith-gainesville-fl/   301
 /service-areas/locksmith-evergreen-estates-ocala-fl/   /service-areas/locksmith-ocala-fl/   301
-/service-areas/locksmith-evergreen-estates-ocala-fl    /service-areas/locksmith-ocala-fl/   301
 /service-areas/locksmith-golden-ocala-golf-equestrian-club-ocala-fl/   /service-areas/locksmith-ocala-fl/   301
-/service-areas/locksmith-golden-ocala-golf-equestrian-club-ocala-fl    /service-areas/locksmith-ocala-fl/   301
 /service-areas/locksmith-golden-hills-ocala-fl/   /service-areas/locksmith-ocala-fl/   301
-/service-areas/locksmith-golden-hills-ocala-fl    /service-areas/locksmith-ocala-fl/   301
 /service-areas/locksmith-debra-heights-gainesville-fl/   /service-areas/locksmith-gainesville-fl/   301
-/service-areas/locksmith-debra-heights-gainesville-fl    /service-areas/locksmith-gainesville-fl/   301
 /service-areas/locksmith-heathbrook-ocala-fl/   /service-areas/locksmith-ocala-fl/   301
-/service-areas/locksmith-heathbrook-ocala-fl    /service-areas/locksmith-ocala-fl/   301
 /service-areas/locksmith-duckpond-gainesville-fl/   /service-areas/locksmith-gainesville-fl/   301
-/service-areas/locksmith-duckpond-gainesville-fl    /service-areas/locksmith-gainesville-fl/   301
 /service-areas/locksmith-kingsland-country-estates-ocala-fl/   /service-areas/locksmith-ocala-fl/   301
-/service-areas/locksmith-kingsland-country-estates-ocala-fl    /service-areas/locksmith-ocala-fl/   301
 /service-areas/locksmith-briarwood-gainesville-fl/   /service-areas/locksmith-gainesville-fl/   301
-/service-areas/locksmith-briarwood-gainesville-fl    /service-areas/locksmith-gainesville-fl/   301
 /service-areas/locksmith-bellechase-ocala-fl/   /service-areas/locksmith-ocala-fl/   301
-/service-areas/locksmith-bellechase-ocala-fl    /service-areas/locksmith-ocala-fl/   301
 /service-areas/locksmith-ocala-palms-ocala-fl/   /service-areas/locksmith-ocala-fl/   301
-/service-areas/locksmith-ocala-palms-ocala-fl    /service-areas/locksmith-ocala-fl/   301
 /service-areas/locksmith-fifth-avenue-gainesville-fl/   /service-areas/locksmith-gainesville-fl/   301
-/service-areas/locksmith-fifth-avenue-gainesville-fl    /service-areas/locksmith-gainesville-fl/   301
 /service-areas/locksmith-highland-court-manor-gainesville-fl/   /service-areas/locksmith-gainesville-fl/   301
-/service-areas/locksmith-highland-court-manor-gainesville-fl    /service-areas/locksmith-gainesville-fl/   301
 /service-areas/locksmith-pine-park-gainesville-fl/   /service-areas/locksmith-gainesville-fl/   301
-/service-areas/locksmith-pine-park-gainesville-fl    /service-areas/locksmith-gainesville-fl/   301
 /service-areas/locksmith-bahia-oaks-ocala-fl/   /service-areas/locksmith-ocala-fl/   301
-/service-areas/locksmith-bahia-oaks-ocala-fl    /service-areas/locksmith-ocala-fl/   301
 /service-areas/locksmith-hunters-trace-ocala-fl/   /service-areas/locksmith-ocala-fl/   301
-/service-areas/locksmith-hunters-trace-ocala-fl    /service-areas/locksmith-ocala-fl/   301
 /service-areas/locksmith-laurel-wood-ocala-fl/   /service-areas/locksmith-ocala-fl/   301
-/service-areas/locksmith-laurel-wood-ocala-fl    /service-areas/locksmith-ocala-fl/   301
 /service-areas/locksmith-ocala-east-villas-ocala-fl/   /service-areas/locksmith-ocala-fl/   301
-/service-areas/locksmith-ocala-east-villas-ocala-fl    /service-areas/locksmith-ocala-fl/   301
 /service-areas/locksmith-pine-run-estates-ocala-fl/   /service-areas/locksmith-ocala-fl/   301
-/service-areas/locksmith-pine-run-estates-ocala-fl    /service-areas/locksmith-ocala-fl/   301
 /service-areas/locksmith-saddle-trail-ocala-fl/   /service-areas/locksmith-ocala-fl/   301
-/service-areas/locksmith-saddle-trail-ocala-fl    /service-areas/locksmith-ocala-fl/   301
 /service-areas/locksmith-the-trails-ocala-fl/   /service-areas/locksmith-ocala-fl/   301
-/service-areas/locksmith-the-trails-ocala-fl    /service-areas/locksmith-ocala-fl/   301
 /service-areas/locksmith-gateway-park-gainesville-fl/   /service-areas/locksmith-gainesville-fl/   301
-/service-areas/locksmith-gateway-park-gainesville-fl    /service-areas/locksmith-gainesville-fl/   301
 /service-areas/locksmith-ironwood-gainesville-fl/   /service-areas/locksmith-gainesville-fl/   301
-/service-areas/locksmith-ironwood-gainesville-fl    /service-areas/locksmith-gainesville-fl/   301
 /service-areas/locksmith-northwood-oaks-gainesville-fl/   /service-areas/locksmith-gainesville-fl/   301
-/service-areas/locksmith-northwood-oaks-gainesville-fl    /service-areas/locksmith-gainesville-fl/   301
 /service-areas/locksmith-oaks-preserve-gainesville-fl/   /service-areas/locksmith-gainesville-fl/   301
-/service-areas/locksmith-oaks-preserve-gainesville-fl    /service-areas/locksmith-gainesville-fl/   301
 /service-areas/locksmith-rainbows-east-gainesville-fl/   /service-areas/locksmith-gainesville-fl/   301
-/service-areas/locksmith-rainbows-east-gainesville-fl    /service-areas/locksmith-gainesville-fl/   301
 /service-areas/locksmith-sutters-landing-gainesville-fl/   /service-areas/locksmith-gainesville-fl/   301
-/service-areas/locksmith-sutters-landing-gainesville-fl    /service-areas/locksmith-gainesville-fl/   301
 /service-areas/locksmith-university-village-gainesville-fl/   /service-areas/locksmith-gainesville-fl/   301
-/service-areas/locksmith-university-village-gainesville-fl    /service-areas/locksmith-gainesville-fl/   301
 /service-areas/locksmith-willow-oak-gainesville-fl/   /service-areas/locksmith-gainesville-fl/   301
-/service-areas/locksmith-willow-oak-gainesville-fl    /service-areas/locksmith-gainesville-fl/   301
 /service-areas/locksmith-turkey-creek-gainesville-fl/   /service-areas/locksmith-gainesville-fl/   301
-/service-areas/locksmith-turkey-creek-gainesville-fl    /service-areas/locksmith-gainesville-fl/   301
 /service-areas/locksmith-university-park-gainesville-fl/   /service-areas/locksmith-gainesville-fl/   301
-/service-areas/locksmith-university-park-gainesville-fl    /service-areas/locksmith-gainesville-fl/   301
