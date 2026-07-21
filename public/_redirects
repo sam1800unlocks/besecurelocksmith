@@ -281,6 +281,17 @@
 /sitemap_index.xml   /sitemap-index.xml   301
 /sitemap.xml   /sitemap-index.xml   301
 
+# --- GSC 404 sweep 2026-07-21 (batch) ---
+/service-areas/locksmith-red-hawk-ocala-fl/   /service-areas/locksmith-ocala-fl/   301
+/service-areas/locksmith-ocala-estates-ocala-fl/   /service-areas/locksmith-ocala-fl/   301
+/service-areas/locksmith-oak-run-ocala-fl/   /service-areas/locksmith-ocala-fl/   301
+/service-areas/locksmith-royal-gardens-gainesville-fl/   /service-areas/locksmith-gainesville-fl/   301
+/service-areas/locksmith-south-oak-ocala-fl/   /service-areas/locksmith-ocala-fl/   301
+/service-areas/locksmith-ocala-ridge-ocala-fl/   /service-areas/locksmith-ocala-fl/   301
+/williston/   /service-areas/locksmith-williston-fl/   301
+/recent-jobs/   /   301
+/reset-password   /   301
+
 # --- dynamic (splat) rules LAST ---
 /wp-content/*   /   301
 /wp-includes/*   /   301
