@@ -47,6 +47,20 @@ const orgSchema = schema === 'org-home' ? organizationNode({ homepage: true })
 <head>
   <meta charset="utf-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1" />
+
+  {/* Google Analytics (GA4) — production builds only, so local `astro dev` stays out of the data. */}
+  {import.meta.env.PROD && (
+    <Fragment>
+      <script is:inline async src="https://www.googletagmanager.com/gtag/js?id=G-CJ59FQS2T4"></script>
+      <script is:inline>
+        window.dataLayer = window.dataLayer || [];
+        function gtag(){dataLayer.push(arguments);}
+        gtag('js', new Date());
+        gtag('config', 'G-CJ59FQS2T4');
+      </script>
+    </Fragment>
+  )}
+
   <title>{title}</title>
   {description && <meta name="description" content={description} />}
   {robots && <meta name="robots" content={robots} />}
