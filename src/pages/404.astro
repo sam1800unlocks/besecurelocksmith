@@ -1,0 +1,51 @@
+---
+import BaseLayout from '../layouts/BaseLayout.astro';
+import PromoBar from '../components/sections/PromoBar.astro';
+import NavBar from '../components/sections/NavBar.astro';
+import Footer from '../components/sections/Footer.astro';
+import Container from '../components/primitives/Container.astro';
+import Button from '../components/primitives/Button.astro';
+import { site, telHref } from '../config/site';
+
+const quickLinks = [
+  { label: 'Home', href: '/' },
+  { label: 'All Services', href: '/services/' },
+  { label: 'Service Areas', href: '/service-areas/' },
+  { label: 'Price List', href: '/price-list/' },
+  { label: 'About Us', href: '/about/' },
+  { label: 'Contact', href: '/contact-us/' },
+];
+---
+<BaseLayout
+  title="Page not found (404) | Be Secure Locksmith"
+  description="The page you were looking for couldn't be found. Call us or jump to one of our locksmith services."
+  robots="noindex, follow"
+>
+  <PromoBar location="main" />
+  <NavBar location="main" />
+  <main>
+    <Container>
+      <div class="max-w-[760px] mx-auto py-24 text-center">
+        <div class="font-bold leading-none text-primary" style="font-size:clamp(90px,18vw,180px);">404</div>
+        <h1 class="m-0 mt-2 mb-4 text-ink font-medium" style="font-size:clamp(28px,5vw,44px);">This page couldn't be found</h1>
+        <p class="m-0 mb-8 mx-auto max-w-[560px] text-[18px] text-secondary">
+          The link may be broken or the page may have moved. But if it has a key, we can still unlock it —
+          call us and we'll get you sorted, or pick up where you left off below.
+        </p>
+        <div class="flex flex-wrap gap-3 justify-center mb-12">
+          <Button href={telHref(site.defaultPhone)} variant="call">Call {site.defaultPhone}</Button>
+          <Button href={site.bookingUrl} variant="booking">Book online</Button>
+          <Button href="/" variant="dark">Back to home</Button>
+        </div>
+
+        <p class="m-0 mb-4 text-[13px] font-bold uppercase tracking-[0.08em] text-secondary">Popular pages</p>
+        <nav class="flex flex-wrap gap-x-6 gap-y-2 justify-center">
+          {quickLinks.map((l) => (
+            <a href={l.href} class="text-[16px] text-ink underline underline-offset-4 decoration-border hover:text-primary hover:decoration-primary transition-colors">{l.label}</a>
+          ))}
+        </nav>
+      </div>
+    </Container>
+  </main>
+  <Footer location="main" />
+</BaseLayout>

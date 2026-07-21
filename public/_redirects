@@ -1,0 +1,7 @@
+# Cloudflare Pages redirects.  Format: <from>  <to>  <status>
+# 301 = permanent (passes SEO link equity, tells Google the target is canonical).
+# Trailing slash matters — the site is built with trailingSlash: 'always'.
+
+# Short/root service paths -> canonical /services/ URLs
+/mailbox-lock-installation/   /services/mailbox-lock-installation/   301
+/mailbox-lock-installation    /services/mailbox-lock-installation/   301

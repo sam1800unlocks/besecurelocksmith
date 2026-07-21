@@ -13,6 +13,8 @@
   "assets": {
     "directory": "./dist",
     // Astro uses trailingSlash: 'always' + directory format (/page/index.html).
-    "html_handling": "auto-trailing-slash"
+    "html_handling": "auto-trailing-slash",
+    // Serve dist/404.html (built from src/pages/404.astro) for unmatched routes.
+    "not_found_handling": "404-page"
   }
 }
