@@ -88,6 +88,23 @@ async function handleEmployment(request, env) {
   const honeypot = (form.get("bsl_hp") || "").toString().trim();
   if (honeypot) return json({ ok: true }, 200); // bot
 
+  // Verify Turnstile (same widget/secret as the contact form)
+  const token = (form.get("cf-turnstile-response") || "").toString();
+  const verify = await fetch(
+    "https://challenges.cloudflare.com/turnstile/v0/siteverify",
+    {
+      method: "POST",
+      headers: { "Content-Type": "application/x-www-form-urlencoded" },
+      body: new URLSearchParams({
+        secret: env.TURNSTILE_SECRET_KEY,
+        response: token,
+        remoteip: request.headers.get("CF-Connecting-IP") || "",
+      }),
+    }
+  );
+  const outcome = await verify.json();
+  if (!outcome.success) return json({ error: "Bot verification failed. Please complete the challenge and try again." }, 403);
+
   const firstName = (form.get("firstName") || "").toString().trim();
   const lastName = (form.get("lastName") || "").toString().trim();
   const name = `${firstName} ${lastName}`.trim();

@@ -12,6 +12,7 @@ import { resolveLocation, resolvePhone } from '../../lib/locations';
 
 const location = 'main';
 const phone = resolvePhone(resolveLocation(location));
+const siteKey = import.meta.env.PUBLIC_TURNSTILE_SITE_KEY ?? '0x4AAAAAADyGNYjgOoL-BQLJ'; // Turnstile site key (public; overridable via env) — same as contact form
 
 const title = 'Locksmith Jobs Gainesville, FL - Join Our Local Team';
 const description = 'Looking for locksmith jobs in Gainesville, FL? Join a licensed, growing mobile team serving Gainesville and Ocala. See current openings and apply with us today.';
@@ -164,6 +165,7 @@ const jobJsonLd = {
                 <textarea name="message" rows="4" class="rounded-[12px] border border-border bg-white px-4 py-3 text-[15px] font-normal resize-y"></textarea>
               </label>
               <input type="text" name="bsl_hp" tabindex="-1" autocomplete="off" aria-hidden="true" class="hidden" />
+              <div class="sm:col-span-2 cf-turnstile" data-sitekey={siteKey}></div>
               <div class="sm:col-span-2 flex flex-wrap items-center gap-4">
                 <button type="submit" class="inline-flex items-center gap-2 text-[15px] font-bold px-[30px] py-[15px] rounded-[100px] bg-primary text-white cursor-pointer">Submit Application</button>
                 <p data-employment-status class="m-0 text-[14px] text-muted"></p>
@@ -178,6 +180,25 @@ const jobJsonLd = {
   <Footer location={location} />
 
   <script>
+    // Lazy-load Turnstile only when the form nears the viewport (it's below the
+    // fold), so it isn't a render/main-thread cost on load. Auto-renders the
+    // .cf-turnstile widget and injects a hidden `cf-turnstile-response` input.
+    const tsHost = document.querySelector('.cf-turnstile');
+    if (tsHost && !document.querySelector('script[src*="turnstile/v0/api.js"]')) {
+      const loadTurnstile = () => {
+        if (document.querySelector('script[src*="turnstile/v0/api.js"]')) return;
+        const s = document.createElement('script');
+        s.src = 'https://challenges.cloudflare.com/turnstile/v0/api.js';
+        s.async = true;
+        s.defer = true;
+        document.head.appendChild(s);
+      };
+      const io = new IntersectionObserver((entries, obs) => {
+        if (entries.some((e) => e.isIntersecting)) { loadTurnstile(); obs.disconnect(); }
+      }, { rootMargin: '400px' });
+      io.observe(tsHost);
+    }
+
     const form = document.querySelector('[data-employment-form]') as HTMLFormElement | null;
     const status = document.querySelector('[data-employment-status]');
     form?.addEventListener('submit', async (e) => {
