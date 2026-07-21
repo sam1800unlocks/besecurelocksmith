@@ -7,7 +7,18 @@
       "Bash(cat \"$\\(git rev-parse --show-toplevel\\)/.superpowers/sdd/progress.md\")",
       "Bash(npm init *)",
       "Bash(npm approve-scripts *)",
-      "Bash(npm test *)"
+      "Bash(npm test *)",
+      "Bash(curl -s -o public/favicon.png \"https://besecurelocksmith.com/wp-content/uploads/2024/10/favIcon.png\")",
+      "Bash(sips -g pixelWidth -g pixelHeight public/favicon.png)",
+      "Bash(git push *)",
+      "WebFetch(domain:www.google.com)",
+      "Bash(curl -s https://besecurelocksmith.com/)",
+      "Bash(python3)",
+      "Bash(ls -la contact-worker)",
+      "Bash(ls -la /contact-worker)",
+      "Bash(npm -v)",
+      "Bash(node --input-type=module --check)",
+      "Bash(node -e \"const fs=require\\('fs'\\);let s=fs.readFileSync\\('wrangler.jsonc','utf8'\\).replace\\(/\\\\/\\\\*[\\\\s\\\\S]*?\\\\*\\\\//g,''\\).replace\\(/\\(^|[^:]\\)\\\\/\\\\/.*$/gm,'\\\\$1'\\);const o=JSON.parse\\(s\\);console.log\\('routes:',JSON.stringify\\(o.routes\\)\\);console.log\\('name:',o.name,'| main:',o.main\\);\")"
     ]
   },
   "enabledPlugins": {}
