@@ -7,3 +7,6 @@
 /mailbox-lock-installation    /services/mailbox-lock-installation/   301
 /247-emergency-lockout-service/   /services/emergency-lockouts/   301
 /247-emergency-lockout-service    /services/emergency-lockouts/   301
+
+# Stale WordPress asset paths -> homepage
+/wp-content/uploads/2023/01/bg-video.png   /   301
