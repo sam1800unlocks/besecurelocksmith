@@ -122,5 +122,12 @@
 /home   /   301
 /service-areas/lake-city   /service-areas/locksmith-lake-city-fl/   301
 
+# --- Fixes 2026-07-21: bare service-area + automotive-services short paths ---
+/service-areas/gainesville   /service-areas/locksmith-gainesville-fl/   301
+/service-areas/ocala/   /service-areas/locksmith-ocala-fl/   301
+/service-areas/ocala   /service-areas/locksmith-ocala-fl/   301
+/automotive-services/   /services/automotive-locksmith/   301
+/automotive-services   /services/automotive-locksmith/   301
+
 # --- dynamic (splat) rules LAST ---
 /wp-content/*   /   301
