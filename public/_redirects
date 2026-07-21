@@ -277,6 +277,10 @@
 /blog/category/residential-locksmith/feed/   /blog/   301
 /blog/category/gainesville-locksmith/feed/   /blog/   301
 
+# --- Old WP sitemap URLs -> Astro sitemap index ---
+/sitemap_index.xml   /sitemap-index.xml   301
+/sitemap.xml   /sitemap-index.xml   301
+
 # --- dynamic (splat) rules LAST ---
 /wp-content/*   /   301
 /wp-includes/*   /   301
