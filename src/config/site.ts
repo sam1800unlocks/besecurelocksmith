@@ -67,6 +67,7 @@ export const nav = [
   { label: 'Home',          href: '/',              active: true },
   { label: 'About',         href: '/about/',        dropdown: 'about' },
   { label: 'Services',      href: '/services/',      dropdown: 'services' },
+  { label: 'Products',      href: '/products/' },
   { label: 'Price List',    href: '/price-list/' },
   { label: 'Service Areas', href: '/service-areas/' },
   { label: 'Locations',     href: '/locations/',    dropdown: 'locations' },

@@ -36,7 +36,7 @@ const blocks = [
   ] },
 
   { t: 'h3', text: 'Key Duplication' },
-  { t: 'p', html: 'Spare keys and key fobs improve convenience and security for your business. We <a href="/services/key-duplication/">duplicate keys</a> for all types of locks, including office doors, storage units, file cabinets, padlocks, high-security locks, locks that use tubular keys, mortise locks, and more.' },
+  { t: 'p', html: 'Spare keys and key fobs improve convenience and security for your business. We <a href="/services/key-duplication/">duplicate keys</a> for all types of locks, including office doors, storage units, file cabinets, padlocks, <a href="/products/high-security-locks/">high-security locks</a>, locks that use tubular keys, <a href="/products/mortise-locks/">mortise locks</a>, and more.' },
 
   { t: 'h3', text: 'Lock Rekeying' },
   { t: 'p', html: 'Rekeying allows you to change a lock without replacing the entire lock. When our techs rekey a lock, they remove the internal lock cylinder and change the pins to match the cuts in a unique new key. Rekeying is a cost-effective option for a number of situations, including:' },
@@ -81,7 +81,7 @@ for (let i = 0; i < blocks.length; i++) {
   renderBlocks.push(b);
 }
 
-const contactHtml = 'Be Secure Locksmith is your trusted locksmith for all your locksmith needs. From emergency services to advanced security solutions, our Gainesville locksmiths help businesses in Gainesville, FL, stay secure. <a href="/contact-us/">Contact us today</a> to schedule a service or request assistance in an emergency situation. Let us protect your business with reliable and professional locksmith services.';
+const contactHtml = 'Be Secure Locksmith is your trusted locksmith for all your locksmith needs. From emergency services to advanced security solutions, our Gainesville locksmiths help businesses across <a href="/service-areas/locksmith-gainesville-fl/">Gainesville</a> and <a href="/service-areas/locksmith-ocala-fl/">Ocala</a>, FL, stay secure. <a href="/contact-us/">Contact us today</a> to schedule a service or request assistance in an emergency situation. Let us protect your business with reliable and professional locksmith services.';
 
 // Structured data (the live page had none) — additive SEO, no visible-content change.
 const serviceJsonLd = {
@@ -265,7 +265,7 @@ const pricingNote = 'Estimates only — prices vary by job and include parts and
             <div class="relative p-8 md:p-10">
               <h2 class="m-0 font-medium tracking-[-0.4px]" style="font-size:clamp(22px,3vw,28px);line-height:1.2;">Commercial Lock Types We Service</h2>
               <div class="mt-3 mb-4 h-1 w-12 rounded-full bg-amber"></div>
-              <p class="mt-3 mb-7 text-[16px] leading-[1.6] text-white/75 max-w-[680px]">From storefronts to back offices, we install, repair, and rekey the full range of commercial door hardware:</p>
+              <p class="mt-3 mb-7 text-[16px] leading-[1.6] text-white/75 max-w-[680px]">From storefronts to back offices, we install, repair, and rekey the full range of commercial door hardware, including <a href="/products/exit-devices/" class="text-white font-semibold underline underline-offset-4">exit devices &amp; panic bars</a> and <a href="/products/door-closers/" class="text-white font-semibold underline underline-offset-4">door closers</a>:</p>
               <div class="flex flex-wrap gap-2.5">
                 {lockTypes.map((t) => (
                   <span class="inline-flex items-center gap-2 rounded-pill bg-white px-[14px] py-[9px] text-[14px] font-semibold text-ink shadow-[0_2px_10px_rgba(10,19,23,0.18)]">

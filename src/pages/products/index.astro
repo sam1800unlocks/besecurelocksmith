@@ -1,0 +1,152 @@
+---
+import BaseLayout from '../../layouts/BaseLayout.astro';
+import PromoBar from '../../components/sections/PromoBar.astro';
+import NavBar from '../../components/sections/NavBar.astro';
+import Footer from '../../components/sections/Footer.astro';
+import TrustStrip from '../../components/sections/TrustStrip.astro';
+import Section from '../../components/primitives/Section.astro';
+import Container from '../../components/primitives/Container.astro';
+import Card from '../../components/primitives/Card.astro';
+import Button from '../../components/primitives/Button.astro';
+import CtaCard from '../../components/sections/CtaCard.astro';
+import { site, telHref } from '../../config/site';
+import { resolveLocation, resolvePhone } from '../../lib/locations';
+
+const location = 'main';
+const phone = resolvePhone(resolveLocation(location));
+
+// DRAFT mockup — noindex until finalized. Flip to index on launch.
+const title = 'Locksmith Products We Install & Service | Be Secure Locksmith';
+const description = 'Deadbolts, smart locks, high-security cylinders, exit devices, mortise locks, master key systems and more — the residential and commercial hardware Be Secure Locksmith installs, repairs, and services across Gainesville and Ocala, FL.';
+
+const residential = [
+  { name: 'Deadbolts', blurb: 'Single- and double-cylinder deadbolts, including Grade-1 and bump-resistant models. We spec the right backset and strike reinforcement for a solid, pick-resistant install.', href: '/products/deadbolts/', cta: 'Deadbolt guide' },
+  { name: 'Smart Locks', blurb: 'Wi-Fi and Bluetooth smart locks (Schlage Encode, Kwikset Halo, Lockly). Proper install and setup so you avoid the lockouts and dead-battery surprises DIYers hit.', href: '/products/smart-locks/', cta: 'Smart lock guide' },
+  { name: 'Keypad & Keyless Entry', blurb: 'Code-based residential entry — no more hiding keys. We match the keypad to your door prep and program user codes for family, guests, and cleaners.', href: '/products/keypad-locks/', cta: 'Keypad lock guide' },
+  { name: 'Lever Sets & Door Knobs', blurb: 'Handlesets, levers, and knobs in every finish and grade. ADA-friendly lever options for aging-in-place and rental turnovers.', href: '/products/lever-sets/', cta: 'Levers & knobs guide' },
+  { name: 'High-Security Cylinders', blurb: 'Restricted, patented keyways (Medeco, Mul-T-Lock) that stop unauthorized key copying and resist picking and drilling — real protection, not a hardware-store lock.', href: '/products/high-security-locks/', cta: 'High-security guide' },
+  { name: 'Padlocks & Mailbox Locks', blurb: 'Rekeyable padlocks, weatherproof shrouded models, and cluster-mailbox (CBU) lock replacement keyed to your existing system.', href: '/products/padlocks-mailbox-locks/', cta: 'Padlock guide' },
+];
+
+const commercial = [
+  { name: 'Panic & Exit Devices', blurb: 'Push-bars and exit devices (Von Duprin–style) for code-compliant egress on fire and emergency doors. Repair, alignment, and new install.', href: '/products/exit-devices/', cta: 'Exit device guide' },
+  { name: 'Mortise Locks', blurb: 'Heavy-duty mortise lock bodies for high-traffic commercial doors — rebuilt, rekeyed, or replaced without swapping the whole door.', href: '/products/mortise-locks/', cta: 'Mortise lock guide' },
+  { name: 'Keypad Locks', blurb: 'Standalone keypad and keyless-entry locks for offices, suites, and storage rooms — set and manage staff codes with no wiring, control panels, or badge readers.', href: '/products/keypad-locks/', cta: 'Keypad lock guide' },
+  { name: 'Master Key & IC Cylinders', blurb: 'Master key systems and interchangeable-core (IC) cylinders so you can rekey in seconds and control who opens which door.', href: '/products/master-key-ic/', cta: 'Master key guide' },
+  { name: 'Door Closers', blurb: 'Commercial door closers adjusted, repaired, and replaced for proper latching, ADA closing force, and everyday reliability.', href: '/products/door-closers/', cta: 'Door closer guide' },
+];
+
+const brands = ['Schlage', 'Kwikset', 'Yale', 'Lockly', 'Medeco', 'Mul-T-Lock', 'Von Duprin', 'ASSA ABLOY', 'Baldwin', 'Emtek', 'Arrow', 'Falcon'];
+---
+<BaseLayout title={title} description={description} location={location} robots="noindex, follow">
+  <PromoBar location={location} />
+  <NavBar location={location} />
+  <main>
+    <!-- HERO -->
+    <section class="relative overflow-hidden text-white" style="background:linear-gradient(160deg,#0e4a8f 0%,#0b2f5e 42%,#0a1830 100%);">
+      <div class="absolute inset-0 opacity-[0.09]" style="background-image:radial-gradient(circle at 1px 1px,#ffffff 1px,transparent 0);background-size:22px 22px;"></div>
+      <Container>
+        <div class="relative max-w-[1180px] mx-auto py-14 md:py-20">
+          <nav aria-label="Breadcrumb" class="mb-5 flex flex-wrap items-center gap-2 text-[13px] text-white/70">
+            <a href="/" class="hover:text-white">Home</a><span aria-hidden="true">/</span><span class="text-white">Products</span>
+          </nav>
+          <h1 class="m-0 mb-4 font-medium text-white max-w-[860px]" style="font-size:clamp(32px,5.2vw,54px);line-height:1.08;letter-spacing:-1.2px;">
+            Locksmith Products We Install &amp; Service
+          </h1>
+          <p class="m-0 mb-7 text-[18px] leading-[1.45] text-white/80 max-w-[720px]">
+            From residential deadbolts and smart locks to commercial exit devices, mortise locks, and master key systems — these are the hardware types our licensed technicians install, repair, and service every day across Gainesville and Ocala, FL.
+          </p>
+          <div class="flex flex-wrap gap-3">
+            <Button href={telHref(phone)} variant="call">{phone}</Button>
+            <Button href="/services/" variant="booking">Browse Services</Button>
+          </div>
+        </div>
+      </Container>
+    </section>
+
+    <TrustStrip />
+
+    <!-- INTRO / expertise framing -->
+    <Section class="pt-12 pb-2">
+      <Container>
+        <div class="max-w-[880px] mx-auto">
+          <h2 class="m-0 mb-[14px] font-medium leading-[1.28] tracking-[-0.8px] text-ink" style="font-size:clamp(26px,3.4vw,34px);">Hardware we know inside and out</h2>
+          <p class="m-0 text-base leading-[1.6] text-secondary">
+            We&rsquo;re not a hardware store — we&rsquo;re the technicians who choose, install, and service the right product for your door, your security level, and your budget. Below are the products we work with most. Not seeing yours? Call us; if it has a key or a keypad, we can help.
+          </p>
+        </div>
+      </Container>
+    </Section>
+
+    <!-- RESIDENTIAL PRODUCTS -->
+    <Section class="pt-10 pb-4">
+      <Container>
+        <div class="max-w-[1280px] mx-auto">
+          <div class="flex items-center gap-3 mb-6">
+            <span class="inline-block h-1 w-12 rounded-full bg-primary"></span>
+            <h2 class="m-0 text-ink font-medium tracking-[-0.5px]" style="font-size:clamp(22px,3vw,28px);">Residential Products</h2>
+          </div>
+          <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6">
+            {residential.map((p) => (
+              <Card class="!rounded-[20px] p-6 flex flex-col" style="box-shadow:0 10px 30px rgba(10,19,23,0.05);">
+                <h3 class="m-0 mb-2 text-ink font-bold text-[19px] tracking-[-0.3px]">{p.name}</h3>
+                <p class="m-0 mb-5 text-[15px] leading-[1.55] text-secondary flex-1">{p.blurb}</p>
+                <a href={p.href} class="text-[14px] font-semibold text-primary hover:underline underline-offset-4">{p.cta} &rarr;</a>
+              </Card>
+            ))}
+          </div>
+        </div>
+      </Container>
+    </Section>
+
+    <!-- COMMERCIAL PRODUCTS -->
+    <Section class="pt-8 pb-4">
+      <Container>
+        <div class="max-w-[1280px] mx-auto">
+          <div class="flex items-center gap-3 mb-6">
+            <span class="inline-block h-1 w-12 rounded-full bg-primary"></span>
+            <h2 class="m-0 text-ink font-medium tracking-[-0.5px]" style="font-size:clamp(22px,3vw,28px);">Commercial Products</h2>
+          </div>
+          <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6">
+            {commercial.map((p) => (
+              <Card class="!rounded-[20px] p-6 flex flex-col" style="box-shadow:0 10px 30px rgba(10,19,23,0.05);">
+                <h3 class="m-0 mb-2 text-ink font-bold text-[19px] tracking-[-0.3px]">{p.name}</h3>
+                <p class="m-0 mb-5 text-[15px] leading-[1.55] text-secondary flex-1">{p.blurb}</p>
+                <a href={p.href} class="text-[14px] font-semibold text-primary hover:underline underline-offset-4">{p.cta} &rarr;</a>
+              </Card>
+            ))}
+          </div>
+        </div>
+      </Container>
+    </Section>
+
+    <!-- BRANDS -->
+    <Section class="pt-10 pb-4">
+      <Container>
+        <div class="max-w-[1080px] mx-auto rounded-[24px] border border-border bg-surface p-8 md:p-10">
+          <h2 class="m-0 mb-2 text-ink font-medium tracking-[-0.5px]" style="font-size:clamp(22px,3vw,28px);">Brands We Work With</h2>
+          <p class="m-0 mb-6 text-[15px] leading-[1.6] text-secondary max-w-[720px]">We install and service trusted lock brands, and we&rsquo;ll always recommend the right grade for the job — not just what&rsquo;s on the shelf.</p>
+          <div class="flex flex-wrap gap-2.5">
+            {brands.map((b) => (
+              <span class="inline-flex items-center rounded-full border border-border bg-white px-4 py-2 text-[14px] font-semibold text-ink">{b}</span>
+            ))}
+          </div>
+        </div>
+      </Container>
+    </Section>
+
+    <!-- CTA -->
+    <Section class="pt-8 pb-16">
+      <Container>
+        <div class="max-w-[1080px] mx-auto">
+          <CtaCard
+            location={location}
+            heading="Not sure which product you need?"
+            body="Tell us about your door and your goal — security, convenience, or code compliance — and we&rsquo;ll recommend the right hardware and install it right the first time."
+          />
+        </div>
+      </Container>
+    </Section>
+  </main>
+  <Footer location={location} />
+</BaseLayout>

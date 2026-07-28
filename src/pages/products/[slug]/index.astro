@@ -1,0 +1,11 @@
+---
+import ProductPage from '../../../components/ProductPage.astro';
+import { products } from '../../../data/products.ts';
+
+export function getStaticPaths() {
+  return products.map((p) => ({ params: { slug: p.slug }, props: { product: p } }));
+}
+
+const { product } = Astro.props;
+---
+<ProductPage product={product} />

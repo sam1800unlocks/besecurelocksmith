@@ -20,11 +20,35 @@ import { buildAreaFaqs } from '../../../lib/area-faqs';
 import { officeBySlug, locationNode } from '../../../lib/schema';
 
 export async function getStaticPaths() {
+  // Geographic neighbors for internal interlinking. Each non-hub city includes its
+  // hub (Gainesville or Ocala) so link equity funnels toward the two priority pages.
+  // Defined inside getStaticPaths — Astro runs it in an isolated scope.
+  const AREA_NEIGHBORS = {
+    'locksmith-gainesville-fl': ['locksmith-alachua-fl', 'locksmith-high-springs-fl', 'locksmith-newberry-fl', 'locksmith-williston-fl'],
+    'locksmith-ocala-fl': ['locksmith-belleview-fl', 'locksmith-silver-springs-fl', 'locksmith-marion-oaks-ocala-fl', 'locksmith-the-villages-fl'],
+    'locksmith-alachua-fl': ['locksmith-gainesville-fl', 'locksmith-high-springs-fl', 'locksmith-newberry-fl'],
+    'locksmith-belleview-fl': ['locksmith-ocala-fl', 'locksmith-silver-springs-fl', 'locksmith-the-villages-fl'],
+    'locksmith-hampton-fl': ['locksmith-gainesville-fl', 'locksmith-lake-city-fl', 'locksmith-williston-fl'],
+    'locksmith-high-springs-fl': ['locksmith-gainesville-fl', 'locksmith-alachua-fl', 'locksmith-newberry-fl'],
+    'locksmith-lake-city-fl': ['locksmith-gainesville-fl', 'locksmith-high-springs-fl', 'locksmith-hampton-fl'],
+    'locksmith-marion-oaks-ocala-fl': ['locksmith-ocala-fl', 'locksmith-belleview-fl', 'locksmith-the-villages-fl'],
+    'locksmith-newberry-fl': ['locksmith-gainesville-fl', 'locksmith-alachua-fl', 'locksmith-williston-fl'],
+    'locksmith-silver-springs-fl': ['locksmith-ocala-fl', 'locksmith-belleview-fl', 'locksmith-silver-springs-shores-ocala-fl'],
+    'locksmith-silver-springs-shores-ocala-fl': ['locksmith-ocala-fl', 'locksmith-silver-springs-fl', 'locksmith-belleview-fl'],
+    'locksmith-the-villages-fl': ['locksmith-ocala-fl', 'locksmith-belleview-fl', 'locksmith-marion-oaks-ocala-fl'],
+    'locksmith-williston-fl': ['locksmith-gainesville-fl', 'locksmith-newberry-fl', 'locksmith-ocala-fl'],
+  };
   const areas = await getCollection('service-areas');
-  return areas.map((a) => ({ params: { slug: a.data.slug }, props: { area: a.data } }));
+  const cityBySlug = Object.fromEntries(areas.map((a) => [a.data.slug, a.data.city]));
+  return areas.map((a) => {
+    const neighbors = (AREA_NEIGHBORS[a.data.slug] || [])
+      .filter((s) => cityBySlug[s])
+      .map((s) => ({ href: `/service-areas/${s}/`, label: `${cityBySlug[s]} locksmith` }));
+    return { params: { slug: a.data.slug }, props: { area: a.data, neighbors } };
+  });
 }
 
-const { area } = Astro.props;
+const { area, neighbors } = Astro.props;
 const loc = resolveLocation(area.location);
 const phone = resolvePhone(loc);
 const office = officeBySlug(area.slug);        // Office | undefined
@@ -78,6 +102,22 @@ const breadcrumbJsonLd = {
     <ServicesGrid />
     <RelatedBlogs posts={area.relatedBlogs} city={area.city} />
     <AreaNeighborhoods city={area.city} neighborhoods={area.neighborhoods} />
+    {neighbors.length > 0 && (
+      <section>
+        <Container>
+          <div class="max-w-[1180px] mx-auto py-10 border-t border-border">
+            <h2 class="m-0 mb-2 text-ink font-medium tracking-[-0.5px]" style="font-size:clamp(22px,3vw,28px);">Locksmith Services in Nearby Areas</h2>
+            <div class="mt-3 mb-5 h-1 w-12 rounded-full bg-primary"></div>
+            <p class="m-0 mb-5 text-[16px] leading-[1.6] text-secondary max-w-[720px]">Be Secure Locksmith is fully mobile, so we also help homes and businesses in the communities around {area.city}:</p>
+            <div class="flex flex-wrap gap-2.5">
+              {neighbors.map((n) => (
+                <a href={n.href} class="inline-flex items-center rounded-full border border-border bg-white px-4 py-2 text-[14px] font-semibold text-ink transition-colors hover:border-primary hover:text-primary">{n.label} &rarr;</a>
+              ))}
+            </div>
+          </div>
+        </Container>
+      </section>
+    )}
     <Faq faqs={areaFaqs} variant="rich" />
     <section>
       <Container>

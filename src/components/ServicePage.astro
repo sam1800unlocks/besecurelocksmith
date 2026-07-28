@@ -22,6 +22,7 @@ interface Props {
   location?: string;
   category?: boolean;
   clients?: { src: string; alt: string }[];
+  guide?: { label: string; href: string };
 }
 
 const {
@@ -33,6 +34,7 @@ const {
   location = 'main',
   category = false,
   clients = [],
+  guide,
 } = Astro.props as Props;
 
 const phone = resolvePhone(resolveLocation(location));
@@ -87,7 +89,7 @@ for (let i = 0; i < orderedBlocks.length; i++) {
   renderBlocks.push(b);
 }
 
-const contactHtml = `Be Secure Locksmith provides fast, licensed ${noun} service across Gainesville, Ocala, and North Central FL. <a href="/contact-us/">Contact us today</a> to schedule a visit or get a free, no-obligation quote.`;
+const contactHtml = `Be Secure Locksmith provides fast, licensed ${noun} service across <a href="/service-areas/locksmith-gainesville-fl/">Gainesville</a>, <a href="/service-areas/locksmith-ocala-fl/">Ocala</a>, and North Central FL. <a href="/contact-us/">Contact us today</a> to schedule a visit or get a free, no-obligation quote.`;
 
 const howItWorks = [
   { n: 1, title: 'Call or book online', desc: `Reach our local team for fast ${noun} help, or book a visit in seconds.` },
@@ -162,6 +164,13 @@ const sections = orderedBlocks.filter((b) => b.t === 'h3' && !/^Why Choose/.test
     <article class="article-body">
       <Container>
         <div class="max-w-[1180px] mx-auto py-12 md:py-16">
+          {guide && (
+            <p class="mb-8 inline-flex flex-wrap items-center gap-x-1.5 rounded-[12px] border border-border bg-surface px-4 py-2.5 text-[14px] text-secondary">
+              <span>New to this?</span>
+              <span>Read our guide:</span>
+              <a href={guide.href} class="font-semibold text-primary hover:underline underline-offset-4">{guide.label} &rarr;</a>
+            </p>
+          )}
           {category && sections.length > 1 && (
             <nav aria-label="On this page" class="mb-10">
               <p class="m-0 mb-3 text-[12px] font-bold uppercase tracking-[1px] text-muted">Our {noun} services</p>
