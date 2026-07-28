@@ -7,6 +7,7 @@ import AreaHero from '../../../components/sections/AreaHero.astro';
 import TrustStrip from '../../../components/sections/TrustStrip.astro';
 import LocalIntro from '../../../components/sections/LocalIntro.astro';
 import ServicesGrid from '../../../components/sections/ServicesGrid.astro';
+import AsSeenIn from '../../../components/sections/AsSeenIn.astro';
 import RelatedBlogs from '../../../components/sections/RelatedBlogs.astro';
 import AreaMap from '../../../components/sections/AreaMap.astro';
 import AreaNeighborhoods from '../../../components/sections/AreaNeighborhoods.astro';
@@ -49,6 +50,17 @@ export async function getStaticPaths() {
 }
 
 const { area, neighbors } = Astro.props;
+
+// Location-specific "As featured in" press mentions (rendered like the homepage row).
+const AREA_PRESS = {
+  'locksmith-ocala-fl': [
+    { name: 'Markets Insider', file: 'markets-insider.png', href: 'https://markets.businessinsider.com/news/stocks/be-secure-locksmith-warns-ocala-and-marion-county-residents-how-to-spot-a-locksmith-scam-and-what-a-real-local-locksmith-looks-like-1036369094' },
+    { name: 'Yahoo! Finance', file: 'yahoo-finance.png', href: 'https://finance.yahoo.com/small-business/articles/secure-locksmith-warns-ocala-marion-213100373.html' },
+    { name: 'Associated Press', file: 'associated-press.png', href: 'https://apnews.com/press-release/globenewswire-mobile/press-release-9d2ad4ad42e7cdd42dd7bd32cfc44cb4' },
+    { name: 'Benzinga', file: 'benzinga.png', href: 'https://www.benzinga.com/pressreleases/26/07/g60713340/be-secure-locksmith-warns-ocala-and-marion-county-residents-how-spot-locksmith-scam-and-what-real-lo' },
+  ],
+};
+const press = AREA_PRESS[area.slug] ?? null;
 const loc = resolveLocation(area.location);
 const phone = resolvePhone(loc);
 const office = officeBySlug(area.slug);        // Office | undefined
@@ -83,6 +95,7 @@ const breadcrumbJsonLd = {
   <main>
     <AreaHero city={area.city} heroSubhead={area.heroSubhead} location={area.location} />
     <TrustStrip />
+    {press && <AsSeenIn logos={press} />}
     <LocalIntro city={area.city} intro={area.intro} />
     {office && (
       <section class="border-b border-border" style="background:#f4f4f4;">
