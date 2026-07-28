@@ -18,6 +18,7 @@ const phone = resolvePhone(resolveLocation(location));
 // DRAFT mockup — noindex until finalized. Flip to index on launch.
 const title = 'Locksmith Products We Install & Service | Be Secure Locksmith';
 const description = 'Deadbolts, smart locks, high-security cylinders, exit devices, mortise locks, master key systems and more — the residential and commercial hardware Be Secure Locksmith installs, repairs, and services across Gainesville and Ocala, FL.';
+const robots = 'follow, index, max-image-preview:large';
 
 const residential = [
   { name: 'Deadbolts', blurb: 'Single- and double-cylinder deadbolts, including Grade-1 and bump-resistant models. We spec the right backset and strike reinforcement for a solid, pick-resistant install.', href: '/products/deadbolts/', cta: 'Deadbolt guide' },
@@ -38,7 +39,7 @@ const commercial = [
 
 const brands = ['Schlage', 'Kwikset', 'Yale', 'Lockly', 'Medeco', 'Mul-T-Lock', 'Von Duprin', 'ASSA ABLOY', 'Baldwin', 'Emtek', 'Arrow', 'Falcon'];
 ---
-<BaseLayout title={title} description={description} location={location} robots="noindex, follow">
+<BaseLayout title={title} description={description} location={location} robots={robots}>
   <PromoBar location={location} />
   <NavBar location={location} />
   <main>
