@@ -30,6 +30,19 @@ Be Secure Locksmith is a mobile locksmith company: technicians come to you acros
 - [Safe Locksmith](https://besecurelocksmith.com/services/safe-locksmith/): Locked out of a safe in Gainesville, FL? Our locksmiths open, repair, and service home and business safes with careful, local work
 - [Property Management](https://besecurelocksmith.com/services/property-management/): Managing rentals in Gainesville, FL? Our locksmiths handle turnover rekeys, master keys, and lock installs for property managers
 
+## Products
+- [Products Overview](https://besecurelocksmith.com/products/): Guides to the residential and commercial locks and hardware we install and service.
+- [Deadbolts](https://besecurelocksmith.com/products/deadbolts/): Deadbolt types, ANSI grades, and single- vs. double-cylinder — how to choose.
+- [Smart Locks](https://besecurelocksmith.com/products/smart-locks/): How smart locks work, Wi-Fi vs. Bluetooth vs. keypad, and real pros and cons.
+- [Keypad & Keyless Locks](https://besecurelocksmith.com/products/keypad-locks/): Standalone keypad and keyless-entry locks for homes and businesses (not wired access control).
+- [Lever Sets & Door Knobs](https://besecurelocksmith.com/products/lever-sets/): Levers vs. knobs, lock functions (passage/privacy/entry), grades, and ADA.
+- [High-Security Locks](https://besecurelocksmith.com/products/high-security-locks/): Restricted keys, pick/drill resistance, and real key control explained.
+- [Padlocks & Mailbox Locks](https://besecurelocksmith.com/products/padlocks-mailbox-locks/): Choosing a padlock, plus cluster-mailbox (CBU) lock replacement and keying.
+- [Mortise Locks](https://besecurelocksmith.com/products/mortise-locks/): What mortise locks are, their functions, and mortise vs. cylindrical locks.
+- [Exit Devices & Panic Bars](https://besecurelocksmith.com/products/exit-devices/): How exit hardware works, panic vs. fire exit devices, and when code requires it.
+- [Master Key & IC Systems](https://besecurelocksmith.com/products/master-key-ic/): Master-keying hierarchies and interchangeable cores for mechanical key control.
+- [Door Closers](https://besecurelocksmith.com/products/door-closers/): How door closers work, their types, adjustment, and fire/ADA considerations.
+
 ## Service Areas
 - [All Service Areas](https://besecurelocksmith.com/service-areas/): Where our mobile locksmiths work across the region.
 - [Locksmith in Alachua, FL](https://besecurelocksmith.com/service-areas/locksmith-alachua-fl/)
