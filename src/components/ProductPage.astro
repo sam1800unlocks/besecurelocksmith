@@ -17,6 +17,16 @@ const phone = resolvePhone(resolveLocation(location));
 const pageUrl = `https://besecurelocksmith.com/products/${product.slug}/`;
 const related = (product.related || []).map((s) => productBySlug[s]).filter(Boolean);
 
+// Geo-target the <title> for Gainesville & Ocala, FL — inject the location ahead
+// of the brand so every product page carries the local signal. Titles end in two
+// brand forms ("| Be Secure Locksmith" and "| Be Secure"); handle both.
+const GEO = ' in Gainesville & Ocala, FL';
+const geoTitle = product.title.includes(' | Be Secure Locksmith')
+  ? product.title.replace(' | Be Secure Locksmith', `${GEO} | Be Secure Locksmith`)
+  : product.title.includes(' | Be Secure')
+    ? product.title.replace(' | Be Secure', `${GEO} | Be Secure`)
+    : `${product.title}${GEO} | Be Secure Locksmith`;
+
 const GVILLE = '/service-areas/locksmith-gainesville-fl/';
 const OCALA = '/service-areas/locksmith-ocala-fl/';
 
@@ -47,7 +57,7 @@ const faqJsonLd = product.faqs?.length ? {
 const checkSvg = '<svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="#31a24c" stroke-width="3.2" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"/></svg>';
 const minusSvg = '<svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="#b23b3b" stroke-width="3.2" stroke-linecap="round" stroke-linejoin="round"><line x1="5" y1="12" x2="19" y2="12"/></svg>';
 ---
-<BaseLayout title={product.title} description={product.description} location={location} ogType="article" robots="follow, index, max-image-preview:large">
+<BaseLayout title={geoTitle} description={product.description} location={location} ogType="article" robots="follow, index, max-image-preview:large">
   <Fragment slot="head">
     <script type="application/ld+json" set:html={JSON.stringify(breadcrumbJsonLd)} />
     <script type="application/ld+json" set:html={JSON.stringify(articleJsonLd)} />
@@ -70,7 +80,8 @@ const minusSvg = '<svg width="13" height="13" viewBox="0 0 24 24" fill="none" st
             <span class="text-white">{product.name}</span>
           </nav>
           <span class="inline-flex items-center rounded-pill bg-white/10 text-white/90 text-[12px] font-bold uppercase tracking-[0.6px] px-[12px] py-[6px] mb-4">{product.category} Product Guide</span>
-          <h1 class="m-0 mb-5 font-medium text-white max-w-[820px]" style="font-size:clamp(30px,5vw,50px);line-height:1.1;letter-spacing:-1.1px;">{product.h1}</h1>
+          <h1 class="m-0 mb-3 font-medium text-white max-w-[820px]" style="font-size:clamp(30px,5vw,50px);line-height:1.1;letter-spacing:-1.1px;">{product.h1}</h1>
+          <p class="m-0 mb-4 text-[13px] font-bold uppercase tracking-[0.7px] text-white/60">Gainesville &middot; Ocala &middot; North Central Florida</p>
           <p class="m-0 mb-7 text-[18px] leading-[1.45] text-white/80 max-w-[720px]">{product.intro}</p>
           <div class="flex flex-wrap gap-3">
             <Button href={telHref(phone)} variant="call">{phone}</Button>
