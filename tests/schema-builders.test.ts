@@ -1,7 +1,7 @@
 import { test, expect } from 'vitest';
 import { offices } from '../src/config/offices';
 import { schemaData } from '../src/config/schema-data';
-import { organizationNode, locationNode, officeBySlug } from '../src/lib/schema';
+import { organizationNode, locationNode, officeBySlug, serviceAreaServed, serviceGeoLabel } from '../src/lib/schema';
 
 test('offices carry the per-store schema data', () => {
   expect(offices.gainesville.reviewCount).toBe('1330');
@@ -56,6 +56,29 @@ test('location node is per-store and lean', () => {
   const o = locationNode('ocala');
   expect(o.aggregateRating.reviewCount).toBe('1214');
   expect(o.geo.latitude).toBe(29.1844122);
+});
+
+test('shared service pages claim both offices, never Gainesville alone', () => {
+  const names = serviceAreaServed('main').map((a) => a.name);
+  expect(names).toContain('Gainesville');
+  expect(names).toContain('Ocala');
+  expect(names).toContain('Alachua County');
+  expect(names).toContain('Marion County');
+  expect(serviceGeoLabel('main')).toBe('Gainesville & Ocala, FL');
+  // An undefined location must not silently fall back to one city.
+  expect(serviceGeoLabel(undefined)).toBe('Gainesville & Ocala, FL');
+});
+
+test('office-scoped service pages claim only their own city', () => {
+  expect(serviceAreaServed('ocala').map((a) => a.name)).toEqual(['Ocala']);
+  expect(serviceAreaServed('gainesville').map((a) => a.name)).toEqual(['Gainesville']);
+  expect(serviceGeoLabel('ocala')).toBe('Ocala, FL');
+  expect(serviceGeoLabel('gainesville')).toBe('Gainesville, FL');
+});
+
+test('non-office locations fall back to the full service area', () => {
+  // 'lake-city' has a tracking number but no office — it must not narrow to one city.
+  expect(serviceAreaServed('lake-city').length).toBe(schemaData.areaServed.length);
 });
 
 test('officeBySlug resolves the two office pages', () => {

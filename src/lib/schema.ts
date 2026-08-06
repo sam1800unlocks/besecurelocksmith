@@ -72,6 +72,30 @@ export function organizationNode({ homepage }: { homepage: boolean }) {
   return node;
 }
 
+function officeForLocation(location?: string): Office | undefined {
+  return location && location in offices ? offices[location as OfficeKey] : undefined;
+}
+
+/**
+ * areaServed for a Service node. A page scoped to one office claims only that
+ * city; shared pages claim the full canonical service area, matching the
+ * Organization node. Never hardcode a single city here — a service page that
+ * serves both offices must say so.
+ */
+export function serviceAreaServed(location?: string) {
+  const all = S.areaServed.map((a) => ({ '@type': a.type, name: a.name, sameAs: a.sameAs }));
+  const office = officeForLocation(location);
+  return office ? all.filter((a) => a.name === office.city) : all;
+}
+
+/** Geo suffix for a Service node's name — one city when scoped, both offices otherwise. */
+export function serviceGeoLabel(location?: string) {
+  const office = officeForLocation(location);
+  if (office) return `${office.city}, ${office.state}`;
+  const { gainesville, ocala } = offices;
+  return `${gainesville.city} & ${ocala.city}, ${gainesville.state}`;
+}
+
 export function locationNode(key: OfficeKey) {
   const o = offices[key];
   return {

@@ -9,6 +9,7 @@ import TrustStrip from '../../../components/sections/TrustStrip.astro';
 import CtaCard from '../../../components/sections/CtaCard.astro';
 import { site, telHref } from '../../../config/site';
 import { resolveLocation, resolvePhone } from '../../../lib/locations';
+import { serviceAreaServed, serviceGeoLabel } from '../../../lib/schema';
 
 const location = 'main';
 const phone = resolvePhone(resolveLocation(location));
@@ -86,9 +87,9 @@ const contactHtml = 'Be Secure Locksmith is your trusted locksmith for all your 
 // Structured data (the live page had none) — additive SEO, no visible-content change.
 const serviceJsonLd = {
   '@context': 'https://schema.org', '@type': 'Service', serviceType: 'Commercial Locksmith',
-  name: 'Commercial Locksmith Gainesville, FL', url: pageUrl,
+  name: `Commercial Locksmith ${serviceGeoLabel(location)}`, url: pageUrl,
   provider: { '@type': 'LocalBusiness', name: site.name, telephone: phone },
-  areaServed: { '@type': 'City', name: 'Gainesville, FL' },
+  areaServed: serviceAreaServed(location),
 };
 const breadcrumbJsonLd = {
   '@context': 'https://schema.org', '@type': 'BreadcrumbList',

@@ -9,6 +9,7 @@ import TrustStrip from '../../../components/sections/TrustStrip.astro';
 import CtaCard from '../../../components/sections/CtaCard.astro';
 import { site, telHref } from '../../../config/site';
 import { resolveLocation, resolvePhone } from '../../../lib/locations';
+import { serviceAreaServed, serviceGeoLabel } from '../../../lib/schema';
 import data from '../../../data/service-automotive.json';
 
 const location = 'main';
@@ -71,9 +72,9 @@ const contactHtml = 'Be Secure Locksmith is your trusted locksmith for every car
 // Structured data — additive SEO, no visible-content change.
 const serviceJsonLd = {
   '@context': 'https://schema.org', '@type': 'Service', serviceType: 'Automotive Locksmith',
-  name: 'Automotive Locksmith Gainesville, FL', url: pageUrl,
+  name: `Automotive Locksmith ${serviceGeoLabel(location)}`, url: pageUrl,
   provider: { '@type': 'LocalBusiness', name: site.name, telephone: phone },
-  areaServed: { '@type': 'City', name: 'Gainesville, FL' },
+  areaServed: serviceAreaServed(location),
 };
 const breadcrumbJsonLd = {
   '@context': 'https://schema.org', '@type': 'BreadcrumbList',

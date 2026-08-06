@@ -9,6 +9,7 @@ import TrustStrip from './sections/TrustStrip.astro';
 import CtaCard from './sections/CtaCard.astro';
 import { site, telHref } from '../config/site';
 import { resolveLocation, resolvePhone } from '../lib/locations';
+import { serviceAreaServed, serviceGeoLabel } from '../lib/schema';
 
 interface PriceRow { label: string; note: string; price: string; href: string; }
 interface Props {
@@ -99,9 +100,9 @@ const howItWorks = [
 
 const serviceJsonLd = {
   '@context': 'https://schema.org', '@type': 'Service', serviceType,
-  name: `${name} Gainesville, FL`, url: pageUrl,
+  name: `${name} ${serviceGeoLabel(location)}`, url: pageUrl,
   provider: { '@type': 'LocalBusiness', name: site.name, telephone: phone },
-  areaServed: { '@type': 'City', name: 'Gainesville, FL' },
+  areaServed: serviceAreaServed(location),
 };
 const breadcrumbJsonLd = {
   '@context': 'https://schema.org', '@type': 'BreadcrumbList',
