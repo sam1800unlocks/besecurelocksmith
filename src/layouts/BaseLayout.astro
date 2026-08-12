@@ -6,6 +6,7 @@ import '@fontsource-variable/figtree';
 import figtreeLatin from '@fontsource-variable/figtree/files/figtree-latin-wght-normal.woff2';
 import { resolveLocation, resolvePhone } from '../lib/locations';
 import { site } from '../config/site';
+import { adsConversionId, adsTagPaths } from '../config/tracking';
 import { organizationNode } from '../lib/schema';
 
 interface Props {
@@ -38,6 +39,10 @@ const ogImageUrl = ogImage ? new URL(ogImage, siteBase).href : undefined;
 // images may differ in size, so we omit width/height for those.
 const ogIsDefault = ogImage === '/img/og-default.jpg';
 
+// Google Ads base tag runs only on the paths listed in the tracking config.
+const adsPath = path.endsWith('/') ? path : `${path}/`;
+const showAdsTag = adsTagPaths.includes(adsPath);
+
 const orgSchema = schema === 'org-home' ? organizationNode({ homepage: true })
   : schema === 'org-lean' ? organizationNode({ homepage: false })
   : null;
@@ -58,6 +63,8 @@ const orgSchema = schema === 'org-home' ? organizationNode({ homepage: true })
         gtag('js', new Date());
         gtag('config', 'G-CJ59FQS2T4');
       </script>
+      {/* Google Ads base tag — only on the pages in src/config/tracking.ts. */}
+      {showAdsTag && <script is:inline set:html={`gtag('config', ${JSON.stringify(adsConversionId)});`} />}
     </Fragment>
   )}
 
