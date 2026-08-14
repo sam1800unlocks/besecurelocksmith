@@ -12,6 +12,9 @@ export const adsConversionId = 'AW-1003919115';
 // Paths that get the Ads tag. Must include the trailing slash (astro.config.mjs
 // sets `trailingSlash: 'always'`). Add a path here to tag another page.
 export const adsTagPaths = [
+  '/',
+  '/contact-us/',
+  '/testimonials/',
   '/services/smart-lock-installation/',
   '/services/lock-rekeying/',
 ];
