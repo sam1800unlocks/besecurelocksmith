@@ -77,15 +77,19 @@ const siteKey = import.meta.env.PUBLIC_TURNSTILE_SITE_KEY ?? '0x4AAAAAADyGNYjgOo
       const res = await fetch('/api/contact', { method: 'POST', body: new FormData(form!), headers: { 'x-requested-with': 'fetch' } });
       const data = await res.json().catch(() => ({}));
       if (res.ok && data.ok) {
+        // Reset before navigating so a back-navigation doesn't restore a filled form.
         form!.reset();
-        if (status) { status.textContent = 'Thanks! We’ll be in touch shortly.'; status.className = 'm-0 text-[14px] text-success-2 font-semibold'; }
-        (window as any).turnstile && (window as any).turnstile.reset();
+        window.location.assign('/thank-you/');
+        return;
       } else {
         const msg = data.error || (data.errors && Object.values(data.errors)[0]) || 'Something went wrong. Please call 352-706-5295.';
         if (status) { status.textContent = msg as string; status.className = 'm-0 text-[14px] text-alert font-semibold'; }
+        // Turnstile tokens are single-use — reset so a retry gets a fresh one.
+        (window as any).turnstile && (window as any).turnstile.reset();
       }
     } catch {
       if (status) { status.textContent = 'Network error. Please call 352-706-5295.'; status.className = 'm-0 text-[14px] text-alert font-semibold'; }
+      (window as any).turnstile && (window as any).turnstile.reset();
     }
   });
 </script>

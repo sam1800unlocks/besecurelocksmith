@@ -15,6 +15,7 @@ export const adsTagPaths = [
   '/',
   '/contact-us/',
   '/testimonials/',
+  '/thank-you/',
   '/services/smart-lock-installation/',
   '/services/lock-rekeying/',
 ];
