@@ -34,7 +34,7 @@ export const offices: Record<OfficeKey, Office> = {
     email: 'info@besecurelocksmith.com',
     geo: { lat: 29.65886, lng: -82.3345 },
     cid: '1525264823828817691', kgmid: '/g/1ptx2pkfg',
-    ratingValue: '4.9', reviewCount: '1330',
+    ratingValue: '4.8', reviewCount: '1354',
     sameAs: [
       'https://www.google.com/search?kgmid=/g/1ptx2pkfg',
       'https://www.yelp.com/biz/be-secure-locksmith-gainesville-2',
@@ -58,7 +58,7 @@ export const offices: Record<OfficeKey, Office> = {
     email: 'info@besecurelocksmith.com',
     geo: { lat: 29.1844122, lng: -82.1355775 },
     cid: '4138983982412980004', kgmid: '/g/1yfprvxjj',
-    ratingValue: '4.9', reviewCount: '1214',
+    ratingValue: '4.9', reviewCount: '1225',
     sameAs: [
       'https://www.google.com/search?kgmid=/g/1yfprvxjj',
       'https://www.yelp.com/biz/be-secure-locksmith-ocala',

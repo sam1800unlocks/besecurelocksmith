@@ -1,13 +1,26 @@
 ---
 import Container from '../primitives/Container.astro';
 import { site } from '../../config/site';
+import { offices, type OfficeKey } from '../../config/offices';
+
+interface Props {
+  /** Show this office's own Google rating instead of the combined figure. */
+  office?: OfficeKey;
+}
+
+const { office } = Astro.props;
 
 const trustItems = [
   'Licensed & insured',
   'Free security assessment',
   '~30-min typical response',
 ];
-const reviewCount = Number(site.ratingCount).toLocaleString('en-US');
+// The two hub pages speak for one listing, so they carry that listing's rating;
+// every other page keeps the combined figure.
+const listing = office ? offices[office] : null;
+const ratingValue = listing ? listing.ratingValue : site.ratingValue;
+const ratingCountRaw = listing ? listing.reviewCount : site.ratingCount;
+const reviewCount = Number(ratingCountRaw).toLocaleString('en-US');
 ---
 <section class="border-b border-border bg-white">
   <Container>
@@ -20,8 +33,8 @@ const reviewCount = Number(site.ratingCount).toLocaleString('en-US');
       ))}
       <span class="inline-flex items-center gap-1.5">
         <span class="text-amber text-[15px] leading-none">&#9733;</span>
-        <span class="font-bold text-ink" data-countup={site.ratingValue} data-countup-decimals="1">{site.ratingValue}</span>
-        <span>from <span data-countup={site.ratingCount}>{reviewCount}</span> Google reviews</span>
+        <span class="font-bold text-ink" data-countup={ratingValue} data-countup-decimals="1">{ratingValue}</span>
+        <span>from <span data-countup={ratingCountRaw}>{reviewCount}</span> Google reviews</span>
       </span>
     </div>
   </Container>

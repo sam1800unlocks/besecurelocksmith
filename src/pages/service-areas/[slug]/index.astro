@@ -7,6 +7,10 @@ import AreaHero from '../../../components/sections/AreaHero.astro';
 import TrustStrip from '../../../components/sections/TrustStrip.astro';
 import LocalIntro from '../../../components/sections/LocalIntro.astro';
 import ServicesGrid from '../../../components/sections/ServicesGrid.astro';
+import PropertyManagement from '../../../components/sections/PropertyManagement.astro';
+import WhyChoose from '../../../components/sections/WhyChoose.astro';
+import Reviews from '../../../components/sections/Reviews.astro';
+import Credentials from '../../../components/sections/Credentials.astro';
 import AsSeenIn from '../../../components/sections/AsSeenIn.astro';
 import RelatedBlogs from '../../../components/sections/RelatedBlogs.astro';
 import AreaMap from '../../../components/sections/AreaMap.astro';
@@ -71,10 +75,11 @@ const areaFaqs = (area.faqs && area.faqs.length)
   : buildAreaFaqs(area, servingOffice.label);
 const pageUrl = `https://besecurelocksmith.com/service-areas/${area.slug}/`;
 const ctaBody = `Locked out or need new locks in ${area.city}? Be Secure Locksmith is your trusted local, mobile locksmith. <a href="/contact-us/">Contact us today</a> or call now — fast, licensed, and insured service.`;
-const pageTitle = office ? `Locksmith in ${office.label}, FL | Be Secure Locksmith` : area.title;
-const pageDesc = office
-  ? `Be Secure Locksmith's ${office.label}, FL office — mobile locksmith for car, home & business. Lockouts, rekeys, car keys & installs. Call ${office.phone}.`
-  : area.description;
+// Every area content file carries its own title/description (both required by the
+// collection schema). The office pages used to generate theirs instead, which quietly
+// discarded the hand-written metas on the two highest-value pages.
+const pageTitle = area.title;
+const pageDesc = area.description;
 const breadcrumbJsonLd = {
   '@context': 'https://schema.org', '@type': 'BreadcrumbList',
   itemListElement: [
@@ -94,7 +99,7 @@ const breadcrumbJsonLd = {
   <NavBar location={area.location} />
   <main>
     <AreaHero city={area.city} heroSubhead={area.heroSubhead} location={area.location} />
-    <TrustStrip />
+    <TrustStrip office={office?.key} />
     {press && <AsSeenIn logos={press} />}
     <LocalIntro city={area.city} intro={area.intro} />
     {office && (
@@ -107,12 +112,20 @@ const breadcrumbJsonLd = {
             </div>
             <a href={`https://www.google.com/maps/place/?cid=${office.cid}`} target="_blank" rel="noopener noreferrer" class="text-[14px] font-semibold text-primary hover:text-primary-hover">View on Google Maps &rarr;</a>
             <a href={`tel:${office.trackingPhone.replace(/[^0-9+]/g,'')}`} class="inline-flex items-center rounded-pill bg-call hover:bg-call-hover text-white font-bold text-[14px] px-[18px] py-[9px]">{office.phone}</a>
+            <a href="/price-list/" class="text-[14px] font-semibold text-primary hover:text-primary-hover">View our price list &rarr;</a>
           </div>
         </Container>
       </section>
     )}
     <AreaMap area={area} cid={office?.cid} />
     <ServicesGrid />
+    {office && (
+      <>
+        <PropertyManagement />
+        <WhyChoose />
+        <Reviews office={office.key} />
+      </>
+    )}
     <RelatedBlogs posts={area.relatedBlogs} city={area.city} />
     <AreaNeighborhoods city={area.city} neighborhoods={area.neighborhoods} />
     {neighbors.length > 0 && (
@@ -131,6 +144,7 @@ const breadcrumbJsonLd = {
         </Container>
       </section>
     )}
+    {office && <Credentials />}
     <Faq faqs={areaFaqs} variant="rich" />
     <section>
       <Container>

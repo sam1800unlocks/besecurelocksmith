@@ -5,6 +5,7 @@ import Container from '../primitives/Container.astro';
 import Card from '../primitives/Card.astro';
 import Stars from '../primitives/Stars.astro';
 import { site } from '../../config/site';
+import { offices, type OfficeKey } from '../../config/offices';
 
 interface ReviewItem {
   name: string;
@@ -13,18 +14,34 @@ interface ReviewItem {
   time: string;
   quote: string;
   order: number;
+  office?: OfficeKey;
 }
 
 interface Props {
   reviews?: ReviewItem[];
+  /** Show only this office's reviews and its own Google rating, not the blend. */
+  office?: OfficeKey;
 }
 
-const { reviews } = Astro.props;
-const items = reviews ?? (await getCollection('reviews')).map(e => e.data);
+const { reviews, office } = Astro.props;
+const all = reviews ?? (await getCollection('reviews')).map(e => e.data);
+// An office page shows only that listing's reviews. Until an office has enough of
+// its own tagged, fall back to the blend — a one-card carousel reads as thinner
+// social proof than the combined set it replaced.
+const MIN_SCOPED = 3;
+const scoped = office ? all.filter((r) => r.office === office) : all;
+const usingScoped = scoped.length >= MIN_SCOPED;
+const items = usingScoped ? scoped : all;
 const sorted = [...items].sort((a, b) => a.order - b.order);
 
-// Format ratingCount as "2,544" from the raw "2544" in site config
-const ratingCount = Number(site.ratingCount).toLocaleString('en-US');
+// The badge follows the same source as the quotes: one office's listing, or the blend.
+const listing = office && usingScoped ? offices[office] : null;
+const ratingValue = listing ? listing.ratingValue : site.ratingValue;
+const ratingCountRaw = listing ? listing.reviewCount : site.ratingCount;
+const ratingCount = Number(ratingCountRaw).toLocaleString('en-US');
+const reviewsHref = listing
+  ? `https://www.google.com/maps/place/?cid=${listing.cid}`
+  : 'https://www.google.com/maps/place/?cid=1525264823828817691';
 ---
 
 <Section id="reviews" class="py-16">
@@ -37,15 +54,15 @@ const ratingCount = Number(site.ratingCount).toLocaleString('en-US');
           class="m-0 mb-3 font-medium tracking-[-0.8px] text-ink"
           style="font-size:clamp(26px,3.4vw,36px);"
         >
-          Check Out Our Google Reviews
+          {listing ? `Google Reviews for Our ${listing.label} Office` : 'Check Out Our Google Reviews'}
         </h2>
 
         <!-- Google rating badge -->
         <div class="inline-flex items-center gap-3 bg-white border border-border rounded-[16px] px-[18px] py-3">
           <img src="/img/google-g-icon.svg" alt="Google" class="w-[26px] h-[26px]" />
           <div class="text-left">
-            <div class="text-[14px] font-bold text-ink">Excellent · <span data-countup={site.ratingValue} data-countup-decimals="1">{site.ratingValue}</span></div>
-            <div class="text-[12px] text-muted">Based on <span data-countup={site.ratingCount}>{ratingCount}</span> reviews</div>
+            <div class="text-[14px] font-bold text-ink">Excellent · <span data-countup={ratingValue} data-countup-decimals="1">{ratingValue}</span></div>
+            <div class="text-[12px] text-muted">Based on <a href={reviewsHref} target="_blank" rel="noopener noreferrer" class="underline underline-offset-2 hover:text-ink"><span data-countup={ratingCountRaw}>{ratingCount}</span> reviews</a></div>
           </div>
           <Stars />
         </div>

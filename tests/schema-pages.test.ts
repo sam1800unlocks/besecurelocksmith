@@ -7,7 +7,7 @@ const read = (p: string) => { const f = join(dist, p); if (!existsSync(f)) throw
 test('homepage emits the full org Locksmith node', () => {
   const h = read('index.html');
   expect(h).toContain('"@id":"https://besecurelocksmith.com/#organization"');
-  expect(h).toContain('"reviewCount":"2544"');
+  expect(h).toContain('"reviewCount":"2579"');
   expect(h).toContain('"email":"info@besecurelocksmith.com"');
   expect(h).toContain('"@type":"OfferCatalog"');
 });
@@ -23,19 +23,19 @@ test('Gainesville office page: location node + lean org, correct address & ratin
   const h = read('service-areas/locksmith-gainesville-fl/index.html');
   expect(h).toContain('"@id":"https://besecurelocksmith.com/service-areas/locksmith-gainesville-fl/#localbusiness"');
   expect(h).toContain('"streetAddress":"901 NW 8th Ave c17"');
-  expect(h).toContain('"reviewCount":"1330"');
+  expect(h).toContain('"reviewCount":"1354"');
   expect(h).toContain('cid=1525264823828817691');
   expect(h).toContain('maps/place/?cid=1525264823828817691&output=embed');
   expect(h).toContain('"parentOrganization"');
   expect(h).toContain('#organization');       // lean org node present
-  expect(h).not.toContain('"reviewCount":"2544"'); // no combined rating here
+  expect(h).not.toContain('"reviewCount":"2579"'); // no combined rating here
   expect(h).not.toContain('"@type":"OfferCatalog"'); // no catalog on lean org
 });
 
 test('Ocala office page uses the Ocala address + rating', () => {
   const h = read('service-areas/locksmith-ocala-fl/index.html');
   expect(h).toContain('"streetAddress":"217 SE 1st Ave Suite 200-50"');
-  expect(h).toContain('"reviewCount":"1214"');
+  expect(h).toContain('"reviewCount":"1225"');
   expect(h).toContain('cid=4138983982412980004');
   expect(h).toContain('#organization');
   expect(h).not.toContain('"streetAddress":"901 NW 8th Ave c17"'); // NOT Gainesville schema address
@@ -56,9 +56,9 @@ test('contact page shows both offices and no business schema', () => {
   expect(h).not.toContain('#organization');
 });
 
-test('rating display uses the combined 2,544', () => {
+test('rating display uses the combined 2,579', () => {
   const h = read('index.html');
-  expect(h).toContain('2,544');            // formatted via toLocaleString
+  expect(h).toContain('2,579');            // formatted via toLocaleString
   expect(h).not.toContain('2,551');
 });
 

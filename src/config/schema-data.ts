@@ -18,7 +18,7 @@ export const schemaData = {
   priceRange: '$$',
   paymentAccepted: 'Cash, Visa, Mastercard, PayPal',
   currenciesAccepted: 'USD',
-  combinedRating: { ratingValue: '4.9', reviewCount: '2544' },
+  combinedRating: { ratingValue: '4.8', reviewCount: '2579' },
   founder: {
     name: 'Netta Kaiden',
     jobTitle: 'Owner & Master Locksmith',
