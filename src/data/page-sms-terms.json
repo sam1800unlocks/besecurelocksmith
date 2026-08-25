@@ -1,0 +1,32 @@
+{
+  "slug": "sms-terms",
+  "title": "SMS Terms & Conditions – Be Secure Locksmith Gainesville FL",
+  "description": "Be Secure Locksmith SMS terms and conditions: how you opt in to text messages, what we send, message and data rates, and how to reply STOP to cancel.",
+  "h1": "SMS Terms & Conditions",
+  "blocks": [
+    {
+      "t": "p",
+      "html": "By sending a text message to Be Secure Locksmith at (352) 839-7610, or by providing your mobile number during a phone call with our office or answering assistant and requesting a callback, quote, or confirmation by text, you consent to receive text messages from Be Secure Locksmith at the number you provided."
+    },
+    {
+      "t": "p",
+      "html": "Messages are conversational and transactional only: replies to your service questions, callback and appointment confirmations, recaps of service requests you made by phone, and follow-ups on your open requests. We do not send marketing or promotional messages, and we never purchase contact lists or send unsolicited messages."
+    },
+    {
+      "t": "p",
+      "html": "Message frequency varies based on your conversation with us. Message and data rates may apply. Mobile carriers are not liable for delayed or undelivered messages."
+    },
+    {
+      "t": "p",
+      "html": "You can cancel at any time by replying STOP. After you send STOP, we will send one final message confirming you are unsubscribed, and no further messages will be sent. Reply START to re-subscribe. For help, reply HELP, call us at <a href=\"tel:+13527065295\">(352) 706-5295</a>, or email <a href=\"mailto:info@besecurelocksmith.com\">info@besecurelocksmith.com</a>."
+    },
+    {
+      "t": "p",
+      "html": "No mobile information will be shared with third parties or affiliates for marketing or promotional purposes. Text messaging originator opt-in data and consent will not be shared with any third parties. See our Privacy Policy at <a href=\"https://besecurelocksmith.com/privacy-policy/\">https://besecurelocksmith.com/privacy-policy/</a> for how we handle your information."
+    },
+    {
+      "t": "p",
+      "html": "Be Secure Locksmith · 901 NW 8th Ave. C17, Gainesville, FL 32601 · <a href=\"tel:+13527065295\">(352) 706-5295</a> · License #HCLO18005"
+    }
+  ]
+}

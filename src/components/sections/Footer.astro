@@ -117,10 +117,15 @@ const socials = resolveSocials(resolveLocation(location));
   <!-- Bottom bar -->
   <div class="border-t border-border">
     <Container>
+      <!-- SMS consent disclosure (how customers opt in) -->
+      <p class="mx-auto mt-5 mb-0 max-w-[860px] text-center text-[12px] leading-[1.7] text-muted">
+        Text us at (352) 839-7610. By texting, you agree to receive conversational messages from Be Secure Locksmith; message &amp; data rates may apply; reply STOP to cancel.{' '}
+        <a href="/sms-terms/" class="text-muted underline underline-offset-2 hover:text-ink">SMS Terms</a>
+        <span class="text-border-2"> · </span>
+        <a href="/privacy-policy/" class="text-muted underline underline-offset-2 hover:text-ink">Privacy Policy</a>
+      </p>
       <div class="py-5 flex flex-wrap gap-x-[14px] gap-y-[6px] items-center justify-center text-center">
         <span class="text-[12px] text-muted">© Be Secure Locksmith</span>
-        <span class="text-[12px] text-border-2">·</span>
-        <a href="/privacy-policy/" class="text-[12px] text-muted hover:text-ink">Privacy Policy</a>
         <span class="text-[12px] text-border-2">·</span>
         <span class="text-[12px] text-muted">{site.agencyCredit}</span>
         <span class="text-[12px] text-border-2">·</span>
