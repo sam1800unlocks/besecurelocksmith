@@ -89,6 +89,22 @@ test.each([
   expect(html).not.toContain('data-countup="2579"');
 });
 
+// The hub pages lead with a near-me heading; every other area page keeps the default.
+test.each([
+  ['locksmith-gainesville-fl', 'Gainesville'],
+  ['locksmith-ocala-fl',       'Ocala'],
+])('%s leads with the near-me intro heading', (slug, label) => {
+  const html = read(slug);
+  expect(html).toContain(`Locksmith Near Me - Our ${label}, FL Locksmith Services`);
+  expect(html).not.toContain(`Trusted Locksmith Services in ${label}, FL<`);
+});
+
+test('non-office area pages keep the default intro heading', () => {
+  const html = read('locksmith-alachua-fl');
+  expect(html).toContain('Trusted Locksmith Services in Alachua, FL');
+  expect(html).not.toContain('Locksmith Near Me - Our');
+});
+
 test('non-office area pages keep the blended TrustStrip rating', () => {
   expect(read('locksmith-alachua-fl')).toContain('data-countup="2579"');
 });

@@ -101,7 +101,11 @@ const breadcrumbJsonLd = {
     <AreaHero city={area.city} heroSubhead={area.heroSubhead} location={area.location} />
     <TrustStrip office={office?.key} />
     {press && <AsSeenIn logos={press} />}
-    <LocalIntro city={area.city} intro={area.intro} />
+    <LocalIntro
+      city={area.city}
+      intro={area.intro}
+      heading={office ? `Locksmith Near Me - Our ${office.label}, FL Locksmith Services` : undefined}
+    />
     {office && (
       <section class="border-b border-border" style="background:#f4f4f4;">
         <Container>
