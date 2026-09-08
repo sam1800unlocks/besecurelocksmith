@@ -1,6 +1,6 @@
 import { test, expect } from 'vitest';
-import { existsSync, readFileSync } from 'node:fs';
-import { resolve } from 'node:path';
+import { existsSync, readFileSync, readdirSync } from 'node:fs';
+import { resolve, join } from 'node:path';
 
 const read = (rel: string) => {
   const f = resolve(__dirname, '..', rel);
@@ -36,5 +36,10 @@ test('Category pages exist, are noindex, and list only that category', () => {
   const html = read('dist/blog/category/automotive-locksmith/index.html');
   expect(html).toContain('name="robots" content="noindex, follow"');
   expect(html).toContain('Automotive Locksmith');                   // H1 / breadcrumb
-  expect((html.match(/Read article/g) || []).length).toBe(13);      // all 13 automotive posts, no pagination
+  const blogDir = resolve(__dirname, '..', 'src/content/blog');
+  const automotive = readdirSync(blogDir)
+    .filter(f => f.endsWith('.json'))
+    .filter(f => JSON.parse(readFileSync(join(blogDir, f), 'utf8')).category === 'Automotive Locksmith');
+  expect(automotive.length).toBeGreaterThan(PAGE_SIZE);              // enough to page, if it paged
+  expect((html.match(/Read article/g) || []).length).toBe(automotive.length); // all of them, no pagination
 });

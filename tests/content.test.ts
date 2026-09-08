@@ -11,9 +11,9 @@ describe('content collections are seeded with homepage data', () => {
     expect(files.length).toBe(9);
   });
 
-  test('reviews collection has 5 items', () => {
+  test('reviews collection has 17 items', () => {
     const files = readdirSync(join(contentDir, 'reviews')).filter(f => f.endsWith('.json'));
-    expect(files.length).toBe(5);
+    expect(files.length).toBe(17);
   });
 
   test('faqs collection has 8 items', () => {
@@ -27,13 +27,14 @@ describe('content collections are seeded with homepage data', () => {
     expect(data.photo).toBe('/img/services/cards/smart-lock-installation.webp');
   });
 
-  test('first review matches Riva Wallace verbatim', () => {
-    const raw = readFileSync(join(contentDir, 'reviews/01-riva-wallace.json'), 'utf-8');
+  // Quotes are pasted exactly as Google shows them - never smoothed or re-punctuated.
+  test('first review matches Oliver Tumbel verbatim', () => {
+    const raw = readFileSync(join(contentDir, 'reviews/01-oliver-tumbel.json'), 'utf-8');
     const data = JSON.parse(raw);
-    expect(data.name).toBe('Riva Wallace');
-    expect(data.initial).toBe('R');
+    expect(data.name).toBe('Oliver Tumbel');
+    expect(data.initial).toBe('O');
     expect(data.color).toBe('#0064e0');
-    expect(data.quote).toBe('Highly recommend. Very professional and friendly to work with.');
+    expect(data.quote).toBe('They were great, fast, and a great price. They beat a competitor’s rate and came quicker — couldn’t be happier. Netta was my tech: fast, nice, and easy!');
     expect(data.order).toBe(1);
   });
 

@@ -21,6 +21,9 @@ const reviews = defineCollection({
     time: z.string(),
     quote: z.string(),
     order: z.number(),
+    // Which listing the review was left on. Untagged reviews are office-neutral and
+    // only ever appear in the blended (homepage) set.
+    office: z.enum(['gainesville', 'ocala']).optional(),
   }),
 });
 

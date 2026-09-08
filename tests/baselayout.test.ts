@@ -9,7 +9,9 @@ test('BaseLayout emits fonts and Locksmith org JSON-LD when schema=org-home', as
     props: { title: 'Home', location: 'main', schema: 'org-home' },
     slots: { default: createSlotValueFromString('<main>x</main>') },
   });
-  expect(html).toContain('family=Figtree');
+  // Figtree is self-hosted and preloaded; no Google Fonts request at all.
+  expect(html).toMatch(/rel="preload"[^>]*figtree[^>]*\.woff2/i);
+  expect(html).not.toContain('fonts.googleapis.com');
   // Schema is now conditional on the `schema` prop; org-home emits a Locksmith node
   expect(html).toContain('"@type":"Locksmith"');
   expect(html).not.toContain('"@type":"LocalBusiness"');

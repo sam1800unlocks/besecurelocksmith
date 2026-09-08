@@ -1,6 +1,8 @@
 import { test, expect } from 'vitest';
 import { existsSync, readFileSync } from 'node:fs';
 import { resolve } from 'node:path';
+import { offices } from '../../src/config/offices';
+import { telHref } from '../../src/config/site';
 
 const p = resolve(__dirname, '../../dist/service-areas/locksmith-alachua-fl/index.html');
 
@@ -9,11 +11,11 @@ test('Alachua page builds with the unified stack + SEO', () => {
   const html = readFileSync(p, 'utf8');
   expect(html).toContain('<title>Locksmith Alachua, FL - Home, Car &amp; Business Lockouts</title>');
   expect(html).toContain('Locksmith in Alachua, FL');                  // AreaHero H1
-  expect(html).toContain('Your Local, Mobile Locksmith in Alachua, FL'); // LocalIntro
-  expect(html).toContain('Trusted Locksmith Services');                // ServicesGrid
+  expect(html).toContain('Trusted Locksmith Services in Alachua, FL');   // LocalIntro
+  expect(html).toContain('Trusted Locksmith Services in Gainesville, FL, and Ocala, FL'); // ServicesGrid
   expect(html).toContain('Our Alachua Service Area');                  // AreaMap
   expect(html).toContain('/blog/');                                    // RelatedBlogs
-  expect(html).toContain('href="tel:+13527065295"');
+  expect(html).toContain(`href="${telHref(offices.gainesville.phone)}"`); // served from Gainesville
   expect(html).toContain('"@type":"BreadcrumbList"');
   // Non-office area pages carry no business schema (only office pages do)
   expect(html).not.toContain('"@type":"LocalBusiness"');
