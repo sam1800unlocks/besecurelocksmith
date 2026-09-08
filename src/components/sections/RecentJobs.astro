@@ -1,0 +1,29 @@
+---
+// Be Secure's own widget (be-secure-receptionist.fly.dev — the same infrastructure
+// that runs their phone system). It renders a card of recent completed jobs from
+// a public, CORS-open feed carrying city, state, service and date only.
+//
+// The two lines below are the client's snippet, verbatim: `is:inline` keeps Astro
+// from touching the script tag, so what ships is exactly what they asked for.
+//
+// The widget reserves 260px of height itself before it fetches, so it does not
+// shift the page. It emits no structured data — schema stays the site's job.
+---
+
+<section>
+  <div id="bsl-recent-jobs"></div>
+  <script src="https://be-secure-receptionist.fly.dev/jobs-widget.js" async is:inline></script>
+</section>
+
+<style>
+  section {
+    max-width: 1360px;
+    margin: 0 auto;
+    padding: 0 24px 56px;
+  }
+  /* The widget's inline min-height stays put if its fetch fails (its catch is
+     silent), which would leave a blank 260px hole. Collapse it while empty. */
+  #bsl-recent-jobs:empty {
+    min-height: 0 !important;
+  }
+</style>
