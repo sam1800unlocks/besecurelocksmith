@@ -87,7 +87,14 @@ async function handleContact(request, env) {
 // page. That is why this cannot reuse handleContact, which requires an email.
 // ---------------------------------------------------------------------------
 async function handleQuote(request, env) {
-  const form = await request.formData();
+  // A bodyless or malformed POST makes formData() throw, which would surface as
+  // a Cloudflare 1101 error page rather than a usable response.
+  let form;
+  try {
+    form = await request.formData();
+  } catch {
+    return json({ error: "Could not read the form submission." }, 400);
+  }
 
   // Honeypot. The landing page ships its own field name ("website"); accept the
   // site-wide one too so either markup drops bots silently.
