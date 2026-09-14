@@ -84,29 +84,22 @@ const withPhotos = rows.filter((r) => r.photo).length;
           city level only, out of respect for our customers&rsquo; privacy.
         </p>
 
-        <ul class="m-0 p-0 list-none grid gap-3" style="grid-template-columns:repeat(auto-fill,minmax(320px,1fr));">
+        <ul class="m-0 p-0 list-none grid gap-4 grid-cols-1 md:grid-cols-2">
           {rows.map(({ job, photo }) => (
-            <li class="flex items-center gap-4 bg-white border border-border rounded-[16px] p-3">
-              {photo ? (
+            <li class={`bg-white border border-border rounded-[16px] flex items-center ${photo ? 'gap-5 p-4' : 'gap-4 px-5 py-4'}`}>
+              {photo && (
                 <img
                   src={photo.url}
                   alt={photo.caption ?? `${job.service} in ${job.city}, ${job.state}`}
-                  width="88"
-                  height="88"
+                  width="300"
+                  height="300"
                   loading="lazy"
                   decoding="async"
-                  class="w-[88px] h-[88px] shrink-0 rounded-[12px] object-cover bg-surface"
+                  class="w-[46%] min-w-[140px] max-w-[300px] aspect-square shrink-0 rounded-[12px] object-cover bg-surface"
                 />
-              ) : (
-                <div class="w-[88px] h-[88px] shrink-0 rounded-[12px] bg-surface flex items-center justify-center" aria-hidden="true">
-                  <svg width="26" height="26" viewBox="0 0 24 24" fill="none" stroke="#8595a4" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round">
-                    <rect x="3" y="11" width="18" height="10" rx="2" />
-                    <path d="M7 11V7a5 5 0 0 1 10 0v4" />
-                  </svg>
-                </div>
               )}
               <div class="min-w-0">
-                <div class="text-[15px] font-bold text-ink leading-[1.3]">{job.service}</div>
+                <div class={photo ? 'text-[18px] font-bold text-ink leading-[1.3]' : 'text-[15px] font-bold text-ink leading-[1.3]'}>{job.service}</div>
                 <div class="mt-1 text-[14px] text-secondary">
                   {areaHref(job.city)
                     ? <a href={areaHref(job.city)} class="font-semibold text-primary hover:text-primary-hover">{job.city}, {job.state}</a>
@@ -115,7 +108,7 @@ const withPhotos = rows.filter((r) => r.photo).length;
                   <span class="text-muted">{fmtDate(job.date)}</span>
                 </div>
                 {photo?.caption && (
-                  <div class="mt-1 text-[13px] leading-[1.45] text-muted">{photo.caption}</div>
+                  <div class="mt-2 text-[14px] leading-[1.5] text-muted">{photo.caption}</div>
                 )}
               </div>
             </li>

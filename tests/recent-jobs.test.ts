@@ -21,7 +21,7 @@ test('ships no remote widget script', () => {
 
 test('renders a full card of recent jobs', () => {
   const html = home();
-  expect(html.match(/rounded-\[16px\] p-3/g)?.length).toBe(12);
+  expect(html.match(/rounded-\[16px\] flex items-center/g)?.length).toBe(12);
 });
 
 // Photos are far sparser than jobs, so the jobs carrying one must be selected
@@ -48,9 +48,18 @@ test('photos are lazy and dimensioned', () => {
   expect(imgs.length).toBeGreaterThan(0);
   for (const img of imgs) {
     expect(img).toContain('loading="lazy"');
-    expect(img).toContain('width="88"');
-    expect(img).toContain('height="88"');
+    expect(img).toContain('width="300"');
+    expect(img).toContain('height="300"');
   }
+});
+
+// Only jobs that actually have a photo get an image block; the rest render as a
+// compact row rather than a large empty placeholder.
+test('renders exactly one image per consented photo, and no placeholder tiles', () => {
+  const html = home();
+  const card = html.slice(html.indexOf('id="recent-jobs"'));
+  expect((card.match(/<img[^>]*\/p\/p-[0-9a-f]+\.jpg/g) ?? []).length).toBe(2);
+  expect(card.slice(0, card.indexOf('</ul>'))).not.toContain('aria-hidden="true"');
 });
 
 test('city names link to their service-area page where one exists', () => {
