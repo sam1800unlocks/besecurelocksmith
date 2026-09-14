@@ -1,0 +1,126 @@
+---
+import Section from '../primitives/Section.astro';
+import Container from '../primitives/Container.astro';
+import { serviceAreas } from '../../config/site';
+
+// Be Secure's own feeds (be-secure-receptionist.fly.dev — the same infrastructure
+// that runs their phone system). Both are public, CORS-open and carry no PII:
+// jobs are city/state/service/date, photos add a consented, EXIF-stripped image.
+//
+// Fetched at build time so nothing ships a third-party script and the card is
+// real HTML. If either feed is unreachable the section renders nothing rather
+// than failing the build.
+const FEED = 'https://be-secure-receptionist.fly.dev/jobs-feed.json';
+const PHOTOS = 'https://be-secure-receptionist.fly.dev/jobs-photos.json';
+const LIMIT = 12;
+
+interface Job { city: string; state: string; service: string; date: string }
+interface Photo extends Job { id: string; url: string; caption?: string; consent?: boolean }
+
+async function load<T>(url: string, key: string): Promise<T[]> {
+  try {
+    const r = await fetch(url);
+    if (!r.ok) return [];
+    const j = await r.json();
+    return Array.isArray(j?.[key]) ? j[key] : [];
+  } catch {
+    return [];
+  }
+}
+
+const [jobs, photos] = await Promise.all([
+  load<Job>(FEED, 'jobs'),
+  load<Photo>(PHOTOS, 'photos'),
+]);
+
+// Only consented photos are ever considered.
+const key = (x: Job) => `${x.city}|${x.state}|${x.service}|${x.date}`;
+const pool = new Map<string, Photo[]>();
+for (const p of photos.filter((p) => p.consent === true && p.url && p.id)) {
+  const k = key(p);
+  if (!pool.has(k)) pool.set(k, []);
+  pool.get(k)!.push(p);
+}
+
+// Attach at most one photo per job, across the WHOLE feed — not just the slice
+// we display. Several jobs can share a key (two commercial rekeys in the same
+// city on the same day), so take from the pool rather than showing one image
+// twice. Photos are far sparser than jobs, so matching only the visible window
+// would drop most of them off the page.
+const matched = jobs.map((job) => {
+  const bucket = pool.get(key(job));
+  return { job, photo: bucket && bucket.length ? bucket.shift()! : null };
+});
+
+// Jobs carrying a photo earn their slot first; the rest fill up by recency. The
+// card is then shown newest-first either way, so it still reads as a timeline.
+const rows = [...matched]
+  .sort((a, b) => (a.photo ? 0 : 1) - (b.photo ? 0 : 1) || b.job.date.localeCompare(a.job.date))
+  .slice(0, LIMIT)
+  .sort((a, b) => b.job.date.localeCompare(a.job.date));
+
+const areaHref = (city: string) =>
+  serviceAreas.find((a) => a.name.toLowerCase() === city.toLowerCase())?.href ?? null;
+
+const fmtDate = (d: string) => {
+  const dt = new Date(`${d}T12:00:00`);
+  return Number.isNaN(dt.getTime())
+    ? d
+    : dt.toLocaleDateString('en-US', { month: 'short', day: 'numeric' });
+};
+
+const withPhotos = rows.filter((r) => r.photo).length;
+---
+
+{rows.length > 0 && (
+  <Section id="recent-jobs" class="py-16">
+    <Container>
+      <div class="max-w-[1180px] mx-auto">
+        <h2 class="m-0 mb-3 font-medium tracking-[-0.8px] text-ink" style="font-size:clamp(26px,3.4vw,36px);">
+          Recent Jobs Across Gainesville &amp; Ocala
+        </h2>
+        <p class="m-0 mb-8 text-[16px] leading-[1.6] text-secondary max-w-[680px]">
+          A live look at work our technicians have completed recently. Locations are shown at
+          city level only, out of respect for our customers&rsquo; privacy.
+        </p>
+
+        <ul class="m-0 p-0 list-none grid gap-4 grid-cols-1 md:grid-cols-2">
+          {rows.map(({ job, photo }) => (
+            <li class={`bg-white border border-border rounded-[16px] flex items-center ${photo ? 'gap-5 p-4' : 'gap-4 px-5 py-4'}`}>
+              {photo && (
+                <img
+                  src={photo.url}
+                  alt={photo.caption ?? `${job.service} in ${job.city}, ${job.state}`}
+                  width="300"
+                  height="300"
+                  loading="lazy"
+                  decoding="async"
+                  class="w-[46%] min-w-[140px] max-w-[300px] aspect-square shrink-0 rounded-[12px] object-cover bg-surface"
+                />
+              )}
+              <div class="min-w-0">
+                <div class={photo ? 'text-[18px] font-bold text-ink leading-[1.3]' : 'text-[15px] font-bold text-ink leading-[1.3]'}>{job.service}</div>
+                <div class="mt-1 text-[14px] text-secondary">
+                  {areaHref(job.city)
+                    ? <a href={areaHref(job.city)} class="font-semibold text-primary hover:text-primary-hover">{job.city}, {job.state}</a>
+                    : <span class="font-semibold">{job.city}, {job.state}</span>}
+                  <span class="text-border-2"> · </span>
+                  <span class="text-muted">{fmtDate(job.date)}</span>
+                </div>
+                {photo?.caption && (
+                  <div class="mt-2 text-[14px] leading-[1.5] text-muted">{photo.caption}</div>
+                )}
+              </div>
+            </li>
+          ))}
+        </ul>
+
+        {withPhotos > 0 && (
+          <p class="m-0 mt-5 text-[13px] text-muted-2">
+            Photos are published with our customers&rsquo; permission.
+          </p>
+        )}
+      </div>
+    </Container>
+  </Section>
+)}

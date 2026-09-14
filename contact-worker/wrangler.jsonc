@@ -23,7 +23,8 @@
 	// static site serving the live besecurelocksmith.com domain.
 	"routes": [
 		{ "pattern": "besecurelocksmith.com/api/contact", "zone_name": "besecurelocksmith.com" },
-		{ "pattern": "besecurelocksmith.com/api/employment", "zone_name": "besecurelocksmith.com" }
+		{ "pattern": "besecurelocksmith.com/api/employment", "zone_name": "besecurelocksmith.com" },
+		{ "pattern": "besecurelocksmith.com/api/quote", "zone_name": "besecurelocksmith.com" }
 	]
 	// Secrets (set via `wrangler secret put`, Step 6): RESEND_API_KEY, TURNSTILE_SECRET_KEY
 }
