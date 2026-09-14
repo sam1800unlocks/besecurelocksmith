@@ -2,6 +2,7 @@
 // One Worker, two routes (see wrangler.jsonc `routes`):
 //   POST /api/contact     -> contact form (Turnstile + honeypot)
 //   POST /api/employment  -> job application w/ résumé attachment (honeypot)
+//   POST /api/quote       -> /new-home/ ads landing page quote form (Turnstile + honeypot)
 const escapeHtml = (s = "") =>
   s.replace(/[&<>"']/g, (c) => (
     { "&": "&amp;", "<": "&lt;", ">": "&gt;", '"': "&quot;", "'": "&#39;" }[c]
@@ -17,6 +18,7 @@ export default {
     }
     const { pathname } = new URL(request.url);
     if (pathname === "/api/employment") return handleEmployment(request, env);
+    if (pathname === "/api/quote") return handleQuote(request, env);
     return handleContact(request, env); // default: /api/contact
   },
 };
@@ -73,6 +75,67 @@ async function handleContact(request, env) {
   if (!res.ok) {
     console.log("Resend error (contact):", await res.text());
     return json({ error: "Could not send message. Please try again." }, 502);
+  }
+  return json({ ok: true }, 200);
+}
+
+// ---------------------------------------------------------------------------
+// New-movers ads landing page (/new-home/) quote form
+//
+// Deliberately phone-first: the page collects name, phone, service and city and
+// asks for no email, because requiring one costs conversions on a paid landing
+// page. That is why this cannot reuse handleContact, which requires an email.
+// ---------------------------------------------------------------------------
+async function handleQuote(request, env) {
+  const form = await request.formData();
+
+  // Honeypot. The landing page ships its own field name ("website"); accept the
+  // site-wide one too so either markup drops bots silently.
+  const honeypot =
+    (form.get("bsl_hp") || "").toString().trim() ||
+    (form.get("website") || "").toString().trim();
+  if (honeypot) return json({ ok: true }, 200);
+
+  const token = (form.get("cf-turnstile-response") || "").toString();
+  const verify = await fetch(
+    "https://challenges.cloudflare.com/turnstile/v0/siteverify",
+    {
+      method: "POST",
+      headers: { "Content-Type": "application/x-www-form-urlencoded" },
+      body: new URLSearchParams({
+        secret: env.TURNSTILE_SECRET_KEY,
+        response: token,
+        remoteip: request.headers.get("CF-Connecting-IP") || "",
+      }),
+    }
+  );
+  const outcome = await verify.json();
+  if (!outcome.success) return json({ error: "Bot verification failed. Please try again." }, 403);
+
+  const name = (form.get("name") || "").toString().trim();
+  const phone = (form.get("phone") || "").toString().trim();
+  const service = (form.get("service") || "").toString().trim();
+  const city = (form.get("city") || "").toString().trim();
+
+  const digits = phone.replace(/[^0-9]/g, "").replace(/^1(?=[0-9]{10}$)/, "");
+  if (!name) return json({ error: "Please add your name." }, 400);
+  if (digits.length !== 10) return json({ error: "Please enter a 10-digit phone number." }, 400);
+  if (!service || !city) return json({ error: "Please choose a service and a city." }, 400);
+
+  const res = await sendEmail(env, {
+    subject: `New movers lead — ${name} (${city})`,
+    html: `
+      <h2>New movers landing page — quote request</h2>
+      <p><strong>Name:</strong> ${escapeHtml(name)}</p>
+      <p><strong>Phone:</strong> <a href="tel:+1${escapeHtml(digits)}">${escapeHtml(phone)}</a></p>
+      <p><strong>Service:</strong> ${escapeHtml(service)}</p>
+      <p><strong>City:</strong> ${escapeHtml(city)}</p>
+      <p><em>Source: /new-home/ Google Ads landing page</em></p>
+    `,
+  });
+  if (!res.ok) {
+    console.log("Resend error (quote):", await res.text());
+    return json({ error: "Could not send your request. Please call or text us instead." }, 502);
   }
   return json({ ok: true }, 200);
 }
