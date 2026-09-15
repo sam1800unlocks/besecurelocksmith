@@ -48,6 +48,10 @@ test('homepage shows the two-office band before the service-area list', () => {
   expect(h).toContain('Visit Our Gainesville &amp; Ocala Offices');
   expect(h).toContain('View Gainesville details');
   expect(h).toContain('View Ocala details');
-  // band appears before the ServiceAreas city list (which links Belleview)
-  expect(h.indexOf('Visit Our Gainesville')).toBeLessThan(h.indexOf('/service-areas/locksmith-belleview-fl/'));
+  // Band appears before the footer's service-area city list. Anchor on <footer
+  // itself: a bare service-area href also appears earlier now, in the
+  // recent-jobs refresh script's city-link map.
+  expect(h.indexOf('Visit Our Gainesville')).toBeLessThan(h.indexOf('<footer'));
+  const footer = h.slice(h.indexOf('<footer'));
+  expect(footer).toContain('/service-areas/locksmith-belleview-fl/');
 });

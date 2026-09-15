@@ -47,6 +47,9 @@ const fmtDate = (d: string) => {
 };
 
 const withPhotos = rows.filter((r) => r.photo).length;
+
+// Passed to the refresh script below so it can link cities the same way.
+const areaMap = Object.fromEntries(serviceAreas.map((a) => [a.name.toLowerCase(), a.href]));
 ---
 
 {rows.length > 0 && (
@@ -61,7 +64,7 @@ const withPhotos = rows.filter((r) => r.photo).length;
           city level only, out of respect for our customers&rsquo; privacy.
         </p>
 
-        <ul class="m-0 p-0 list-none grid gap-4 grid-cols-1 md:grid-cols-2">
+        <ul id="recent-jobs-list" class="m-0 p-0 list-none grid gap-4 grid-cols-1 md:grid-cols-2">
           {rows.map(({ job, photo }) => (
             <li class={`bg-white border border-border rounded-[16px] flex items-center ${photo ? 'gap-5 p-4' : 'gap-4 px-5 py-4'}`}>
               {photo && (
@@ -101,3 +104,101 @@ const withPhotos = rows.filter((r) => r.photo).length;
     </Container>
   </Section>
 )}
+
+<script define:vars={{ FEED, LIMIT, areaMap }}>
+  // The build-time markup above is the baseline: crawlers and no-JS visitors get
+  // a complete card. This refreshes it in place so the list stays current between
+  // deploys — the client's feed moves as their team closes jobs in Workiz, and
+  // the site is deployed by hand.
+  //
+  // Rows are built with createElement/textContent, never innerHTML, so feed
+  // content cannot inject markup no matter what ends up in a caption.
+  (async () => {
+    const list = document.getElementById('recent-jobs-list');
+    if (!list) return;
+
+    let jobs;
+    try {
+      const res = await fetch(FEED, { cache: 'no-store' });
+      if (!res.ok) return;
+      const data = await res.json();
+      jobs = Array.isArray(data && data.jobs) ? data.jobs : null;
+    } catch {
+      return; // leave the built-in markup alone
+    }
+    if (!jobs || !jobs.length) return;
+
+    const rows = jobs
+      .slice()
+      .sort((a, b) =>
+        ((a.photo && a.photo.url) ? 0 : 1) - ((b.photo && b.photo.url) ? 0 : 1) ||
+        String(b.date).localeCompare(String(a.date)))
+      .slice(0, LIMIT)
+      .sort((a, b) => String(b.date).localeCompare(String(a.date)));
+
+    // Skip the DOM work entirely when nothing has moved.
+    const signature = rows.map((j) =>
+      [j.service, j.city, j.state, j.date, j.photo && j.photo.url].join('|')).join('||');
+    if (list.dataset.signature === signature) return;
+
+    const fmtDate = (d) => {
+      const dt = new Date(String(d) + 'T12:00:00');
+      return isNaN(dt.getTime())
+        ? String(d)
+        : dt.toLocaleDateString('en-US', { month: 'short', day: 'numeric' });
+    };
+
+    const el = (tag, cls, text) => {
+      const n = document.createElement(tag);
+      if (cls) n.className = cls;
+      if (text != null) n.textContent = text;
+      return n;
+    };
+
+    const frag = document.createDocumentFragment();
+
+    for (const job of rows) {
+      const photo = job.photo && job.photo.url ? job.photo : null;
+      const li = el('li', 'bg-white border border-border rounded-[16px] flex items-center ' +
+        (photo ? 'gap-5 p-4' : 'gap-4 px-5 py-4'));
+
+      if (photo) {
+        const img = el('img', 'w-[46%] min-w-[140px] max-w-[300px] aspect-square shrink-0 rounded-[12px] object-cover bg-surface');
+        img.src = photo.url;
+        img.alt = photo.caption || (job.service + ' in ' + job.city + ', ' + job.state);
+        img.width = 300; img.height = 300;
+        img.loading = 'lazy'; img.decoding = 'async';
+        li.appendChild(img);
+      }
+
+      const body = el('div', 'min-w-0');
+      body.appendChild(el('div',
+        (photo ? 'text-[18px]' : 'text-[15px]') + ' font-bold text-ink leading-[1.3]',
+        job.service));
+
+      const meta = el('div', 'mt-1 text-[14px] text-secondary');
+      const href = areaMap[String(job.city || '').toLowerCase()];
+      const place = job.city + ', ' + job.state;
+      if (href) {
+        const a = el('a', 'font-semibold text-primary hover:text-primary-hover', place);
+        a.href = href;
+        meta.appendChild(a);
+      } else {
+        meta.appendChild(el('span', 'font-semibold', place));
+      }
+      meta.appendChild(el('span', 'text-border-2', ' \u00b7 '));
+      meta.appendChild(el('span', 'text-muted', fmtDate(job.date)));
+      body.appendChild(meta);
+
+      if (photo && photo.caption) {
+        body.appendChild(el('div', 'mt-2 text-[14px] leading-[1.5] text-muted', photo.caption));
+      }
+
+      li.appendChild(body);
+      frag.appendChild(li);
+    }
+
+    list.replaceChildren(frag);
+    list.dataset.signature = signature;
+  })();
+</script>

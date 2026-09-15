@@ -19,9 +19,16 @@ test('ships no remote widget script', () => {
   expect(html).not.toContain('bsl-recent-jobs');
 });
 
-test('renders a full card of recent jobs', () => {
+// Count real <li> elements inside the list, not class strings: the refresh
+// script contains the same class names as literals.
+const listMarkup = () => {
   const html = home();
-  expect(html.match(/rounded-\[16px\] flex items-center/g)?.length).toBe(12);
+  const start = html.indexOf('<ul id="recent-jobs-list"');
+  return html.slice(start, html.indexOf('</ul>', start));
+};
+
+test('renders a full card of recent jobs', () => {
+  expect(listMarkup().match(/<li\b/g)?.length).toBe(12);
 });
 
 // Photos arrive attached to their own job (bound by Workiz id on the client's
