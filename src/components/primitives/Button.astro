@@ -8,6 +8,7 @@ const tone = variant === 'call' ? 'bg-call hover:bg-call-hover text-white'
   : variant === 'booking' ? 'bg-booking hover:bg-booking-hover text-white'
   : variant === 'primary' ? 'bg-primary hover:bg-primary-hover text-white'
   : variant === 'dark' ? 'bg-black text-white'
-  : 'border border-border text-ink bg-white';
+  // 'outline' (and any unrecognised variant): quiet tertiary button on white
+  : 'border border-border text-ink bg-white hover:border-primary hover:text-primary';
 ---
 <a href={href} class={`${base} ${tone} ${cls}`} {...rest}><slot /></a>
