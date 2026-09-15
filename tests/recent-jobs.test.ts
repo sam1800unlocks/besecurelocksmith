@@ -24,9 +24,10 @@ test('renders a full card of recent jobs', () => {
   expect(html.match(/rounded-\[16px\] flex items-center/g)?.length).toBe(12);
 });
 
-// Photos are far sparser than jobs, so the jobs carrying one must be selected
-// across the whole feed — not just whichever happen to fall in the top slice.
-test('every consented photo in the feed reaches the page', () => {
+// Photos arrive attached to their own job (bound by Workiz id on the client's
+// side), so there is no matching here — but photos are far sparser than jobs, so
+// the jobs carrying one must still win a slot in the twelve rows we show.
+test('every photo in the feed reaches the page', () => {
   const html = home();
   for (const id of ['p-167bc346e5', 'p-6fd5b62ab0']) {
     expect(html).toContain(`/p/${id}.jpg`);
@@ -53,7 +54,7 @@ test('photos are lazy and dimensioned', () => {
   }
 });
 
-// Only jobs that actually have a photo get an image block; the rest render as a
+// Only jobs that actually carry a photo get an image block; the rest render as a
 // compact row rather than a large empty placeholder.
 test('renders exactly one image per consented photo, and no placeholder tiles', () => {
   const html = home();
@@ -75,4 +76,13 @@ test('publishes nothing finer than city level, and no client phone', () => {
   expect(card).toContain('city level only');
   expect(card).not.toMatch(/\b\d{1,5}\s+[A-Z][a-z]+\s+(St|Ave|Rd|Dr|Ln|Blvd)\b/); // no street addresses
   expect(html).not.toContain('414-5351');
+});
+
+// The separate photo feed is retired: photos now ride on the job record, so
+// nothing here should reach for jobs-photos.json or try to re-match them.
+test('reads photos from the jobs feed, not the retired photo feed', () => {
+  const src = readFileSync(resolve(__dirname, '../src/components/sections/RecentJobs.astro'), 'utf8');
+  expect(src).toContain('jobs-feed.json');
+  expect(src).not.toContain('jobs-photos.json');
+  expect(src).toContain('job.photo');
 });

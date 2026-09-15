@@ -3,61 +3,38 @@ import Section from '../primitives/Section.astro';
 import Container from '../primitives/Container.astro';
 import { serviceAreas } from '../../config/site';
 
-// Be Secure's own feeds (be-secure-receptionist.fly.dev — the same infrastructure
-// that runs their phone system). Both are public, CORS-open and carry no PII:
-// jobs are city/state/service/date, photos add a consented, EXIF-stripped image.
+// Be Secure's own jobs feed (be-secure-receptionist.fly.dev — the same
+// infrastructure that runs their phone system). Public, CORS-open, and carries
+// no PII: city, state, service, date, plus an optional `photo` on jobs that have
+// one. The photo is bound to the job by its Workiz id on their side, so there is
+// nothing to match here — it arrives already attached to the right job.
 //
-// Fetched at build time so nothing ships a third-party script and the card is
-// real HTML. If either feed is unreachable the section renders nothing rather
-// than failing the build.
+// Fetched at build time so no third-party script runs on the page. If the feed
+// is unreachable the section renders nothing rather than failing the build.
 const FEED = 'https://be-secure-receptionist.fly.dev/jobs-feed.json';
-const PHOTOS = 'https://be-secure-receptionist.fly.dev/jobs-photos.json';
 const LIMIT = 12;
 
-interface Job { city: string; state: string; service: string; date: string }
-interface Photo extends Job { id: string; url: string; caption?: string; consent?: boolean }
+interface Photo { url: string; caption?: string }
+interface Job { city: string; state: string; service: string; date: string; photo?: Photo }
 
-async function load<T>(url: string, key: string): Promise<T[]> {
-  try {
-    const r = await fetch(url);
-    if (!r.ok) return [];
+let jobs: Job[] = [];
+try {
+  const r = await fetch(FEED);
+  if (r.ok) {
     const j = await r.json();
-    return Array.isArray(j?.[key]) ? j[key] : [];
-  } catch {
-    return [];
+    if (Array.isArray(j?.jobs)) jobs = j.jobs;
   }
+} catch {
+  jobs = [];
 }
 
-const [jobs, photos] = await Promise.all([
-  load<Job>(FEED, 'jobs'),
-  load<Photo>(PHOTOS, 'photos'),
-]);
-
-// Only consented photos are ever considered.
-const key = (x: Job) => `${x.city}|${x.state}|${x.service}|${x.date}`;
-const pool = new Map<string, Photo[]>();
-for (const p of photos.filter((p) => p.consent === true && p.url && p.id)) {
-  const k = key(p);
-  if (!pool.has(k)) pool.set(k, []);
-  pool.get(k)!.push(p);
-}
-
-// Attach at most one photo per job, across the WHOLE feed — not just the slice
-// we display. Several jobs can share a key (two commercial rekeys in the same
-// city on the same day), so take from the pool rather than showing one image
-// twice. Photos are far sparser than jobs, so matching only the visible window
-// would drop most of them off the page.
-const matched = jobs.map((job) => {
-  const bucket = pool.get(key(job));
-  return { job, photo: bucket && bucket.length ? bucket.shift()! : null };
-});
-
-// Jobs carrying a photo earn their slot first; the rest fill up by recency. The
-// card is then shown newest-first either way, so it still reads as a timeline.
-const rows = [...matched]
-  .sort((a, b) => (a.photo ? 0 : 1) - (b.photo ? 0 : 1) || b.job.date.localeCompare(a.job.date))
+// Photos are much sparser than jobs, so the ones that have a photo earn their
+// slot first; the rest fill up by recency. The card still reads newest-first.
+const rows = [...jobs]
+  .sort((a, b) => (a.photo?.url ? 0 : 1) - (b.photo?.url ? 0 : 1) || b.date.localeCompare(a.date))
   .slice(0, LIMIT)
-  .sort((a, b) => b.job.date.localeCompare(a.job.date));
+  .sort((a, b) => b.date.localeCompare(a.date))
+  .map((job) => ({ job, photo: job.photo?.url ? job.photo : null }));
 
 const areaHref = (city: string) =>
   serviceAreas.find((a) => a.name.toLowerCase() === city.toLowerCase())?.href ?? null;
