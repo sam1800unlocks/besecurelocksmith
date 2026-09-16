@@ -98,5 +98,13 @@ const orgSchema = schema === 'org-home' ? organizationNode({ homepage: true })
   {orgSchema &&<script type="application/ld+json" set:html={JSON.stringify(orgSchema)} />}
   <slot name="head" />
 </head>
-<body><slot /></body>
+<body><slot />
+  {/* "Talk to Ava" voice assistant — the client's own script, from the same
+      receptionist server that runs their phone system. It mounts a floating
+      button in a shadow root; mic audio, the AI and lead capture all run on
+      their server. The consent line ("transcribed and saved") and its privacy
+      link live inside the script, so they change it there, not here.
+      is:inline keeps it a plain tag instead of bundling it into our JS. */}
+  <script is:inline defer src="https://be-secure-receptionist.fly.dev/widget.js"></script>
+</body>
 </html>
