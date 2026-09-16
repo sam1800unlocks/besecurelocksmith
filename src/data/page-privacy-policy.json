@@ -22,6 +22,14 @@
     },
     {
       "t": "h2",
+      "text": "Voice chat"
+    },
+    {
+      "t": "p",
+      "html": "If you use the &ldquo;Talk to Ava&rdquo; button on our website, your microphone audio is sent to our server, transcribed, and saved along with any name or phone number you provide, so our team can follow up on your request. The page you were viewing is recorded as well. We do not sell or share this information with third parties."
+    },
+    {
+      "t": "h2",
       "text": "Comments"
     },
     {
