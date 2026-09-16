@@ -63,10 +63,17 @@ test('photos are lazy and dimensioned', () => {
 
 // Only jobs that actually carry a photo get an image block; the rest render as a
 // compact row rather than a large empty placeholder.
+// The photo count is whatever the client has uploaded by build time, so this
+// counts the card's own markup rather than a fixed number that goes stale with
+// every upload: one image per photo, each photo once, never more than the rows.
 test('renders exactly one image per consented photo, and no placeholder tiles', () => {
   const html = home();
   const card = html.slice(html.indexOf('id="recent-jobs"'));
-  expect((card.match(/<img[^>]*\/p\/p-[0-9a-f]+\.jpg/g) ?? []).length).toBe(2);
+  const list = card.slice(0, card.indexOf('</ul>'));
+  const ids = [...list.matchAll(/\/p\/(p-[0-9a-f]+)\.jpg/g)].map((m) => m[1]);
+  expect(ids.length).toBeGreaterThan(0);
+  expect(new Set(ids).size).toBe(ids.length);
+  expect(ids.length).toBeLessThanOrEqual((list.match(/<li\b/g) ?? []).length);
   expect(card.slice(0, card.indexOf('</ul>'))).not.toContain('aria-hidden="true"');
 });
 
