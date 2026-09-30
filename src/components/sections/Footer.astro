@@ -15,9 +15,9 @@ const socials = resolveSocials(resolveLocation(location));
     <Container>
       <div class="py-12 md:py-14">
         <p class="m-0 mb-2 text-[12px] font-bold uppercase tracking-[1.4px] text-muted">Service Areas</p>
-        <h3 class="m-0 mb-6 text-[18px] md:text-[20px] font-bold leading-[1.4] tracking-[-0.2px] text-ink max-w-[860px]">
+        <h2 class="m-0 mb-6 text-[18px] md:text-[20px] font-bold leading-[1.4] tracking-[-0.2px] text-ink max-w-[860px]">
           We provide car, home, and business locksmith services to these and other areas near Gainesville, FL:
-        </h3>
+        </h2>
         <div class="flex flex-wrap gap-2.5">
           {serviceAreas.map((a) => (
             <a
@@ -66,7 +66,7 @@ const socials = resolveSocials(resolveLocation(location));
 
       <!-- Contact column -->
       <div>
-        <h5 class="m-0 mb-4 text-[13px] font-bold tracking-[0.6px] uppercase text-primary">Contact</h5>
+        <h2 class="m-0 mb-4 text-[13px] font-bold tracking-[0.6px] uppercase text-primary">Contact</h2>
         <div class="flex flex-col gap-4 text-[14px] text-muted leading-[1.5]">
           {Object.values(offices).map((o) => (
             <div class="flex flex-col gap-[6px]">
@@ -84,7 +84,7 @@ const socials = resolveSocials(resolveLocation(location));
 
       <!-- Services column -->
       <div>
-        <h5 class="m-0 mb-4 text-[13px] font-bold tracking-[0.6px] uppercase text-primary">Services</h5>
+        <h2 class="m-0 mb-4 text-[13px] font-bold tracking-[0.6px] uppercase text-primary">Services</h2>
         <div class="flex flex-col gap-2">
           {site.footerServices.map((s) => (
             <a href={s.href} class="text-[14px] text-muted leading-[1.5] hover:text-ink">
@@ -96,7 +96,7 @@ const socials = resolveSocials(resolveLocation(location));
 
       <!-- Payments column -->
       <div>
-        <h5 class="m-0 mb-4 text-[13px] font-bold tracking-[0.6px] uppercase text-primary">Payments</h5>
+        <h2 class="m-0 mb-4 text-[13px] font-bold tracking-[0.6px] uppercase text-primary">Payments</h2>
         <div class="flex flex-wrap gap-2 mb-5">
           {site.payments.map((p) => (
             <span class="border border-border rounded-pill px-[14px] py-[7px] text-[13px] font-semibold text-muted">

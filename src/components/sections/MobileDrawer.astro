@@ -16,13 +16,13 @@ const phone = resolvePhone(loc);
   <div data-drawer-close class="absolute inset-0"></div>
 
   <!-- Panel -->
-  <div class="absolute top-0 right-0 bottom-0 w-[min(380px,86vw)] bg-white flex flex-col p-5 overflow-y-auto">
+  <div id="mobile-drawer" role="dialog" aria-modal="true" aria-label="Site menu" data-drawer-panel class="absolute top-0 right-0 bottom-0 w-[min(380px,86vw)] bg-white flex flex-col p-5 overflow-y-auto">
     <!-- Header -->
     <div class="flex items-center justify-between mb-6">
       <Picture src={site.logo} alt={site.name} width="316" height="100" class="h-[34px] w-auto" />
       <button
         data-drawer-close
-        aria-label="Close"
+        aria-label="Close menu"
         class="w-10 h-10 rounded-full border border-border bg-white flex items-center justify-center cursor-pointer"
       >
         <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="#0a1317" stroke-width="2" stroke-linecap="round">

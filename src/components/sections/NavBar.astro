@@ -23,7 +23,7 @@ const headerSocials = resolveSocials(loc).slice(0, 3);
       {navTabs.map((tab) => (
         tab.dropdown ? (
           <div class="relative group">
-            <a href={tab.href} aria-haspopup="true" class="inline-flex items-center gap-1 text-sm font-semibold px-2.5 py-2 rounded-md tracking-[-0.14px] whitespace-nowrap transition-colors text-ink hover:text-primary group-hover:text-primary">
+            <a href={tab.href} class="inline-flex items-center gap-1 text-sm font-semibold px-2.5 py-2 rounded-md tracking-[-0.14px] whitespace-nowrap transition-colors text-ink hover:text-primary group-hover:text-primary">
               {tab.label}
               <svg width="11" height="11" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round" class="transition-transform group-hover:rotate-180" aria-hidden="true"><polyline points="6 9 12 15 18 9"/></svg>
             </a>
@@ -94,7 +94,7 @@ const headerSocials = resolveSocials(loc).slice(0, 3);
       <!-- Phones (<640px): compact call icon -->
       <a
         href={telHref(phone)}
-        aria-label="Call"
+        aria-label={`Call ${phone}`}
         class="sm:hidden w-11 h-11 rounded-full bg-call flex items-center justify-center"
       >
         <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="#fff" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
@@ -112,6 +112,7 @@ const headerSocials = resolveSocials(loc).slice(0, 3);
         data-drawer-toggle
         aria-label="Menu"
         aria-expanded="false"
+        aria-controls="mobile-drawer"
         class="w-11 h-11 rounded-full border border-border bg-white flex items-center justify-center cursor-pointer"
       >
         <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="#0a1317" stroke-width="2" stroke-linecap="round">

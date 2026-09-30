@@ -9,7 +9,10 @@ interface Post {
   slug: string;
   body?: string[];
 }
-const { post } = Astro.props as { post: Post };
+// Listing pages (/blog/, categories) have no <h2> above the grid, so cards
+// there are <h2>; under a section heading (related posts) they stay <h3>.
+const { post, headingLevel = 3 } = Astro.props as { post: Post; headingLevel?: 2 | 3 };
+const Heading = headingLevel === 2 ? 'h2' : 'h3';
 
 // Format ISO date → "Jun 23, 2026" (no timezone drift: parse parts directly)
 const [y, m, d] = post.date.split('-').map(Number);
@@ -36,7 +39,7 @@ const href = hasPage ? `/blog/${post.slug}/` : post.url;
   </div>
   <div class="p-6 flex flex-col gap-3 flex-1">
     <span class="self-start rounded-pill bg-primary/10 px-[12px] py-[5px] text-[12px] font-semibold text-primary">{post.category}</span>
-    <h3 class="m-0 text-[18px] font-bold leading-[1.3] tracking-[-0.2px] text-ink">{post.title}</h3>
+    <Heading class="m-0 text-[18px] font-bold leading-[1.3] tracking-[-0.2px] text-ink">{post.title}</Heading>
     <p class="m-0 text-[14px] leading-[1.55] text-muted">{post.excerpt}</p>
     <div class="mt-auto pt-1 flex items-center justify-between gap-3">
       <span class="text-[13px] text-muted-2">{displayDate}</span>
