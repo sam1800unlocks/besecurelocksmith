@@ -164,10 +164,13 @@ const areaMap = Object.fromEntries(serviceAreas.map((a) => [a.name.toLowerCase()
 
       if (photo) {
         const img = el('img', 'w-[46%] min-w-[140px] max-w-[300px] aspect-square shrink-0 rounded-[12px] object-cover bg-surface');
-        img.src = photo.url;
-        img.alt = photo.caption || (job.service + ' in ' + job.city + ', ' + job.state);
-        img.width = 300; img.height = 300;
+        // loading/decoding MUST be set before src: assigning src starts the
+        // download immediately, so a later loading='lazy' is ignored and all
+        // twelve full-size photos were fetched on page load.
         img.loading = 'lazy'; img.decoding = 'async';
+        img.width = 300; img.height = 300;
+        img.alt = photo.caption || (job.service + ' in ' + job.city + ', ' + job.state);
+        img.src = photo.url;
         li.appendChild(img);
       }
 
