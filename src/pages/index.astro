@@ -35,25 +35,29 @@ const location = 'main';
       })();
     </script>
     <style is:global>
-      /* ===== Entrance reveals (lightweight GSAP replacement) — gated by .reveal-js ===== */
+      /* ===== Entrance reveals (lightweight GSAP replacement) — gated by .reveal-js =====
+         Text-bearing reveals slide only — no opacity fade. Faded text is low-contrast
+         mid-transition, and Lighthouse's accessibility audit (which scrolls the page)
+         measured cards mid-fade and failed them; invisible text also delays LCP.
+         Only the hero image still fades. */
       /* Hero: staggered column + gently-scaling image (revealed on load) */
-      .reveal-js [data-hero-col] > * { opacity: 0; transform: translateY(14px); transition: opacity .55s ease-out, transform .55s ease-out; transition-delay: calc(var(--i, 0) * 70ms + 50ms); }
-      .reveal-js [data-hero-col].is-visible > * { opacity: 1; transform: none; }
+      .reveal-js [data-hero-col] > * { transform: translateY(14px); transition: transform .55s ease-out; transition-delay: calc(var(--i, 0) * 70ms + 50ms); }
+      .reveal-js [data-hero-col].is-visible > * { transform: none; }
       .reveal-js [data-anim="hero-img"] { opacity: 0; transform: scale(1.04); transition: opacity .8s ease-out, transform .8s ease-out; }
       .reveal-js [data-anim="hero-img"].is-visible { opacity: 1; transform: none; }
 
       /* Content sections fade up as a block — EXCEPT sections whose children animate */
       .reveal-js main > :not(#top):not(:has([data-stagger])):not(:has([data-cards])) {
-        opacity: 0; transform: translateY(24px);
-        transition: opacity .6s cubic-bezier(.16,1,.3,1), transform .6s cubic-bezier(.16,1,.3,1);
+        transform: translateY(24px);
+        transition: transform .6s cubic-bezier(.16,1,.3,1);
       }
-      .reveal-js main > :not(#top):not(:has([data-stagger])):not(:has([data-cards])).is-visible { opacity: 1; transform: none; }
+      .reveal-js main > :not(#top):not(:has([data-stagger])):not(:has([data-cards])).is-visible { transform: none; }
 
       /* Stagger containers: children rise / slide in sequence */
-      .reveal-js [data-stagger] > * { opacity: 0; transform: translateY(16px); transition: opacity .5s ease-out, transform .5s ease-out; transition-delay: calc(var(--i, 0) * 70ms); }
-      .reveal-js [data-cards] > * { opacity: 0; transform: translateX(24px); transition: opacity .5s ease-out, transform .5s ease-out; transition-delay: calc(var(--i, 0) * 70ms); }
+      .reveal-js [data-stagger] > * { transform: translateY(16px); transition: transform .5s ease-out; transition-delay: calc(var(--i, 0) * 70ms); }
+      .reveal-js [data-cards] > * { transform: translateX(24px); transition: transform .5s ease-out; transition-delay: calc(var(--i, 0) * 70ms); }
       .reveal-js [data-stagger].is-visible > *,
-      .reveal-js [data-cards].is-visible > * { opacity: 1; transform: none; }
+      .reveal-js [data-cards].is-visible > * { transform: none; }
 
       /* Reviews: star clip-reveal */
       .reveal-js [data-star-draw] { clip-path: inset(0 100% 0 0); transition: clip-path .6s ease-out; }
