@@ -98,7 +98,10 @@ const orgSchema = schema === 'org-home' ? organizationNode({ homepage: true })
   {orgSchema &&<script type="application/ld+json" set:html={JSON.stringify(orgSchema)} />}
   <slot name="head" />
 </head>
-<body><slot />
+<body>
+  {/* Skip link: first thing a keyboard user tabs to; hidden until focused. */}
+  <a href="#main-content" class="sr-only focus:not-sr-only focus:fixed focus:top-3 focus:left-3 focus:z-[200] focus:rounded-pill focus:bg-ink focus:px-5 focus:py-3 focus:text-[15px] focus:font-bold focus:text-white">Skip to main content</a>
+  <slot />
   {/* "Talk to Ava" voice assistant — the client's own script, from the same
       receptionist server that runs their phone system. It mounts a floating
       button in a shadow root; mic audio, the AI and lead capture all run on

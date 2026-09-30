@@ -11,7 +11,7 @@
   --color-body: #1c1e21;
   --color-secondary: #444950;
   --color-muted: #5d6c7b;
-  --color-muted-2: #8595a4;
+  --color-muted-2: #607181; /* 5.0:1 on white, 4.6:1 on surface — WCAG AA for small text */
   --color-border: #dee3e9;
   --color-border-2: #ced0d4;
   --color-border-3: #e7ebf0;
