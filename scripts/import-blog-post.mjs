@@ -81,17 +81,32 @@ function photoUrl(u) {
 }
 const res = await fetch(photoUrl(row.photo), { redirect: 'follow' });
 if (!res.ok) throw new Error(`photo download failed: HTTP ${res.status} for ${row.photo}`);
-const type = res.headers.get('content-type') || '';
-if (!type.startsWith('image/')) {
-  throw new Error(`photo link returned ${type || 'no content-type'}, not an image — for Google Drive, share the file as "Anyone with the link"`);
-}
+// Judge by the bytes, not the header: Dropbox serves images as
+// application/binary, while a Drive file that isn't shared publicly comes back
+// as an HTML sign-in page.
 const src = Buffer.from(await res.arrayBuffer());
+const srcMeta = await sharp(src).metadata().catch(() => null);
+if (!srcMeta?.width) {
+  throw new Error(`photo link did not return an image (${res.headers.get('content-type')}) — for Google Drive, share the file as "Anyone with the link"`);
+}
+if (Math.max(srcMeta.width, srcMeta.height) < 1000) {
+  console.warn(`WARNING: photo is only ${srcMeta.width}x${srcMeta.height} — it will look soft in the 760px hero. Link a larger original if one exists.`);
+}
 const base = `public/img/blog/${slug}`;
 // Rotate per EXIF, crop to a 16:10 landscape (the post hero renders at natural
 // aspect and cards crop to landscape — a portrait phone photo made a ~1000px
 // tall hero), keep the most detailed region (sharp's "attention" strategy finds
 // the lock, not the door panel), and strip metadata (sharp drops it by default).
-const img = sharp(src).rotate().resize({ width: 1200, height: 750, fit: 'cover', position: sharp.strategy.attention });
+// Never upscale: a small photo keeps its own pixels at the 16:10 crop.
+// (EXIF orientation 5–8 means the stored width/height are swapped.)
+const [w, h] = (srcMeta.orientation ?? 1) >= 5 ? [srcMeta.height, srcMeta.width] : [srcMeta.width, srcMeta.height];
+const fit = Math.min(1, w / 1200, h / 750);
+const img = sharp(src).rotate().resize({
+  width: Math.round(1200 * fit),
+  height: Math.round(750 * fit),
+  fit: 'cover',
+  position: sharp.strategy.attention,
+});
 await img.clone().jpeg({ quality: 82, mozjpeg: true }).toFile(`${base}.jpg`);
 await img.clone().webp({ quality: 80 }).toFile(`${base}.webp`);
 await img.clone().avif({ quality: 55 }).toFile(`${base}.avif`);
