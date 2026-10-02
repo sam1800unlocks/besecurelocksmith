@@ -39,12 +39,13 @@ const location = 'main';
          Text-bearing reveals slide only — no opacity fade. Faded text is low-contrast
          mid-transition, and Lighthouse's accessibility audit (which scrolls the page)
          measured cards mid-fade and failed them; invisible text also delays LCP.
-         Only the hero image still fades. */
+         The hero image doesn't fade either: it is the mobile LCP element, and
+         opacity:0 until the reveal script ran held LCP at ~7s. */
       /* Hero: staggered column + gently-scaling image (revealed on load) */
       .reveal-js [data-hero-col] > * { transform: translateY(14px); transition: transform .55s ease-out; transition-delay: calc(var(--i, 0) * 70ms + 50ms); }
       .reveal-js [data-hero-col].is-visible > * { transform: none; }
-      .reveal-js [data-anim="hero-img"] { opacity: 0; transform: scale(1.04); transition: opacity .8s ease-out, transform .8s ease-out; }
-      .reveal-js [data-anim="hero-img"].is-visible { opacity: 1; transform: none; }
+      .reveal-js [data-anim="hero-img"] { transform: scale(1.04); transition: transform .8s ease-out; }
+      .reveal-js [data-anim="hero-img"].is-visible { transform: none; }
 
       /* Content sections fade up as a block — EXCEPT sections whose children animate */
       .reveal-js main > :not(#top):not(:has([data-stagger])):not(:has([data-cards])) {
