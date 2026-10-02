@@ -20,8 +20,14 @@ test('Blog index (page 1) is indexed, shows a page of cards, chips, and a pager'
   expect(html).toContain('Page 1 of');                              // pager
   expect(html).toContain('>All<');                                  // category chips
   expect(html).toContain('href="/blog/category/automotive-locksmith/"');
-  // newest post (transponder) is on page 1 and links internally
-  expect(html).toContain('href="/blog/transponder-key-vs-remote-head-key-vs-smart-key-in-dunnellon-fl-what-your-car-actually-uses/"');
+  // the newest post is on page 1 and links internally. Derived from the content
+  // rather than named, so publishing a new post doesn't break this test.
+  const blogDir = resolve(__dirname, '..', 'src/content/blog');
+  const newest = readdirSync(blogDir)
+    .filter(f => f.endsWith('.json'))
+    .map(f => JSON.parse(readFileSync(join(blogDir, f), 'utf8')))
+    .sort((a, b) => (a.date < b.date ? 1 : -1))[0];
+  expect(html).toContain(`href="/blog/${newest.slug}/"`);
 });
 
 test('Paginated pages exist and are noindex', () => {
