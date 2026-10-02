@@ -32,33 +32,51 @@ test('renders a full card of recent jobs', () => {
 });
 
 // Photos arrive attached to their own job (bound by Workiz id on the client's
-// side), so there is no matching here — but photos are far sparser than jobs, so
-// the jobs carrying one must still win a slot in the twelve rows we show.
-test('every photo in the feed reaches the page', () => {
-  const html = home();
-  for (const id of ['p-167bc346e5', 'p-6fd5b62ab0']) {
-    expect(html).toContain(`/p/${id}.jpg`);
-  }
+// side), so there is no matching here. Photos used to be far sparser than jobs,
+// so the jobs carrying one win a slot in the twelve rows first. Now the feed
+// holds more photos than rows, so the card should come out all photos. Counted
+// against the live feed rather than fixed ids, which age out of the twelve.
+test('jobs with photos fill the card before jobs without', async () => {
+  const r = await fetch('https://be-secure-receptionist.fly.dev/jobs-feed.json').catch(() => null);
+  if (!r?.ok) return;
+  const { jobs } = await r.json();
+  const withPhoto = jobs.filter((j: { photo?: { url?: string } }) => j.photo?.url).length;
+  const shown = (listMarkup().match(/<img\b/g) ?? []).length;
+  expect(shown).toBe(Math.min(withPhoto, 12));
 });
 
 test('photos carry their caption as alt text and a visible caption line', () => {
-  const html = home();
-  expect(html).toContain('Rim cylinder rekey below a cast-iron thumb-latch handle set');
-  expect(html).toContain('Mortise cylinder rekey on an aluminum storefront door');
-  // no photo is rendered without descriptive alt text
-  expect(html).not.toMatch(/<img[^>]*\/p\/p-[0-9a-f]+\.jpg[^>]*alt=""/);
+  const list = listMarkup();
+  const imgs = list.match(/<img[^>]*>/g) ?? [];
+  expect(imgs.length).toBeGreaterThan(0);
+  for (const img of imgs) {
+    const alt = img.match(/alt="([^"]*)"/)?.[1] ?? '';
+    expect(alt.length, 'no photo without descriptive alt text').toBeGreaterThan(10);
+    expect(list).toContain(`>${alt}</div>`);
+  }
 });
 
 // Images are fixed-size and lazy so the card cannot shift the page as it loads.
 test('photos are lazy and dimensioned', () => {
   const html = home();
-  const imgs = html.match(/<img[^>]*\/p\/p-[0-9a-f]+\.jpg[^>]*>/g) ?? [];
+  const imgs = html.match(/<img[^>]*\/p\/p-[0-9a-f]+-600\.webp[^>]*>/g) ?? [];
   expect(imgs.length).toBeGreaterThan(0);
   for (const img of imgs) {
     expect(img).toContain('loading="lazy"');
     expect(img).toContain('width="300"');
     expect(img).toContain('height="300"');
   }
+});
+
+// The gallery shows the client's 600px WebP, never the 1500x2000 original
+// (~95% smaller); the original stays the fallback for a photo without one.
+test('photos use the small WebP rendition, not the full-size original', () => {
+  const card = listMarkup();
+  expect(card).toMatch(/<img[^>]*\/p\/p-[0-9a-f]+-600\.webp/);
+  expect(card).not.toMatch(/<img[^>]*src="[^"]*\/p\/p-[0-9a-f]+\.jpg"/);
+  const src = readFileSync(resolve(__dirname, '../src/components/sections/RecentJobs.astro'), 'utf8');
+  expect(src).toContain('photo.thumbUrl ?? photo.url');
+  expect(src).toContain('photo.thumbUrl || photo.url');
 });
 
 // Only jobs that actually carry a photo get an image block; the rest render as a
@@ -70,7 +88,7 @@ test('renders exactly one image per consented photo, and no placeholder tiles', 
   const html = home();
   const card = html.slice(html.indexOf('id="recent-jobs"'));
   const list = card.slice(0, card.indexOf('</ul>'));
-  const ids = [...list.matchAll(/\/p\/(p-[0-9a-f]+)\.jpg/g)].map((m) => m[1]);
+  const ids = [...list.matchAll(/\/p\/(p-[0-9a-f]+)-600\.webp/g)].map((m) => m[1]);
   expect(ids.length).toBeGreaterThan(0);
   expect(new Set(ids).size).toBe(ids.length);
   expect(ids.length).toBeLessThanOrEqual((list.match(/<li\b/g) ?? []).length);

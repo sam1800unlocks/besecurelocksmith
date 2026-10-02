@@ -7,8 +7,10 @@ import { resolve, join } from 'node:path';
 // in a shadow root, streams mic audio to their server and shows a transcript;
 // the consent line and the privacy link live inside the script, so updates to
 // either happen on their side, not here.
-const TAG = '<script is:inline defer src="https://be-secure-receptionist.fly.dev/widget.js"></script>';
-const SRC = 'be-secure-receptionist.fly.dev/widget.js';
+const TAG = '<script is:inline defer src={avaSrc}></script>';
+// Either the versioned, immutable file named by widget-version.json, or the
+// plain /widget.js fallback if that lookup failed during the build.
+const SRC = /be-secure-receptionist\.fly\.dev\/widget(\.[0-9a-f]+)?\.js/g;
 
 const dist = resolve(__dirname, '../dist');
 const page = (p: string) => readFileSync(resolve(dist, p), 'utf8');
@@ -25,7 +27,7 @@ test('every page built from BaseLayout carries the widget exactly once', () => {
   expect(all.length).toBeGreaterThan(20);
   for (const file of all) {
     const html = readFileSync(file, 'utf8');
-    expect(html.split(SRC).length - 1, `${file} should load the widget once`).toBe(1);
+    expect(html.match(SRC)?.length ?? 0, `${file} should load the widget once`).toBe(1);
   }
 });
 
@@ -34,7 +36,7 @@ test('every page built from BaseLayout carries the widget exactly once', () => {
 // they update the widget without us redeploying.
 test('the widget loads from the client server, deferred, not bundled', () => {
   const html = page('index.html');
-  expect(html).toContain(`<script defer src="https://${SRC}"></script>`);
+  expect(html).toMatch(/<script defer src="https:\/\/be-secure-receptionist\.fly\.dev\/widget(\.[0-9a-f]+)?\.js"><\/script>/);
   // The build notes stay in the repo; they are not worth shipping on 153 pages.
   expect(html).not.toContain('receptionist server that runs their phone system');
 });
@@ -42,7 +44,7 @@ test('the widget loads from the client server, deferred, not bundled', () => {
 // The ads landing page has one job: the quote form. A second floating button
 // competes with it, so Ava is deliberately absent there.
 test('the new-movers landing page stays free of the widget', () => {
-  expect(page('new-home/index.html')).not.toContain(SRC);
+  expect(page('new-home/index.html')).not.toMatch(SRC);
 });
 
 // The widget asks for a name and phone number and saves the transcript, so the
@@ -53,6 +55,15 @@ test('the privacy policy discloses the voice chat', () => {
   expect(html).toMatch(/microphone audio is sent to our server, transcribed, and saved/);
   expect(html).toContain('Talk to Ava');
   expect(html.indexOf('SMS communications')).toBeLessThan(html.indexOf('Voice chat'));
+});
+
+// The versioned file is immutable for a year, which is what clears Lighthouse's
+// cache audit; the plain name is only a fallback for a failed lookup.
+test('the built site uses the versioned widget file when the lookup succeeds', async () => {
+  const r = await fetch('https://be-secure-receptionist.fly.dev/widget-version.json').catch(() => null);
+  if (!r?.ok) return; // client server unreachable; the fallback is correct then
+  const { url } = await r.json();
+  expect(page('index.html')).toContain(`<script defer src="${url}"></script>`);
 });
 
 test('the layout holds the tag verbatim', () => {

@@ -8,6 +8,7 @@ import { resolveLocation, resolvePhone } from '../lib/locations';
 import { site } from '../config/site';
 import { adsConversionId, adsTagPaths } from '../config/tracking';
 import { organizationNode } from '../lib/schema';
+import { avaWidgetSrc } from '../lib/ava-widget';
 
 interface Props {
   title: string;
@@ -28,6 +29,8 @@ const {
   robots,
   schema = 'none',
 } = Astro.props;
+
+const avaSrc = await avaWidgetSrc();
 const loc = resolveLocation(location);
 const phone = resolvePhone(loc);
 
@@ -107,7 +110,9 @@ const orgSchema = schema === 'org-home' ? organizationNode({ homepage: true })
       button in a shadow root; mic audio, the AI and lead capture all run on
       their server. The consent line ("transcribed and saved") and its privacy
       link live inside the script, so they change it there, not here.
-      is:inline keeps it a plain tag instead of bundling it into our JS. */}
-  <script is:inline defer src="https://be-secure-receptionist.fly.dev/widget.js"></script>
+      is:inline keeps it a plain tag instead of bundling it into our JS.
+      The src is the versioned, immutable file name, resolved at build time;
+      see src/lib/ava-widget.ts. */}
+  <script is:inline defer src={avaSrc}></script>
 </body>
 </html>

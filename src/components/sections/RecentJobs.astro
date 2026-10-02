@@ -14,7 +14,9 @@ import { serviceAreas } from '../../config/site';
 const FEED = 'https://be-secure-receptionist.fly.dev/jobs-feed.json';
 const LIMIT = 12;
 
-interface Photo { url: string; caption?: string }
+// thumbUrl is a 600px-max WebP the client generates on ingest (~19 KB versus
+// ~400 KB for the original); fall back to the original if a photo lacks one.
+interface Photo { url: string; caption?: string; thumbUrl?: string }
 interface Job { city: string; state: string; service: string; date: string; photo?: Photo }
 
 let jobs: Job[] = [];
@@ -69,7 +71,7 @@ const areaMap = Object.fromEntries(serviceAreas.map((a) => [a.name.toLowerCase()
             <li class={`bg-white border border-border rounded-[16px] flex items-center ${photo ? 'gap-5 p-4' : 'gap-4 px-5 py-4'}`}>
               {photo && (
                 <img
-                  src={photo.url}
+                  src={photo.thumbUrl ?? photo.url}
                   alt={photo.caption ?? `${job.service} in ${job.city}, ${job.state}`}
                   width="300"
                   height="300"
@@ -138,7 +140,7 @@ const areaMap = Object.fromEntries(serviceAreas.map((a) => [a.name.toLowerCase()
 
     // Skip the DOM work entirely when nothing has moved.
     const signature = rows.map((j) =>
-      [j.service, j.city, j.state, j.date, j.photo && j.photo.url].join('|')).join('||');
+      [j.service, j.city, j.state, j.date, j.photo && (j.photo.thumbUrl || j.photo.url)].join('|')).join('||');
     if (list.dataset.signature === signature) return;
 
     const fmtDate = (d) => {
@@ -170,7 +172,7 @@ const areaMap = Object.fromEntries(serviceAreas.map((a) => [a.name.toLowerCase()
         img.loading = 'lazy'; img.decoding = 'async';
         img.width = 300; img.height = 300;
         img.alt = photo.caption || (job.service + ' in ' + job.city + ', ' + job.state);
-        img.src = photo.url;
+        img.src = photo.thumbUrl || photo.url;
         li.appendChild(img);
       }
 
