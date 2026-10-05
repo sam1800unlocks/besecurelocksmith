@@ -58,13 +58,17 @@ test('posts same-origin to /api/quote behind Turnstile and a honeypot', () => {
   expect(html).toContain('name="company"');
 });
 
-// The old WordPress URL without the slash still 301s to the service page; only
-// /commercial/ serves the landing page. A rule for /commercial/ would hide it.
-test('no redirect rule shadows /commercial/', () => {
+// /commercial used to 301 to the service page (an old WordPress URL). It was
+// removed so both /commercial and /commercial/ reach the landing page, via the
+// assets layer's auto-trailing-slash. Any rule for either path would hide it.
+test('no redirect rule shadows /commercial or /commercial/', () => {
   const rules = readFileSync(resolve(__dirname, '../public/_redirects'), 'utf8')
     .split('\n').map((l) => l.trim().split(/\s+/)[0]);
-  expect(rules).not.toContain('/commercial/');
-  expect(rules).not.toContain('/commercial/*');
+  for (const path of ['/commercial', '/commercial/', '/commercial/*']) {
+    expect(rules).not.toContain(path);
+  }
+  const cfg = readFileSync(resolve(__dirname, '../wrangler.jsonc'), 'utf8');
+  expect(cfg).toContain('"html_handling": "auto-trailing-slash"');
 });
 
 // --- the worker's lead email ------------------------------------------------
