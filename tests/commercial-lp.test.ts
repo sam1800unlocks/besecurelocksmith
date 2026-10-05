@@ -71,6 +71,12 @@ test('no redirect rule shadows /commercial or /commercial/', () => {
   expect(cfg).toContain('"html_handling": "auto-trailing-slash"');
 });
 
+test('/services/commercial redirects to the commercial service page', () => {
+  const rules = readFileSync(resolve(__dirname, '../public/_redirects'), 'utf8');
+  expect(rules).toMatch(/^\/services\/commercial\/\s+\/services\/commercial-locksmith\/\s+301$/m);
+  expect(rules).toMatch(/^\/services\/commercial\s+\/services\/commercial-locksmith\/\s+301$/m);
+});
+
 // --- the worker's lead email ------------------------------------------------
 
 afterEach(() => vi.unstubAllGlobals());
