@@ -80,12 +80,29 @@ async function handleContact(request, env) {
 }
 
 // ---------------------------------------------------------------------------
-// New-movers ads landing page (/new-home/) quote form
+// Google Ads landing page quote forms (/new-home/, /commercial/)
 //
-// Deliberately phone-first: the page collects name, phone, service and city and
-// asks for no email, because requiring one costs conversions on a paid landing
+// Deliberately phone-first: the pages collect name, phone, service and city and
+// ask for no email, because requiring one costs conversions on a paid landing
 // page. That is why this cannot reuse handleContact, which requires an email.
 // ---------------------------------------------------------------------------
+
+// Which landing page sent the lead, from the same-origin Referer. Only known
+// paths get a label, so the email subject never carries arbitrary input.
+const QUOTE_SOURCES = {
+  "/new-home/": { label: "New movers", page: "/new-home/" },
+  "/commercial/": { label: "Commercial", page: "/commercial/" },
+};
+
+function quoteSource(request) {
+  let path = "";
+  try {
+    path = new URL(request.headers.get("Referer") || "").pathname;
+  } catch {}
+  if (path && !path.endsWith("/")) path += "/";
+  return QUOTE_SOURCES[path] || { label: "Landing page", page: "unknown page" };
+}
+
 async function handleQuote(request, env) {
   // A bodyless or malformed POST makes formData() throw, which would surface as
   // a Cloudflare 1101 error page rather than a usable response.
@@ -123,21 +140,24 @@ async function handleQuote(request, env) {
   const phone = (form.get("phone") || "").toString().trim();
   const service = (form.get("service") || "").toString().trim();
   const city = (form.get("city") || "").toString().trim();
+  const company = (form.get("company") || "").toString().trim(); // optional, /commercial/ only
 
   const digits = phone.replace(/[^0-9]/g, "").replace(/^1(?=[0-9]{10}$)/, "");
   if (!name) return json({ error: "Please add your name." }, 400);
   if (digits.length !== 10) return json({ error: "Please enter a 10-digit phone number." }, 400);
   if (!service || !city) return json({ error: "Please choose a service and a city." }, 400);
 
+  const source = quoteSource(request);
   const res = await sendEmail(env, {
-    subject: `New movers lead — ${name} (${city})`,
+    subject: `${source.label} lead — ${company ? `${company}, ` : ""}${name} (${city})`,
     html: `
-      <h2>New movers landing page — quote request</h2>
+      <h2>${source.label} landing page — quote request</h2>
       <p><strong>Name:</strong> ${escapeHtml(name)}</p>
+      ${company ? `<p><strong>Business:</strong> ${escapeHtml(company)}</p>` : ""}
       <p><strong>Phone:</strong> <a href="tel:+1${escapeHtml(digits)}">${escapeHtml(phone)}</a></p>
       <p><strong>Service:</strong> ${escapeHtml(service)}</p>
       <p><strong>City:</strong> ${escapeHtml(city)}</p>
-      <p><em>Source: /new-home/ Google Ads landing page</em></p>
+      <p><em>Source: ${source.page} Google Ads landing page</em></p>
     `,
   });
   if (!res.ok) {

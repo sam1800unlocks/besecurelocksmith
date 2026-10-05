@@ -23,7 +23,8 @@ const pages = (dir = dist): string[] =>
   });
 
 test('every page built from BaseLayout carries the widget exactly once', () => {
-  const all = pages().filter((f) => f !== resolve(dist, 'new-home/index.html'));
+  const landing = ['new-home/index.html', 'commercial/index.html'].map((p) => resolve(dist, p));
+  const all = pages().filter((f) => !landing.includes(f));
   expect(all.length).toBeGreaterThan(20);
   for (const file of all) {
     const html = readFileSync(file, 'utf8');
@@ -41,10 +42,11 @@ test('the widget loads from the client server, deferred, not bundled', () => {
   expect(html).not.toContain('receptionist server that runs their phone system');
 });
 
-// The ads landing page has one job: the quote form. A second floating button
+// The ads landing pages have one job: the quote form. A second floating button
 // competes with it, so Ava is deliberately absent there.
-test('the new-movers landing page stays free of the widget', () => {
+test('the ads landing pages stay free of the widget', () => {
   expect(page('new-home/index.html')).not.toMatch(SRC);
+  expect(page('commercial/index.html')).not.toMatch(SRC);
 });
 
 // The widget asks for a name and phone number and saves the transcript, so the
