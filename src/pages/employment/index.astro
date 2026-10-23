@@ -9,13 +9,14 @@ import Button from '../../components/primitives/Button.astro';
 import Picture from '../../components/primitives/Picture.astro';
 import { site, telHref } from '../../config/site';
 import { resolveLocation, resolvePhone } from '../../lib/locations';
+import { organizationRef } from '../../lib/schema';
 
 const location = 'main';
 const phone = resolvePhone(resolveLocation(location));
 const siteKey = import.meta.env.PUBLIC_TURNSTILE_SITE_KEY ?? '0x4AAAAAADyGNYjgOoL-BQLJ'; // Turnstile site key (public; overridable via env) — same as contact form
 
-const title = 'Locksmith Jobs Gainesville, FL - Join Our Local Team';
-const description = 'Looking for locksmith jobs in Gainesville, FL? Join a licensed, growing mobile team serving Gainesville and Ocala. See current openings and apply with us today.';
+const title = 'Locksmith Jobs Gainesville & Ocala, FL - Join Our Team';
+const description = 'Looking for locksmith jobs in Gainesville or Ocala, FL? Join a licensed, growing mobile team serving Gainesville and Ocala. See current openings and apply with us today.';
 const pageUrl = 'https://besecurelocksmith.com/employment/';
 
 const positions = [
@@ -43,7 +44,7 @@ const jobJsonLd = {
   '@context': 'https://schema.org', '@type': 'JobPosting',
   title: 'Locksmith Technician', employmentType: 'FULL_TIME',
   description: 'We are seeking a mechanically inclined individual with sales experience for a new Locksmith position in Ocala, FL. Experience preferred but not required. Must pass a background check and have a clean driving record.',
-  hiringOrganization: { '@type': 'Organization', name: site.name, sameAs: 'https://besecurelocksmith.com/' },
+  hiringOrganization: organizationRef(),
   jobLocation: { '@type': 'Place', address: { '@type': 'PostalAddress', addressLocality: 'Ocala', addressRegion: 'FL', addressCountry: 'US' } },
   directApply: true,
 };

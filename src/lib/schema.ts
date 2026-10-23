@@ -72,6 +72,16 @@ export function organizationNode({ homepage }: { homepage: boolean }) {
   return node;
 }
 
+/**
+ * Reference to the Organization node by @id, for provider / publisher /
+ * hiringOrganization on other pages, so every page points at the same entity
+ * instead of declaring an anonymous business. Name, url and logo are repeated
+ * so the reference still validates on pages that don't carry the full node.
+ */
+export function organizationRef() {
+  return { '@type': 'Locksmith', '@id': S.orgId, name: S.name, url: S.url, logo: { '@type': 'ImageObject', url: S.logo } };
+}
+
 function officeForLocation(location?: string): Office | undefined {
   return location && location in offices ? offices[location as OfficeKey] : undefined;
 }

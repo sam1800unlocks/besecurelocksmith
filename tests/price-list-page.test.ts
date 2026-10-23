@@ -7,7 +7,7 @@ const p = resolve(__dirname, '../dist/price-list/index.html');
 test('Price list page builds with grouped prices, content, and SEO', () => {
   if (!existsSync(p)) throw new Error('dist price-list page missing — run `npm run build` first');
   const html = readFileSync(p, 'utf8');
-  expect(html).toContain('<title>Locksmith Prices Gainesville, FL - Upfront, No Surprises</title>');
+  expect(html).toContain('<title>Locksmith Prices Gainesville &amp; Ocala, FL - Upfront Rates</title>');
   expect(html).toContain('Be Secure Locksmith Service Prices');     // H1
   // 4 category headings
   for (const g of ['Lockouts', 'Car Keys', 'Locks &amp; Installation', 'Rekeying']) {

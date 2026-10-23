@@ -7,9 +7,10 @@ import Container from '../../../components/primitives/Container.astro';
 import Button from '../../../components/primitives/Button.astro';
 import TrustStrip from '../../../components/sections/TrustStrip.astro';
 import CtaCard from '../../../components/sections/CtaCard.astro';
+import FurtherReading from '../../../components/sections/FurtherReading.astro';
 import { site, telHref } from '../../../config/site';
 import { resolveLocation, resolvePhone } from '../../../lib/locations';
-import { serviceAreaServed, serviceGeoLabel } from '../../../lib/schema';
+import { organizationRef, serviceAreaServed, serviceGeoLabel } from '../../../lib/schema';
 import data from '../../../data/service-automotive.json';
 
 const location = 'main';
@@ -73,7 +74,7 @@ const contactHtml = 'Be Secure Locksmith is your trusted locksmith for every car
 const serviceJsonLd = {
   '@context': 'https://schema.org', '@type': 'Service', serviceType: 'Automotive Locksmith',
   name: `Automotive Locksmith ${serviceGeoLabel(location)}`, url: pageUrl,
-  provider: { '@type': 'LocalBusiness', name: site.name, telephone: phone },
+  provider: organizationRef(),
   areaServed: serviceAreaServed(location),
 };
 const breadcrumbJsonLd = {
@@ -162,7 +163,7 @@ const pricingNote = 'Estimates only — prices vary by vehicle make, model, and 
             <span class="text-white">Automotive Locksmith</span>
           </nav>
           <h1 class="m-0 mb-7 font-medium text-white max-w-[760px]" style="font-size:clamp(32px,5.2vw,56px);line-height:1.08;letter-spacing:-1.2px;">
-            Automotive Locksmith Near Me in Gainesville &amp; Ocala, FL
+            Automotive Locksmith in Gainesville &amp; Ocala, FL
           </h1>
           <div class="flex flex-wrap gap-3">
             <Button href={telHref(phone)} variant="call">{phone}</Button>
@@ -319,8 +320,10 @@ const pricingNote = 'Estimates only — prices vary by vehicle make, model, and 
             </section>
           )}
 
+          <FurtherReading slug="automotive-locksmith" />
+
           <!-- CONTACT CTA CARD -->
-          <div class="clear-both mt-14"><CtaCard location={location} heading="Contact Be Secure for Gainesville Automotive Locksmith Services" body={contactHtml} /></div>
+          <div class="clear-both mt-14"><CtaCard location={location} heading="Contact Be Secure for Automotive Locksmith Services in Gainesville & Ocala" body={contactHtml} /></div>
         </div>
       </Container>
     </article>

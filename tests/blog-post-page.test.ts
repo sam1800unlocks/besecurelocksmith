@@ -9,7 +9,7 @@ const p = resolve(dir, slug, 'index.html');
 test('Blog post page builds with content, byline, and SEO', () => {
   if (!existsSync(p)) throw new Error('dist blog post missing — run `npm run build` first');
   const html = readFileSync(p, 'utf8');
-  expect(html).toContain('<title>Transponder vs Remote Head vs Smart Key in Dunnellon FL | Be Secure Locksmith</title>');
+  expect(html).toContain('<title>Transponder vs. Remote Head vs. Smart Key: Dunnellon, FL</title>');
   expect(html).toContain('What Your Car Actually Uses');         // H1 (post title)
   expect(html).toContain('Netta Kaiden');                        // author byline
   expect(html).toContain('min read');

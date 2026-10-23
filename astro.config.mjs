@@ -3,6 +3,7 @@ import tailwind from '@tailwindcss/vite';
 import sitemap from '@astrojs/sitemap';
 import { FontaineTransform } from 'fontaine';
 import imageDimensions from './src/integrations/image-dimensions.mjs';
+import { lastmodFor } from './src/integrations/lastmod.mjs';
 
 // Pages that are noindex (see per-page robots meta) — keep them out of the sitemap.
 const EXCLUDE = ['/privacy-policy/', '/thank-you/', '/blog/category/', '/blog/page/'];
@@ -14,6 +15,10 @@ export default defineConfig({
   integrations: [
     sitemap({
       filter: (page) => !EXCLUDE.some((p) => new URL(page).pathname.startsWith(p)),
+      serialize(item) {
+        const lastmod = lastmodFor(new URL(item.url).pathname);
+        return lastmod ? { ...item, lastmod } : item;
+      },
     }),
     imageDimensions(),
   ],

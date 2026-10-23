@@ -2,3 +2,9 @@
 # so they're safe to cache forever — big repeat-visit win.
 /_astro/*
   Cache-Control: public, max-age=31536000, immutable
+
+# Images keep stable file names (not hashed), so cache for 30 days rather than
+# forever: a replaced image reaches visitors within a month, and
+# stale-while-revalidate keeps repeat views instant while Cloudflare refetches.
+/img/*
+  Cache-Control: public, max-age=2592000, stale-while-revalidate=86400

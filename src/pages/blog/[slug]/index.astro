@@ -8,6 +8,8 @@ import CtaCard from '../../../components/sections/CtaCard.astro';
 import Footer from '../../../components/sections/Footer.astro';
 import Section from '../../../components/primitives/Section.astro';
 import Container from '../../../components/primitives/Container.astro';
+import { organizationRef } from '../../../lib/schema';
+import { relatedPosts } from '../../../lib/related';
 
 export async function getStaticPaths() {
   const all = (await getCollection('blog')).map((e) => e.data);
@@ -38,14 +40,7 @@ const body = shift > 0
 const words = (post.body ?? []).join(' ').replace(/<[^>]+>/g, ' ').split(/\s+/).filter(Boolean).length;
 const readTime = Math.max(1, Math.round(words / 200));
 
-const related = all
-  .filter((p) => p.slug !== post.slug)
-  .sort((a, b) => {
-    const ca = a.category === post.category ? 0 : 1;
-    const cb = b.category === post.category ? 0 : 1;
-    return ca !== cb ? ca - cb : (a.date < b.date ? 1 : -1);
-  })
-  .slice(0, 3);
+const related = relatedPosts(post, all, 3);
 
 const pageUrl = `https://besecurelocksmith.com/blog/${post.slug}/`;
 const ctaBody = `Need a key made, a lockout solved, or new locks? Be Secure Locksmith is your local, mobile locksmith — <a href="/contact-us/">contact us today</a> or call now for fast, licensed service.`;
@@ -56,7 +51,7 @@ const blogPostingJsonLd = {
   author: { '@type': 'Person', name: post.author ?? 'Be Secure Locksmith' },
   image: post.heroImage ? new URL(post.heroImage, 'https://besecurelocksmith.com').href : undefined,
   mainEntityOfPage: pageUrl, url: pageUrl,
-  publisher: { '@type': 'Organization', name: 'Be Secure Locksmith' },
+  publisher: organizationRef(),
 };
 const breadcrumbJsonLd = {
   '@context': 'https://schema.org', '@type': 'BreadcrumbList',

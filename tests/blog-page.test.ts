@@ -11,7 +11,7 @@ const PAGE_SIZE = 9;
 
 test('Blog index (page 1) is indexed, shows a page of cards, chips, and a pager', () => {
   const html = read('dist/blog/index.html');
-  expect(html).toContain('<title>Locksmith Blog Gainesville, FL - Tips &amp; Lock Guides</title>');
+  expect(html).toContain('<title>Locksmith Blog Gainesville &amp; Ocala, FL - Tips &amp; Guides</title>');
   expect(html).toContain('Be Secure Locksmith Blog');               // H1
   expect(html).toContain('"@type":"BreadcrumbList"');
   expect(html).toContain('"@type":"Blog"');

@@ -1,0 +1,36 @@
+---
+// "Further reading" on a service page: the product guides that point back at
+// this service (each guide's `service.href`) or are listed for it in
+// serviceExtraGuides, plus blog posts picked by slug
+// keyword (src/lib/related.ts). Gives the guides and older posts links from
+// the strongest pages on the site instead of only from blog pagination.
+import { products } from '../../data/products';
+import { allPosts } from '../../lib/blog';
+import { postsForService, serviceExtraGuides, serviceReadingKeywords } from '../../lib/related';
+
+interface Props { slug: string }
+const { slug } = Astro.props;
+
+const href = `/services/${slug}/`;
+const extra = serviceExtraGuides[slug] ?? [];
+const guides = products.filter((p) => p.service.href === href || extra.includes(p.slug)).map((p) => ({ href: `/products/${p.slug}/`, label: p.name, kind: 'Guide' }));
+const posts = postsForService(await allPosts(), serviceReadingKeywords[slug] ?? [], 4)
+  .map((p) => ({ href: `/blog/${p.slug}/`, label: p.title, kind: 'Article' }));
+const links = [...guides, ...posts];
+---
+{links.length > 0 && (
+  <section class="clear-both mt-12 rounded-[24px] border border-border bg-surface p-8 md:p-10">
+    <h2 class="m-0 text-ink font-medium tracking-[-0.4px]" style="font-size:clamp(22px,3vw,28px);line-height:1.2;">Further Reading</h2>
+    <div class="mt-3 mb-6 h-1 w-12 rounded-full bg-primary"></div>
+    <ul class="m-0 p-0 list-none grid grid-cols-1 sm:grid-cols-2 gap-3">
+      {links.map((l) => (
+        <li>
+          <a href={l.href} class="group flex h-full flex-col gap-1 rounded-[14px] border border-border bg-white p-4 transition-colors hover:border-primary">
+            <span class="text-[12px] font-bold uppercase tracking-[1px] text-muted">{l.kind}</span>
+            <span class="text-[15px] font-bold text-ink group-hover:text-primary">{l.label}</span>
+          </a>
+        </li>
+      ))}
+    </ul>
+  </section>
+)}

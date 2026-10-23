@@ -37,7 +37,7 @@ export const site = {
   brands: ['Kwikset','Schlage','Lockly'],
   socials: [
     { name: 'Facebook', icon: '/img/social/FB-512.svg', href: 'https://www.facebook.com/BeSecureLocksmith/' },
-    { name: 'YouTube', icon: '/img/social/YouTube-icon.svg', href: 'https://www.youtube.com/channel/UCwpODmKG5TrCVIJTzEB6FXA' },
+    { name: 'YouTube', icon: '/img/social/YouTube-icon.svg', href: 'https://www.youtube.com/@BeSecureLocksmith' },
     { name: 'Instagram', icon: '/img/social/IG-round-2.svg', href: 'https://www.instagram.com/locksmithbesecure/' },
     { name: 'Yelp', icon: '/img/social/yelp-svgrepo-com.svg', href: 'https://www.yelp.com/biz/be-secure-locksmith-gainesville-2' },
     { name: 'LinkedIn', icon: '/img/social/linkedin.svg', href: 'https://www.linkedin.com/company/be-secure-locksmith' },

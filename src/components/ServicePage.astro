@@ -7,9 +7,10 @@ import Container from './primitives/Container.astro';
 import Button from './primitives/Button.astro';
 import TrustStrip from './sections/TrustStrip.astro';
 import CtaCard from './sections/CtaCard.astro';
+import FurtherReading from './sections/FurtherReading.astro';
 import { site, telHref } from '../config/site';
 import { resolveLocation, resolvePhone } from '../lib/locations';
-import { serviceAreaServed, serviceGeoLabel } from '../lib/schema';
+import { organizationRef, serviceAreaServed, serviceGeoLabel } from '../lib/schema';
 
 interface PriceRow { label: string; note: string; price: string; href: string; }
 interface Props {
@@ -101,7 +102,7 @@ const howItWorks = [
 const serviceJsonLd = {
   '@context': 'https://schema.org', '@type': 'Service', serviceType,
   name: `${name} ${serviceGeoLabel(location)}`, url: pageUrl,
-  provider: { '@type': 'LocalBusiness', name: site.name, telephone: phone },
+  provider: organizationRef(),
   areaServed: serviceAreaServed(location),
 };
 const breadcrumbJsonLd = {
@@ -307,8 +308,10 @@ const sections = orderedBlocks.filter((b) => b.t === 'h3' && !/^Why Choose/.test
             </section>
           )}
 
+          <FurtherReading slug={slug} />
+
           <!-- CONTACT CTA CARD -->
-          <div class="clear-both mt-14"><CtaCard location={location} heading={`Contact Be Secure for ${name} in Gainesville, FL`} body={contactHtml} /></div>
+          <div class="clear-both mt-14"><CtaCard location={location} heading={`Contact Be Secure for ${name} in Gainesville & Ocala, FL`} body={contactHtml} /></div>
         </div>
       </Container>
     </article>

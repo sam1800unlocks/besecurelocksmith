@@ -10,6 +10,7 @@ import CtaCard from './sections/CtaCard.astro';
 import { site, telHref } from '../config/site';
 import { resolveLocation, resolvePhone } from '../lib/locations';
 import { productBySlug } from '../data/products.ts';
+import { organizationRef } from '../lib/schema';
 
 const { product } = Astro.props;
 const location = 'main';
@@ -17,15 +18,10 @@ const phone = resolvePhone(resolveLocation(location));
 const pageUrl = `https://besecurelocksmith.com/products/${product.slug}/`;
 const related = (product.related || []).map((s) => productBySlug[s]).filter(Boolean);
 
-// Geo-target the <title> for Gainesville & Ocala, FL — inject the location ahead
-// of the brand so every product page carries the local signal. Titles end in two
-// brand forms ("| Be Secure Locksmith" and "| Be Secure"); handle both.
-const GEO = ' in Gainesville & Ocala, FL';
-const geoTitle = product.title.includes(' | Be Secure Locksmith')
-  ? product.title.replace(' | Be Secure Locksmith', `${GEO} | Be Secure Locksmith`)
-  : product.title.includes(' | Be Secure')
-    ? product.title.replace(' | Be Secure', `${GEO} | Be Secure`)
-    : `${product.title}${GEO} | Be Secure Locksmith`;
+// Product pages are how-to guides, so the <title> is the guide's own title —
+// no city suffix (it pushed titles to 90-100 chars and doesn't match how people
+// search for these topics). Local signals live in the body links below.
+const pageTitle = product.title;
 
 const GVILLE = '/service-areas/locksmith-gainesville-fl/';
 const OCALA = '/service-areas/locksmith-ocala-fl/';
@@ -45,8 +41,8 @@ const articleJsonLd = {
   headline: product.h1,
   description: product.description,
   about: product.name,
-  author: { '@type': 'Organization', name: site.name, url: 'https://besecurelocksmith.com/' },
-  publisher: { '@type': 'Organization', name: site.name },
+  author: organizationRef(),
+  publisher: organizationRef(),
   mainEntityOfPage: pageUrl,
 };
 const faqJsonLd = product.faqs?.length ? {
@@ -57,7 +53,7 @@ const faqJsonLd = product.faqs?.length ? {
 const checkSvg = '<svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="#31a24c" stroke-width="3.2" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"/></svg>';
 const minusSvg = '<svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="#b23b3b" stroke-width="3.2" stroke-linecap="round" stroke-linejoin="round"><line x1="5" y1="12" x2="19" y2="12"/></svg>';
 ---
-<BaseLayout title={geoTitle} description={product.description} location={location} ogType="article" robots="follow, index, max-image-preview:large">
+<BaseLayout title={pageTitle} description={product.description} location={location} ogType="article" robots="follow, index, max-image-preview:large">
   <Fragment slot="head">
     <script type="application/ld+json" set:html={JSON.stringify(breadcrumbJsonLd)} />
     <script type="application/ld+json" set:html={JSON.stringify(articleJsonLd)} />
