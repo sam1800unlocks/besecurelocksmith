@@ -23,8 +23,9 @@ const pages = (dir = dist): string[] =>
   });
 
 test('every page built from BaseLayout carries the widget exactly once', () => {
-  // Standalone pages in public/ don't use BaseLayout, so they carry no widget.
-  const landing = ['new-home/index.html', 'commercial/index.html', 'sliding-door-repair/index.html'].map((p) => resolve(dist, p));
+  // The ads landing pages are standalone and deliberately carry no widget (below).
+  // /sliding-door-repair/ is standalone too but does, via ava-static-pages.mjs.
+  const landing = ['new-home/index.html', 'commercial/index.html'].map((p) => resolve(dist, p));
   const all = pages().filter((f) => !landing.includes(f));
   expect(all.length).toBeGreaterThan(20);
   for (const file of all) {
@@ -67,6 +68,7 @@ test('the built site uses the versioned widget file when the lookup succeeds', a
   if (!r?.ok) return; // client server unreachable; the fallback is correct then
   const { url } = await r.json();
   expect(page('index.html')).toContain(`<script defer src="${url}"></script>`);
+  expect(page('sliding-door-repair/index.html')).toContain(`<script defer src="${url}"></script>`);
 });
 
 test('the layout holds the tag verbatim', () => {

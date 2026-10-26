@@ -3,6 +3,7 @@ import tailwind from '@tailwindcss/vite';
 import sitemap from '@astrojs/sitemap';
 import { FontaineTransform } from 'fontaine';
 import imageDimensions from './src/integrations/image-dimensions.mjs';
+import avaStaticPages from './src/integrations/ava-static-pages.mjs';
 import { lastmodFor } from './src/integrations/lastmod.mjs';
 
 // Pages that are noindex (see per-page robots meta) — keep them out of the sitemap.
@@ -26,6 +27,7 @@ export default defineConfig({
       },
     }),
     imageDimensions(),
+    avaStaticPages(),
   ],
   vite: {
     plugins: [

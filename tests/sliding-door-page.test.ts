@@ -87,3 +87,10 @@ test('a lead from the page is labelled as a sliding door service-page lead', asy
   expect(sent[0].html).toContain('Source: /sliding-door-repair/ service page');
   expect(sent[0].html).toContain('$97 Track Clean &amp; Tune');
 });
+
+test('loads the Ava widget once and lifts it above the mobile dock', () => {
+  const html = page();
+  expect(html.match(/be-secure-receptionist\.fly\.dev\/widget(\.[0-9a-f]+)?\.js/g)?.length).toBe(1);
+  expect(html).toContain("getElementById('bs-ava-widget')");
+  expect(html).toContain('@media (max-width: 819px)');
+});

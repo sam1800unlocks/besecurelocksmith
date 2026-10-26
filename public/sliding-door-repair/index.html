@@ -559,5 +559,23 @@
   });
 </script>
 <script src="https://challenges.cloudflare.com/turnstile/v0/api.js" async defer></script>
+<!-- "Talk to Ava" voice widget, as on the rest of the site. The build swaps this
+     plain widget.js for the current versioned file (src/integrations/ava-static-pages.mjs). -->
+<script defer src="https://be-secure-receptionist.fly.dev/widget.js"></script>
+<script>
+  // Below 820px the Call/Request dock covers the widget's bottom-right button,
+  // so lift the button above it and shorten the open panel by the same amount.
+  // If the widget renames these classes, it simply falls back to its default spot.
+  document.addEventListener('DOMContentLoaded', function () {
+    var host = document.getElementById('bs-ava-widget');
+    if (!host || !host.shadowRoot) return;
+    var s = document.createElement('style');
+    s.textContent = '@media (max-width: 819px) {' +
+      '.root { bottom: calc(92px + env(safe-area-inset-bottom)); }' +
+      '.panel { height: min(600px, calc(100vh - 112px - env(safe-area-inset-bottom))); }' +
+    '}';
+    host.shadowRoot.appendChild(s);
+  });
+</script>
 </body>
 </html>
