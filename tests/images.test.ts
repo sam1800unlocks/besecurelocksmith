@@ -3,6 +3,7 @@ import { existsSync } from 'node:fs';
 const need = [
   'public/img/besecure-logo-100h.png',
   'public/img/smart-lock-installation-Be-Secure-Locksmith-1024x768.jpeg',
+  'public/img/sliding-glass-door-repair-Be-Secure-Locksmith-1003x752.jpeg',
   'public/img/social/google-g-icon.svg',
 ];
 test('core homepage images are present locally', () => {

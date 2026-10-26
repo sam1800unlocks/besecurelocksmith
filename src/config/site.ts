@@ -99,6 +99,7 @@ export const serviceMenu = [
     { label: 'Lock Rekeying',        href: '/services/lock-rekeying/' },
     { label: 'Lock Repair',          href: '/services/lock-repair/' },
     { label: 'New Lock Installation',href: '/services/new-lock-installation/' },
+    { label: 'Sliding Door Repair',  href: '/sliding-door-repair/' },
   ] },
   { label: 'Commercial', href: '/services/commercial-locksmith/', items: [
     { label: 'Interchangeable Core Locks', href: '/services/interchangeable-core-locks/' },

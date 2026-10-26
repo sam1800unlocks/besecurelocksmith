@@ -23,7 +23,8 @@ const pages = (dir = dist): string[] =>
   });
 
 test('every page built from BaseLayout carries the widget exactly once', () => {
-  const landing = ['new-home/index.html', 'commercial/index.html'].map((p) => resolve(dist, p));
+  // Standalone pages in public/ don't use BaseLayout, so they carry no widget.
+  const landing = ['new-home/index.html', 'commercial/index.html', 'sliding-door-repair/index.html'].map((p) => resolve(dist, p));
   const all = pages().filter((f) => !landing.includes(f));
   expect(all.length).toBeGreaterThan(20);
   for (const file of all) {

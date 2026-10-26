@@ -92,6 +92,7 @@ async function handleContact(request, env) {
 const QUOTE_SOURCES = {
   "/new-home/": { label: "New movers", page: "/new-home/" },
   "/commercial/": { label: "Commercial", page: "/commercial/" },
+  "/sliding-door-repair/": { label: "Sliding door", page: "/sliding-door-repair/", kind: "service page" },
 };
 
 function quoteSource(request) {
@@ -151,13 +152,13 @@ async function handleQuote(request, env) {
   const res = await sendEmail(env, {
     subject: `${source.label} lead — ${company ? `${company}, ` : ""}${name} (${city})`,
     html: `
-      <h2>${source.label} landing page — quote request</h2>
+      <h2>${source.label} ${source.kind || "landing page"} — quote request</h2>
       <p><strong>Name:</strong> ${escapeHtml(name)}</p>
       ${company ? `<p><strong>Business:</strong> ${escapeHtml(company)}</p>` : ""}
       <p><strong>Phone:</strong> <a href="tel:+1${escapeHtml(digits)}">${escapeHtml(phone)}</a></p>
       <p><strong>Service:</strong> ${escapeHtml(service)}</p>
       <p><strong>City:</strong> ${escapeHtml(city)}</p>
-      <p><em>Source: ${source.page} Google Ads landing page</em></p>
+      <p><em>Source: ${source.page} ${source.kind || "Google Ads landing page"}</em></p>
     `,
   });
   if (!res.ok) {

@@ -3,8 +3,9 @@ import { readFileSync, readdirSync } from 'node:fs';
 import { resolve, join, relative } from 'node:path';
 
 const dist = resolve(__dirname, '../dist');
-// Standalone ads landing pages carry their own copy of the tag (see their tests).
-const standalone = ['new-home/index.html', 'commercial/index.html'];
+// Standalone pages in public/: the ads LPs carry their own copy of the tag, and
+// /sliding-door-repair/ is GA4-only at the client's request (see their tests).
+const standalone = ['new-home/index.html', 'commercial/index.html', 'sliding-door-repair/index.html'];
 
 const htmlFiles = (dir: string): string[] =>
   readdirSync(dir, { withFileTypes: true }).flatMap((e) =>
