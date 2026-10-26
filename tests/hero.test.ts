@@ -16,3 +16,12 @@ test('Hero shows headline, trust badge, resolved call CTA, and brands', async ()
   expect(html).toContain('Top Local Locksmith in Gainesville &amp; Ocala, FL');
   expect(html).toContain('href="#services"');   // Explore Our Services → jump to services section
 });
+
+test('hero photo carries the $97 sliding door offer as text and links to the page', async () => {
+  const { experimental_AstroContainer: AC } = await import('astro/container');
+  const Hero = (await import('../src/components/sections/Hero.astro')).default;
+  const html = await (await AC.create()).renderToString(Hero, { props: { location: 'main' } });
+  const link = html.split('href="/sliding-door-repair/"')[1].split('</a>')[0];
+  expect(link).toContain('$97');
+  expect(link).toMatch(/Sliding Glass Door<br[^>]*>Track Clean &amp; Tune/);
+});
