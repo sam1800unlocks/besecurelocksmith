@@ -4,15 +4,14 @@ import { resolve } from 'node:path';
 import worker from '../contact-worker/src/index.js';
 import { serviceMenu } from '../src/config/site';
 
-// Client-built page served from public/ like /new-home/ and /commercial/, but
-// ORGANIC: indexable, in the sitemap and the Services menu, GA4 only.
+// Client-built page (same look and form as /new-home/ and /commercial/), rendered
+// inside the site layout: global header and footer, indexable, in the sitemap and
+// the Services menu, GA4 but no Ads tag.
 const page = () => readFileSync(resolve(__dirname, '../dist/sliding-door-repair/index.html'), 'utf8');
 
-test('ships at /sliding-door-repair/ with its images and the borrowed logo/icon', () => {
+test('ships at /sliding-door-repair/ with its images', () => {
   const html = page();
   for (const src of [
-    '/new-home/img/logo.png',
-    '/new-home/img/icon-180.png',
     '/sliding-door-repair/img/hero-slider.jpg',
     '/sliding-door-repair/img/rollers.jpg',
     '/sliding-door-repair/img/slider-latch.jpg',
@@ -48,11 +47,35 @@ test('Service schema points at the site-wide business entity', () => {
   expect(html).toContain('"@type": "FAQPage"');
 });
 
-test('shows only the main number', () => {
-  const html = page();
-  expect(html).toContain('tel:+13527065295');
+// The site footer lists both offices' numbers, as on every page; the client's
+// own content uses only the main number, and never the ads tracking line.
+test('his content shows only the main number', () => {
+  const main = page().split(/<main id="main-content"[^>]*>/)[1].split('</main>')[0];
+  expect(main).toContain('tel:+13527065295');
   for (const other of ['3522907035', '3523257953', '3527130078']) {
-    expect(html).not.toContain(other);
+    expect(main).not.toContain(other);
+  }
+  expect(page()).not.toContain('3527130078');
+});
+
+test('uses the global header and footer, not his own', () => {
+  const html = page();
+  expect(html).toContain('Powered by The Locksmith Agency');
+  expect(html).toContain('aria-label="Sliding door repair promotion"');
+  expect(html).not.toContain('<header class="top">');
+  expect(html).not.toContain('/new-home/img/logo.png');
+  for (const tag of ['<title>', 'rel="canonical"', 'name="robots"', 'name="description"']) {
+    expect(html.split(tag).length - 1, tag).toBe(1);
+  }
+});
+
+// His CSS styles bare elements (h1, section, form, label, input). Scoped by Astro,
+// every such rule carries the component's data-astro-cid, so none reach the nav/footer.
+test('his element styles are scoped to his content', () => {
+  const css = [...page().matchAll(/<style>(.*?)<\/style>/gs)].map((m) => m[1]).join('');
+  for (const el of ['section', 'h1', 'h2', 'form', 'label', 'input']) {
+    expect(css, el).not.toMatch(new RegExp(`(^|[},])${el}\\{`));
+    expect(css, el).toMatch(new RegExp(`${el}\\[data-astro-cid-[a-z0-9]+\\]`));
   }
 });
 

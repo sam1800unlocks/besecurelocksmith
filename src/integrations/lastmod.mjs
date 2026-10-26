@@ -26,7 +26,6 @@ export function sourcesFor(pathname) {
   if (seg[0] === 'service-areas' && seg.length === 2) return at(`src/content/service-areas/${seg[1]}.json`);
   if (seg[0] === 'products' && seg.length === 2) return at('src/data/products.ts');
   if (seg[0] === 'services' && seg.length === 2) return [...pageFiles(pathname), ...(serviceData[seg[1]] ? [serviceData[seg[1]]] : [])];
-  if (seg[0] === 'sliding-door-repair' && seg.length === 1) return at('public/sliding-door-repair/index.html');
   if (seg[0] === 'about') return [...pageFiles(pathname), ...at('src/data/about.json')];
   return pageFiles(pathname);
 }

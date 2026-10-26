@@ -18,6 +18,8 @@ interface Props {
   ogImage?: string;
   robots?: string;
   schema?: 'org-home' | 'org-lean' | 'none';
+  /** Off only where the client asked for no Ads tag (/sliding-door-repair/). */
+  adsTag?: boolean;
 }
 
 const {
@@ -28,6 +30,7 @@ const {
   ogImage = '/img/og-default.jpg',
   robots,
   schema = 'none',
+  adsTag = true,
 } = Astro.props;
 
 const avaSrc = await avaWidgetSrc();
@@ -62,8 +65,8 @@ const orgSchema = schema === 'org-home' ? organizationNode({ homepage: true })
         gtag('js', new Date());
         gtag('config', 'G-CJ59FQS2T4');
       </script>
-      {/* Google Ads base tag — every page (see src/config/tracking.ts). */}
-      <script is:inline set:html={`gtag('config', ${JSON.stringify(adsConversionId)});`} />
+      {/* Google Ads base tag — every page unless adsTag={false} (see src/config/tracking.ts). */}
+      {adsTag && <script is:inline set:html={`gtag('config', ${JSON.stringify(adsConversionId)});`} />}
     </Fragment>
   )}
 

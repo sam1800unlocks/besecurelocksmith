@@ -23,8 +23,7 @@ const pages = (dir = dist): string[] =>
   });
 
 test('every page built from BaseLayout carries the widget exactly once', () => {
-  // The ads landing pages are standalone and deliberately carry no widget (below).
-  // /sliding-door-repair/ is standalone too but does, via ava-static-pages.mjs.
+  // The standalone ads landing pages deliberately carry no widget (below).
   const landing = ['new-home/index.html', 'commercial/index.html'].map((p) => resolve(dist, p));
   const all = pages().filter((f) => !landing.includes(f));
   expect(all.length).toBeGreaterThan(20);
