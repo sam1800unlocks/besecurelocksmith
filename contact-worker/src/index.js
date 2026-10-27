@@ -92,7 +92,9 @@ async function handleContact(request, env) {
 const QUOTE_SOURCES = {
   "/new-home/": { label: "New movers", page: "/new-home/" },
   "/commercial/": { label: "Commercial", page: "/commercial/" },
-  "/sliding-door-repair/": { label: "Sliding door", page: "/sliding-door-repair/", kind: "service page" },
+  "/services/sliding-door-repair/": { label: "Sliding door", page: "/services/sliding-door-repair/", kind: "service page" },
+  // Old address, kept so a tab opened before the 301 still labels its lead.
+  "/sliding-door-repair/": { label: "Sliding door", page: "/services/sliding-door-repair/", kind: "service page" },
 };
 
 function quoteSource(request) {

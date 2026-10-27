@@ -160,12 +160,14 @@
 /service-areas/lake-city-fl   /service-areas/locksmith-lake-city-fl/   301
 /service-areas/locksmith-lake-city/   /service-areas/locksmith-lake-city-fl/   301
 /service-areas/locksmith-lake-city   /service-areas/locksmith-lake-city-fl/   301
-/service-areas/marion-oaks-ocala/   /service-areas/locksmith-marion-oaks-ocala-fl/   301
-/service-areas/marion-oaks-ocala   /service-areas/locksmith-marion-oaks-ocala-fl/   301
-/service-areas/marion-oaks-ocala-fl/   /service-areas/locksmith-marion-oaks-ocala-fl/   301
-/service-areas/marion-oaks-ocala-fl   /service-areas/locksmith-marion-oaks-ocala-fl/   301
-/service-areas/locksmith-marion-oaks-ocala/   /service-areas/locksmith-marion-oaks-ocala-fl/   301
-/service-areas/locksmith-marion-oaks-ocala   /service-areas/locksmith-marion-oaks-ocala-fl/   301
+/service-areas/locksmith-marion-oaks-ocala-fl/   /service-areas/locksmith-marion-oaks-fl/   301
+/service-areas/locksmith-marion-oaks-ocala-fl   /service-areas/locksmith-marion-oaks-fl/   301
+/service-areas/marion-oaks-ocala/   /service-areas/locksmith-marion-oaks-fl/   301
+/service-areas/marion-oaks-ocala   /service-areas/locksmith-marion-oaks-fl/   301
+/service-areas/marion-oaks-ocala-fl/   /service-areas/locksmith-marion-oaks-fl/   301
+/service-areas/marion-oaks-ocala-fl   /service-areas/locksmith-marion-oaks-fl/   301
+/service-areas/locksmith-marion-oaks-ocala/   /service-areas/locksmith-marion-oaks-fl/   301
+/service-areas/locksmith-marion-oaks-ocala   /service-areas/locksmith-marion-oaks-fl/   301
 /service-areas/newberry/   /service-areas/locksmith-newberry-fl/   301
 /service-areas/newberry   /service-areas/locksmith-newberry-fl/   301
 /service-areas/newberry-fl/   /service-areas/locksmith-newberry-fl/   301
@@ -182,12 +184,14 @@
 /service-areas/silver-springs-fl   /service-areas/locksmith-silver-springs-fl/   301
 /service-areas/locksmith-silver-springs/   /service-areas/locksmith-silver-springs-fl/   301
 /service-areas/locksmith-silver-springs   /service-areas/locksmith-silver-springs-fl/   301
-/service-areas/silver-springs-shores-ocala/   /service-areas/locksmith-silver-springs-shores-ocala-fl/   301
-/service-areas/silver-springs-shores-ocala   /service-areas/locksmith-silver-springs-shores-ocala-fl/   301
-/service-areas/silver-springs-shores-ocala-fl/   /service-areas/locksmith-silver-springs-shores-ocala-fl/   301
-/service-areas/silver-springs-shores-ocala-fl   /service-areas/locksmith-silver-springs-shores-ocala-fl/   301
-/service-areas/locksmith-silver-springs-shores-ocala/   /service-areas/locksmith-silver-springs-shores-ocala-fl/   301
-/service-areas/locksmith-silver-springs-shores-ocala   /service-areas/locksmith-silver-springs-shores-ocala-fl/   301
+/service-areas/locksmith-silver-springs-shores-ocala-fl/   /service-areas/locksmith-silver-springs-shores-fl/   301
+/service-areas/locksmith-silver-springs-shores-ocala-fl   /service-areas/locksmith-silver-springs-shores-fl/   301
+/service-areas/silver-springs-shores-ocala/   /service-areas/locksmith-silver-springs-shores-fl/   301
+/service-areas/silver-springs-shores-ocala   /service-areas/locksmith-silver-springs-shores-fl/   301
+/service-areas/silver-springs-shores-ocala-fl/   /service-areas/locksmith-silver-springs-shores-fl/   301
+/service-areas/silver-springs-shores-ocala-fl   /service-areas/locksmith-silver-springs-shores-fl/   301
+/service-areas/locksmith-silver-springs-shores-ocala/   /service-areas/locksmith-silver-springs-shores-fl/   301
+/service-areas/locksmith-silver-springs-shores-ocala   /service-areas/locksmith-silver-springs-shores-fl/   301
 /service-areas/the-villages/   /service-areas/locksmith-the-villages-fl/   301
 /service-areas/the-villages   /service-areas/locksmith-the-villages-fl/   301
 /service-areas/the-villages-fl/   /service-areas/locksmith-the-villages-fl/   301
@@ -294,6 +298,8 @@
 /reset-password   /   301
 
 # --- dynamic (splat) rules LAST ---
+/sliding-door-repair/   /services/sliding-door-repair/   301
+/sliding-door-repair   /services/sliding-door-repair/   301
 /wp-content/*   /   301
 /wp-includes/*   /   301
 /search/*   /blog/   301

@@ -37,6 +37,6 @@ test('NavBar Services dropdown renders crawlable service links (server-rendered)
 test('PromoBar promotes sliding door repair on both breakpoints', async () => {
   const c = await AstroContainer.create();
   const html = await c.renderToString(PromoBar, { props: { location: 'main' } });
-  expect(html.match(/href="\/sliding-door-repair\/"/g)?.length).toBe(2);
+  expect(html.match(/href="\/services\/sliding-door-repair\/"/g)?.length).toBe(2);
   expect(html).toContain('$97');
 });

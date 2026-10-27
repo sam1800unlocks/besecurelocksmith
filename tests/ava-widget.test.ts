@@ -67,7 +67,7 @@ test('the built site uses the versioned widget file when the lookup succeeds', a
   if (!r?.ok) return; // client server unreachable; the fallback is correct then
   const { url } = await r.json();
   expect(page('index.html')).toContain(`<script defer src="${url}"></script>`);
-  expect(page('sliding-door-repair/index.html')).toContain(`<script defer src="${url}"></script>`);
+  expect(page('services/sliding-door-repair/index.html')).toContain(`<script defer src="${url}"></script>`);
 });
 
 test('the layout holds the tag verbatim', () => {

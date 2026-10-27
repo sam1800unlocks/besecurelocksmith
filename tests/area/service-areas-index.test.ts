@@ -16,7 +16,7 @@ test('Service-areas index builds with all city links, regions, nearby chips, SEO
   for (const slug of [
     'locksmith-alachua-fl', 'locksmith-hampton-fl', 'locksmith-newberry-fl',
     'locksmith-gainesville-fl', 'locksmith-lake-city-fl', 'locksmith-ocala-fl',
-    'locksmith-belleview-fl', 'locksmith-marion-oaks-ocala-fl', 'locksmith-silver-springs-shores-ocala-fl',
+    'locksmith-belleview-fl', 'locksmith-marion-oaks-fl', 'locksmith-silver-springs-shores-fl',
   ]) {
     expect(html).toContain(`href="/service-areas/${slug}/"`);
   }

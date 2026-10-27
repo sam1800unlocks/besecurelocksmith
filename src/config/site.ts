@@ -54,11 +54,11 @@ export const serviceAreas = [
   { name: 'Hampton',      href: '/service-areas/locksmith-hampton-fl/' },
   { name: 'High Springs', href: '/service-areas/locksmith-high-springs-fl/' },
   { name: 'Lake City',    href: '/service-areas/locksmith-lake-city-fl/' },
-  { name: 'Marion Oaks',  href: '/service-areas/locksmith-marion-oaks-ocala-fl/' },
+  { name: 'Marion Oaks',  href: '/service-areas/locksmith-marion-oaks-fl/' },
   { name: 'Newberry',     href: '/service-areas/locksmith-newberry-fl/' },
   { name: 'Ocala',        href: '/service-areas/locksmith-ocala-fl/' },
   { name: 'Silver Springs', href: '/service-areas/locksmith-silver-springs-fl/' },
-  { name: 'Silver Springs Shores', href: '/service-areas/locksmith-silver-springs-shores-ocala-fl/' },
+  { name: 'Silver Springs Shores', href: '/service-areas/locksmith-silver-springs-shores-fl/' },
   { name: 'The Villages', href: '/service-areas/locksmith-the-villages-fl/' },
   { name: 'Williston',    href: '/service-areas/locksmith-williston-fl/' },
 ] as const;
@@ -99,7 +99,7 @@ export const serviceMenu = [
     { label: 'Lock Rekeying',        href: '/services/lock-rekeying/' },
     { label: 'Lock Repair',          href: '/services/lock-repair/' },
     { label: 'New Lock Installation',href: '/services/new-lock-installation/' },
-    { label: 'Sliding Door Repair',  href: '/sliding-door-repair/' },
+    { label: 'Sliding Door Repair',  href: '/services/sliding-door-repair/' },
   ] },
   { label: 'Commercial', href: '/services/commercial-locksmith/', items: [
     { label: 'Interchangeable Core Locks', href: '/services/interchangeable-core-locks/' },

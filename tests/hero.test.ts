@@ -21,7 +21,7 @@ test('hero photo carries the $97 sliding door offer as text and links to the pag
   const { experimental_AstroContainer: AC } = await import('astro/container');
   const Hero = (await import('../src/components/sections/Hero.astro')).default;
   const html = await (await AC.create()).renderToString(Hero, { props: { location: 'main' } });
-  const link = html.split('href="/sliding-door-repair/"')[1].split('</a>')[0];
+  const link = html.split('href="/services/sliding-door-repair/"')[1].split('</a>')[0];
   expect(link).toContain('$97');
   expect(link).toMatch(/Sliding Glass Door<br[^>]*>Track Clean &amp; Tune/);
 });

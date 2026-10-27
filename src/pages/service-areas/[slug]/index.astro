@@ -30,17 +30,17 @@ export async function getStaticPaths() {
   // Defined inside getStaticPaths — Astro runs it in an isolated scope.
   const AREA_NEIGHBORS = {
     'locksmith-gainesville-fl': ['locksmith-alachua-fl', 'locksmith-high-springs-fl', 'locksmith-newberry-fl', 'locksmith-williston-fl'],
-    'locksmith-ocala-fl': ['locksmith-belleview-fl', 'locksmith-silver-springs-fl', 'locksmith-marion-oaks-ocala-fl', 'locksmith-the-villages-fl'],
+    'locksmith-ocala-fl': ['locksmith-belleview-fl', 'locksmith-silver-springs-fl', 'locksmith-marion-oaks-fl', 'locksmith-the-villages-fl'],
     'locksmith-alachua-fl': ['locksmith-gainesville-fl', 'locksmith-high-springs-fl', 'locksmith-newberry-fl'],
     'locksmith-belleview-fl': ['locksmith-ocala-fl', 'locksmith-silver-springs-fl', 'locksmith-the-villages-fl'],
     'locksmith-hampton-fl': ['locksmith-gainesville-fl', 'locksmith-lake-city-fl', 'locksmith-williston-fl'],
     'locksmith-high-springs-fl': ['locksmith-gainesville-fl', 'locksmith-alachua-fl', 'locksmith-newberry-fl'],
     'locksmith-lake-city-fl': ['locksmith-gainesville-fl', 'locksmith-high-springs-fl', 'locksmith-hampton-fl'],
-    'locksmith-marion-oaks-ocala-fl': ['locksmith-ocala-fl', 'locksmith-belleview-fl', 'locksmith-the-villages-fl'],
+    'locksmith-marion-oaks-fl': ['locksmith-ocala-fl', 'locksmith-belleview-fl', 'locksmith-the-villages-fl'],
     'locksmith-newberry-fl': ['locksmith-gainesville-fl', 'locksmith-alachua-fl', 'locksmith-williston-fl'],
-    'locksmith-silver-springs-fl': ['locksmith-ocala-fl', 'locksmith-belleview-fl', 'locksmith-silver-springs-shores-ocala-fl'],
-    'locksmith-silver-springs-shores-ocala-fl': ['locksmith-ocala-fl', 'locksmith-silver-springs-fl', 'locksmith-belleview-fl'],
-    'locksmith-the-villages-fl': ['locksmith-ocala-fl', 'locksmith-belleview-fl', 'locksmith-marion-oaks-ocala-fl'],
+    'locksmith-silver-springs-fl': ['locksmith-ocala-fl', 'locksmith-belleview-fl', 'locksmith-silver-springs-shores-fl'],
+    'locksmith-silver-springs-shores-fl': ['locksmith-ocala-fl', 'locksmith-silver-springs-fl', 'locksmith-belleview-fl'],
+    'locksmith-the-villages-fl': ['locksmith-ocala-fl', 'locksmith-belleview-fl', 'locksmith-marion-oaks-fl'],
     'locksmith-williston-fl': ['locksmith-gainesville-fl', 'locksmith-newberry-fl', 'locksmith-ocala-fl'],
   };
   const areas = await getCollection('service-areas');

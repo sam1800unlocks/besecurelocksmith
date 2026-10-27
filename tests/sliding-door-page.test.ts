@@ -7,9 +7,9 @@ import { serviceMenu } from '../src/config/site';
 // Client-built page (same look and form as /new-home/ and /commercial/), rendered
 // inside the site layout: global header and footer, indexable, in the sitemap and
 // the Services menu, GA4 but no Ads tag.
-const page = () => readFileSync(resolve(__dirname, '../dist/sliding-door-repair/index.html'), 'utf8');
+const page = () => readFileSync(resolve(__dirname, '../dist/services/sliding-door-repair/index.html'), 'utf8');
 
-test('ships at /sliding-door-repair/ with its images', () => {
+test('ships at /services/sliding-door-repair/ with its images', () => {
   const html = page();
   for (const src of [
     '/sliding-door-repair/img/hero-slider.jpg',
@@ -25,14 +25,14 @@ test('ships at /sliding-door-repair/ with its images', () => {
 test('is indexable with a self-canonical, and listed in the sitemap', () => {
   const html = page();
   expect(html).toContain('<meta name="robots" content="index, follow">');
-  expect(html).toContain('<link rel="canonical" href="https://besecurelocksmith.com/sliding-door-repair/">');
+  expect(html).toContain('<link rel="canonical" href="https://besecurelocksmith.com/services/sliding-door-repair/">');
   const sitemap = readFileSync(resolve(__dirname, '../dist/sitemap-0.xml'), 'utf8');
-  expect(sitemap).toContain('<loc>https://besecurelocksmith.com/sliding-door-repair/</loc>');
+  expect(sitemap).toContain('<loc>https://besecurelocksmith.com/services/sliding-door-repair/</loc>');
 });
 
 test('is in the Services menu', () => {
   const items = serviceMenu.flatMap((g) => g.items.map((i) => i.href));
-  expect(items).toContain('/sliding-door-repair/');
+  expect(items).toContain('/services/sliding-door-repair/');
 });
 
 test('carries GA4 but not the Google Ads tag', () => {
@@ -102,12 +102,12 @@ test('a lead from the page is labelled as a sliding door service-page lead', asy
   const body = new FormData();
   for (const [k, v] of Object.entries({ 'cf-turnstile-response': 't', name: 'Pat', phone: '(352) 555-0123', service: '$97 Track Clean & Tune', city: 'Gainesville' })) body.append(k, v);
   const res = await worker.fetch(
-    new Request('https://besecurelocksmith.com/api/quote', { method: 'POST', body, headers: { Referer: 'https://besecurelocksmith.com/sliding-door-repair/' } }),
+    new Request('https://besecurelocksmith.com/api/quote', { method: 'POST', body, headers: { Referer: 'https://besecurelocksmith.com/services/sliding-door-repair/' } }),
     { TURNSTILE_SECRET_KEY: 's', RESEND_API_KEY: 'r' },
   );
   expect(res.status).toBe(200);
   expect(sent[0].subject).toBe('Sliding door lead — Pat (Gainesville)');
-  expect(sent[0].html).toContain('Source: /sliding-door-repair/ service page');
+  expect(sent[0].html).toContain('Source: /services/sliding-door-repair/ service page');
   expect(sent[0].html).toContain('$97 Track Clean &amp; Tune');
 });
 

@@ -4,8 +4,8 @@ import { resolve, join, relative } from 'node:path';
 
 const dist = resolve(__dirname, '../dist');
 // The standalone ads landing pages carry their own copy of the tag, and
-// /sliding-door-repair/ turns it off (adsTag={false}) at the client's request.
-const standalone = ['new-home/index.html', 'commercial/index.html', 'sliding-door-repair/index.html'];
+// /services/sliding-door-repair/ turns it off (adsTag={false}) at the client's request.
+const standalone = ['new-home/index.html', 'commercial/index.html', 'services/sliding-door-repair/index.html'];
 
 const htmlFiles = (dir: string): string[] =>
   readdirSync(dir, { withFileTypes: true }).flatMap((e) =>
