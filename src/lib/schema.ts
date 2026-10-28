@@ -1,12 +1,12 @@
 import { offices, type Office, type OfficeKey } from '../config/offices';
 import { schemaData as S } from '../config/schema-data';
 
-const hoursSpec = () => [{
+const hoursSpec = () => S.hours.map((h) => ({
   '@type': 'OpeningHoursSpecification',
-  dayOfWeek: [...S.hours.days],
-  opens: S.hours.opens,
-  closes: S.hours.closes,
-}];
+  dayOfWeek: [...h.days],
+  opens: h.opens,
+  closes: h.closes,
+}));
 
 export function officeBySlug(slug: string): Office | undefined {
   return Object.values(offices).find((o) => o.slug === slug);

@@ -62,6 +62,9 @@ export const schemaData = {
     'https://fairtradelocksmiths.com/locksmith/local/be-secure-locksmith-gainesville',
     'https://members.gainesvillechamber.com/list/member/be-secure-locksmith-gainesville-30726',
   ],
-  hours: { days: ['Monday', 'Tuesday', 'Wednesday', 'Thursday', 'Friday'], opens: '08:00', closes: '17:00' },
+  hours: [
+    { days: ['Monday', 'Tuesday', 'Wednesday', 'Thursday', 'Friday'], opens: '08:00', closes: '21:00' },
+    { days: ['Saturday'], opens: '09:00', closes: '19:00' },
+  ],
   catalog: catalog as Array<{ name: string; description: string; additionalType: string | null; minPrice: string | null }>,
 } as const;

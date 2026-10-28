@@ -14,7 +14,7 @@ export const site = {
   license: 'HCLO18005',
   insurance: 'BKS56465112',
   address: { street: '901 NW 8th Ave. C17', city: 'Gainesville', state: 'FL', zip: '32601' },
-  hours: 'Mon–Fri 8am–5pm · Sat–Sun Closed',
+  hours: 'Mon–Fri 8am–9pm · Sat 9am–7pm · Sun Closed',
   ratingValue: '4.8',
   ratingCount: '2579',
   sinceYear: '2012',

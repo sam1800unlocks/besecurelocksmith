@@ -9,7 +9,7 @@ test('/locations/ hub shows both offices, maps, detail links, and breadcrumb onl
   // both offices present (address + hours + tracking phones)
   expect(h).toContain('901 NW 8th Ave. C17');
   expect(h).toContain('217 SE 1st Ave. Suite 200-50');
-  expect(h).toContain('Mon–Fri 8 am–5 pm');
+  expect(h).toContain('Mon–Fri 8 am–9 pm · Sat 9 am–7 pm');
   // CID map embeds for both offices (Astro renders the & literally in the attribute — verified in the schema work)
   expect(h).toContain('maps.google.com/maps?cid=1525264823828817691&output=embed');
   expect(h).toContain('maps.google.com/maps?cid=4138983982412980004&output=embed');

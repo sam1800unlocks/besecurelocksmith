@@ -59,7 +59,7 @@ test.each(['locksmith-gainesville-fl', 'locksmith-ocala-fl'])('%s meta carries n
   expect(desc).not.toContain('&#38;#');
 });
 
-// Be Secure is Mon–Fri 8am–5pm; availability claims must never enter a meta.
+// Be Secure is Mon–Fri 8am–9pm, Sat 9am–7pm; availability claims must never enter a meta.
 test.each(['locksmith-gainesville-fl', 'locksmith-ocala-fl'])('%s meta makes no 24/7 claim', (slug) => {
   const html = read(slug);
   const head = html.slice(0, html.indexOf('</head>'));
