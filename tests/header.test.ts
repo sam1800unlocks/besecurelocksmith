@@ -34,6 +34,27 @@ test('NavBar Services dropdown renders crawlable service links (server-rendered)
   }
 });
 
+test('Offices strip shows both offices + hours above the promo on non-location pages', async () => {
+  const c = await AstroContainer.create();
+  const html = await c.renderToString(PromoBar, { props: { location: 'main' } });
+  expect(html).toContain('901 NW 8th Ave. C17, Gainesville, FL 32601');
+  expect(html).toContain('217 SE 1st Ave. Suite 200-50, Ocala, FL 34471');
+  expect(html).toContain('Mon–Fri 8 am–9 pm · Sat 9 am–7 pm');
+  expect(html).toContain('maps.google.com/?cid=1525264823828817691');
+  expect(html).toContain('maps.google.com/?cid=4138983982412980004');
+  expect(html.indexOf('Office locations and hours')).toBeLessThan(html.indexOf('Sliding door repair promotion'));
+});
+
+test('Offices strip shows only that office on a location page', async () => {
+  const c = await AstroContainer.create();
+  const ocala = await c.renderToString(PromoBar, { props: { location: 'ocala' } });
+  expect(ocala).toContain('217 SE 1st Ave. Suite 200-50');
+  expect(ocala).not.toContain('901 NW 8th Ave. C17');
+  const gnv = await c.renderToString(PromoBar, { props: { location: 'gainesville' } });
+  expect(gnv).toContain('901 NW 8th Ave. C17');
+  expect(gnv).not.toContain('217 SE 1st Ave.');
+});
+
 test('PromoBar promotes sliding door repair on both breakpoints', async () => {
   const c = await AstroContainer.create();
   const html = await c.renderToString(PromoBar, { props: { location: 'main' } });
