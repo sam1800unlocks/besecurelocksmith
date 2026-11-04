@@ -121,6 +121,7 @@ export function locationNode(key: OfficeKey) {
     hasMap: `https://www.google.com/maps/place/?cid=${o.cid}`,
     aggregateRating: { '@type': 'AggregateRating', ratingValue: o.ratingValue, reviewCount: o.reviewCount, bestRating: '5', worstRating: '1' },
     openingHoursSpecification: hoursSpec(),
+    amenityFeature: o.accessibility.map((name) => ({ '@type': 'LocationFeatureSpecification', name, value: true })),
     priceRange: S.priceRange,
     sameAs: [...o.sameAs],
     parentOrganization: { '@id': S.orgId },

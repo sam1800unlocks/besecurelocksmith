@@ -45,6 +45,12 @@ test('Offices strip shows both offices + hours above the promo on non-location p
   expect(html.indexOf('Office locations and hours')).toBeLessThan(html.indexOf('Sliding door repair promotion'));
 });
 
+test('Offices strip lists wheelchair accessibility for each office', async () => {
+  const c = await AstroContainer.create();
+  const html = await c.renderToString(PromoBar, { props: { location: 'main' } });
+  expect(html.match(/Wheelchair accessible entrance, parking lot, restroom &amp; seating/g)?.length).toBe(2);
+});
+
 test('Offices strip shows only that office on a location page', async () => {
   const c = await AstroContainer.create();
   const ocala = await c.renderToString(PromoBar, { props: { location: 'ocala' } });
