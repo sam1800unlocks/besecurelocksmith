@@ -14,20 +14,12 @@ export interface Office {
   email: string;
   geo: { lat: number; lng: number };
   hoursDisplay: string;
-  accessibility: readonly string[]; // client-confirmed GBP accessibility attributes (2026-11-04)
   cid: string;
   kgmid: string;              // "/g/1ptx2pkfg"
   ratingValue: string;        // "4.9"
   reviewCount: string;        // "1330"
   sameAs: string[];           // that office's GBP + directory profiles
 }
-
-const WHEELCHAIR_ALL = [
-  'Wheelchair accessible entrance',
-  'Wheelchair accessible parking lot',
-  'Wheelchair accessible restroom',
-  'Wheelchair accessible seating',
-] as const;
 
 export const offices: Record<OfficeKey, Office> = {
   gainesville: {
@@ -38,7 +30,6 @@ export const offices: Record<OfficeKey, Office> = {
     city: 'Gainesville', state: 'FL', zip: '32601',
     streetSchema: '901 NW 8th Ave c17',
     hoursDisplay: 'Mon–Fri 8 am–9 pm · Sat 9 am–7 pm',
-    accessibility: WHEELCHAIR_ALL,
     phone: '352-290-7035', trackingPhone: '1-352-290-7035',
     email: 'info@besecurelocksmith.com',
     geo: { lat: 29.65886, lng: -82.3345 },
@@ -61,7 +52,6 @@ export const offices: Record<OfficeKey, Office> = {
     city: 'Ocala', state: 'FL', zip: '34471',
     streetSchema: '217 SE 1st Ave Ste 200-50',
     hoursDisplay: 'Mon–Fri 8 am–9 pm · Sat 9 am–7 pm',
-    accessibility: WHEELCHAIR_ALL,
     phone: '352-325-7953', trackingPhone: '1-352-325-7953',
     email: 'info@besecurelocksmith.com',
     geo: { lat: 29.1844122, lng: -82.1355775 },

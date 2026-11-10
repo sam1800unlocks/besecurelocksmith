@@ -136,15 +136,9 @@ test('officeBySlug resolves the two office pages', () => {
   expect(officeBySlug('locksmith-alachua-fl')).toBeUndefined();
 });
 
-test('each office LocalBusiness node declares its wheelchair accessibility amenities', () => {
+test('office LocalBusiness nodes carry no accessibility amenities', () => {
   for (const key of ['gainesville', 'ocala'] as const) {
-    const n: any = locationNode(key);
-    expect(n.amenityFeature).toHaveLength(4);
-    for (const f of n.amenityFeature) {
-      expect(f['@type']).toBe('LocationFeatureSpecification');
-      expect(f.value).toBe(true);
-    }
-    expect(n.amenityFeature.map((f: any) => f.name)).toContain('Wheelchair accessible restroom');
+    expect((locationNode(key) as any).amenityFeature).toBeUndefined();
   }
 });
 

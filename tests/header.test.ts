@@ -45,10 +45,10 @@ test('Offices strip shows both offices + hours above the promo on non-location p
   expect(html.indexOf('Office locations and hours')).toBeLessThan(html.indexOf('Sliding door repair promotion'));
 });
 
-test('Offices strip lists wheelchair accessibility for each office', async () => {
+test('Offices strip shows no accessibility line', async () => {
   const c = await AstroContainer.create();
   const html = await c.renderToString(PromoBar, { props: { location: 'main' } });
-  expect(html.match(/Wheelchair accessible entrance, parking lot, restroom &amp; seating/g)?.length).toBe(2);
+  expect(html).not.toMatch(/wheelchair/i);
 });
 
 test('Offices strip shows only that office on a location page', async () => {
