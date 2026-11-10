@@ -12,21 +12,35 @@ export function officeBySlug(slug: string): Office | undefined {
   return Object.values(offices).find((o) => o.slug === slug);
 }
 
-export function organizationNode({ homepage }: { homepage: boolean }) {
-  const node: any = {
+const websiteId = `${S.base}/#website`;
+const founderId = `${S.base}/about/#founder`;
+
+const imageNode = () => ({ '@type': 'ImageObject', url: S.image, width: S.imageSize.width, height: S.imageSize.height });
+
+const placeNode = (a: (typeof S.areaServed)[number]) => ({ '@type': a.type, name: a.name, sameAs: a.sameAs });
+
+/**
+ * The brand. Multi-office model: an Organization with no office-level properties
+ * (address, geo, hours, map and ratings belong to the branches in locationNode).
+ * BaseLayout emits it on every page.
+ */
+export function organizationNode() {
+  return {
     '@context': 'https://schema.org',
-    '@type': 'Locksmith',
+    '@type': 'Organization',
     '@id': S.orgId,
     name: S.name,
     legalName: S.legalName,
     foundingDate: S.foundingDate,
     url: S.url,
-    logo: { '@type': 'ImageObject', url: S.logo },
-    image: S.image,
+    telephone: S.telephone,
+    logo: { '@type': 'ImageObject', url: S.logo, width: S.logoSize.width, height: S.logoSize.height },
+    image: imageNode(),
     description: S.description,
     email: S.email,
     founder: [{
       '@type': 'Person',
+      '@id': founderId,
       name: S.founder.name,
       jobTitle: S.founder.jobTitle,
       hasCredential: [{
@@ -38,48 +52,70 @@ export function organizationNode({ homepage }: { homepage: boolean }) {
       }],
       knowsAbout: [...S.founder.knowsAbout],
     }],
-    ...(homepage ? {
-      address: {
-        '@type': 'PostalAddress',
-        streetAddress: offices.gainesville.streetSchema,
-        addressLocality: offices.gainesville.city, addressRegion: offices.gainesville.state, postalCode: offices.gainesville.zip, addressCountry: 'US',
-      },
-    } : {}),
     contactPoint: { '@type': 'ContactPoint', telephone: S.telephone, email: S.email, contactType: 'customer service', availableLanguage: 'English' },
-    openingHoursSpecification: hoursSpec(),
     priceRange: S.priceRange,
     currenciesAccepted: S.currenciesAccepted,
     paymentAccepted: S.paymentAccepted,
-    areaServed: S.areaServed.map((a) => ({ '@type': a.type, name: a.name, sameAs: a.sameAs })),
+    areaServed: { '@type': 'AdministrativeArea', name: 'North Central Florida', containsPlace: S.areaServed.map(placeNode) },
     sameAs: [...S.sameAs],
     memberOf: S.memberOf.map((m) => ({ '@type': 'Organization', name: m.name, sameAs: m.sameAs })),
     subOrganization: [
-      { '@type': 'Locksmith', '@id': `${S.base}/service-areas/${offices.gainesville.slug}/#localbusiness` },
-      { '@type': 'Locksmith', '@id': `${S.base}/service-areas/${offices.ocala.slug}/#localbusiness` },
+      { '@id': `${S.base}/service-areas/${offices.gainesville.slug}/#localbusiness` },
+      { '@id': `${S.base}/service-areas/${offices.ocala.slug}/#localbusiness` },
     ],
   };
-  if (homepage) {
-    node.aggregateRating = { '@type': 'AggregateRating', ratingValue: S.combinedRating.ratingValue, reviewCount: S.combinedRating.reviewCount, bestRating: '5', worstRating: '1' };
-    node.hasOfferCatalog = {
-      '@type': 'OfferCatalog', name: 'Locksmith Services',
-      itemListElement: S.catalog.map((s) => ({
-        '@type': 'Offer',
-        itemOffered: { '@type': 'Service', name: s.name, description: s.description, ...(s.additionalType ? { additionalType: s.additionalType } : {}) },
-        ...(s.minPrice ? { priceSpecification: { '@type': 'PriceSpecification', minPrice: s.minPrice, priceCurrency: 'USD', description: 'Starting price — final price depends on vehicle, lock type, and job complexity' } } : {}),
-      })),
-    };
-  }
-  return node;
 }
 
 /**
- * Reference to the Organization node by @id, for provider / publisher /
- * hiringOrganization on other pages, so every page points at the same entity
- * instead of declaring an anonymous business. Name, url and logo are repeated
- * so the reference still validates on pages that don't carry the full node.
+ * Reference to the brand by @id alone, for provider / publisher /
+ * hiringOrganization. No inline @type: the brand is defined once per page by
+ * BaseLayout, and a second type on the same @id would conflict when merged.
  */
 export function organizationRef() {
-  return { '@type': 'Locksmith', '@id': S.orgId, name: S.name, url: S.url, logo: { '@type': 'ImageObject', url: S.logo } };
+  return { '@id': S.orgId };
+}
+
+export function websiteNode() {
+  return { '@context': 'https://schema.org', '@type': 'WebSite', '@id': websiteId, url: S.url, name: S.name, publisher: organizationRef() };
+}
+
+export type WebPageType = 'WebPage' | 'AboutPage' | 'ContactPage';
+
+export function webPageNode({ type, url, name, description }: { type: WebPageType; url: string; name: string; description?: string }) {
+  return {
+    '@context': 'https://schema.org',
+    '@type': type,
+    '@id': `${url}#webpage`,
+    url,
+    name,
+    ...(description ? { description } : {}),
+    isPartOf: { '@id': websiteId },
+    about: organizationRef(),
+  };
+}
+
+/** Blog author. Posts by the owner point at the founder defined on the brand node. */
+export function authorNode(name?: string) {
+  return name === S.founder.name
+    ? { '@type': 'Person', '@id': founderId, name }
+    : { '@type': 'Person', name: name ?? S.name };
+}
+
+/**
+ * A city with no verified Google Business Profile is a Service, never a branch.
+ * Only the two offices in offices.ts earn a Locksmith node.
+ */
+export function cityServiceNode({ city, slug, description }: { city: string; slug: string; description: string }) {
+  return {
+    '@context': 'https://schema.org',
+    '@type': 'Service',
+    name: `Locksmith Service in ${city}, FL`,
+    serviceType: 'Locksmith',
+    description,
+    url: `${S.base}/service-areas/${slug}/`,
+    areaServed: `${city}, Florida`,
+    provider: organizationRef(),
+  };
 }
 
 function officeForLocation(location?: string): Office | undefined {
@@ -93,7 +129,7 @@ function officeForLocation(location?: string): Office | undefined {
  * serves both offices must say so.
  */
 export function serviceAreaServed(location?: string) {
-  const all = S.areaServed.map((a) => ({ '@type': a.type, name: a.name, sameAs: a.sameAs }));
+  const all = S.areaServed.map(placeNode);
   const office = officeForLocation(location);
   return office ? all.filter((a) => a.name === office.city) : all;
 }
@@ -114,6 +150,12 @@ export function locationNode(key: OfficeKey) {
     '@id': `${S.base}/service-areas/${o.slug}/#localbusiness`,
     name: o.schemaName,
     url: `${S.base}/service-areas/${o.slug}/`,
+    image: imageNode(),
+    areaServed: {
+      '@type': 'AdministrativeArea',
+      name: `${o.label} Service Area`,
+      containsPlace: S.areaServed.filter((a) => a.office === key).map(placeNode),
+    },
     telephone: o.trackingPhone,
     email: o.email,
     address: { '@type': 'PostalAddress', streetAddress: o.streetSchema, addressLocality: o.city, addressRegion: o.state, postalCode: o.zip, addressCountry: 'US' },

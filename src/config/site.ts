@@ -13,14 +13,14 @@ export const site = {
   logo: '/img/besecure-logo-100h.png',
   license: 'HCLO18005',
   insurance: 'BKS56465112',
-  address: { street: '901 NW 8th Ave. C17', city: 'Gainesville', state: 'FL', zip: '32601' },
+  address: { street: '901 NW 8th Ave c17', city: 'Gainesville', state: 'FL', zip: '32601' },
   hours: 'Mon–Fri 8am–9pm · Sat 9am–7pm · Sun Closed',
   ratingValue: '4.8',
   ratingCount: '2579',
   sinceYear: '2012',
   agencyCredit: 'Powered by The Locksmith Agency',
   defaultPhone: '352-706-5295',
-  smsPhone: '352-389-5305',
+  smsPhone: '352-839-7610',
   bookingUrl: 'https://online-booking.workiz.com/?ac=744610670459142e62f3f47913956e45311c10147d3f5224d2489d7eab57c2a7',
   footerServices: [
     { label: 'Residential', href: '/services/residential-locksmith/' },
@@ -84,8 +84,8 @@ export const aboutMenu: NavMenuItem[] = [
 ];
 
 export const locationsMenu: NavMenuItem[] = [
-  { label: 'Gainesville Office', href: '/service-areas/locksmith-gainesville-fl/', sub: '901 NW 8th Ave. C17' },
-  { label: 'Ocala Office',       href: '/service-areas/locksmith-ocala-fl/',       sub: '217 SE 1st Ave. Suite 200-50' },
+  { label: 'Gainesville Office', href: '/service-areas/locksmith-gainesville-fl/', sub: '901 NW 8th Ave c17' },
+  { label: 'Ocala Office',       href: '/service-areas/locksmith-ocala-fl/',       sub: '217 SE 1st Ave Ste 200-50' },
   { label: 'View all locations', href: '/locations/', cta: true },
 ];
 

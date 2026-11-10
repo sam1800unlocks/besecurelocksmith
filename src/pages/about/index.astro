@@ -30,14 +30,10 @@ const breadcrumbJsonLd = {
     { '@type': 'ListItem', position: 2, name: 'About', item: pageUrl },
   ],
 };
-const aboutJsonLd = {
-  '@context': 'https://schema.org', '@type': 'AboutPage', name: 'About Be Secure Locksmith', url: pageUrl,
-};
 ---
-<BaseLayout title={title} description={description} location={location}>
+<BaseLayout title={title} description={description} location={location} webPageType="AboutPage">
   <Fragment slot="head">
     <script type="application/ld+json" set:html={JSON.stringify(breadcrumbJsonLd)} />
-    <script type="application/ld+json" set:html={JSON.stringify(aboutJsonLd)} />
   </Fragment>
   <PromoBar location={location} />
   <NavBar location={location} />

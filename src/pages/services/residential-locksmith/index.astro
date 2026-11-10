@@ -64,7 +64,7 @@ const contactHtml = 'At Be Secure Locksmith, we handle all your locksmith needs 
 // Structured data — additive SEO, no visible-content change.
 const serviceJsonLd = {
   '@context': 'https://schema.org', '@type': 'Service', serviceType: 'Residential Locksmith',
-  name: `Residential Locksmith ${serviceGeoLabel(location)}`, url: pageUrl,
+  name: `Residential Locksmith ${serviceGeoLabel(location)}`, url: pageUrl, description,
   provider: organizationRef(),
   areaServed: serviceAreaServed(location),
 };

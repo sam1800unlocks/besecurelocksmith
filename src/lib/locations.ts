@@ -27,14 +27,14 @@ const LOCATIONS: Record<string, Location> = {
     slug: 'gainesville',
     phone: '352-290-7035',
     city: 'Gainesville',
-    nap: { street: '901 NW 8th Ave. C17', city: 'Gainesville', state: 'FL', zip: '32601' },
+    nap: { street: '901 NW 8th Ave c17', city: 'Gainesville', state: 'FL', zip: '32601' },
     hours: site.hours,
   },
   ocala: {
     slug: 'ocala',
     phone: '352-325-7953',
     city: 'Ocala',
-    nap: { street: '217 SE 1st Ave. Suite 200-50', city: 'Ocala', state: 'FL', zip: '34471' },
+    nap: { street: '217 SE 1st Ave Ste 200-50', city: 'Ocala', state: 'FL', zip: '34471' },
     hours: site.hours,
     socials: ocalaSocials,
   },
@@ -43,7 +43,7 @@ const LOCATIONS: Record<string, Location> = {
     phone: '386-251-6901',
     city: 'Lake City',
     // No Lake City office — served from the Gainesville office.
-    nap: { street: '901 NW 8th Ave. C17', city: 'Gainesville', state: 'FL', zip: '32601' },
+    nap: { street: '901 NW 8th Ave c17', city: 'Gainesville', state: 'FL', zip: '32601' },
     hours: site.hours,
   },
 };

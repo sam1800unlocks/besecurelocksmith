@@ -88,7 +88,7 @@ const contactHtml = 'Be Secure Locksmith is your trusted locksmith for all your 
 // Structured data (the live page had none) — additive SEO, no visible-content change.
 const serviceJsonLd = {
   '@context': 'https://schema.org', '@type': 'Service', serviceType: 'Commercial Locksmith',
-  name: `Commercial Locksmith ${serviceGeoLabel(location)}`, url: pageUrl,
+  name: `Commercial Locksmith ${serviceGeoLabel(location)}`, url: pageUrl, description,
   provider: organizationRef(),
   areaServed: serviceAreaServed(location),
 };

@@ -9,7 +9,7 @@ const dist = (p: string) => {
   return readFileSync(f, 'utf8');
 };
 const jsonLd = (html: string) =>
-  [...html.matchAll(/<script type="application\/ld\+json">(.*?)<\/script>/gs)].map((m) => JSON.parse(m[1]));
+  [...html.matchAll(/<script type="application\/ld\+json">(.*?)<\/script>/gs)].flatMap((m) => JSON.parse(m[1])['@graph']);
 const ORG = 'https://besecurelocksmith.com/#organization';
 
 test('related posts form a ring: every post is picked by another post', () => {

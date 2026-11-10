@@ -3,7 +3,7 @@ import { site, telHref, smsHref, e164 } from '../src/config/site';
 
 test('telHref/smsHref normalize to E.164 with country code', () => {
   expect(telHref('352-706-5295')).toBe('tel:+13527065295');
-  expect(smsHref('352-389-5305')).toBe('sms:+13523895305');
+  expect(smsHref('352-839-7610')).toBe('sms:+13528397610');
 });
 
 test('e164 prepends +1 to 10-digit numbers and is idempotent', () => {
@@ -15,7 +15,7 @@ test('e164 prepends +1 to 10-digit numbers and is idempotent', () => {
 test('site carries verbatim brand facts', () => {
   expect(site.name).toBe('Be Secure Locksmith');
   expect(site.defaultPhone).toBe('352-706-5295');
-  expect(site.smsPhone).toBe('352-389-5305');
+  expect(site.smsPhone).toBe('352-839-7610');
   expect(site.license).toBe('HCLO18005');
   expect(site.ratingValue).toBe('4.8');
   expect(site.ratingCount).toBe('2579');

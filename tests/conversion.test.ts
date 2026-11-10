@@ -7,7 +7,7 @@ test('ConversionBand has call and text actions with the right numbers', async ()
   const c = await AstroContainer.create();
   const html = await c.renderToString(Conversion, { props: { location: 'main' } });
   expect(html).toContain('href="tel:+13527065295"');
-  expect(html).toContain('href="sms:+13523895305"');
+  expect(html).toContain('href="sms:+13528397610"');
 });
 
 test('ServiceAreas shows both office locations', async () => {

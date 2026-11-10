@@ -1,46 +1,83 @@
 import { test, expect } from 'vitest';
 import { offices } from '../src/config/offices';
 import { schemaData } from '../src/config/schema-data';
-import { organizationNode, locationNode, officeBySlug, serviceAreaServed, serviceGeoLabel } from '../src/lib/schema';
+import { organizationNode, organizationRef, cityServiceNode, locationNode, officeBySlug, serviceAreaServed, serviceGeoLabel } from '../src/lib/schema';
 
 test('offices carry the per-store schema data', () => {
-  expect(offices.gainesville.reviewCount).toBe('1354');
-  expect(offices.ocala.reviewCount).toBe('1225');
+  expect(offices.gainesville.reviewCount).toBe('1371');
+  expect(offices.ocala.reviewCount).toBe('1246');
   expect(offices.gainesville.cid).toBe('1525264823828817691');
   expect(offices.ocala.geo).toEqual({ lat: 29.1844122, lng: -82.1355775 });
   expect(offices.gainesville.sameAs[0]).toContain('kgmid=/g/1ptx2pkfg');
 });
 
 test('org schema data is present and consistent', () => {
-  expect(schemaData.combinedRating.reviewCount).toBe('2579');
-  expect(Number(offices.gainesville.reviewCount) + Number(offices.ocala.reviewCount)).toBe(2579);
   expect(schemaData.email).toBe('info@besecurelocksmith.com');
   expect(schemaData.foundingDate).toBe('2012-04-15');
   expect(schemaData.founder.name).toBe('Netta Kaiden');
-  expect(schemaData.catalog.length).toBeGreaterThan(10);
   expect(schemaData.areaServed.length).toBe(10);
 });
 
-test('full org node (homepage) has combined rating + catalog + subOrganization', () => {
-  const n = organizationNode({ homepage: true });
-  expect(n['@type']).toBe('Locksmith');
+test('brand node is an Organization with no office-level properties', () => {
+  const n: any = organizationNode();
+  expect(n['@type']).toBe('Organization');
   expect(n['@id']).toBe('https://besecurelocksmith.com/#organization');
-  expect(n.aggregateRating.reviewCount).toBe('2579');
+  expect(n.telephone).toBe('1-352-706-5295');
   expect(n.email).toBe('info@besecurelocksmith.com');
-  expect(Array.isArray(n.hasOfferCatalog.itemListElement)).toBe(true);
-  expect(n.subOrganization.map((s: any) => s['@id'])).toEqual([
-    'https://besecurelocksmith.com/service-areas/locksmith-gainesville-fl/#localbusiness',
-    'https://besecurelocksmith.com/service-areas/locksmith-ocala-fl/#localbusiness',
-  ]);
   expect(n.founder[0].name).toBe('Netta Kaiden');
+  for (const k of ['address', 'geo', 'hasMap', 'openingHoursSpecification', 'aggregateRating', 'hasOfferCatalog']) {
+    expect(n[k], k).toBeUndefined();
+  }
 });
 
-test('lean org node omits combined rating + catalog', () => {
-  const n = organizationNode({ homepage: false });
-  expect(n['@id']).toBe('https://besecurelocksmith.com/#organization');
-  expect(n.aggregateRating).toBeUndefined();
-  expect(n.hasOfferCatalog).toBeUndefined();
-  expect(n.founder[0].name).toBe('Netta Kaiden');
+test('brand node references each branch by @id only', () => {
+  expect(organizationNode().subOrganization).toEqual([
+    { '@id': 'https://besecurelocksmith.com/service-areas/locksmith-gainesville-fl/#localbusiness' },
+    { '@id': 'https://besecurelocksmith.com/service-areas/locksmith-ocala-fl/#localbusiness' },
+  ]);
+});
+
+test('brand sameAs carries no single-office profile', () => {
+  const urls = organizationNode().sameAs.join(' ');
+  expect(urls).not.toContain('kgmid');
+  expect(urls).not.toContain('google.com/maps');
+  expect(urls).not.toContain('yelp.com');
+  expect(urls).toContain('facebook.com/BeSecureLocksmith');
+});
+
+test('brand areaServed is the union of both office territories', () => {
+  const a: any = organizationNode().areaServed;
+  expect(a['@type']).toBe('AdministrativeArea');
+  expect(a.containsPlace).toHaveLength(schemaData.areaServed.length);
+});
+
+test('organizationRef is a bare @id with no inline type', () => {
+  expect(organizationRef()).toEqual({ '@id': 'https://besecurelocksmith.com/#organization' });
+});
+
+test('non-office city gets one Service node scoped to that city', () => {
+  const n: any = cityServiceNode({ city: 'Alachua', slug: 'locksmith-alachua-fl', description: 'Alachua locksmith.' });
+  expect(n['@type']).toBe('Service');
+  expect(n.name).toBe('Locksmith Service in Alachua, FL');
+  expect(n.serviceType).toBe('Locksmith');
+  expect(n.description).toBe('Alachua locksmith.');
+  expect(n.url).toBe('https://besecurelocksmith.com/service-areas/locksmith-alachua-fl/');
+  expect(n.areaServed).toBe('Alachua, Florida');
+  expect(n.provider).toEqual({ '@id': 'https://besecurelocksmith.com/#organization' });
+});
+
+test('each branch carries image, its own territory and only its own profiles', () => {
+  const g: any = locationNode('gainesville');
+  const o: any = locationNode('ocala');
+  expect(g.image['@type']).toBe('ImageObject');
+  expect(g.image.width).toBeGreaterThan(0);
+  const places = (n: any) => n.areaServed.containsPlace.map((p: any) => p.name);
+  expect(places(g)).toContain('Alachua County');
+  expect(places(g)).not.toContain('Ocala');
+  expect(places(o)).toContain('Marion County');
+  expect(places(o)).not.toContain('Gainesville');
+  expect(g.sameAs.join(' ')).not.toContain('facebook.com');
+  expect(o.sameAs.join(' ')).not.toContain('linkedin.com');
 });
 
 test('location node is per-store and lean', () => {
@@ -49,12 +86,14 @@ test('location node is per-store and lean', () => {
   expect(g.name).toBe('Be Secure Locksmith — Gainesville');
   expect(g.telephone).toBe('1-352-290-7035');
   expect(g.address.streetAddress).toBe('901 NW 8th Ave c17');
-  expect(g.aggregateRating.reviewCount).toBe('1354');
+  expect(g.aggregateRating.reviewCount).toBe('1371');
+  expect(g.aggregateRating.ratingValue).toBe('4.9');
   expect(g.hasMap).toBe('https://www.google.com/maps/place/?cid=1525264823828817691');
   expect(g.parentOrganization['@id']).toBe('https://besecurelocksmith.com/#organization');
   expect(g.hasOfferCatalog).toBeUndefined();
   const o = locationNode('ocala');
-  expect(o.aggregateRating.reviewCount).toBe('1225');
+  expect(o.aggregateRating.reviewCount).toBe('1246');
+  expect(o.address.streetAddress).toBe('217 SE 1st Ave Ste 200-50');
   expect(o.geo.latitude).toBe(29.1844122);
 });
 

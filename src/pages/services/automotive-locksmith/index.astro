@@ -73,7 +73,7 @@ const contactHtml = 'Be Secure Locksmith is your trusted locksmith for every car
 // Structured data — additive SEO, no visible-content change.
 const serviceJsonLd = {
   '@context': 'https://schema.org', '@type': 'Service', serviceType: 'Automotive Locksmith',
-  name: `Automotive Locksmith ${serviceGeoLabel(location)}`, url: pageUrl,
+  name: `Automotive Locksmith ${serviceGeoLabel(location)}`, url: pageUrl, description,
   provider: organizationRef(),
   areaServed: serviceAreaServed(location),
 };

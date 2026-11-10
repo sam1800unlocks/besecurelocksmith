@@ -28,7 +28,7 @@ const breadcrumbJsonLd = {
   ],
 };
 ---
-<BaseLayout title={title} description={description} location={location}>
+<BaseLayout title={title} description={description} location={location} webPageType="ContactPage">
   <Fragment slot="head">
     <script type="application/ld+json" set:html={JSON.stringify(breadcrumbJsonLd)} />
   </Fragment>

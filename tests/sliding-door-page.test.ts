@@ -43,8 +43,8 @@ test('carries GA4 but not the Google Ads tag', () => {
 
 test('Service schema points at the site-wide business entity', () => {
   const html = page();
-  expect(html).toContain('"@id": "https://besecurelocksmith.com/#organization"');
-  expect(html).toContain('"@type": "FAQPage"');
+  expect(html).toContain('"provider":{"@id":"https://besecurelocksmith.com/#organization"}');
+  expect(html).toContain('"@type":"FAQPage"');
 });
 
 // The site footer lists both offices' numbers, as on every page; the client's

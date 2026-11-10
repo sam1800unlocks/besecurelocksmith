@@ -68,8 +68,8 @@ test.each(['locksmith-gainesville-fl', 'locksmith-ocala-fl'])('%s meta makes no 
 
 // Each hub shows its own listing's reviews and its own Google figures, never the blend.
 test.each([
-  ['locksmith-gainesville-fl', 'Gainesville', '1354', '1525264823828817691', 'Shirelle Godwin', 'Ellen Perrone'],
-  ['locksmith-ocala-fl',       'Ocala',       '1225', '4138983982412980004', 'Ellen Perrone',   'Shirelle Godwin'],
+  ['locksmith-gainesville-fl', 'Gainesville', '1371', '1525264823828817691', 'Shirelle Godwin', 'Ellen Perrone'],
+  ['locksmith-ocala-fl',       'Ocala',       '1246', '4138983982412980004', 'Ellen Perrone',   'Shirelle Godwin'],
 ])('%s scopes reviews and rating to its own office', (slug, label, count, cid, own, other) => {
   const html = read(slug);
   expect(html).toContain(`Google Reviews for Our ${label} Office`);
@@ -81,8 +81,8 @@ test.each([
 
 // The TrustStrip at the top of a hub page must agree with the reviews section below it.
 test.each([
-  ['locksmith-gainesville-fl', '1354'],
-  ['locksmith-ocala-fl',       '1225'],
+  ['locksmith-gainesville-fl', '1371'],
+  ['locksmith-ocala-fl',       '1246'],
 ])('%s TrustStrip shows its own office rating, not the blend', (slug, count) => {
   const html = read(slug);
   expect(html).toContain(`<span data-countup="${count}">`);

@@ -7,7 +7,7 @@ import figtreeLatin from '@fontsource-variable/figtree/files/figtree-latin-wght-
 import { resolveLocation, resolvePhone } from '../lib/locations';
 import { site } from '../config/site';
 import { adsConversionId } from '../config/tracking';
-import { organizationNode } from '../lib/schema';
+import { organizationNode, websiteNode, webPageNode, type WebPageType } from '../lib/schema';
 import { avaWidgetSrc } from '../lib/ava-widget';
 
 interface Props {
@@ -17,9 +17,9 @@ interface Props {
   ogType?: string;
   ogImage?: string;
   robots?: string;
-  schema?: 'org-home' | 'org-lean' | 'none';
   /** Off only where the client asked for no Ads tag (/services/sliding-door-repair/). */
   adsTag?: boolean;
+  webPageType?: WebPageType;
 }
 
 const {
@@ -29,8 +29,8 @@ const {
   ogType = 'website',
   ogImage = '/img/og-default.jpg',
   robots,
-  schema = 'none',
   adsTag = true,
+  webPageType = 'WebPage',
 } = Astro.props;
 
 const avaSrc = await avaWidgetSrc();
@@ -45,9 +45,11 @@ const ogImageUrl = ogImage ? new URL(ogImage, siteBase).href : undefined;
 // images may differ in size, so we omit width/height for those.
 const ogIsDefault = ogImage === '/img/og-default.jpg';
 
-const orgSchema = schema === 'org-home' ? organizationNode({ homepage: true })
-  : schema === 'org-lean' ? organizationNode({ homepage: false })
-  : null;
+const baseSchema = [
+  organizationNode(),
+  websiteNode(),
+  webPageNode({ type: webPageType, url: canonical, name: title, description }),
+];
 ---
 <!DOCTYPE html>
 <html lang="en">
@@ -97,7 +99,7 @@ const orgSchema = schema === 'org-home' ? organizationNode({ homepage: true })
   {description && <meta name="twitter:description" content={description} />}
   {ogImageUrl && <meta name="twitter:image" content={ogImageUrl} />}
 
-  {orgSchema &&<script type="application/ld+json" set:html={JSON.stringify(orgSchema)} />}
+  {baseSchema.map((node) => <script type="application/ld+json" set:html={JSON.stringify(node)} />)}
   <slot name="head" />
 </head>
 <body>

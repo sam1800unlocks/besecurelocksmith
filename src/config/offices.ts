@@ -5,7 +5,7 @@ export interface Office {
   label: string;              // "Gainesville"
   schemaName: string;         // "Be Secure Locksmith — Gainesville"
   slug: string;               // service-area page slug used as the location page
-  street: string;             // "901 NW 8th Ave. C17"
+  street: string;             // "901 NW 8th Ave c17"
   cityStateZip: string;       // "Gainesville, FL 32601"
   city: string; state: string; zip: string;
   streetSchema: string;       // exact live casing, e.g. "901 NW 8th Ave c17"
@@ -34,7 +34,7 @@ export const offices: Record<OfficeKey, Office> = {
     key: 'gainesville', label: 'Gainesville',
     schemaName: 'Be Secure Locksmith — Gainesville',
     slug: 'locksmith-gainesville-fl',
-    street: '901 NW 8th Ave. C17', cityStateZip: 'Gainesville, FL 32601',
+    street: '901 NW 8th Ave c17', cityStateZip: 'Gainesville, FL 32601',
     city: 'Gainesville', state: 'FL', zip: '32601',
     streetSchema: '901 NW 8th Ave c17',
     hoursDisplay: 'Mon–Fri 8 am–9 pm · Sat 9 am–7 pm',
@@ -43,12 +43,10 @@ export const offices: Record<OfficeKey, Office> = {
     email: 'info@besecurelocksmith.com',
     geo: { lat: 29.65886, lng: -82.3345 },
     cid: '1525264823828817691', kgmid: '/g/1ptx2pkfg',
-    ratingValue: '4.8', reviewCount: '1354',
+    ratingValue: '4.9', reviewCount: '1371',
     sameAs: [
       'https://www.google.com/search?kgmid=/g/1ptx2pkfg',
       'https://www.yelp.com/biz/be-secure-locksmith-gainesville-2',
-      'https://www.facebook.com/BeSecureLocksmith',
-      'https://linkedin.com/company/be-secure-locksmith',
       'https://www.bbb.org/us/fl/gainesville/profile/locksmith/be-secure-locksmith-llc-0403-235965422/',
       'https://1800unlocks.com/locksmith/florida/gainesville/be-secure-locksmith-gainesville/',
       'https://fairtradelocksmiths.com/locksmith/local/be-secure-locksmith-gainesville',
@@ -59,21 +57,19 @@ export const offices: Record<OfficeKey, Office> = {
     key: 'ocala', label: 'Ocala',
     schemaName: 'Be Secure Locksmith — Ocala',
     slug: 'locksmith-ocala-fl',
-    street: '217 SE 1st Ave. Suite 200-50', cityStateZip: 'Ocala, FL 34471',
+    street: '217 SE 1st Ave Ste 200-50', cityStateZip: 'Ocala, FL 34471',
     city: 'Ocala', state: 'FL', zip: '34471',
-    streetSchema: '217 SE 1st Ave Suite 200-50',
+    streetSchema: '217 SE 1st Ave Ste 200-50',
     hoursDisplay: 'Mon–Fri 8 am–9 pm · Sat 9 am–7 pm',
     accessibility: WHEELCHAIR_ALL,
     phone: '352-325-7953', trackingPhone: '1-352-325-7953',
     email: 'info@besecurelocksmith.com',
     geo: { lat: 29.1844122, lng: -82.1355775 },
     cid: '4138983982412980004', kgmid: '/g/1yfprvxjj',
-    ratingValue: '4.9', reviewCount: '1225',
+    ratingValue: '4.9', reviewCount: '1246',
     sameAs: [
       'https://www.google.com/search?kgmid=/g/1yfprvxjj',
       'https://www.yelp.com/biz/be-secure-locksmith-ocala',
-      'https://www.facebook.com/BeSecureLocksmith',
-      'https://linkedin.com/company/be-secure-locksmith',
       'https://1800unlocks.com/locksmith/florida/ocala/be-secure-locksmith-ocala/',
       'https://fairtradelocksmiths.com/locksmith/local/be-secure-locksmith-ocala',
     ],
