@@ -6,7 +6,7 @@ import { telHref } from '../../src/config/site';
 
 test('frames the city service area with map + business NAP', async () => {
   const c = await AstroContainer.create();
-  const html = await c.renderToString(AreaMap, { props: { area: { city: 'Hampton', office: 'gainesville', responseTime: '~30 min' } } });
+  const html = await c.renderToString(AreaMap, { props: { area: { city: 'Hampton', office: 'gainesville' } } });
   expect(html).toContain('Our Hampton Service Area');        // reframed heading
   expect(html).toContain('Be Secure Locksmith');             // business Name (NAP)
   expect(html).toContain('Hampton%2C%20FL');                 // map query encodes "Hampton, FL"

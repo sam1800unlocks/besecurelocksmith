@@ -7,7 +7,7 @@ test('TrustStrip renders the confirmed trust facts', async () => {
   const html = await c.renderToString(TrustStrip, { props: {} });
   expect(html).toContain('Licensed &amp; insured');     // single phrase, no license numbers here
   expect(html).toContain('Free security assessment');
-  expect(html).toContain('30-min typical response');
+  expect(html).not.toContain('30-min');
   // The count animates, so it renders inside its own span rather than as one string.
   expect(html).toContain('data-countup="2617"');
   expect(html).toContain('>2,617<');

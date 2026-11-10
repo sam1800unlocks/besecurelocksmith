@@ -76,7 +76,7 @@ const placeNode = office
 const servingOffice = offices[area.office ?? 'gainesville'];
 const areaFaqs = (area.faqs && area.faqs.length)
   ? area.faqs.map((q, i) => ({ ...q, order: i + 1 }))
-  : buildAreaFaqs(area, servingOffice.label);
+  : buildAreaFaqs(area);
 const pageUrl = `https://besecurelocksmith.com/service-areas/${area.slug}/`;
 const ctaBody = `Locked out or need new locks in ${area.city}? Be Secure Locksmith is your trusted local, mobile locksmith. <a href="/contact-us/">Contact us today</a> or call now — fast, licensed, and insured service.`;
 // Every area content file carries its own title/description (both required by the

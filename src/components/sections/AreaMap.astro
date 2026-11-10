@@ -12,7 +12,6 @@ const embedSrc = cid
 const mapsLink = cid
   ? `https://www.google.com/maps/place/?cid=${cid}`
   : `https://www.google.com/maps/search/?api=1&query=${encodeURIComponent(mapQuery)}`;
-const rt = (area.responseTime ?? '~30 min').replace('~', '');
 ---
 <section>
   <Container>
@@ -29,7 +28,7 @@ const rt = (area.responseTime ?? '~30 min').replace('~', '');
         <div class="rounded-[24px] border border-border bg-surface flex flex-col justify-center" style="padding:clamp(24px,3vw,36px);">
           <p class="m-0 mb-1 text-[12px] font-bold uppercase tracking-[1px] text-muted">Serving {area.city} &amp; surrounding areas</p>
           <h3 class="m-0 mb-2 text-ink font-bold text-[20px]">{site.name}</h3>
-          <p class="m-0 mb-2 text-[16px] leading-[1.5] text-secondary">Typically on-site in {rt} across {area.city}, served from our {office.label} office.</p>
+          <p class="m-0 mb-2 text-[16px] leading-[1.5] text-secondary">Served from our {office.label} office.</p>
           <p class="m-0 mb-5 text-[15px] leading-[1.5] text-muted">{office.street}<br />{office.cityStateZip}</p>
           <Button href={telHref(office.phone)} variant="call" class="self-start">{office.phone}</Button>
         </div>

@@ -16,9 +16,9 @@ describe('content collections are seeded with homepage data', () => {
     expect(files.length).toBe(17);
   });
 
-  test('faqs collection has 8 items', () => {
+  test('faqs collection has 7 items', () => {
     const files = readdirSync(join(contentDir, 'faqs')).filter(f => f.endsWith('.json'));
-    expect(files.length).toBe(8);
+    expect(files.length).toBe(7);
   });
 
   test('smart lock service has photo field set', () => {
