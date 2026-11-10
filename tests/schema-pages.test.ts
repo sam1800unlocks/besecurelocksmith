@@ -103,9 +103,9 @@ test('contact page shows both offices', () => {
   expect(h).not.toContain('"@type":"LocalBusiness"');
 });
 
-test('rating display uses the combined 2,579', () => {
+test('rating display uses the combined 2,617', () => {
   const h = read('index.html');
-  expect(h).toContain('2,579');            // formatted via toLocaleString
+  expect(h).toContain('2,617');            // formatted via toLocaleString
   expect(h).not.toContain('2,551');
 });
 

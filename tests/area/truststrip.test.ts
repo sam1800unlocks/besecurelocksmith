@@ -9,8 +9,8 @@ test('TrustStrip renders the confirmed trust facts', async () => {
   expect(html).toContain('Free security assessment');
   expect(html).toContain('30-min typical response');
   // The count animates, so it renders inside its own span rather than as one string.
-  expect(html).toContain('data-countup="2579"');
-  expect(html).toContain('>2,579<');
+  expect(html).toContain('data-countup="2617"');
+  expect(html).toContain('>2,617<');
   expect(html).toContain('Google reviews');
   // License/insurance numbers are consolidated to the footer only
   expect(html).not.toContain('HCLO18005');

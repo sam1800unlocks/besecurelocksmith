@@ -17,6 +17,6 @@ test('site carries verbatim brand facts', () => {
   expect(site.defaultPhone).toBe('352-706-5295');
   expect(site.smsPhone).toBe('352-839-7610');
   expect(site.license).toBe('HCLO18005');
-  expect(site.ratingValue).toBe('4.8');
-  expect(site.ratingCount).toBe('2579');
+  expect(site.ratingValue).toBe('4.9');
+  expect(site.ratingCount).toBe('2617');
 });

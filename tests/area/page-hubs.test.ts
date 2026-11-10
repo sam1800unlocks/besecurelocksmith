@@ -86,7 +86,7 @@ test.each([
 ])('%s TrustStrip shows its own office rating, not the blend', (slug, count) => {
   const html = read(slug);
   expect(html).toContain(`<span data-countup="${count}">`);
-  expect(html).not.toContain('data-countup="2579"');
+  expect(html).not.toContain('data-countup="2617"');
 });
 
 // The hub pages lead with a near-me heading; every other area page keeps the default.
@@ -106,7 +106,7 @@ test('non-office area pages keep the default intro heading', () => {
 });
 
 test('non-office area pages keep the blended TrustStrip rating', () => {
-  expect(read('locksmith-alachua-fl')).toContain('data-countup="2579"');
+  expect(read('locksmith-alachua-fl')).toContain('data-countup="2617"');
 });
 
 test('Ocala renames its in-copy heading so it does not collide with WhyChoose', () => {
@@ -118,7 +118,7 @@ test('Ocala renames its in-copy heading so it does not collide with WhyChoose', 
 test('the homepage keeps the blended review set', () => {
   const html = read2('index');
   expect(html).toContain('Check Out Our Google Reviews');
-  expect(html).toContain('<span data-countup="2579">');
+  expect(html).toContain('<span data-countup="2617">');
 });
 
 test('non-office area pages carry none of the hub sections', () => {

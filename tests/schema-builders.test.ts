@@ -1,6 +1,7 @@
 import { test, expect } from 'vitest';
 import { offices } from '../src/config/offices';
 import { schemaData } from '../src/config/schema-data';
+import { site } from '../src/config/site';
 import { organizationNode, organizationRef, cityServiceNode, locationNode, officeBySlug, serviceAreaServed, serviceGeoLabel } from '../src/lib/schema';
 
 test('offices carry the per-store schema data', () => {
@@ -136,4 +137,9 @@ test('each office LocalBusiness node declares its wheelchair accessibility ameni
     }
     expect(n.amenityFeature.map((f: any) => f.name)).toContain('Wheelchair accessible restroom');
   }
+});
+
+test('the site-wide review count is the sum of the two Google profiles', () => {
+  expect(Number(site.ratingCount)).toBe(Number(offices.gainesville.reviewCount) + Number(offices.ocala.reviewCount));
+  expect(site.ratingValue).toBe('4.9');
 });
