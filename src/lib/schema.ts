@@ -22,7 +22,8 @@ const placeNode = (a: (typeof S.areaServed)[number]) => ({ '@type': a.type, name
 /**
  * The brand. Multi-office model: an Organization with no office-level properties
  * (address, geo, hours, map and ratings belong to the branches in locationNode).
- * BaseLayout emits it on every page.
+ * priceRange, currenciesAccepted and paymentAccepted are LocalBusiness-only in
+ * Schema.org, so they sit on the branches too. BaseLayout emits it on every page.
  */
 export function organizationNode() {
   return {
@@ -53,9 +54,6 @@ export function organizationNode() {
       knowsAbout: [...S.founder.knowsAbout],
     }],
     contactPoint: { '@type': 'ContactPoint', telephone: S.telephone, email: S.email, contactType: 'customer service', availableLanguage: 'English' },
-    priceRange: S.priceRange,
-    currenciesAccepted: S.currenciesAccepted,
-    paymentAccepted: S.paymentAccepted,
     areaServed: { '@type': 'AdministrativeArea', name: 'North Central Florida', containsPlace: S.areaServed.map(placeNode) },
     sameAs: [...S.sameAs],
     memberOf: S.memberOf.map((m) => ({ '@type': 'Organization', name: m.name, sameAs: m.sameAs })),
@@ -165,6 +163,8 @@ export function locationNode(key: OfficeKey) {
     openingHoursSpecification: hoursSpec(),
     amenityFeature: o.accessibility.map((name) => ({ '@type': 'LocationFeatureSpecification', name, value: true })),
     priceRange: S.priceRange,
+    currenciesAccepted: S.currenciesAccepted,
+    paymentAccepted: S.paymentAccepted,
     sameAs: [...o.sameAs],
     parentOrganization: { '@id': S.orgId },
   };

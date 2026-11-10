@@ -26,8 +26,17 @@ test('brand node is an Organization with no office-level properties', () => {
   expect(n.telephone).toBe('1-352-706-5295');
   expect(n.email).toBe('info@besecurelocksmith.com');
   expect(n.founder[0].name).toBe('Netta Kaiden');
-  for (const k of ['address', 'geo', 'hasMap', 'openingHoursSpecification', 'aggregateRating', 'hasOfferCatalog']) {
+  for (const k of ['address', 'geo', 'hasMap', 'openingHoursSpecification', 'aggregateRating', 'hasOfferCatalog', 'priceRange', 'currenciesAccepted', 'paymentAccepted']) {
     expect(n[k], k).toBeUndefined();
+  }
+});
+
+test('LocalBusiness-only payment properties sit on each branch', () => {
+  for (const key of ['gainesville', 'ocala'] as const) {
+    const b = locationNode(key);
+    expect(b.priceRange).toBe('$$');
+    expect(b.currenciesAccepted).toBe('USD');
+    expect(b.paymentAccepted).toBe('Cash, Visa, Mastercard, PayPal');
   }
 });
 
