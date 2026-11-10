@@ -136,5 +136,30 @@
       "html": "Whether you need a new lock installed, lock repair, or advice on key systems, Be Secure Locksmith is here to help. <a href=\"/contact-us/\">Contact us now</a> for professional locksmith services in Gainesville, FL, and let us help you secure your property with quality locks and expert solutions!"
     }
   ],
-  "faqs": []
+  "faqs": [
+    {
+      "question": "Does Be Secure Locksmith install new locks in Gainesville and Ocala?",
+      "answer": "Yes. Be Secure Locksmith installs deadbolts, smart locks and high-security locks at homes and businesses across Gainesville and Ocala, including Haile Plantation and Golden Ocala. A deadbolt purchased from us, including installation, starts at $80, plus a trip charge."
+    },
+    {
+      "question": "How much does it cost to install a deadbolt?",
+      "answer": "At Be Secure Locksmith in Gainesville and Ocala, a deadbolt or doorknob purchased from us, including installation, starts at $80. A trip charge applies per visit, and you get the full price before any work begins."
+    },
+    {
+      "question": "Will you install a lock I already bought?",
+      "answer": "Yes. Be Secure Locksmith installs locks you provide in Gainesville and Ocala, starting at $65."
+    },
+    {
+      "question": "What type of lock is best for a front door?",
+      "answer": "A deadbolt is the usual choice for exterior doors because it's durable and secure. We can also fit a smart lock or a high-security lock and help you choose what suits your door."
+    },
+    {
+      "question": "Do you install high-security locks?",
+      "answer": "Yes, for homes and businesses. High-security work is quoted per job, so you'll have the price before we begin."
+    },
+    {
+      "question": "Do you give free estimates for new locks?",
+      "answer": "Yes. Every Be Secure Locksmith visit includes a free on-site security assessment, and you always get a quote before any work begins."
+    }
+  ]
 }

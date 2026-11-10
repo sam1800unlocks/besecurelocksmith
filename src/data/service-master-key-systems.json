@@ -100,5 +100,34 @@
       "html": "Be Secure Locksmith designs and installs master key systems to simplify key control and improve security. We also provide routine maintenance and <a href=\"/services/lock-rekeying/\">lock rekeying services</a> for all our master key system customers. Whether you need a single master key system or a complex hierarchy with grand master keys, we deliver reliable solutions. <a href=\"/contact-us/\">Contact us today</a> to schedule a consultation and secure your property with an efficient master key system. Let us help you manage your key systems confidently!"
     }
   ],
-  "faqs": []
+  "faqs": [
+    {
+      "question": "Does Be Secure Locksmith set up master key systems in Gainesville and Ocala?",
+      "answer": "Yes. Be Secure Locksmith designs and installs master key systems for offices, warehouses and apartment complexes across Gainesville and Ocala, starting with a free on-site assessment."
+    },
+    {
+      "question": "What is a master key system?",
+      "answer": "It's a set of locks arranged so one key can open multiple doors, while other keys open only the doors assigned to them. A property manager might hold the master key while each tenant's key opens only their unit."
+    },
+    {
+      "question": "How does a master key work on multiple locks?",
+      "answer": "Each lock is pinned to accept two keys: its own key and the master key. That way a single master key opens every door in the system, and individual keys stay limited to their own doors."
+    },
+    {
+      "question": "What kinds of properties use master key systems?",
+      "answer": "They suit any property that needs different access levels. Be Secure Locksmith sets them up for offices, warehouses, apartment complexes, schools, and medical or government facilities in Gainesville and Ocala."
+    },
+    {
+      "question": "How much does a master key system cost?",
+      "answer": "It depends on the number of doors, the locks you have and how many access levels you need. Be Secure Locksmith starts with a free on-site assessment at your Gainesville or Ocala property and gives you a quote before any work begins."
+    },
+    {
+      "question": "Can you set up a master key system with our existing locks?",
+      "answer": "Often, yes. Be Secure Locksmith can rekey compatible locks to the system and install new locks on any doors that need them."
+    },
+    {
+      "question": "What happens if a master key is lost?",
+      "answer": "The locks that key opens should be rekeyed so it no longer works. Tell us as soon as you know it's missing and we'll work out which doors are affected."
+    }
+  ]
 }

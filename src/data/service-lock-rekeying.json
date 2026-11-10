@@ -103,5 +103,34 @@
       "html": "If you need to rekey locks in your home, office, or rental property, Be Secure Locksmith can help. Our professional locksmiths provide fast and affordable lock rekeying services to improve your security. <a href=\"/contact-us/\">Contact us today</a> to schedule an appointment. Let us secure your property with expert lock rekeying!"
     }
   ],
-  "faqs": []
+  "faqs": [
+    {
+      "question": "Does Be Secure Locksmith rekey locks in Gainesville and Ocala?",
+      "answer": "Yes. Be Secure Locksmith rekeys home and business locks across Gainesville and Alachua County and Ocala and Marion County, including Haile Plantation, Newberry, Silver Springs Shores and The Villages. We come to you, and rekeying a standard lock starts at $33 per lock, plus a trip charge."
+    },
+    {
+      "question": "How much does it cost to rekey a lock in Gainesville or Ocala?",
+      "answer": "Be Secure Locksmith rekeys a standard lock starting at $33 per lock in Gainesville and Ocala, with parts and labor included. A standard lock with no working key starts at $50. A trip charge applies per visit, high-security locks are quoted separately, and you get the full price before any work begins."
+    },
+    {
+      "question": "What does rekeying a lock mean?",
+      "answer": "Rekeying changes the pins inside your existing lock so it works with a new key. Your old keys stop working, and the lock stays on the door."
+    },
+    {
+      "question": "Should I rekey or change my locks?",
+      "answer": "Rekey when your locks work well and you just need old keys to stop working. Replace them when a lock is damaged or worn out, or when you want an upgrade such as a smart lock or a high-security lock."
+    },
+    {
+      "question": "Can you rekey a lock if I don't have the key?",
+      "answer": "Yes. Rekeying a standard lock that has no working key starts at $50."
+    },
+    {
+      "question": "Can all my locks work with one key?",
+      "answer": "Often, yes. Be Secure Locksmith can rekey multiple locks to work with the same key. If some locks are a different brand or keyway and can't share a key, we can replace those and then key everything alike."
+    },
+    {
+      "question": "When should I rekey after buying a home?",
+      "answer": "As soon as you get the keys. Previous owners, contractors and agents may still have copies. Be Secure Locksmith rekeys new homes across Gainesville and Ocala, from Haile Plantation to Ocala Palms, so yours are the only keys that work."
+    }
+  ]
 }

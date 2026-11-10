@@ -150,5 +150,34 @@
       "html": "Be Secure Locksmith is your trusted partner for secure locksmith services in Gainesville and the surrounding North Central Florida metro region. Whether you need a lock repaired, <a href=\"/services/key-duplication/\">key duplication</a>, or help with a smart lock, our team delivers fast and reliable solutions. Let us restore the security of your locks and property with professional care. <a href=\"/contact-us/\">Contact us today</a> for a free, no-obligation quote or to schedule a service appointment."
     }
   ],
-  "faqs": []
+  "faqs": [
+    {
+      "question": "Does Be Secure Locksmith repair locks in Gainesville and Ocala?",
+      "answer": "Yes. Be Secure Locksmith repairs door locks at homes and businesses across Gainesville and Ocala, including Haile Plantation, Newberry, Ocala Palms and Silver Springs Shores. If a lock can't be repaired, we can replace it on the same visit."
+    },
+    {
+      "question": "Why won't my key turn in my door lock?",
+      "answer": "Usually the parts inside the lock are worn, dirty or out of line, or the key itself is worn. Forcing it can snap the key. A locksmith can tell you whether the lock needs cleaning, a repair or a new cylinder."
+    },
+    {
+      "question": "Can a loose door lock cylinder be fixed?",
+      "answer": "Yes, in most cases. Be Secure Locksmith can tighten and realign the lock or replace a damaged cylinder at homes and businesses in Gainesville and Ocala, without replacing the whole lock when the rest of it is sound."
+    },
+    {
+      "question": "Why won't my door lock?",
+      "answer": "The most common cause is a door or latch that has shifted out of line, so the bolt can't reach the strike plate. A worn lock can do the same. We can realign the door latch or repair the lock."
+    },
+    {
+      "question": "Should I repair or replace a broken lock?",
+      "answer": "Repair is usually the lower-cost choice when the damage is minor and the parts inside can be fixed. If it can't be repaired, we can replace it on the same visit."
+    },
+    {
+      "question": "Can you get a broken key out of a door lock?",
+      "answer": "Yes. Be Secure Locksmith extracts broken keys from door, trunk and glovebox locks in Gainesville and Ocala. Broken key extraction starts at $85."
+    },
+    {
+      "question": "What kinds of locks do you repair?",
+      "answer": "Be Secure Locksmith repairs deadbolts, smart and electronic locks, keypad locks, mailbox locks, sliding door locks and high-security locks, at homes, businesses and on vehicles across Gainesville and Ocala."
+    }
+  ]
 }

@@ -144,5 +144,34 @@
       "html": "Upgrade your property with a professionally installed smart lock from Be Secure Locksmith. Our team ensures your lock is set up correctly and works seamlessly with your existing setup. <a href=\"/contact-us/\">Contact us today</a> to schedule your smart lock installation and enhance your property’s security. Let us help you create a safer, more convenient environment!"
     }
   ],
-  "faqs": []
+  "faqs": [
+    {
+      "question": "Does Be Secure Locksmith install smart locks in Gainesville and Ocala?",
+      "answer": "Yes. Be Secure Locksmith installs and sets up smart locks at homes and rentals across Gainesville and Ocala, including Haile Plantation, Ocala Palms and The Villages. A keypad lock purchased from us, including installation, starts at $199, plus a trip charge."
+    },
+    {
+      "question": "What is a smart lock?",
+      "answer": "A smart lock is a door lock you can control without a traditional key, using a keypad, phone app or voice assistant. Many also offer temporary guest codes and a log of when the door was used."
+    },
+    {
+      "question": "Can I install a smart lock on my existing front door?",
+      "answer": "In most cases, yes. Be Secure Locksmith checks that the lock fits your door and existing hardware, then installs it and sets it up at homes across Gainesville and Ocala."
+    },
+    {
+      "question": "How much does smart lock installation cost?",
+      "answer": "At Be Secure Locksmith in Gainesville and Ocala, a keypad lock purchased from us, including installation, starts at $199. Installing a lock you already own starts at $65. A trip charge applies per visit."
+    },
+    {
+      "question": "What happens if the battery dies or the Wi-Fi goes out?",
+      "answer": "Most smart locks have a manual key override or battery backup. Replace the batteries when needed and keep the manual key somewhere you can reach it."
+    },
+    {
+      "question": "Do smart locks work with Alexa or Google Home?",
+      "answer": "Many do. We can install locks compatible with Alexa and Google Assistant and connect the lock to your setup."
+    },
+    {
+      "question": "Are smart locks a good fit for rental properties?",
+      "answer": "Yes. You can set temporary codes for guests, tenants or workers and see when the door was used, which reduces the need to hand out physical keys."
+    }
+  ]
 }

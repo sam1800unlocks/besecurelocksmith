@@ -126,26 +126,6 @@
     },
     {
       "t": "h3",
-      "text": "Common Questions About Car Key Programming"
-    },
-    {
-      "t": "p",
-      "html": "<strong>Q: How long does the programming process take?<br /></strong>A: The programming process typically takes about 30 minutes, depending on the specific vehicle and key type."
-    },
-    {
-      "t": "p",
-      "html": "<strong>Q: Can I program a key myself?<br /></strong>A: Some older models allow self-programming using the user manual, but most modern vehicles require professional tools. Contact us to confirm your car’s requirements."
-    },
-    {
-      "t": "p",
-      "html": "<strong>Q: Do I need the original key for programming?<br /></strong>A: While the original key can simplify the process, we can often program a new key fob or transponder without it."
-    },
-    {
-      "t": "p",
-      "html": "<strong>Q: How much does car key programming cost?<br /></strong>A: The cost varies depending on the car’s make and model. Our services are competitively priced, offering a more affordable option than dealerships."
-    },
-    {
-      "t": "h3",
       "text": "Vehicles We Work With"
     },
     {
@@ -198,5 +178,30 @@
       "html": "If you need a key fob programmed or a new key for your car, Be Secure Locksmith is here to help. Call us today to schedule an appointment or request mobile assistance. Let our auto locksmith experts handle the programming process so you can easily regain access to your vehicle."
     }
   ],
-  "faqs": []
+  "faqs": [
+    {
+      "question": "Does Be Secure Locksmith program car keys in Gainesville and Ocala?",
+      "answer": "Yes. Be Secure Locksmith programs car keys and fobs at your location in Gainesville, Ocala and nearby towns such as Newberry and Silver Springs Shores. Programming starts at $120, plus a trip charge."
+    },
+    {
+      "question": "How much does car key programming cost?",
+      "answer": "At Be Secure Locksmith in Gainesville and Ocala, programming a car key or fob starts at $120, with parts and labor included. The final price depends on your vehicle and key type, a trip charge applies per visit, and you get the full price before we start."
+    },
+    {
+      "question": "Can a locksmith program a key fob?",
+      "answer": "Yes. Be Secure Locksmith programs key fobs, transponder keys and keys for keyless entry systems at your location in Gainesville, Ocala and nearby towns, for most domestic and foreign vehicles."
+    },
+    {
+      "question": "How long does car key programming take?",
+      "answer": "It typically takes about 30 minutes, depending on your vehicle and key type."
+    },
+    {
+      "question": "Can I program a car key myself?",
+      "answer": "Some older models allow it using the steps in the owner's manual, but most modern vehicles require professional tools. Contact us to confirm what your car needs."
+    },
+    {
+      "question": "Do I need the original key to program a new one?",
+      "answer": "Not always. An original key can simplify the process, but we can often program a new key fob or transponder key without it."
+    }
+  ]
 }

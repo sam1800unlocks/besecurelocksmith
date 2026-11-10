@@ -132,5 +132,34 @@
       "html": "If you’re experiencing an emergency lockout, Be Secure Locksmith is ready to help. We provide fast, reliable lockout services for homes, cars, and businesses. Whether you’ve lost your keys or your door lock isn’t working, we can solve the problem quickly and safely. Let our team get you back inside and on with your day."
     }
   ],
-  "faqs": []
+  "faqs": [
+    {
+      "question": "Does Be Secure Locksmith handle lockouts in Gainesville and Ocala?",
+      "answer": "Yes, during business hours. Be Secure Locksmith opens cars, homes, businesses and storage units across Gainesville and Ocala, from Archer Road and the University of Florida area to Heathbrook and Silver Springs Shores. Lockouts start at $65, plus a trip charge."
+    },
+    {
+      "question": "How much does a locksmith cost to unlock a car or house?",
+      "answer": "In Gainesville and Ocala, Be Secure Locksmith lockouts for cars, homes, businesses and storage units start at $65. A trip charge applies per visit, and you get the full price before any work begins."
+    },
+    {
+      "question": "What should I do if I'm locked out of my house?",
+      "answer": "Check for another door you can open and ask whether anyone nearby has a spare key. If not, call us. Avoid forcing the door or lock, since that can turn a lockout into a repair."
+    },
+    {
+      "question": "Can a locksmith open my car without damaging it?",
+      "answer": "Yes. We use specialized tools to open car doors without damage in most situations, and we work on cars, trucks and vans."
+    },
+    {
+      "question": "Who do I call when my keys are locked in the car?",
+      "answer": "Call a mobile locksmith. In Gainesville or Ocala, Be Secure Locksmith comes to your car and can retrieve keys locked inside the cabin or the trunk."
+    },
+    {
+      "question": "Do you need proof before opening a door or car?",
+      "answer": "Yes. The technician confirms that you live at the address or own the vehicle before opening it. Have your ID ready, along with your registration if you can reach it."
+    },
+    {
+      "question": "Can you help with a lockout overnight or on a Sunday?",
+      "answer": "No. Be Secure Locksmith handles lockouts in Gainesville and Ocala the same day during business hours, and we don't offer overnight or Sunday service."
+    }
+  ]
 }

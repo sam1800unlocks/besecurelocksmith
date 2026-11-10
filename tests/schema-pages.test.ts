@@ -146,7 +146,7 @@ test('the brand founder carries the @id blog authors point at', () => {
 });
 
 test('FAQPage schema appears only where the page shows those questions', () => {
-  const norm = (s: string) => s.replace(/&#x27;|&#39;|’/g, "'").replace(/&amp;/g, '&');
+  const norm = (s: string) => s.replace(/&#x27;|&#39;|’/g, "'").replace(/&quot;/g, '"').replace(/&amp;/g, '&');
   const dir = resolve(dist, 'services');
   for (const s of readdirSync(dir, { withFileTypes: true }).filter((e) => e.isDirectory()).map((e) => e.name)) {
     const p = `services/${s}/index.html`;

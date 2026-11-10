@@ -77,5 +77,30 @@
       "html": "Be Secure Locksmith provides interchangeable core locks to enhance your property’s security and functionality. Our team delivers reliable and efficient solutions whether you need <a href=\"/services/new-lock-installation/\">new lock installation</a>, <a href=\"/services/lock-rekeying/\">lock rekeying</a>, or <a href=\"/services/lock-repair/\">lock repair</a>. <a href=\"/contact-us/\">Contact us today</a> to discuss your needs or schedule a service. Let us help you improve your property’s security with interchangeable core locks!"
     }
   ],
-  "faqs": []
+  "faqs": [
+    {
+      "question": "Does Be Secure Locksmith install interchangeable core locks in Gainesville and Ocala?",
+      "answer": "Yes. Be Secure Locksmith installs and services interchangeable core locks for businesses across Gainesville and Ocala, on new and existing commercial doors."
+    },
+    {
+      "question": "What is an interchangeable core lock?",
+      "answer": "It's a lock whose core can be removed and replaced without taking the lock apart. That makes rekeying and repairs faster, which suits businesses with frequent staff changes."
+    },
+    {
+      "question": "How is an interchangeable core different from rekeying?",
+      "answer": "With a standard lock, a locksmith takes the cylinder out and changes the pins. With an interchangeable core, the old core is swapped for a new one in minutes, and the rest of the lock stays on the door."
+    },
+    {
+      "question": "Can you add interchangeable cores to our existing doors?",
+      "answer": "Yes. Be Secure Locksmith installs interchangeable core locks on new and existing commercial doors in Gainesville, Ocala and across Alachua and Marion counties."
+    },
+    {
+      "question": "Do interchangeable core locks work with a master key system?",
+      "answer": "Yes. They're compatible with master key systems, so you can control access across multiple doors."
+    },
+    {
+      "question": "What happens if a key or core is lost?",
+      "answer": "Be Secure Locksmith replaces the affected core to restore security, without replacing the full lock hardware."
+    }
+  ]
 }

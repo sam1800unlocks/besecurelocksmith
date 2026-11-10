@@ -116,7 +116,28 @@
       "variant": "check"
     }
   ],
-  "faqs": [],
+  "faqs": [
+    {
+      "question": "Does Be Secure Locksmith work with property managers in Gainesville and Ocala?",
+      "answer": "Yes. Be Secure Locksmith handles rekeys, repairs and master key systems for rental properties in Gainesville and Ocala, from apartments near the University of Florida to communities across Marion County."
+    },
+    {
+      "question": "Should I rekey between tenants?",
+      "answer": "Yes. Rekeying after a tenant moves out makes sure old keys no longer work, and it usually costs less than replacing the locks. Be Secure Locksmith rekeys rental units across Gainesville and Ocala, starting at $33 per standard lock, plus a trip charge per visit."
+    },
+    {
+      "question": "Can you rekey several units or buildings in one visit?",
+      "answer": "Yes. Be Secure Locksmith can rekey locks across multiple units or buildings in Gainesville, Ocala and nearby towns, so older keys stop working and new keys go to your tenants or staff."
+    },
+    {
+      "question": "Can maintenance staff use one key for all the units?",
+      "answer": "Yes. A master key system lets managers and maintenance open multiple doors with one key, while each tenant's key opens only their own unit."
+    },
+    {
+      "question": "What types of properties do you work with?",
+      "answer": "Be Secure Locksmith works with apartment complexes, office buildings, retail stores, restaurants, medical offices, schools, warehouses and industrial facilities in Gainesville and Ocala."
+    }
+  ],
   "clients": [
     {
       "src": "/img/clients/Academy-Locksmith-Logo-blue.webp",
